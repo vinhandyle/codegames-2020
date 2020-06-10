@@ -5,6 +5,11 @@ TagManager:
   serializedVersion: 2
   tags:
   - Enemy
+  - Wall
+  - Floor
+  - Ceiling
+  - Player Bullet
+  - Boundary
   layers:
   - Default
   - TransparentFX
