@@ -19,7 +19,7 @@ public class DestroyByCollision : MonoBehaviour
     // When the bullet hits something
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.tag == "Wall" || other.gameObject.tag == "Wall")
+        if (other.gameObject.tag == "Wall" || other.gameObject.tag == "Floor" || other.gameObject.tag == "Ceiling" || other.gameObject.tag == "Enemy")
         {
             Debug.Log("Hey");
             if (gameObject.tag == "Player Bullet")
