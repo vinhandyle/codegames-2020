@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ObjectPooler : MonoBehaviour
 {
-    public static ObjectPooler SharedInstance; // Allows other cripts to access it without geting a Component from GameObject
+    public static ObjectPooler SharedInstance; // Allows other scripts to access it without geting a Component from GameObject
 
     public List<GameObject> pooledObjects;
     public GameObject objectToPool;

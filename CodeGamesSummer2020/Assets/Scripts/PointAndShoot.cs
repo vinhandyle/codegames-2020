@@ -9,10 +9,10 @@ public class PointAndShoot : MonoBehaviour
     public GameObject bulletPrefab;
     private Vector3 target;
 
-    public float bulletSpeed = 5.0f;
+    public float bulletSpeed = 2.0f;
 
     // Start is called before the first frame update
-    void OnEnable()
+    void Start()
     {
         Cursor.visible = false;
     }

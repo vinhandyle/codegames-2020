@@ -18,9 +18,11 @@ public class DestroyByBoundary : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D other)
     {
-        if (other.gameObject.tag == "Boundary")
+        Debug.Log("Exit");
+        if (other.gameObject.CompareTag("Boundary"))
         {
-            if (gameObject.tag == "Player Bullet")
+            Debug.Log("Exited Bound");
+            if (gameObject.CompareTag("Player Bullet"))
             {
                 gameObject.SetActive(false);
             }

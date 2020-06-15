@@ -19,10 +19,11 @@ public class DestroyByCollision : MonoBehaviour
     // When the bullet hits something
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.tag == "Wall" || other.gameObject.tag == "Floor" || other.gameObject.tag == "Ceiling" || other.gameObject.tag == "Enemy")
+        Debug.Log("Enter");
+        if (other.gameObject.CompareTag("Wall") || other.gameObject.CompareTag("Floor") || other.gameObject.CompareTag("Ceiling") || other.gameObject.CompareTag("Enemy"))
         {
-            Debug.Log("Hey");
-            if (gameObject.tag == "Player Bullet")
+            Debug.Log("Enter True");
+            if (gameObject.CompareTag("Player Bullet"))
             {
                 gameObject.SetActive(false);
             }
