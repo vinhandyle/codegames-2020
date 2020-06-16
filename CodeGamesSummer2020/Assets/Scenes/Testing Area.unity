@@ -1270,7 +1270,7 @@ GameObject:
   - component: {fileID: 775790923}
   - component: {fileID: 775790922}
   - component: {fileID: 775790921}
-  m_Layer: 8
+  m_Layer: 13
   m_Name: Floor (1)
   m_TagString: Floor
   m_Icon: {fileID: 0}
@@ -1378,7 +1378,7 @@ GameObject:
   - component: {fileID: 782973599}
   - component: {fileID: 782973600}
   - component: {fileID: 782973602}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Bottom Boundary
   m_TagString: Boundary
   m_Icon: {fileID: 0}
@@ -1559,7 +1559,7 @@ GameObject:
   - component: {fileID: 1142140761}
   - component: {fileID: 1142140762}
   - component: {fileID: 1142140764}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Right Boundary
   m_TagString: Boundary
   m_Icon: {fileID: 0}
@@ -1632,7 +1632,7 @@ GameObject:
   - component: {fileID: 1173530893}
   - component: {fileID: 1173530895}
   - component: {fileID: 1173530896}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Top Boundary
   m_TagString: Boundary
   m_Icon: {fileID: 0}
@@ -2245,7 +2245,7 @@ GameObject:
   - component: {fileID: 1826202963}
   - component: {fileID: 1826202964}
   - component: {fileID: 1826202966}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Left Boundary
   m_TagString: Boundary
   m_Icon: {fileID: 0}
@@ -2848,6 +2848,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_TagString
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 9125056893500410234, guid: 59361cdf87cff484ab19416deb22c5be,
+        type: 3}
+      propertyPath: m_Layer
+      value: 13
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 59361cdf87cff484ab19416deb22c5be, type: 3}
