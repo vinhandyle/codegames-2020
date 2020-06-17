@@ -9,10 +9,15 @@ public class Player : MonoBehaviour
 
     private bool canDash = true; // Whether the player can dash
     private bool dashing = false; // Prevents moving while dashing
-    private bool firstPress = true; // Dashing requires double-pressing quickly, this checks if the next press is going to be the first
     private bool walled = false; // Player cannot dash when against a wall
     private bool tooLong = false; // Whether a key is held too long to dash on release
     private string direction; // Player direction used for dashing
+
+    // Dashing requires double-pressing quickly, these checks if the next press is going to be the first
+    private bool firstPress = true;
+    private bool firstLeft = false;
+    private bool firstRight = false;
+
 
     private bool canJump1 = false; // Whether the player can jump
     private bool canJump2 = false; // Whether the player can double-jump
@@ -21,6 +26,15 @@ public class Player : MonoBehaviour
     private bool dashUnlocked = true; // Whether dashing is unlocked
     private bool clingUnlocked = true; //Whether clinging to walls is unlocked
     private bool doubleUnlocked = true; //Whether double-jumping is unlocked
+
+    public static int energyMax = 10; // Maximum energy the player can have
+    public static int energyCurr = energyMax; // Current energy player has
+    public static bool solarUnlocked = true; // Whether the player obtained the solar panel
+    public static bool geoUnlocked = true; // Whether the player obtained the geothermal extractor
+
+    public static int damage = 1; // Damage dealt to enemies on bullet hit
+    public static int healthMax = 10; // Maximum health
+    public static int healthCurr = healthMax; // Current health
 
     // Start is called before the first frame update
     void Start()
@@ -37,6 +51,14 @@ public class Player : MonoBehaviour
         {
             direction = "left";
             GetComponent<Rigidbody2D>().velocity = new Vector2(-moveBy, GetComponent<Rigidbody2D>().velocity.y);
+            if (firstPress)
+            {
+                firstLeft = true;
+            }
+            if (firstRight)
+            {
+                firstRight = false;
+            }
         }
 
         // Moves player right
@@ -44,6 +66,14 @@ public class Player : MonoBehaviour
         {
             direction = "right";
             GetComponent<Rigidbody2D>().velocity = new Vector2(moveBy, GetComponent<Rigidbody2D>().velocity.y);
+            if (firstPress)
+            {
+                firstRight = true;
+            }
+            if (firstLeft)
+            {
+                firstLeft = false;
+            }
         }
 
         // Checks that time between the double presses is under a certain amount of time (no holding into a dash)
@@ -56,11 +86,12 @@ public class Player : MonoBehaviour
             else
             {
                 dashing = true;
-                if (direction == "left")
+                // Checking for first left/right prevents dashing when rapidly alternating between left/right
+                if (direction == "left" && firstLeft)
                 {
                     GetComponent<Rigidbody2D>().velocity = new Vector2(-3 * moveBy, GetComponent<Rigidbody2D>().velocity.y);
                 }
-                else if (direction == "right")
+                else if (direction == "right" && firstRight)
                 {
                     GetComponent<Rigidbody2D>().velocity = new Vector2(3 * moveBy, GetComponent<Rigidbody2D>().velocity.y);
 
@@ -169,6 +200,6 @@ public class Player : MonoBehaviour
         yield return new WaitForSeconds(1.5f);
 
         canDash = true;
-    }
+    }       
 }
 

@@ -10,6 +10,8 @@ TagManager:
   - Ceiling
   - Player Bullet
   - Boundary
+  - Solar
+  - Geothermal
   layers:
   - Default
   - TransparentFX

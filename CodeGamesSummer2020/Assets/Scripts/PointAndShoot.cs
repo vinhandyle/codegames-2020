@@ -10,6 +10,8 @@ public class PointAndShoot : MonoBehaviour
     private Vector3 target;
 
     public float bulletSpeed = 2.0f;
+    public float useTime = 0.2f;
+    private bool canShoot = true;
 
     // Start is called before the first frame update
     void Start()
@@ -26,12 +28,15 @@ public class PointAndShoot : MonoBehaviour
         Vector3 difference = target - player.transform.position;
         float rotationZ = Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg;
 
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) && canShoot && Player.energyCurr > 0)
         {
             float distance = difference.magnitude;
             Vector2 direction = difference / distance;
             direction.Normalize();
             fireBullet(direction, rotationZ);
+            StartCoroutine(cooldown());
+            Player.energyCurr--;
+            Debug.Log(Player.energyCurr + " left");
         }
     }
 
@@ -46,5 +51,15 @@ public class PointAndShoot : MonoBehaviour
             bullet.transform.rotation = Quaternion.Euler(0.0f, 0.0f, rotation2);
             bullet.GetComponent<Rigidbody2D>().velocity = direction * bulletSpeed;
         }
+    }
+
+    // Player cannot shoot for a certain after shooting, preventing spam-fire
+    IEnumerator cooldown()
+    {
+        canShoot = false;
+
+        yield return new WaitForSeconds(useTime);
+
+        canShoot = true;
     }
 }

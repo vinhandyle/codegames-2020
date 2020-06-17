@@ -16,12 +16,11 @@ public class DestroyByBoundary : MonoBehaviour
         
     }
 
+    // When bullet exits the screen bounds
     private void OnTriggerExit2D(Collider2D other)
     {
-        Debug.Log("Exit");
         if (other.gameObject.CompareTag("Boundary"))
         {
-            Debug.Log("Exited Bound");
             if (gameObject.CompareTag("Player Bullet"))
             {
                 gameObject.SetActive(false);
