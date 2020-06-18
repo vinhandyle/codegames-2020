@@ -42,7 +42,6 @@ public class EnergySource : MonoBehaviour
         {
             Player.energyCurr += 5;
         }
-        Debug.Log("Restored to " + Player.energyCurr);
         canRegen = false;
 
         yield return new WaitForSeconds(regenTime);

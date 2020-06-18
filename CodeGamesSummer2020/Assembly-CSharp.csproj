@@ -207,6 +207,17 @@
     <Compile Include="Assets\Scripts\DestroyByBoundary.cs" />
     <Compile Include="Assets\Scripts\DestroyByCollision.cs" />
     <Compile Include="Assets\Scripts\EnergySource.cs" />
+    <Compile Include="Assets\Scripts\EnergyText.cs" />
+    <Compile Include="Assets\Scripts\HealthText.cs" />
+    <Compile Include="Assets\Scripts\InfoBtn.cs" />
+    <Compile Include="Assets\Scripts\InfoBtnBehavior.cs" />
+    <Compile Include="Assets\Scripts\InfoBtnText.cs" />
+    <Compile Include="Assets\Scripts\InfoPage.cs" />
+    <Compile Include="Assets\Scripts\Map.cs" />
+    <Compile Include="Assets\Scripts\MenuBackground.cs" />
+    <Compile Include="Assets\Scripts\MenuBtn.cs" />
+    <Compile Include="Assets\Scripts\MenuBtnBehavior.cs" />
+    <Compile Include="Assets\Scripts\MenuBtnText.cs" />
     <Compile Include="Assets\Scripts\ObjectPooler.cs" />
     <Compile Include="Assets\Scripts\Player.cs" />
     <Compile Include="Assets\Scripts\PointAndShoot.cs" />

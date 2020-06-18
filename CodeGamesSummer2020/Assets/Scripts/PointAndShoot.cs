@@ -28,7 +28,8 @@ public class PointAndShoot : MonoBehaviour
         Vector3 difference = target - player.transform.position;
         float rotationZ = Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg;
 
-        if (Input.GetMouseButtonDown(0) && canShoot && Player.energyCurr > 0)
+        // Player can only shoot when they have energy and are not in a menu
+        if (Input.GetMouseButtonDown(0) && canShoot && Player.energyCurr > 0 && !MenuBtn.inMenu)
         {
             float distance = difference.magnitude;
             Vector2 direction = difference / distance;
@@ -36,7 +37,6 @@ public class PointAndShoot : MonoBehaviour
             fireBullet(direction, rotationZ);
             StartCoroutine(cooldown());
             Player.energyCurr--;
-            Debug.Log(Player.energyCurr + " left");
         }
     }
 
