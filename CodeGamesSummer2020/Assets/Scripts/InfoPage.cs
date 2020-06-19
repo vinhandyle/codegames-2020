@@ -17,7 +17,7 @@ public class InfoPage : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (InfoBtn.infoPage)
+        if (MenuBtn.inMenu && InfoBtn.infoPage)
         {
             img.color = new Color(1f, 1f, 1f, 1f);
         }

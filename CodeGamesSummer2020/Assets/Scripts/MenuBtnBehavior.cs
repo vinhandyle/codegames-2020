@@ -20,6 +20,8 @@ public class MenuBtnBehavior : MonoBehaviour
     {
         if (MenuBtn.inMenu)
         {
+            InventoryBtnBehavior.btn = "";
+            InfoBtn.infoPage = false;
             if (Map.mapOpen)
             {
                 Map.mapOpen = false;

@@ -11,6 +11,7 @@ public class PointAndShoot : MonoBehaviour
 
     public float bulletSpeed = 2.0f;
     public float useTime = 0.2f;
+    public static bool gunUnlocked = true;
     private bool canShoot = true;
 
     // Start is called before the first frame update
@@ -29,7 +30,7 @@ public class PointAndShoot : MonoBehaviour
         float rotationZ = Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg;
 
         // Player can only shoot when they have energy and are not in a menu
-        if (Input.GetMouseButtonDown(0) && canShoot && Player.energyCurr > 0 && !MenuBtn.inMenu)
+        if (Input.GetMouseButtonDown(0) && canShoot && Player.energyCurr > 0 && !MenuBtn.inMenu && gunUnlocked)
         {
             float distance = difference.magnitude;
             Vector2 direction = difference / distance;

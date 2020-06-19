@@ -204,6 +204,8 @@
     <Compile Include="Assets\2DGamekit\Utilities\Standard Assets\Effects\ImageEffects\Scripts\BlurOptimized.cs" />
     <Compile Include="Assets\2DGamekit\Utilities\Standard Assets\Effects\ImageEffects\Scripts\PostEffectsBase.cs" />
     <Compile Include="Assets\Scripts\Boundary.cs" />
+    <Compile Include="Assets\Scripts\DataText.cs" />
+    <Compile Include="Assets\Scripts\Description.cs" />
     <Compile Include="Assets\Scripts\DestroyByBoundary.cs" />
     <Compile Include="Assets\Scripts\DestroyByCollision.cs" />
     <Compile Include="Assets\Scripts\EnergySource.cs" />
@@ -213,6 +215,8 @@
     <Compile Include="Assets\Scripts\InfoBtnBehavior.cs" />
     <Compile Include="Assets\Scripts\InfoBtnText.cs" />
     <Compile Include="Assets\Scripts\InfoPage.cs" />
+    <Compile Include="Assets\Scripts\InventoryBtn.cs" />
+    <Compile Include="Assets\Scripts\InventoryBtnBehavior.cs" />
     <Compile Include="Assets\Scripts\Map.cs" />
     <Compile Include="Assets\Scripts\MenuBackground.cs" />
     <Compile Include="Assets\Scripts\MenuBtn.cs" />
@@ -222,6 +226,7 @@
     <Compile Include="Assets\Scripts\Player.cs" />
     <Compile Include="Assets\Scripts\PointAndShoot.cs" />
     <Compile Include="Assets\Scripts\RegularEnemy.cs" />
+    <Compile Include="Assets\Scripts\ScrapNum.cs" />
     <None Include="Assets\2DGamekit\Utilities\TextMesh Pro\Resources\Shaders\TMPro.cginc" />
     <None Include="Assets\2DGamekit\Utilities\Shaders\UnityStandardParticleShadow.cginc" />
     <None Include="Assets\2DGamekit\Utilities\TextMesh Pro\Resources\Shaders\TMP_SDF-Mobile Overlay.shader" />

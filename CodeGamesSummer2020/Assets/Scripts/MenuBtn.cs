@@ -20,6 +20,7 @@ public class MenuBtn : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Tab))
         {
+            InventoryBtnBehavior.btn = "";
             if (inMenu)
             {
                 Cursor.visible = false;

@@ -20,6 +20,7 @@ public class InfoBtnBehavior : MonoBehaviour
     {
         if (MenuBtn.inMenu)
         {
+            InventoryBtnBehavior.btn = "";
             if (InfoBtn.infoPage)
             {
                 InfoBtn.infoPage = false;

@@ -24,11 +24,11 @@ public class MenuBtnText : MonoBehaviour
             {
                 if (Map.mapOpen)
                 {
-                    text.text = "Inventory";
+                    text.text = "Open Inventory";
                 }
                 else
                 {
-                    text.text = "Map";
+                    text.text = "Open Map";
                 }
             }
             else
