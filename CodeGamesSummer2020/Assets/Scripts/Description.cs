@@ -23,59 +23,60 @@ public class Description : MonoBehaviour
             {
                 text.text = "";
             }
-            else if (descOf == "battery") // Battery description
+            else if (descOf == "battery" && Player.batteryUnlocked) // Battery description
             {
                 text.text = "Battery";
             }
-            else if (descOf == "solar") // Solar Panel description
+            else if (descOf == "solar" && Player.solarUnlocked) // Solar Panel description
             {
                 text.text = "Solar Panel";
             }
-            else if (descOf == "geothermal") // Geothermal Extractor description
+            else if (descOf == "geothermal" && Player.geoUnlocked) // Geothermal Extractor description
             {
                 text.text = "Geothermal Extractor";
             }
-            else if (descOf == "dash") // Dash item description
+            else if (descOf == "dash" && Player.dashUnlocked) // Dash item description
             {
                 text.text = "Booster Rocket";
             }
-            else if (descOf == "cling") // Wall jump item description
+            else if (descOf == "cling" && Player.clingUnlocked) // Wall jump item description
             {
                 text.text = "Climbing Claws";
             }
-            else if (descOf == "double") // Double jump item description
+            else if (descOf == "double" && Player.doubleUnlocked) // Double jump item description
             {
                 text.text = "Booster Rocket MK2";
             }
-            else if (descOf == "gun") // Energy Cannon description
+            else if (descOf == "gun" && PointAndShoot.gunUnlocked) // Energy Cannon description
             {
-                text.text = "Energy Cannon";
+                text.text = "Energy Cannon \n\n" +
+                            "A means to an end.";
             }
-            else if (descOf == "map") // Map item description
+            else if (descOf == "map" && Map.mapUnlocked) // Map item description
             {
                 text.text = "Navigational Module";
             }
-            else if (descOf == "heartless") // Health-Energy item description
+            else if (descOf == "heartless" && Player.heartlessUnlocked) // Health-Energy item description
             {
                 text.text = "Heartless Generator";
             }
-            else if (descOf == "scrap") // Hyper Scrap description
+            else if (descOf == "scrap" && ScrapNum.scrapFound) // Hyper Scrap description
             {
                 text.text = "Hyper Scrap";
             }
-            else if (descOf == "basic") // Basic Reactor description
+            else if (descOf == "basic" && Player.basicUnlocked) // Basic Reactor description
             {
                 text.text = "Basic Reactor";
             }
-            else if (descOf == "imperial") // Imperial Reactor description
+            else if (descOf == "imperial" && Player.imperialUnlocked) // Imperial Reactor description
             {
                 text.text = "Imperial Reactor";
             }
-            else if (descOf == "familiar") // Familiar Reactor description
+            else if (descOf == "familiar" && Player.familiarUnlocked) // Familiar Reactor description
             {
                 text.text = "Familiar Reactor";
             }
-            else if (descOf == "unstable") // Unstable Reactor description
+            else if (descOf == "unstable" && Player.unstableUnlocked) // Unstable Reactor description
             {
                 text.text = "Unstable Reactor";
             }

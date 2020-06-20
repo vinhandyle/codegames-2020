@@ -215,6 +215,7 @@
     <Compile Include="Assets\Scripts\InfoBtnBehavior.cs" />
     <Compile Include="Assets\Scripts\InfoBtnText.cs" />
     <Compile Include="Assets\Scripts\InfoPage.cs" />
+    <Compile Include="Assets\Scripts\InteractText.cs" />
     <Compile Include="Assets\Scripts\InventoryBtn.cs" />
     <Compile Include="Assets\Scripts\InventoryBtnBehavior.cs" />
     <Compile Include="Assets\Scripts\Map.cs" />
@@ -223,6 +224,7 @@
     <Compile Include="Assets\Scripts\MenuBtnBehavior.cs" />
     <Compile Include="Assets\Scripts\MenuBtnText.cs" />
     <Compile Include="Assets\Scripts\ObjectPooler.cs" />
+    <Compile Include="Assets\Scripts\PickUpItem.cs" />
     <Compile Include="Assets\Scripts\Player.cs" />
     <Compile Include="Assets\Scripts\PointAndShoot.cs" />
     <Compile Include="Assets\Scripts\RegularEnemy.cs" />

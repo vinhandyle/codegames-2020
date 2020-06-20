@@ -30,7 +30,7 @@ public class Player : MonoBehaviour
     public static int energyMax = 10; // Maximum energy the player can have
     public static int energyCurr = energyMax; // Current energy player has
 
-    public static bool batteryUnlocked = true; // Whether the player obtained the battery
+    public static bool batteryUnlocked = false; // Whether the player obtained the battery
     public static bool solarUnlocked = true; // Whether the player obtained the solar panel
     public static bool geoUnlocked = true; // Whether the player obtained the geothermal extractor
     public static bool heartlessUnlocked = true; // Whether the player obtained the heartless generator
