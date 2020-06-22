@@ -210,6 +210,9 @@
     <Compile Include="Assets\Scripts\DestroyByCollision.cs" />
     <Compile Include="Assets\Scripts\EnergySource.cs" />
     <Compile Include="Assets\Scripts\EnergyText.cs" />
+    <Compile Include="Assets\Scripts\EnterDoor.cs" />
+    <Compile Include="Assets\Scripts\Examine.cs" />
+    <Compile Include="Assets\Scripts\GlobalControl.cs" />
     <Compile Include="Assets\Scripts\HealthText.cs" />
     <Compile Include="Assets\Scripts\InfoBtn.cs" />
     <Compile Include="Assets\Scripts\InfoBtnBehavior.cs" />
@@ -228,7 +231,7 @@
     <Compile Include="Assets\Scripts\Player.cs" />
     <Compile Include="Assets\Scripts\PointAndShoot.cs" />
     <Compile Include="Assets\Scripts\RegularEnemy.cs" />
-    <Compile Include="Assets\Scripts\ScrapNum.cs" />
+    <Compile Include="Assets\Scripts\Talk.cs" />
     <None Include="Assets\2DGamekit\Utilities\TextMesh Pro\Resources\Shaders\TMPro.cginc" />
     <None Include="Assets\2DGamekit\Utilities\Shaders\UnityStandardParticleShadow.cginc" />
     <None Include="Assets\2DGamekit\Utilities\TextMesh Pro\Resources\Shaders\TMP_SDF-Mobile Overlay.shader" />

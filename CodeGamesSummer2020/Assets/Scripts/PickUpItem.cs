@@ -6,6 +6,7 @@ public class PickUpItem : MonoBehaviour
 {
     public static bool inRange = false;
     public static string itemName = "";
+    public static string sticky = ""; // used for interact text attachedto
 
     // Start is called before the first frame update
     void Start()
@@ -27,6 +28,7 @@ public class PickUpItem : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other)
     {
         inRange = true;
+        sticky = itemName;
         if(!InteractText.interacted)
         InteractText.type = "item";
     }
@@ -34,7 +36,8 @@ public class PickUpItem : MonoBehaviour
     private void OnTriggerExit2D(Collider2D other)
     {
         inRange = false;
+        sticky = "";
         if(!InteractText.interacted)
         InteractText.type = "";
-    }        
+    }
 }

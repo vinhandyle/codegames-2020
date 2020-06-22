@@ -6,7 +6,9 @@ using UnityEngine.UI;
 public class InteractText : MonoBehaviour
 {
     private Text text;
+    public string attachedTo;
     public static string type = "";
+    public static string stickied = ""; // Retain sticky info after object is set inactive
     public static bool interacted = false;
 
     // Start is called before the first frame update
@@ -18,73 +20,83 @@ public class InteractText : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (interacted)
+        if (attachedTo == stickied || attachedTo == PickUpItem.sticky || attachedTo == EnterDoor.sticky)
         {
-            // Items
-            if (type == "Item (battery)")
+            stickied = PickUpItem.sticky;
+            if (interacted)
             {
-                text.text = "Picked up: Battery";
-                Player.batteryUnlocked = true;
-            }
-            else if (type == "solar")
-            {
+                // Items
+                if (type == "Item (battery)")
+                {
+                    text.text = "Picked up: Battery";
+                    Player.batteryUnlocked = true;
+                }
+                else if (type == "solar")
+                {
 
-            }
-            else if (type == "geothermal")
-            {
+                }
+                else if (type == "geothermal")
+                {
 
-            }
-            else if (type == "gun")
-            {
+                }
+                else if (type == "gun")
+                {
 
-            }
-            else if (type == "map")
-            {
+                }
+                else if (type == "map")
+                {
 
-            }
-            else if (type == "heartless")
-            {
+                }
+                else if (type == "heartless")
+                {
 
-            }
-            else if (type == "unstable")
-            {
+                }
+                else if (type == "unstable")
+                {
 
-            }
-            else if (type == "scrap")
-            {
+                }
+                else if (type == "scrap")
+                {
 
+                }
+                else
+                {
+                    text.text = "";
+                }
+                StartCoroutine(wait(2f));
             }
             else
             {
-                text.text = "";
+                if (type == "item")
+                {
+                    text.text = "Pick up";
+                }
+                else if (type == "npc")
+                {
+                    text.text = "Talk";
+                }
+                else if (type == "door")
+                {
+                    text.text = "Enter";
+                }
+                else if (type == "misc")
+                {
+                    text.text = "Examine";
+                }
+                else
+                {
+                    text.text = "";
+                }
             }
-            StartCoroutine(wait(2f));
         }
-        else
-        {
-            if (type == "item")
-            {
-                text.text = "Pick up";
-            }
-            else if (type == "npc")
-            {
-                text.text = "Talk";
-            }
-            else if (type == "other")
-            {
-                text.text = "Examine";
-            }
-            else
-            {
-                text.text = "";
-            }
-        }               
     }
 
     IEnumerator wait(float time)
     {
         yield return new WaitForSeconds(time);
         type = "";
+        stickied = "";
+        text.text = "";
         interacted = false;
     }
 }

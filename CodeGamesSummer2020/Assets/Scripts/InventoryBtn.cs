@@ -32,7 +32,7 @@ public class InventoryBtn : MonoBehaviour
                 (gameObject.name == "ImperialBtn" && Player.imperialUnlocked) ||
                 (gameObject.name == "FamiliarBtn" && Player.familiarUnlocked) ||
                 (gameObject.name == "UnstableBtn" && Player.unstableUnlocked) ||
-                (gameObject.name == "ScrapBtn" && ScrapNum.scrapFound))
+                (gameObject.name == "ScrapBtn" && Description.scrapFound))
             {
                 img.color = new Color(1f, 1f, 1f, 1f);
             }
