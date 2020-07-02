@@ -6,7 +6,6 @@ using UnityEngine.UI;
 public class DataText : MonoBehaviour
 {
     private Text text;
-    public static int data = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -19,7 +18,7 @@ public class DataText : MonoBehaviour
     {
         if (MenuBtn.inMenu)
         {
-            text.text = "Data: " + data + "%";
+            text.text = "Data: " + GlobalControl.data + "%";
         }
         else
         {

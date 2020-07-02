@@ -24,7 +24,7 @@ public class EnergySource : MonoBehaviour
     // Triggers while player is in sunlight
     private void OnTriggerStay2D(Collider2D other)
     {
-        if (other.gameObject.CompareTag("Player") && Player.energyCurr < Player.energyMax && canRegen)
+        if (other.gameObject.CompareTag("Player") && GlobalControl.energyCurr < GlobalControl.energyMax && canRegen)
         {
             StartCoroutine(regen());
         }
@@ -33,14 +33,14 @@ public class EnergySource : MonoBehaviour
     // Increments current energy every 0.5 seconds
     IEnumerator regen()
     {
-        if (gameObject.CompareTag("Solar") && Player.solarUnlocked)
+        if (gameObject.CompareTag("Solar") && GlobalControl.solarUnlocked)
         {
-            Player.energyCurr++;
+            GlobalControl.energyCurr++;
 
         }
-        else if (gameObject.CompareTag("Geothermal") && Player.geoUnlocked)
+        else if (gameObject.CompareTag("Geothermal") && GlobalControl.geoUnlocked)
         {
-            Player.energyCurr += 5;
+            GlobalControl.energyCurr += 5;
         }
         canRegen = false;
 

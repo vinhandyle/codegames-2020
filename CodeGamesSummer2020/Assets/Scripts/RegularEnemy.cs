@@ -35,7 +35,7 @@ public class RegularEnemy : MonoBehaviour
         Debug.Log("Hit");
         if (other.gameObject.tag == "Player Bullet")
         {
-            healthCurr -= Player.damage;
+            healthCurr -= GlobalControl.damage;
             Debug.Log(healthCurr);
         }
     }

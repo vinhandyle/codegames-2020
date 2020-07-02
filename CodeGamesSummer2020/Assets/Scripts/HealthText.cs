@@ -16,6 +16,6 @@ public class HealthText : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        text.text = "Health: " + Player.healthCurr + " / " + Player.healthMax;
+        text.text = "Health: " + GlobalControl.healthCurr + " / " + GlobalControl.healthMax;
     }
 }

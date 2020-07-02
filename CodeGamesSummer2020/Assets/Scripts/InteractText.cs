@@ -29,7 +29,7 @@ public class InteractText : MonoBehaviour
                 if (type == "Item (battery)")
                 {
                     text.text = "Picked up: Battery";
-                    Player.batteryUnlocked = true;
+                    GlobalControl.batteryUnlocked = true;
                 }
                 else if (type == "solar")
                 {

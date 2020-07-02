@@ -23,29 +23,6 @@ public class Player : MonoBehaviour
     private bool canJump2 = false; // Whether the player can double-jump
     private bool jumped = false; //Whether the first jump started
 
-    public static bool dashUnlocked = true; // Whether dashing is unlocked
-    public static bool clingUnlocked = true; //Whether clinging to walls is unlocked
-    public static bool doubleUnlocked = true; //Whether double-jumping is unlocked
-
-    public static int energyMax = 10; // Maximum energy the player can have
-    public static int energyCurr = energyMax; // Current energy player has
-
-    public static bool batteryUnlocked = false; // Whether the player obtained the battery
-    public static bool solarUnlocked = true; // Whether the player obtained the solar panel
-    public static bool geoUnlocked = true; // Whether the player obtained the geothermal extractor
-    public static bool heartlessUnlocked = true; // Whether the player obtained the heartless generator
-
-    // Whether a reactor type was unlocked
-    public static bool basicUnlocked = true;
-    public static bool imperialUnlocked = true;
-    public static bool familiarUnlocked = true;
-    public static bool unstableUnlocked = true;
-
-    public static int damage = 1; // Damage dealt to enemies on bullet hit
-    public static int energyUse = 1; // Energy used per shot
-    public static int healthMax = 10; // Maximum health
-    public static int healthCurr = healthMax; // Current health
-
     // Start is called before the first frame update
     void Start()
     {
@@ -87,7 +64,7 @@ public class Player : MonoBehaviour
         }
 
         // Checks that time between the double presses is under a certain amount of time (no holding into a dash)
-        if ((Input.GetKeyDown("a") || Input.GetKeyDown("d")) && canDash && dashUnlocked && !walled)
+        if ((Input.GetKeyDown("a") || Input.GetKeyDown("d")) && canDash && GlobalControl.dashUnlocked && !walled)
         {
             if (firstPress)
             {
@@ -111,7 +88,7 @@ public class Player : MonoBehaviour
         }
 
         // Checks time between first release and second press
-        if ((Input.GetKeyUp("a") || Input.GetKeyUp("d")) && canDash && dashUnlocked && firstPress && !walled && !tooLong)
+        if ((Input.GetKeyUp("a") || Input.GetKeyUp("d")) && canDash && GlobalControl.dashUnlocked && firstPress && !walled && !tooLong)
         {           
             StartCoroutine(preDash());         
         }
@@ -135,7 +112,7 @@ public class Player : MonoBehaviour
         }
 
         // Double jump
-        if (!canJump1 && canJump2 && doubleUnlocked && Input.GetKeyDown("space"))
+        if (!canJump1 && canJump2 && GlobalControl.doubleUnlocked && Input.GetKeyDown("space"))
         {
             // Prevents infinite jumps
             canJump2 = false;
@@ -150,7 +127,7 @@ public class Player : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision)
     {
         // Touching a floor / wall (with cling unlocked) resets the use of jump
-        if (collision.collider.tag == "Floor" || (collision.collider.tag == "Wall" && clingUnlocked))
+        if (collision.collider.tag == "Floor" || (collision.collider.tag == "Wall" && GlobalControl.clingUnlocked))
         {
             canJump1 = true;
             canJump2 = false;
@@ -177,7 +154,7 @@ public class Player : MonoBehaviour
         {
             walled = false;
         }
-    }
+    }    
 
     // Time between key press and key release, preventing a key hold into a dash
     IEnumerator noHoldDash()

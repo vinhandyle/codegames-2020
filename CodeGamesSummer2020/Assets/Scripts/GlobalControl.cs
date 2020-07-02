@@ -2,40 +2,50 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GlobalControl : MonoBehaviour
+public class GlobalControl : MonoBehaviour // overhaul
 {
     // Energy
-    public int energyCurr;
-    public int energyMax;
-    public int energyGain;
+    public static int energyMax = 10;              // max energy level
+    public static int energyCurr = energyMax;      // current energy level
+    public static int energyUse;                   // amount of energy used per shot
 
-    // Combat 
-    public int health;
-    public int damage;
-    public int energyUse;
+    // Health
+    public static int healthMax = 10;              // max health level
+    public static int healthCurr = healthMax;      // current health level
 
-    // Unlock
-    public bool batteryUnlocked;
-    public bool solarUnlocked;
-    public bool geoUnlocked;
+    // Other Stats
+    public static int damage;                      // player bullet damage
+    public static int data;                        // Percent data collected
 
-    public bool gunUnlocked;
-    public bool mapUnlocked;
-    public bool heartlessUnlocked;
+    // Unlock 
+    public static bool batteryUnlocked = true;     // Battery
+    public static bool solarUnlocked = true;       // Solar Panel
+    public static bool geoUnlocked = true;         // Geothermal Extractor
 
-    public bool dashUnlocked;
-    public bool clingUnlocked;
-    public bool doubleUnlocked;
+    public static bool gunUnlocked = true;         // Energy Cannon
+    public static bool mapUnlocked = true;         // Navigational Module
+    public static bool heartlessUnlocked = true;   // Heartless Generator
 
-    public bool basicUnlocked;
-    public bool imperialUnlocked;
-    public bool familiarUnlocked;
-    public bool unstableUnlocked;
+    public static bool dashUnlocked = true;        // Booster Rocket
+    public static bool clingUnlocked = true;       // Climbing Claws
+    public static bool doubleUnlocked = true;      // Booster Rocket MK2
 
-    public bool scrapFound;
+    public static bool basicUnlocked = true;       // Basic Reactor
+    public static bool imperialUnlocked = true;    // Strange Reactor
+    public static bool familiarUnlocked = true;    // Lost Reactor
+    public static bool unstableUnlocked = true;    // Unstable Reactor
+
+    public static bool scrapFound = true;          // Hyper Scrap
+    public static bool extraFound = false;         // Extra Battery
+    public static bool plateFound = true;          // Special Plating
+
+    // Menu
+    //public static bool infoPage = true;
 
     // World
-    public int bossDowned;
+    public static int bossDowned = 0;              // How many bosses have been defeated
+    public static string area = "";                // Area name for scene change purposes
+    public static string checkpoint = "";          // Area name of last repair station used
 
 
     public static GlobalControl Instance;

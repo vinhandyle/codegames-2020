@@ -19,20 +19,20 @@ public class InventoryBtn : MonoBehaviour
     {
         if (MenuBtn.inMenu && !Map.mapOpen && !InfoBtn.infoPage)
         {
-            if ((gameObject.name == "BatteryBtn" && Player.batteryUnlocked) ||
-                (gameObject.name == "SolarBtn" && Player.solarUnlocked) ||
-                (gameObject.name == "GeothermalBtn" && Player.geoUnlocked) ||
-                (gameObject.name == "GunBtn" && PointAndShoot.gunUnlocked) ||
-                (gameObject.name == "NavBtn" && Map.mapUnlocked) ||
-                (gameObject.name == "HeartlessBtn" && Player.heartlessUnlocked) ||
-                (gameObject.name == "DashBtn" && Player.dashUnlocked) ||
-                (gameObject.name == "ClingBtn" && Player.clingUnlocked) ||
-                (gameObject.name == "DoubleBtn" && Player.doubleUnlocked) ||
-                (gameObject.name == "BasicBtn" && Player.basicUnlocked) ||
-                (gameObject.name == "ImperialBtn" && Player.imperialUnlocked) ||
-                (gameObject.name == "FamiliarBtn" && Player.familiarUnlocked) ||
-                (gameObject.name == "UnstableBtn" && Player.unstableUnlocked) ||
-                (gameObject.name == "ScrapBtn" && Description.scrapFound))
+            if ((gameObject.name == "BatteryBtn" && GlobalControl.batteryUnlocked) ||
+                (gameObject.name == "SolarBtn" && GlobalControl.solarUnlocked) ||
+                (gameObject.name == "GeothermalBtn" && GlobalControl.geoUnlocked) ||
+                (gameObject.name == "GunBtn" && GlobalControl.gunUnlocked) ||
+                (gameObject.name == "NavBtn" && GlobalControl.mapUnlocked) ||
+                (gameObject.name == "HeartlessBtn" && GlobalControl.heartlessUnlocked) ||
+                (gameObject.name == "DashBtn" && GlobalControl.dashUnlocked) ||
+                (gameObject.name == "ClingBtn" && GlobalControl.clingUnlocked) ||
+                (gameObject.name == "DoubleBtn" && GlobalControl.doubleUnlocked) ||
+                (gameObject.name == "BasicBtn" && GlobalControl.basicUnlocked) ||
+                (gameObject.name == "ImperialBtn" && GlobalControl.imperialUnlocked) ||
+                (gameObject.name == "FamiliarBtn" && GlobalControl.familiarUnlocked) ||
+                (gameObject.name == "UnstableBtn" && GlobalControl.unstableUnlocked) ||
+                (gameObject.name == "ScrapBtn" && GlobalControl.scrapFound))
             {
                 img.color = new Color(1f, 1f, 1f, 1f);
             }

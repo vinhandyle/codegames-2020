@@ -9,7 +9,7 @@ public class PointAndShoot : MonoBehaviour
     public GameObject bulletPrefab;
     private Vector3 target;
 
-    public float bulletSpeed = 2.0f;
+    public float bulletSpeed = 5.0f;
     public float useTime = 0.2f;
     public static bool gunUnlocked = true;
     private bool canShoot = true;
@@ -30,14 +30,14 @@ public class PointAndShoot : MonoBehaviour
         float rotationZ = Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg;
 
         // Player can only shoot when they have energy and are not in a menu
-        if (Input.GetMouseButtonDown(0) && canShoot && Player.energyCurr > 0 && !MenuBtn.inMenu && gunUnlocked)
+        if (Input.GetMouseButtonDown(0) && canShoot && GlobalControl.energyCurr > 0 && !MenuBtn.inMenu && gunUnlocked)
         {
             float distance = difference.magnitude;
             Vector2 direction = difference / distance;
             direction.Normalize();
             fireBullet(direction, rotationZ);
             StartCoroutine(cooldown());
-            Player.energyCurr--;
+            GlobalControl.energyCurr--;
         }
     }
 

@@ -16,6 +16,6 @@ public class EnergyText : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        text.text = "Energy: " + Player.energyCurr + " / " + Player.energyMax;
+        text.text = "Energy: " + GlobalControl.energyCurr + " / " + GlobalControl.energyMax;
     }
 }

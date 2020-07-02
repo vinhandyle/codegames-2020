@@ -47,6 +47,7 @@ public class EnterDoor : MonoBehaviour
 
     IEnumerator SceneSwitch(string load, string unload)
     {
+        GlobalControl.area = load;
         SceneManager.LoadScene(load, LoadSceneMode.Single);
         yield return null;
         SceneManager.UnloadSceneAsync(unload);
