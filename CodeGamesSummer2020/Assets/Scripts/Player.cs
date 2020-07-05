@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    private static float c = 100f;
+    public static float x = c;
+    public static float y = c;
+
     private float moveBy = 2f; // Horizontal velocity
     private float jumpHeight = 5f; // Jump velocity
 
@@ -26,13 +30,20 @@ public class Player : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Debug.Log("This is gonna take a while...");
+        
+
     }
 
     // Update is called once per frame
     void Update()
     {
-  
+        // Set new player position if the set position isn't (0, 0) 
+        if (x * y < c)
+        {
+            transform.position = new Vector2(x, y);
+            x = c;
+            y = c;
+        }
         // Moves player left
         if (Input.GetKey("a") && !dashing)
         {
@@ -154,7 +165,7 @@ public class Player : MonoBehaviour
         {
             walled = false;
         }
-    }    
+    }
 
     // Time between key press and key release, preventing a key hold into a dash
     IEnumerator noHoldDash()

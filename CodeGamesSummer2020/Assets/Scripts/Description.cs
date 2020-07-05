@@ -78,6 +78,14 @@ public class Description : MonoBehaviour
                             "<i>Devour the strong.</i>\n\n" +
                             "In Possession: " + scrapNum;
             }
+            else if (descOf == "extra" && GlobalControl.extraFound) // Extra Battery description
+            {
+                text.text = "Extra Battery \n\n";
+            }
+            else if (descOf == "plating" && GlobalControl.plateFound) // Special Plating description
+            {
+                text.text = "Special Plating \n\n";
+            }
             else if (descOf == "basic" && GlobalControl.basicUnlocked) // Basic Reactor description
             {
                 text.text = "Basic Reactor \n\n" +
@@ -86,12 +94,12 @@ public class Description : MonoBehaviour
             }
             else if (descOf == "imperial" && GlobalControl.imperialUnlocked) // Imperial Reactor description
             {
-                text.text = "Imperial Reactor \n\n" +
+                text.text = "Strange Reactor \n\n" +
                             "<i></i> \n\n";
             }
             else if (descOf == "familiar" && GlobalControl.familiarUnlocked) // Familiar Reactor description
             {
-                text.text = "Familiar Reactor \n\n" +
+                text.text = "Lost Reactor \n\n" +
                             "<i>Family inheritance.</i> \n\n";
             }
             else if (descOf == "unstable" && GlobalControl.unstableUnlocked) // Unstable Reactor description

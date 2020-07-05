@@ -1937,7 +1937,7 @@ PrefabInstance:
     - target: {fileID: 1580859305280787209, guid: 8e2490aaf52650942ba99f1212982d5c,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -9
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 1580859305280787209, guid: 8e2490aaf52650942ba99f1212982d5c,
         type: 3}
@@ -2015,6 +2015,17 @@ PrefabInstance:
       propertyPath: m_WasSpriteAssigned
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5978003488749939210, guid: 8e2490aaf52650942ba99f1212982d5c,
+        type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 9125056893500410234, guid: 59361cdf87cff484ab19416deb22c5be,
+        type: 3}
+    - target: {fileID: 5978003488749939210, guid: 8e2490aaf52650942ba99f1212982d5c,
+        type: 3}
+      propertyPath: door
+      value: 
+      objectReference: {fileID: 931889508}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8e2490aaf52650942ba99f1212982d5c, type: 3}
 --- !u!1 &466673515
@@ -2418,6 +2429,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_WasSpriteAssigned
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7821010054558285859, guid: e7f6f22fc2eab3842a0be64868252808,
+        type: 3}
+      propertyPath: objName
+      value: battery
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e7f6f22fc2eab3842a0be64868252808, type: 3}
@@ -7784,12 +7800,12 @@ PrefabInstance:
     - target: {fileID: 9125056893500410215, guid: 59361cdf87cff484ab19416deb22c5be,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.97
+      value: -2.44
       objectReference: {fileID: 0}
     - target: {fileID: 9125056893500410215, guid: 59361cdf87cff484ab19416deb22c5be,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.89
+      value: -2.18
       objectReference: {fileID: 0}
     - target: {fileID: 9125056893500410215, guid: 59361cdf87cff484ab19416deb22c5be,
         type: 3}

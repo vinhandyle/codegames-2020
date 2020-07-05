@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class PickUpItem : MonoBehaviour
 {
+    public string objName;
     public static bool inRange = false;
+    public static bool notif = false;
     public static string itemName = "";
     public static string sticky = ""; // used for interact text attachedto
 
@@ -12,6 +14,11 @@ public class PickUpItem : MonoBehaviour
     void Start()
     {
         itemName = gameObject.name;
+        // Object isn't called in on scene load if already picked up
+        if (GlobalControl.batteryUnlocked && objName == "battery")
+        {
+            gameObject.SetActive(false);
+        }
     }
 
     // Update is called once per frame
@@ -22,6 +29,7 @@ public class PickUpItem : MonoBehaviour
             InteractText.interacted = true;
             InteractText.type = itemName;
             gameObject.SetActive(false);
+            notif = true;
         }
     }
 

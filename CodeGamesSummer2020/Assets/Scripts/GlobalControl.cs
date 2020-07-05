@@ -18,7 +18,7 @@ public class GlobalControl : MonoBehaviour // overhaul
     public static int data;                        // Percent data collected
 
     // Unlock 
-    public static bool batteryUnlocked = true;     // Battery
+    public static bool batteryUnlocked = false;     // Battery
     public static bool solarUnlocked = true;       // Solar Panel
     public static bool geoUnlocked = true;         // Geothermal Extractor
 
@@ -45,8 +45,9 @@ public class GlobalControl : MonoBehaviour // overhaul
     // World
     public static int bossDowned = 0;              // How many bosses have been defeated
     public static string area = "";                // Area name for scene change purposes
+    public static string prevArea = "";            // Name of previous area
     public static string checkpoint = "";          // Area name of last repair station used
-
+    public static string nextDoor = "";            // The door on the other side, from which the player will exit from
 
     public static GlobalControl Instance;
 
