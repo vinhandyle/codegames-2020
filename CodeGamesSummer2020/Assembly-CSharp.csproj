@@ -213,6 +213,7 @@
     <Compile Include="Assets\Scripts\EnterDoor.cs" />
     <Compile Include="Assets\Scripts\Examine.cs" />
     <Compile Include="Assets\Scripts\GlobalControl.cs" />
+    <Compile Include="Assets\Scripts\GoThrough.cs" />
     <Compile Include="Assets\Scripts\HealthText.cs" />
     <Compile Include="Assets\Scripts\InfoBtn.cs" />
     <Compile Include="Assets\Scripts\InfoBtnBehavior.cs" />

@@ -6,15 +6,14 @@ using UnityEngine.SceneManagement;
 public class EnterDoor : MonoBehaviour
 {
     public static bool inRange = false;
-    public static string doorName = "";
+    public static string doorName = ""; // Prevents interacting with multiple doors in one scene
     public static string sticky = ""; // used for interact text attachedto
 
     // Start is called before the first frame update
     void Start()
     {
-        doorName = gameObject.name;
         // Determines at which door the player will spawn if there are multiple doors in one scene
-        if (GlobalControl.nextDoor == doorName)
+        if (GlobalControl.nextDoor == gameObject.name)
         {
             Player.x = gameObject.transform.position.x;
             Player.y = gameObject.transform.position.y;
@@ -27,14 +26,18 @@ public class EnterDoor : MonoBehaviour
     {
         if (inRange && Input.GetKeyDown("w"))
         {
+            // Test Doors
             if (doorName == "TestDoor")
             {
                 StartCoroutine(SceneSwitch("Testing Area 2", "Testing Area", "TestDoor2"));
             }
-            if (doorName == "TestDoor2")
+            else if (doorName == "TestDoor2")
             {
                 StartCoroutine(SceneSwitch("Testing Area", "Testing Area 2", "TestDoor"));
             }
+
+            // In-Game Doors
+
             inRange = false;
         }
     }
@@ -42,19 +45,21 @@ public class EnterDoor : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other)
     {
         inRange = true;
-        sticky = doorName;
+        doorName = gameObject.name;
+        sticky = gameObject.name;
         InteractText.type = "door";
     }
 
     private void OnTriggerExit2D(Collider2D other)
     {
         inRange = false;
+        doorName = "";
         sticky = "";
         InteractText.type = "";
     }
 
     IEnumerator SceneSwitch(string load, string unload, string nextDoor)
-    { // Open door -> destroy player -> switch scene -> create player at door position
+    { 
         GlobalControl.nextDoor = nextDoor;
         GlobalControl.area = load;
         GlobalControl.prevArea = unload;
