@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GlobalControl : MonoBehaviour // overhaul
 {
@@ -16,6 +17,7 @@ public class GlobalControl : MonoBehaviour // overhaul
     // Other Stats
     public static int damage;                      // player bullet damage
     public static int data;                        // Percent data collected
+    public static bool immune;                     // Immune to damage (after taking damage)
 
     // Unlock 
     public static bool batteryUnlocked = false;    // Battery
@@ -40,7 +42,7 @@ public class GlobalControl : MonoBehaviour // overhaul
     public static bool plateFound = true;          // Special Plating
 
     // Reactor
-    public static string reactor = "";             // Name of equipped reactor
+    public static string reactor = "basic";             // Name of equipped reactor
 
     // World
     public static int bossDowned = 0;              // How many bosses have been defeated
@@ -50,6 +52,12 @@ public class GlobalControl : MonoBehaviour // overhaul
 
     public static string checkpoint = "";          // Area name of last repair station used
     public static string nextDoor = "";            // The door on the other side, from which the player will exit from
+
+    // Enemy State
+    // type_tier_area_num
+    public static bool patrol_1_0_0 = true;        // Testing Area
+    public static bool patrol_1_0_1 = true;
+    public static bool patrol_1_0_2 = true;
 
     public static GlobalControl Instance;
 
@@ -75,6 +83,55 @@ public class GlobalControl : MonoBehaviour // overhaul
     // Update is called once per frame
     void Update()
     {
-        
+        // Reactors
+        if (reactor == "basic")
+        {
+            energyUse = 1;
+            damage = 1 + bossDowned;
+        }
+        else if (reactor == "imperial")
+        {
+            energyUse = 1;
+            damage = 0;
+        }
+        else if (reactor == "familiar")
+        {
+            energyUse = 2;
+            damage = 0 + data / 10;
+        }
+        else if (reactor == "unstable")
+        {
+            energyUse = 1;
+            damage = 10;
+        }
+
+        // Respawning
+        if (healthCurr <= 0)
+        {
+            immune = false;
+
+            // Testing Area 2
+            if (checkpoint == "Rest_Test") 
+            {
+                StartCoroutine(SceneSwitch("Testing Area 2", checkpoint));
+                healthCurr = healthMax;
+                energyCurr = energyMax;
+            }
+
+            // Respawn all enemies
+            patrol_1_0_0 = true;
+            patrol_1_0_1 = true;
+            patrol_1_0_2 = true;
+        }
+    }
+
+    IEnumerator SceneSwitch(string load, string checkpoint)
+    {
+        nextDoor = checkpoint;
+        area = load;
+
+        SceneManager.LoadScene(load, LoadSceneMode.Single);
+        yield return null;
+        SceneManager.UnloadSceneAsync(SceneManager.GetActiveScene().name);
     }
 }

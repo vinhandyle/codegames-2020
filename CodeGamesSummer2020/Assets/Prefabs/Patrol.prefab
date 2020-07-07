@@ -10,10 +10,10 @@ GameObject:
   m_Component:
   - component: {fileID: 4452588045915576806}
   - component: {fileID: 1416368434641068702}
-  - component: {fileID: 5639675073626554230}
   - component: {fileID: -6852839221701194997}
+  - component: {fileID: 9011395507147666628}
   m_Layer: 9
-  m_Name: Empire Grunt
+  m_Name: Patrol
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -83,18 +83,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &5639675073626554230
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5395268174445604185}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f04d4311aef3e9045a024fba726fed64, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!58 &-6852839221701194997
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -111,3 +99,19 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
+--- !u!114 &9011395507147666628
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5395268174445604185}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f04d4311aef3e9045a024fba726fed64, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healthMax: 0
+  healthCurr: 0
+  damage: 0
+  alive: 1

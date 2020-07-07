@@ -9,7 +9,7 @@ public class EnergyText : MonoBehaviour
 
     // Start is called before the first frame update
     void Start()
-    {
+    { 
         text = GameObject.Find("Energy").GetComponent<Text>();
     }
 

@@ -17,8 +17,7 @@ public class EnterDoor : MonoBehaviour
         {
             Player.x = gameObject.transform.position.x;
             Player.y = gameObject.transform.position.y;
-        }
-        
+        }        
     }
 
     // Update is called once per frame
@@ -29,16 +28,17 @@ public class EnterDoor : MonoBehaviour
             // Test Doors
             if (doorName == "TestDoor")
             {
-                StartCoroutine(SceneSwitch("Testing Area 2", "Testing Area", "TestDoor2"));
+                StartCoroutine(SceneSwitch("Testing Area 2", "TestDoor2")); // Testing Area, top-center
             }
             else if (doorName == "TestDoor2")
             {
-                StartCoroutine(SceneSwitch("Testing Area", "Testing Area 2", "TestDoor"));
+                StartCoroutine(SceneSwitch("Testing Area",  "TestDoor")); // Testing Area 2, bottom-center
             }
 
             // In-Game Doors
 
             inRange = false;
+            GlobalControl.immune = false;
         }
     }
 
@@ -64,14 +64,13 @@ public class EnterDoor : MonoBehaviour
         }        
     }
 
-    IEnumerator SceneSwitch(string load, string unload, string nextDoor)
+    IEnumerator SceneSwitch(string load, string nextDoor)
     { 
         GlobalControl.nextDoor = nextDoor;
         GlobalControl.area = load;
-        GlobalControl.prevArea = unload;
 
         SceneManager.LoadScene(load, LoadSceneMode.Single);
         yield return null;
-        SceneManager.UnloadSceneAsync(unload);
+        SceneManager.UnloadSceneAsync(SceneManager.GetActiveScene().name);
     }
 }

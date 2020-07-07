@@ -37,7 +37,7 @@ public class PointAndShoot : MonoBehaviour
             direction.Normalize();
             fireBullet(direction, rotationZ);
             StartCoroutine(cooldown());
-            GlobalControl.energyCurr--;
+            GlobalControl.energyCurr -= GlobalControl.energyUse;
         }
     }
 

@@ -52,25 +52,26 @@ public class GoThrough : MonoBehaviour
             // Test Openings
             if (opName == "Opening")
             {
-                StartCoroutine(SceneSwitch("Testing Area 2", "Testing Area", "Opening2"));
+                StartCoroutine(SceneSwitch("Testing Area 2", "Opening2")); // Testing Area, bottom-left
             }
             else if (opName == "Opening2")
             {
-                StartCoroutine(SceneSwitch("Testing Area", "Testing Area 2", "Opening"));
+                StartCoroutine(SceneSwitch("Testing Area", "Opening")); // Testing Area 2, bottom-right
             }
             else if (opName == "Opening3")
             {
-                StartCoroutine(SceneSwitch("Testing Area 2", "Testing Area", "Opening4"));
+                StartCoroutine(SceneSwitch("Testing Area 2", "Opening4")); // Testing Area, bottom-right
             }
             else if (opName == "Opening4")
             {
-                StartCoroutine(SceneSwitch("Testing Area", "Testing Area 2", "Opening3"));
+                StartCoroutine(SceneSwitch("Testing Area", "Opening3")); // Testing Area 2, bottom-left
             }
 
             // In-Game Openings
 
             on = false;
             opName = "";
+            GlobalControl.immune = false;
         }
     }
 
@@ -92,14 +93,13 @@ public class GoThrough : MonoBehaviour
         }       
     }
 
-    IEnumerator SceneSwitch(string load, string unload, string nextDoor)
+    IEnumerator SceneSwitch(string load, string nextDoor)
     {
         GlobalControl.nextDoor = nextDoor;
         GlobalControl.area = load;
-        GlobalControl.prevArea = unload;
 
         SceneManager.LoadScene(load, LoadSceneMode.Single);
         yield return null;
-        SceneManager.UnloadSceneAsync(unload);
+        SceneManager.UnloadSceneAsync(SceneManager.GetActiveScene().name);
     }
 }
