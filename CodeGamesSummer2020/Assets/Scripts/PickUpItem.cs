@@ -35,17 +35,23 @@ public class PickUpItem : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        inRange = true;
-        sticky = itemName;
-        if(!InteractText.interacted)
-        InteractText.type = "item";
+        if (other.name == "Player")
+        {
+            inRange = true;
+            sticky = itemName;
+            if (!InteractText.interacted)
+            InteractText.type = "item";
+        }        
     }
 
     private void OnTriggerExit2D(Collider2D other)
     {
-        inRange = false;
-        sticky = "";
-        if(!InteractText.interacted)
-        InteractText.type = "";
+        if (other.name == "Player")
+        {
+            inRange = false;
+            sticky = "";
+            if (!InteractText.interacted)
+            InteractText.type = "";
+        }        
     }
 }

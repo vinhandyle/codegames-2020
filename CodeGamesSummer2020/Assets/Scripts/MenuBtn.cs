@@ -32,6 +32,10 @@ public class MenuBtn : MonoBehaviour
                 Cursor.visible = true;
                 img.color = new Color(1f, 1f, 1f, 1f);
                 inMenu = true;
+                if (RepairStation.inRange)
+                {
+                    InteractText.type = "rest";
+                }
             }
         }
     }

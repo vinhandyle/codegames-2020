@@ -44,18 +44,24 @@ public class EnterDoor : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        inRange = true;
-        doorName = gameObject.name;
-        sticky = gameObject.name;
-        InteractText.type = "door";
+        if (other.name == "Player")
+        {
+            inRange = true;
+            doorName = gameObject.name;
+            sticky = gameObject.name;
+            InteractText.type = "door";
+        }       
     }
 
     private void OnTriggerExit2D(Collider2D other)
     {
-        inRange = false;
-        doorName = "";
-        sticky = "";
-        InteractText.type = "";
+        if (other.name == "Player")
+        {
+            inRange = false;
+            doorName = "";
+            sticky = "";
+            InteractText.type = "";
+        }        
     }
 
     IEnumerator SceneSwitch(string load, string unload, string nextDoor)

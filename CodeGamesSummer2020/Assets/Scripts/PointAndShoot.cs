@@ -30,7 +30,7 @@ public class PointAndShoot : MonoBehaviour
         float rotationZ = Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg;
 
         // Player can only shoot when they have energy and are not in a menu
-        if (Input.GetMouseButtonDown(0) && canShoot && GlobalControl.energyCurr > 0 && !MenuBtn.inMenu && gunUnlocked)
+        if (Input.GetMouseButtonDown(0) && canShoot && GlobalControl.energyCurr > 0 && !MenuBtn.inMenu && !ReactorManage.open && gunUnlocked)
         {
             float distance = difference.magnitude;
             Vector2 direction = difference / distance;

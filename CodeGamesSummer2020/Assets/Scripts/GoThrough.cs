@@ -74,16 +74,22 @@ public class GoThrough : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerEnter2D(Collider2D other)
     {
-        on = true;
-        opName = gameObject.name;
+        if (other.name == "Player")
+        {
+            on = true;
+            opName = gameObject.name;
+        }       
     }
 
-    private void OnTriggerExit2D(Collider2D collision)
+    private void OnTriggerExit2D(Collider2D other)
     {
-        on = false;
-        opName = "";
+        if (other.name == "Player")
+        {
+            on = false;
+            opName = "";
+        }       
     }
 
     IEnumerator SceneSwitch(string load, string unload, string nextDoor)

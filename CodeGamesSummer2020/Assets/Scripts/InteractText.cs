@@ -101,6 +101,7 @@ public class InteractText : MonoBehaviour
                 {
                     text.text = "Enter";
                 }
+
                 else if (type == "misc")
                 {
                     text.text = "Examine";
@@ -111,7 +112,11 @@ public class InteractText : MonoBehaviour
                 }
             }
         }
-        else if(!PickUpItem.notif)
+        else if (attachedTo == "Rest" && type == "rest")
+        {
+            text.text = "Interact";
+        }
+        else if (!PickUpItem.notif)
         {
             text.text = "";
         }
