@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class GlobalControl : MonoBehaviour // overhaul
+public class GlobalControl : MonoBehaviour 
 {
     // Energy
     public static int energyMax = 10;              // max energy level
@@ -20,7 +20,7 @@ public class GlobalControl : MonoBehaviour // overhaul
     public static bool immune;                     // Immune to damage (after taking damage)
 
     // Unlock 
-    public static bool batteryUnlocked = false;    // Battery
+    public static bool batteryUnlocked = true;    // Battery
     public static bool solarUnlocked = true;       // Solar Panel
     public static bool geoUnlocked = true;         // Geothermal Extractor
 
@@ -34,18 +34,24 @@ public class GlobalControl : MonoBehaviour // overhaul
 
     public static bool basicUnlocked = true;       // Basic Reactor
     public static bool imperialUnlocked = true;    // Strange Reactor
-    public static bool familiarUnlocked = false;    // Lost Reactor
+    public static bool familiarUnlocked = true;    // Lost Reactor
     public static bool unstableUnlocked = true;    // Unstable Reactor
 
     public static bool scrapFound = true;          // Hyper Scrap
-    public static bool extraFound = false;         // Extra Battery
+    public static bool extraFound = true;         // Extra Battery
     public static bool plateFound = true;          // Special Plating
 
+    // Numbers
+    public static int plateNum = 0;                // Number of special plating obtained
+    public static int extraNum = 0;                // Number of extra batteries obtained
+    public static int scrapNum = 0;                // Number of hyper scraps obtained
+
     // Reactor
-    public static string reactor = "basic";             // Name of equipped reactor
+    public static string reactor = "basic";        // Name of equipped reactor
 
     // World
     public static int bossDowned = 0;              // How many bosses have been defeated
+    public static bool switched = false;           // Used to set position on scene switch
 
     public static string area = "";                // Area name for scene change purposes
     public static string prevArea = "";            // Name of previous area
@@ -119,10 +125,15 @@ public class GlobalControl : MonoBehaviour // overhaul
             }
 
             // Respawn all enemies
-            patrol_1_0_0 = true;
-            patrol_1_0_1 = true;
-            patrol_1_0_2 = true;
+            respawnAll();
         }
+    }
+
+    public static void respawnAll()
+    {
+        patrol_1_0_0 = true;
+        patrol_1_0_1 = true;
+        patrol_1_0_2 = true;
     }
 
     IEnumerator SceneSwitch(string load, string checkpoint)
@@ -133,5 +144,6 @@ public class GlobalControl : MonoBehaviour // overhaul
         SceneManager.LoadScene(load, LoadSceneMode.Single);
         yield return null;
         SceneManager.UnloadSceneAsync(SceneManager.GetActiveScene().name);
+        switched = true;
     }
 }

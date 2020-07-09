@@ -4,12 +4,11 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    private static float c = 100f;
-    public static float x = c;
-    public static float y = c;
-
     private float moveBy = 2f; // Horizontal velocity
     private float jumpHeight = 5f; // Jump velocity
+
+    public static float x = 0;
+    public static float y = 0;
 
     private bool canDash = true; // Whether the player can dash
     private bool dashing = false; // Prevents moving while dashing
@@ -30,20 +29,19 @@ public class Player : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
 
     }
 
     // Update is called once per frame
     void Update()
     {
-        // Set new player position if the set position isn't (0, 0) 
-        if (x * y < c)
+        // Set new player position when entering door or moving through an opening 
+        if (GlobalControl.switched)
         {
             transform.position = new Vector2(x, y);
-            x = c;
-            y = c;
+            GlobalControl.switched = false;
         }
+
         // Moves player left
         if (Input.GetKey("a") && !dashing)
         {
@@ -150,7 +148,7 @@ public class Player : MonoBehaviour
             walled = true;
         }
     }
-
+    
     //Triggers when the collision ends
     private void OnCollisionExit2D(Collision2D collision)
     { 

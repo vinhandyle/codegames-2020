@@ -12,6 +12,7 @@ public class RepairStation : MonoBehaviour
         // Determines at which door the player will spawn if there are multiple doors in one scene
         if (GlobalControl.nextDoor == gameObject.name)
         {
+            Debug.Log("go");
             Player.x = gameObject.transform.position.x;
             Player.y = gameObject.transform.position.y;
         }
@@ -42,9 +43,7 @@ public class RepairStation : MonoBehaviour
             GlobalControl.energyCurr = GlobalControl.energyMax;
 
             // Respawn all enemies
-            GlobalControl.patrol_1_0_0 = true;
-            GlobalControl.patrol_1_0_1 = true;
-            GlobalControl.patrol_1_0_2 = true;
+            GlobalControl.respawnAll();
         }
     }
     private void OnTriggerEnter2D(Collider2D other)

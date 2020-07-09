@@ -17,7 +17,7 @@ public class EnterDoor : MonoBehaviour
         {
             Player.x = gameObject.transform.position.x;
             Player.y = gameObject.transform.position.y;
-        }        
+        }
     }
 
     // Update is called once per frame
@@ -70,6 +70,7 @@ public class EnterDoor : MonoBehaviour
         GlobalControl.area = load;
 
         SceneManager.LoadScene(load, LoadSceneMode.Single);
+        GlobalControl.switched = true;
         yield return null;
         SceneManager.UnloadSceneAsync(SceneManager.GetActiveScene().name);
     }

@@ -99,6 +99,7 @@ public class GoThrough : MonoBehaviour
         GlobalControl.area = load;
 
         SceneManager.LoadScene(load, LoadSceneMode.Single);
+        GlobalControl.switched = true;
         yield return null;
         SceneManager.UnloadSceneAsync(SceneManager.GetActiveScene().name);
     }
