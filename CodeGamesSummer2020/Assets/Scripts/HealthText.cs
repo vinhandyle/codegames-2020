@@ -16,6 +16,13 @@ public class HealthText : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        text.text = "Health: " + GlobalControl.healthCurr + " / " + GlobalControl.healthMax;
+        if (MenuBtn.inMenu)
+        {
+            text.text = "";
+        }
+        else
+        {
+            text.text = "Health: " + GlobalControl.healthCurr + " / " + GlobalControl.healthMax;
+        }
     }
 }

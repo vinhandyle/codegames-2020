@@ -5,6 +5,13 @@ using UnityEngine.SceneManagement;
 
 public class GlobalControl : MonoBehaviour 
 {
+    // Endings
+    public static bool ending_1 = true;           // Save Humanity
+    public static bool ending_2 = true;           // Return to the Past
+    public static bool ending_3 = true;           // End the Cycle
+    public static bool complete = false;           // Get all endings
+
+
     // Energy
     public static int energyMax = 10;              // max energy level
     public static int energyCurr = energyMax;      // current energy level
@@ -89,6 +96,12 @@ public class GlobalControl : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // Platinum Trophy
+        if (ending_1 && ending_2 && ending_3)
+        {
+            complete = true;
+        }
+
         // Reactors
         if (reactor == "basic")
         {

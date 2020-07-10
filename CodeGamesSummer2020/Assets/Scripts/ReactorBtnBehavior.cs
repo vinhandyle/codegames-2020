@@ -9,7 +9,7 @@ public class ReactorBtnBehavior : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        // The buttons don't work unless scene switched in
     }
 
     // Update is called once per frame
@@ -20,6 +20,7 @@ public class ReactorBtnBehavior : MonoBehaviour
 
     public void SetReactor(string name)
     {
+        Debug.Log(name);
         if (ReactorManage.open &&
             ((name == "basic" && GlobalControl.basicUnlocked) ||
             (name == "unstable" && GlobalControl.unstableUnlocked) ||

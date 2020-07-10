@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class InfoBtn : MonoBehaviour
 {
     Image img;
-    public static bool infoPage = true;
+    public static bool infoPage = false;
 
     // Start is called before the first frame update
     void Start()

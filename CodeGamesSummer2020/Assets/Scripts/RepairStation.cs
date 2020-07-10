@@ -12,7 +12,6 @@ public class RepairStation : MonoBehaviour
         // Determines at which door the player will spawn if there are multiple doors in one scene
         if (GlobalControl.nextDoor == gameObject.name)
         {
-            Debug.Log("go");
             Player.x = gameObject.transform.position.x;
             Player.y = gameObject.transform.position.y;
         }

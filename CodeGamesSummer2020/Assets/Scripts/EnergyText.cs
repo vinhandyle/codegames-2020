@@ -16,6 +16,13 @@ public class EnergyText : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        text.text = "Energy: " + GlobalControl.energyCurr + " / " + GlobalControl.energyMax;
+        if (MenuBtn.inMenu)
+        {
+            text.text = "";
+        }
+        else
+        { 
+            text.text = "Energy: " + GlobalControl.energyCurr + " / " + GlobalControl.energyMax;
+        }
     }
 }
