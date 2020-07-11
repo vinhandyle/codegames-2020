@@ -22,7 +22,7 @@ public class HealthText : MonoBehaviour
         }
         else
         {
-            text.text = "Health: " + GlobalControl.healthCurr + " / " + GlobalControl.healthMax;
+            text.text = "<b>Health:</b> " + GlobalControl.healthCurr + " / " + GlobalControl.healthMax;
         }
     }
 }

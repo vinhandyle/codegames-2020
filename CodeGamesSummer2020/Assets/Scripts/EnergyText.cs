@@ -22,7 +22,7 @@ public class EnergyText : MonoBehaviour
         }
         else
         { 
-            text.text = "Energy: " + GlobalControl.energyCurr + " / " + GlobalControl.energyMax;
+            text.text = "<b>Energy:</b> " + GlobalControl.energyCurr + " / " + GlobalControl.energyMax;
         }
     }
 }

@@ -27,11 +27,11 @@ public class GlobalControl : MonoBehaviour
     public static bool immune;                     // Immune to damage (after taking damage)
 
     // Unlock 
-    public static bool batteryUnlocked = true;    // Battery
-    public static bool solarUnlocked = true;       // Solar Panel
+    public static bool batteryUnlocked = false;    // Battery
+    public static bool solarUnlocked = false;       // Solar Panel
     public static bool geoUnlocked = true;         // Geothermal Extractor
 
-    public static bool gunUnlocked = true;         // Energy Cannon
+    public static bool gunUnlocked = false;         // Energy Cannon
     public static bool mapUnlocked = true;         // Navigational Module
     public static bool heartlessUnlocked = true;   // Heartless Generator
 
@@ -42,19 +42,27 @@ public class GlobalControl : MonoBehaviour
     public static bool basicUnlocked = true;       // Basic Reactor
     public static bool imperialUnlocked = true;    // Strange Reactor
     public static bool familiarUnlocked = true;    // Lost Reactor
-    public static bool unstableUnlocked = true;    // Unstable Reactor
+    public static bool unstableUnlocked = false;    // Unstable Reactor
 
     public static bool scrapFound = true;          // Hyper Scrap
     public static bool extraFound = true;         // Extra Battery
     public static bool plateFound = true;          // Special Plating
 
-    // Numbers
+    public static bool extra_1 = false;            // Extra battery pick-ups
+    public static bool extra_2 = false;
+    public static bool extra_3 = false;
+
+    public static bool plating_1 = false;          // Special Plating pick-ups
+    public static bool plating_2 = false;
+
+    // Inventory Numbers
     public static int plateNum = 0;                // Number of special plating obtained
     public static int extraNum = 0;                // Number of extra batteries obtained
-    public static int scrapNum = 0;                // Number of hyper scraps obtained
+    public static int scrapNum = 0;                // Number of hyper scraps in possession
 
-    // Reactor
+    // Toggle
     public static string reactor = "basic";        // Name of equipped reactor
+    public static bool h2e = true;                 // True = HP to Energy, False = Energy to HP
 
     // World
     public static int bossDowned = 0;              // How many bosses have been defeated
@@ -62,9 +70,17 @@ public class GlobalControl : MonoBehaviour
 
     public static string area = "";                // Area name for scene change purposes
     public static string prevArea = "";            // Name of previous area
-
     public static string checkpoint = "";          // Area name of last repair station used
+
+    // Doors
     public static string nextDoor = "";            // The door on the other side, from which the player will exit from
+
+    public static bool locked_1 = true;            // Birthplace-Start Door
+
+    // Destructibles
+    public static bool block_starter = true;
+    public static bool secret_unstable = true;
+
 
     // Enemy State
     // type_tier_area_num

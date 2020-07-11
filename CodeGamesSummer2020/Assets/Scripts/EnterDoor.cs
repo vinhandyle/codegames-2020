@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class EnterDoor : MonoBehaviour
 {
     public static bool inRange = false;
+    public static bool locked = false;
     public static string doorName = ""; // Prevents interacting with multiple doors in one scene
     public static string sticky = ""; // used for interact text attachedto
 
@@ -18,12 +19,17 @@ public class EnterDoor : MonoBehaviour
             Player.x = gameObject.transform.position.x;
             Player.y = gameObject.transform.position.y;
         }
+
+        if (gameObject.name == "Locked_Door_1" && GlobalControl.locked_1)
+        {
+            locked = true; 
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (inRange && Input.GetKeyDown("w"))
+        if (inRange && !locked && Input.GetKeyDown("w"))
         {
             // Test Doors
             if (doorName == "TestDoor")

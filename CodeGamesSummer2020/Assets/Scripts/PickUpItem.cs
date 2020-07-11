@@ -15,7 +15,18 @@ public class PickUpItem : MonoBehaviour
     {
         itemName = gameObject.name;
         // Object isn't called in on scene load if already picked up
-        if (GlobalControl.batteryUnlocked && objName == "battery")
+        if ((GlobalControl.batteryUnlocked && objName == "battery") ||
+            (GlobalControl.solarUnlocked && objName == "starter") ||
+            (GlobalControl.geoUnlocked && objName == "geo") ||
+            (GlobalControl.mapUnlocked && objName == "map") ||
+            (GlobalControl.heartlessUnlocked && objName == "heartless") ||
+            (GlobalControl.familiarUnlocked && objName == "familiar") ||
+            (GlobalControl.unstableUnlocked && objName == "unstable") ||
+            (GlobalControl.extra_1 && objName == "extra_1") ||
+            (GlobalControl.extra_2 && objName == "extra_2") ||
+            (GlobalControl.extra_3 && objName == "extra_3") ||
+            (GlobalControl.plating_1 && objName == "plating_1") ||
+            (GlobalControl.plating_2 && objName == "plating_2"))
         {
             gameObject.SetActive(false);
         }

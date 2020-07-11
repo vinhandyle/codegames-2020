@@ -37,20 +37,19 @@ public class InteractText : MonoBehaviour
                         text.text = "Picked up: Battery";
                         GlobalControl.batteryUnlocked = true;
                     }
-                    else if (type == "solar")
+                    else if (type == "Starter")
                     {
-                        text.text = "Picked up: Solar Panel";
+                        text.text = "Picked up: Battery \n" +
+                                    "Picked up: Solar Panel \n" +
+                                    "Picked up: Energy Cannon";
+                        GlobalControl.batteryUnlocked = true;
                         GlobalControl.solarUnlocked = true;
+                        GlobalControl.gunUnlocked = true;
                     }
                     else if (type == "geothermal")
                     {
                         text.text = "Picked up: Geothermal Extractor";
                         GlobalControl.geoUnlocked = true;
-                    }
-                    else if (type == "gun")
-                    {
-                        text.text = "Picked Up: Energy Cannon";
-                        GlobalControl.gunUnlocked = true;
                     }
                     else if (type == "map")
                     {
@@ -67,7 +66,7 @@ public class InteractText : MonoBehaviour
                         text.text = "Picked up: Lost Reactor";
                         GlobalControl.familiarUnlocked = true;
                     }
-                    else if (type == "unstable")
+                    else if (type == "Unstable")
                     {
                         text.text = "Picked up: Unstable Reactor";
                         GlobalControl.unstableUnlocked = true;
@@ -105,7 +104,14 @@ public class InteractText : MonoBehaviour
                     }
                     else if (type == "door")
                     {
-                        text.text = "Enter";
+                        if (EnterDoor.locked)
+                        {
+                            text.text = "Locked";
+                        }
+                        else
+                        {
+                            text.text = "Enter";
+                        }
                     }
 
                     else if (type == "misc")

@@ -18,7 +18,7 @@ public class DataText : MonoBehaviour
     {
         if (MenuBtn.inMenu)
         {
-            text.text = "Data: " + GlobalControl.data + "%";
+            text.text = "<b>Data:</b> " + GlobalControl.data + "%";
         }
         else
         {

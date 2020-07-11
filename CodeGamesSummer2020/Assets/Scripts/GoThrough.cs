@@ -67,7 +67,53 @@ public class GoThrough : MonoBehaviour
                 StartCoroutine(SceneSwitch("Testing Area", "Opening3")); // Testing Area 2, bottom-left
             }
 
-            // In-Game Openings
+            // In-Game Openings -> here_to_there
+
+            // IT (Start)
+            else if (opName == "Start_to_IT_1")
+            {
+                StartCoroutine(SceneSwitch("IT_1", "IT_1_to_Start_"));
+            }
+            else if (opName == "Start_to_IT_1S")
+            {
+                StartCoroutine(SceneSwitch("IT_1S", "IT_1S_to_Start_"));
+            }
+            else if (opName == "IT_1_to_Start_")
+            {
+                StartCoroutine(SceneSwitch("Start_", "Start_to_IT_1"));
+            }
+            else if (opName == "IT_1S_to_Start_")
+            {
+                StartCoroutine(SceneSwitch("Start_", "Start_to_IT_1S"));
+            }
+
+            // IT (Start-Return)
+
+            // IT (Return)
+
+            // DH
+
+            // SG
+
+            // TT
+
+            // MB
+
+            // GP
+
+            // FS
+
+            // Transition (IT-GP)
+
+            // Transition (DH-SG)
+
+            // Transition (SG-TT)
+
+            // Transition (TT-MB)
+
+            // Transition (DH-IT)
+
+            // Transition (GH-FS)
 
             on = false;
             opName = "";

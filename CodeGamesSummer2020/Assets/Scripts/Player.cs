@@ -72,6 +72,47 @@ public class Player : MonoBehaviour
             }
         }
 
+        // Use Heartless Generator
+        if (Input.GetKeyDown("s"))
+        {
+            // 1 HP to 3 Energy
+            if (GlobalControl.h2e && GlobalControl.energyCurr < GlobalControl.energyMax)
+            {
+                GlobalControl.healthCurr--;
+                if (GlobalControl.energyCurr <= GlobalControl.energyMax - 3)
+                {
+                    GlobalControl.energyCurr += 3;
+                }
+                else
+                {
+                    GlobalControl.energyCurr = GlobalControl.energyMax;
+                }
+            }
+
+            // 5 energy to 1 HP
+            else if(!GlobalControl.h2e && GlobalControl.energyCurr >= 5)
+            {
+                GlobalControl.energyCurr -= 5;
+                if (GlobalControl.healthCurr < GlobalControl.healthMax)
+                {
+                    GlobalControl.healthCurr++;
+                }
+            }
+        }
+
+        // Toggle Heartless Generator conversion type
+        if (Input.GetKeyDown("f"))
+        {
+            if (GlobalControl.h2e)
+            {
+                GlobalControl.h2e = false;
+            }
+            else
+            {
+                GlobalControl.h2e = true;
+            }
+        }
+
         // Checks that time between the double presses is under a certain amount of time (no holding into a dash)
         if ((Input.GetKeyDown("a") || Input.GetKeyDown("d")) && canDash && GlobalControl.dashUnlocked && !walled)
         {

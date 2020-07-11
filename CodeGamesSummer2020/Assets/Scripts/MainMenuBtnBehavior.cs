@@ -22,6 +22,7 @@ public class MainMenuBtnBehavior : MonoBehaviour
         if (type == "start")
         {
             // Reset all global values and switch to first scene
+            StartCoroutine(SceneSwitch("Start_"));
         }
         else if (type == "controls")
         {

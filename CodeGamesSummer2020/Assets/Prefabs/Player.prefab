@@ -159,4 +159,4 @@ MonoBehaviour:
   pooledObjects: []
   objectToPool: {fileID: 4002532654593906642, guid: 3a825d87dd9ad394c8f53a6f32757885,
     type: 3}
-  amountToPool: 5
+  amountToPool: 10

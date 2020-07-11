@@ -18,7 +18,7 @@ public class DirectiveText : MonoBehaviour
     {
         if (MenuBtn.inMenu)
         {
-            text.text = "Objective: ";
+            text.text = "<b>Objective:</b> ";
             if (GlobalControl.data < 50)
             {
                 text.text += "Save Humanity";

@@ -21,9 +21,20 @@ public class DestroyByCollision : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Wall") || other.gameObject.CompareTag("Floor") || other.gameObject.CompareTag("Ceiling") || other.gameObject.CompareTag("Enemy"))
         {
+            // Destroy bullet
             if (gameObject.CompareTag("Player Bullet"))
             {
                 gameObject.SetActive(false);
+            }
+
+            // Destroy fragile blocks
+            if (DestructibleBlock.isFragile)
+            {
+                other.gameObject.SetActive(false);
+                if (other.gameObject.name == "Secret_Unstable")
+                {
+                    GlobalControl.secret_unstable = false;
+                }
             }
         }
     }
