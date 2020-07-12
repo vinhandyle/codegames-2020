@@ -28,14 +28,11 @@ public class DestroyByCollision : MonoBehaviour
             }
 
             // Destroy fragile blocks
-            if (DestructibleBlock.isFragile)
+            if (other.gameObject.name == "Secret_Unstable")
             {
+                GlobalControl.secret_unstable = false;
                 other.gameObject.SetActive(false);
-                if (other.gameObject.name == "Secret_Unstable")
-                {
-                    GlobalControl.secret_unstable = false;
-                }
-            }
+            }           
         }
     }
 }

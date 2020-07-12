@@ -63,29 +63,32 @@ public class MainMenuText : MonoBehaviour
             {
                 text.text = "Exit";
             }
-            else if (type == "trophy1" && GlobalControl.complete)
+            else if (type.Length == 7 && MainMenuBtn.inTrophy)
             {
-                text.text = "<b>Endless</b> \n" +
-                            "Get all endings. \n" +
-                            "<i>All paths lead back here.</i>";
-            }
-            else if (type == "trophy2" && GlobalControl.ending_1)
-            {
-                text.text = "<b>Save Humanity</b> \n" +
-                            "Capture the remaining humans. \n" +
-                            "<i>Everyone into space!</i>";
-            }
-            else if (type == "trophy3" && GlobalControl.ending_2)
-            {
-                text.text = "<b>Return to the Past</b> \n" +
-                            "Free the remaining humans. \n" +
-                            "<i>Will it be different this time?</i>";
-            }
-            else if (type == "trophy4" && GlobalControl.ending_3)
-            {
-                text.text = "<b>End the Cycle</b> \n" +
-                            "Kill the remaining humans. \n" +
-                            "<i>No humans. No masters.</i>";
+                if (type == "trophy1" && GlobalControl.complete)
+                {
+                    text.text = "<b>Endless</b> \n" +
+                                "Get all endings. \n" +
+                                "<i>All paths lead back here.</i>";
+                }
+                else if (type == "trophy2" && GlobalControl.ending_1)
+                {
+                    text.text = "<b>Save Humanity</b> \n" +
+                                "Capture the remaining humans. \n" +
+                                "<i>Everyone into space!</i>";
+                }
+                else if (type == "trophy3" && GlobalControl.ending_2)
+                {
+                    text.text = "<b>Return to the Past</b> \n" +
+                                "Free the remaining humans. \n" +
+                                "<i>Will it be different this time?</i>";
+                }
+                else if (type == "trophy4" && GlobalControl.ending_3)
+                {
+                    text.text = "<b>End the Cycle</b> \n" +
+                                "Kill the remaining humans. \n" +
+                                "<i>No humans. No masters.</i>";
+                }
             }
             else
             {

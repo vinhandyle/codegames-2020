@@ -6,7 +6,7 @@ public class EnergySource : MonoBehaviour
 {
     // Note that player must be set to Never Sleep in order for energy to increment while staionary
 
-    public float regenTime = 1.0f; // Time between energy increments
+    public static float regenTime = 1.5f; // Time between energy increments
     private bool canRegen = true; // Whether current energy can be incremented on a given frame
 
     // Start is called before the first frame update
@@ -18,7 +18,7 @@ public class EnergySource : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     // Triggers while player is in sunlight

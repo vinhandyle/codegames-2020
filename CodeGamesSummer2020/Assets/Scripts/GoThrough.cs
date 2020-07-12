@@ -70,22 +70,38 @@ public class GoThrough : MonoBehaviour
             // In-Game Openings -> here_to_there
 
             // IT (Start)
+
+                // Start_ to IT_1
             else if (opName == "Start_to_IT_1")
             {
                 StartCoroutine(SceneSwitch("IT_1", "IT_1_to_Start_"));
-            }
-            else if (opName == "Start_to_IT_1S")
-            {
-                StartCoroutine(SceneSwitch("IT_1S", "IT_1S_to_Start_"));
             }
             else if (opName == "IT_1_to_Start_")
             {
                 StartCoroutine(SceneSwitch("Start_", "Start_to_IT_1"));
             }
+
+
+                // Start_ to IT_1S
+            else if (opName == "Start_to_IT_1S")
+            {
+                StartCoroutine(SceneSwitch("IT_1S", "IT_1S_to_Start_"));
+            }
             else if (opName == "IT_1S_to_Start_")
             {
                 StartCoroutine(SceneSwitch("Start_", "Start_to_IT_1S"));
             }
+
+                // IT_1 to IT_2
+            else if (opName == "IT_1_to_IT_2")
+            {
+                StartCoroutine(SceneSwitch("IT_2", "IT_2_to_IT_1"));
+            }
+            else if (opName == "IT_2_to_IT_1")
+            {
+                StartCoroutine(SceneSwitch("IT_1", "IT_1_to_IT_2"));
+            }
+
 
             // IT (Start-Return)
 
@@ -104,6 +120,16 @@ public class GoThrough : MonoBehaviour
             // FS
 
             // Transition (IT-GP)
+
+                // IT_2 to GP_1
+            else if (opName == "IT_2_to_GP_1")
+            {
+                StartCoroutine(SceneSwitch("GP_1", "IT_2_to_GP_1"));
+            }
+            else if (opName == "GP_1_to_IT_2")
+            {
+                StartCoroutine(SceneSwitch("IT_2", "IT_2_to_GP_1"));
+            }
 
             // Transition (DH-SG)
 

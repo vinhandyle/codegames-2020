@@ -38,10 +38,15 @@ public class EnterDoor : MonoBehaviour
             }
             else if (doorName == "TestDoor2")
             {
-                StartCoroutine(SceneSwitch("Testing Area",  "TestDoor")); // Testing Area 2, bottom-center
+                StartCoroutine(SceneSwitch("Testing Area", "TestDoor")); // Testing Area 2, bottom-center
             }
 
             // In-Game Doors
+
+            else if (doorName == "GP_1_to_GP_2")
+            {
+                StartCoroutine(SceneSwitch("GP_2", ""));
+            }
 
             inRange = false;
             GlobalControl.immune = false;

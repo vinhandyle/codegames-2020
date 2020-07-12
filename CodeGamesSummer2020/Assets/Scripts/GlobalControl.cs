@@ -40,7 +40,7 @@ public class GlobalControl : MonoBehaviour
     public static bool doubleUnlocked = true;      // Booster Rocket MK2
 
     public static bool basicUnlocked = true;       // Basic Reactor
-    public static bool imperialUnlocked = true;    // Strange Reactor
+    public static bool imperialUnlocked = false;    // Strange Reactor
     public static bool familiarUnlocked = true;    // Lost Reactor
     public static bool unstableUnlocked = false;    // Unstable Reactor
 
@@ -88,6 +88,8 @@ public class GlobalControl : MonoBehaviour
     public static bool patrol_1_0_1 = true;
     public static bool patrol_1_0_2 = true;
 
+    public static bool patrol_1_1_0 = true;        // Institute of Technology
+
     public static GlobalControl Instance;
 
     private void Awake()
@@ -106,7 +108,7 @@ public class GlobalControl : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
@@ -146,12 +148,20 @@ public class GlobalControl : MonoBehaviour
             immune = false;
 
             // Testing Area 2
-            if (checkpoint == "Rest_Test") 
+            if (checkpoint == "Rest_Test")
             {
                 StartCoroutine(SceneSwitch("Testing Area 2", checkpoint));
-                healthCurr = healthMax;
-                energyCurr = energyMax;
             }
+
+            // IT - Homecoming
+            else if (checkpoint == "Checkpoint_1")
+            {
+                StartCoroutine(SceneSwitch("IT_1", checkpoint));
+            }
+
+            // Full restore
+            healthCurr = healthMax;
+            energyCurr = energyMax;
 
             // Respawn all enemies
             respawnAll();
@@ -163,6 +173,8 @@ public class GlobalControl : MonoBehaviour
         patrol_1_0_0 = true;
         patrol_1_0_1 = true;
         patrol_1_0_2 = true;
+
+        patrol_1_1_0 = true;
     }
 
     IEnumerator SceneSwitch(string load, string checkpoint)

@@ -90,13 +90,10 @@ public class Player : MonoBehaviour
             }
 
             // 5 energy to 1 HP
-            else if(!GlobalControl.h2e && GlobalControl.energyCurr >= 5)
+            else if(!GlobalControl.h2e && GlobalControl.healthCurr < GlobalControl.healthMax)
             {
                 GlobalControl.energyCurr -= 5;
-                if (GlobalControl.healthCurr < GlobalControl.healthMax)
-                {
-                    GlobalControl.healthCurr++;
-                }
+                GlobalControl.healthCurr++;
             }
         }
 

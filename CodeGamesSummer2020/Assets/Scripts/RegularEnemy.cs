@@ -15,7 +15,8 @@ public class RegularEnemy : MonoBehaviour
     {
         if ((gameObject.name == "Patrol_1_0_0" && !GlobalControl.patrol_1_0_0) ||
             (gameObject.name == "Patrol_1_0_1" && !GlobalControl.patrol_1_0_1) ||
-            (gameObject.name == "Patrol_1_0_2" && !GlobalControl.patrol_1_0_2))
+            (gameObject.name == "Patrol_1_0_2" && !GlobalControl.patrol_1_0_2) ||
+            (gameObject.name == "Patrol_1_1_0" && !GlobalControl.patrol_1_1_0))
         {
             gameObject.SetActive(false);
         }
@@ -110,7 +111,7 @@ public class RegularEnemy : MonoBehaviour
     {
         if (healthCurr <= 0)
         { // Set enemy inactive when hp = 0
-            gameObject.SetActive(false); 
+            gameObject.SetActive(false);
 
             // Prevent respawn on scene switch
 
@@ -126,6 +127,10 @@ public class RegularEnemy : MonoBehaviour
             else if (gameObject.name == "Patrol_1_0_2")
             {
                 GlobalControl.patrol_1_0_2 = false;
+            }
+            else if (gameObject.name == "Patrol_1_1_1")
+            {
+                GlobalControl.patrol_1_1_0 = false;
             }
         }
 

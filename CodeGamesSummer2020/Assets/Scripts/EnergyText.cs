@@ -20,8 +20,12 @@ public class EnergyText : MonoBehaviour
         {
             text.text = "";
         }
+        else if (!GlobalControl.batteryUnlocked)
+        {
+            text.text = "<b>Energy:</b> ? / ?";
+        }
         else
-        { 
+        {
             text.text = "<b>Energy:</b> " + GlobalControl.energyCurr + " / " + GlobalControl.energyMax;
         }
     }
