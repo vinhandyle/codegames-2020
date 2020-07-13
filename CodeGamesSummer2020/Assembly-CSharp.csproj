@@ -210,6 +210,8 @@
     <Compile Include="Assets\Scripts\DestroyByBoundary.cs" />
     <Compile Include="Assets\Scripts\DestroyByCollision.cs" />
     <Compile Include="Assets\Scripts\DestructibleBlock.cs" />
+    <Compile Include="Assets\Scripts\DialogueBtn.cs" />
+    <Compile Include="Assets\Scripts\DialogueBtnBehavior.cs" />
     <Compile Include="Assets\Scripts\DirectiveText.cs" />
     <Compile Include="Assets\Scripts\EnergySource.cs" />
     <Compile Include="Assets\Scripts\EnergyText.cs" />
@@ -243,6 +245,7 @@
     <Compile Include="Assets\Scripts\ReactorManage.cs" />
     <Compile Include="Assets\Scripts\RegularEnemy.cs" />
     <Compile Include="Assets\Scripts\RepairStation.cs" />
+    <Compile Include="Assets\Scripts\StoryDialogue.cs" />
     <Compile Include="Assets\Scripts\Talk.cs" />
     <None Include="Assets\2DGamekit\Utilities\TextMesh Pro\Resources\Shaders\TMPro.cginc" />
     <None Include="Assets\2DGamekit\Utilities\Shaders\UnityStandardParticleShadow.cginc" />

@@ -49,9 +49,13 @@ public class AreaText : MonoBehaviour
             }
 
             // Grey Palace
-            else if (GlobalControl.area == "GP_0")
+            else if (GlobalControl.area == "GP_0A")
             {
-                text.text = "Final Destination";
+                text.text = "Audience Chamber";
+            }
+            else if (GlobalControl.area == "GP_0B")
+            {
+                text.text = "The Summit";
             }
             else if (GlobalControl.area == "GP_1")
             {

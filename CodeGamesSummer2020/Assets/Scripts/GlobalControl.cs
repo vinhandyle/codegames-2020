@@ -72,14 +72,19 @@ public class GlobalControl : MonoBehaviour
     public static string prevArea = "";            // Name of previous area
     public static string checkpoint = "";          // Area name of last repair station used
 
+    // Dialogue
+    public static int counter_1 = 0;               // Counter for First dialogue
+
     // Doors
     public static string nextDoor = "";            // The door on the other side, from which the player will exit from
 
     public static bool locked_1 = true;            // Birthplace-Start Door
+    public static bool locked_2 = false;           // The Lift to Heaven Door
 
     // Destructibles
     public static bool block_starter = true;
     public static bool secret_unstable = true;
+    public static bool block_GP_1 = true;
 
 
     // Enemy State
@@ -158,6 +163,10 @@ public class GlobalControl : MonoBehaviour
             {
                 StartCoroutine(SceneSwitch("IT_1", checkpoint));
             }
+            else
+            {
+                StartCoroutine(SceneSwitch("Start_", ""));
+            }
 
             // Full restore
             healthCurr = healthMax;
@@ -167,6 +176,19 @@ public class GlobalControl : MonoBehaviour
             respawnAll();
         }
     }
+
+    public static void resetObjects()
+    {
+        // Doors
+        locked_1 = true;
+        locked_2 = false;
+
+        // Destructibles
+        block_starter = true;
+        secret_unstable = true;
+        block_GP_1 = true;
+    }
+
 
     public static void respawnAll()
     {

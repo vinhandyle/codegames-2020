@@ -16,8 +16,8 @@ sceneSetups:
   isActive: 0
   isSubScene: 0
 - path: Assets/Scenes/Start_.unity
-  isLoaded: 1
-  isActive: 1
+  isLoaded: 0
+  isActive: 0
   isSubScene: 0
 - path: Assets/Scenes/IT_1.unity
   isLoaded: 0
@@ -30,4 +30,16 @@ sceneSetups:
 - path: Assets/Scenes/IT_2.unity
   isLoaded: 0
   isActive: 0
+  isSubScene: 0
+- path: Assets/Scenes/GP_1.unity
+  isLoaded: 0
+  isActive: 0
+  isSubScene: 0
+- path: Assets/Scenes/GP_2.unity
+  isLoaded: 0
+  isActive: 0
+  isSubScene: 0
+- path: Assets/Scenes/GP_0A.unity
+  isLoaded: 1
+  isActive: 1
   isSubScene: 0

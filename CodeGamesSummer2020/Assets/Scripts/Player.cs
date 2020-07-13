@@ -186,7 +186,24 @@ public class Player : MonoBehaviour
             walled = true;
         }
     }
-    
+
+    private void OnCollisionStay2D(Collision2D collision)
+    {
+        // Prevents jumping bug when touching floor and wall
+        if (collision.collider.tag == "Floor" || (collision.collider.tag == "Wall" && GlobalControl.clingUnlocked))
+        {
+            canJump1 = true;
+            canJump2 = false;
+            jumped = false;
+        }
+
+        if (collision.collider.tag == "Wall")
+        {
+            walled = true;
+        }
+
+    }
+
     //Triggers when the collision ends
     private void OnCollisionExit2D(Collision2D collision)
     { 

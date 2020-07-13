@@ -22,6 +22,42 @@ public class MainMenuBtnBehavior : MonoBehaviour
         if (type == "start")
         {
             // Reset all global values and switch to first scene
+            GlobalControl.energyMax = 10;
+            GlobalControl.energyCurr = GlobalControl.energyMax;
+            GlobalControl.healthMax = 10;
+            GlobalControl.healthCurr = GlobalControl.healthMax;
+            GlobalControl.data = 0;
+            GlobalControl.batteryUnlocked = false;
+            GlobalControl.solarUnlocked = false;
+            GlobalControl.geoUnlocked = false;
+            GlobalControl.gunUnlocked = false;
+            GlobalControl.mapUnlocked = false;
+            GlobalControl.heartlessUnlocked = false;
+            GlobalControl.dashUnlocked = false;
+            GlobalControl.clingUnlocked = false;
+            GlobalControl.doubleUnlocked = false;
+            GlobalControl.imperialUnlocked = false;
+            GlobalControl.familiarUnlocked = false;
+            GlobalControl.unstableUnlocked = false;
+            GlobalControl.scrapFound = false;
+            GlobalControl.extraFound = false;
+            GlobalControl.plateFound = false;
+            GlobalControl.extra_1 = false;
+            GlobalControl.extra_2 = false;
+            GlobalControl.extra_3 = false;
+            GlobalControl.plating_1 = false;
+            GlobalControl.plating_2 = false;
+            GlobalControl.scrapNum = 0;
+            GlobalControl.extraNum = 0;
+            GlobalControl.plateNum = 0;
+            GlobalControl.reactor = "basic";
+            GlobalControl.h2e = true;
+            GlobalControl.bossDowned = 0;
+            GlobalControl.prevArea = "";
+            GlobalControl.checkpoint = "";
+            GlobalControl.resetObjects();
+            GlobalControl.respawnAll();
+
             StartCoroutine(SceneSwitch("Start_"));
         }
         else if (type == "controls")

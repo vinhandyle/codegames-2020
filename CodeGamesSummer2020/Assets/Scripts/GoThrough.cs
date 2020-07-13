@@ -124,7 +124,7 @@ public class GoThrough : MonoBehaviour
                 // IT_2 to GP_1
             else if (opName == "IT_2_to_GP_1")
             {
-                StartCoroutine(SceneSwitch("GP_1", "IT_2_to_GP_1"));
+                StartCoroutine(SceneSwitch("GP_1", "GP_1_to_IT_2"));
             }
             else if (opName == "GP_1_to_IT_2")
             {

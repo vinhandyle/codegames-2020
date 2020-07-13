@@ -111,14 +111,20 @@ public class Description : MonoBehaviour
             else if (descOf == "extra" && GlobalControl.extraFound)            // Extra Battery description
             {
                 text.text = "<b>Extra Battery</b> \n" +
-                            "Increases the Battery's energy capacity by 10.\n\n" +
-                            "<i></i>";
+                            "Increases the Battery's energy capacity by 10.\n" +
+                            "In Possession: " + GlobalControl.extraNum +
+                            "\n\n<i>An external energy storage extension. They are fitted into the nodes of a Battery though most " +
+                            "are already fully stocked. It is rare to find spares laying around. " +
+                            ".</i>";
             }
             else if (descOf == "plating" && GlobalControl.plateFound)          // Special Plating description
             {
                 text.text = "<b>Special Plating</b> \n" +
-                            "Increases health by 10.\n\n" +
-                            "<i></i>";
+                            "Increases health by 10.\n" +
+                            "In Possession: " + GlobalControl.plateNum +
+                            "\n\n<i>From the moment they are created to the time of their disassemby, a Machina's components do " +
+                            "not change. Modifications are unnecessary when they are built to successfully carry out their task." +
+                            "Only those who'd go rogue would even consider altering their inital design.</i>";
             }
             else if (descOf == "basic" && GlobalControl.basicUnlocked)         // Basic Reactor description
             {
@@ -130,7 +136,7 @@ public class Description : MonoBehaviour
                 text.text += "\nDamage: " + (1 + GlobalControl.scrapNum) + "  Energy Use: 1 \n\n" +
                              "<i>The standard model for the Machina. It provides just enough power to get the job done. " +
                              "This particular reactor has been specially designed by the Doctor to grow more powerful when " +
-                             "overcoming great obstacles. Perhaps this is a privilege granted only to the [Redacted].</i>";
+                             "overcoming great obstacles. Perhaps this is a privilege granted only to the [REDACTED].</i>";
             }
             else if (descOf == "imperial" && GlobalControl.imperialUnlocked)   // Imperial Reactor description
             {
@@ -142,8 +148,8 @@ public class Description : MonoBehaviour
                 text.text += "\nDamage: 0  Energy Use: 1 \n\n" +
                             "<i>A specialized by designed by the Emperor specifically for the capture of the Errat. Most Machina " +
                             "cannot operate in the the Dreg Heap, as the fine dust and frigid temperatures of this wretched place " +
-                            "compromises their delicate circuitry. The Emperor cannot leave its station. That leaves only one from " +
-                            "the [Redacted] to complete this important task.</i>";
+                            "compromises their delicate circuitry. The Emperor cannot leave its station. That leaves only ones from " +
+                            "the [REDACTED] to complete this important task.</i>";
             }
             else if (descOf == "familiar" && GlobalControl.familiarUnlocked)   // Familiar Reactor description
             {

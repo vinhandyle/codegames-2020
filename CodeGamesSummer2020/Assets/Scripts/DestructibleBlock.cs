@@ -18,7 +18,8 @@ public class DestructibleBlock : MonoBehaviour
 
         // Retain state on scene load
         if ((gameObject.name == "Block_Starter" && !GlobalControl.block_starter) ||
-            (gameObject.name == "Secret_Unstable" && !GlobalControl.secret_unstable))
+            (gameObject.name == "Secret_Unstable" && !GlobalControl.secret_unstable) ||
+            (gameObject.name == "Block_GP_1" && !GlobalControl.block_GP_1))
         {
             gameObject.SetActive(false);
         }
@@ -31,6 +32,11 @@ public class DestructibleBlock : MonoBehaviour
         {
             gameObject.SetActive(false);
             GlobalControl.block_starter = false;
+        }
+        else if (gameObject.name == "Block_GP_1" && GlobalControl.doubleUnlocked)
+        {
+            gameObject.SetActive(false);
+            GlobalControl.block_GP_1 = false;
         }
     }
 }
