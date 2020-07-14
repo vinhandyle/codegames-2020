@@ -21,7 +21,7 @@ MonoBehaviour:
   m_ShowMode: 4
   m_Title: 
   m_RootView: {fileID: 2}
-  m_MinSize: {x: 875, y: 542}
+  m_MinSize: {x: 875, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
   m_Maximized: 0
 --- !u!114 &2
@@ -114,7 +114,7 @@ MonoBehaviour:
   m_MinSize: {x: 679, y: 492}
   m_MaxSize: {x: 12004, y: 14042}
   vertical: 0
-  controlID: 117
+  controlID: 107
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -139,7 +139,7 @@ MonoBehaviour:
   m_MinSize: {x: 679, y: 492}
   m_MaxSize: {x: 12004, y: 14042}
   vertical: 1
-  controlID: 118
+  controlID: 108
 --- !u!114 &7
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -165,7 +165,7 @@ MonoBehaviour:
   m_MinSize: {x: 679, y: 221}
   m_MaxSize: {x: 12004, y: 4021}
   vertical: 0
-  controlID: 119
+  controlID: 109
 --- !u!114 &8
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -393,10 +393,10 @@ MonoBehaviour:
   m_ViewDataDictionary: {fileID: 0}
   m_SceneHierarchy:
     m_TreeViewState:
-      scrollPos: {x: 0, y: 185}
-      m_SelectedIDs: c0a70100
-      m_LastClickedID: 108480
-      m_ExpandedIDs: 0c9bfdffbe9dfdff76b2fdff8aeafdff2ef6fdff32f6fdff54fffdff6efffdff5c51feffca75feff3a9efeff2ecafeffd8d1feff76d6feffd0e6feff0a12ffff1a17ffff3a23ffffe648ffffa273ffff3c79ffff3e79ffffce83ffff28b8ffff9ec1ffff62c6ffff1efbffff20fbffff22fbffff24fbffff26fbffff28fbffff2afbffff2cfbffff6e5d00007a5f0000865f0000ae5f0000ba5f000098770000fa7b00007c7f0000628700003aa600003cc400005ed800005ad9000094e90000e2ea0000de7d01000c7f0100da820100988b0100dc9f01000ca00100c0a7010014a80100
+      scrollPos: {x: 0, y: 0}
+      m_SelectedIDs: 
+      m_LastClickedID: 0
+      m_ExpandedIDs: d222ffffb6a6ffff02b4ffff2cfbffff2efbffff30fbffff3e9a0000069b000058ab0000d0ac0000dc46010018470100e85801009e590100
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -456,9 +456,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: -1.3457806, y: -0.74325246, z: -12.865912}
+    m_Target: {x: -0.5655478, y: 0.3605911, z: -16.16733}
     speed: 2
-    m_Value: {x: -1.3457806, y: -0.74325246, z: -12.865912}
+    m_Value: {x: -0.5655478, y: 0.3605911, z: -16.16733}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -508,9 +508,9 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: 0, y: 0, z: 0, w: 1}
   m_Size:
-    m_Target: 6.9712324
+    m_Target: 5.7068315
     speed: 2
-    m_Value: 6.9712324
+    m_Value: 5.7068315
   m_Ortho:
     m_Target: 1
     speed: 2
@@ -638,20 +638,20 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets
+    - Assets/Scripts
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets
+  - Assets/Scripts
   m_LastFoldersGridSize: -1
   m_LastProjectPath: C:\Users\vinha\Documents\GitHub\codegames-2020\CodeGamesSummer2020
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 79}
-    m_SelectedIDs: b43f0000
-    m_LastClickedID: 16308
-    m_ExpandedIDs: 00000000b43f0000b63f0000b83f0000ba3f0000bc3f0000be3f0000c03f0000c23f000000ca9a3b
+    scrollPos: {x: 0, y: 0}
+    m_SelectedIDs: e6ba0000
+    m_LastClickedID: 47846
+    m_ExpandedIDs: 00000000fc3d0000fe3d0000003e0000023e0000043e0000063e0000083e00000a3e000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -679,7 +679,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 00000000b43f0000b63f0000b83f0000ba3f0000bc3f0000be3f0000c03f0000c23f0000
+    m_ExpandedIDs: 00000000fc3d0000fe3d0000003e0000023e0000043e0000063e0000083e00000a3e0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 

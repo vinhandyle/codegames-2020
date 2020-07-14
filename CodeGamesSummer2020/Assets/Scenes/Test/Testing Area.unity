@@ -810,7 +810,7 @@ PrefabInstance:
     - target: {fileID: 1580859305280787209, guid: 8e2490aaf52650942ba99f1212982d5c,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.41
+      value: 2.2
       objectReference: {fileID: 0}
     - target: {fileID: 1580859305280787209, guid: 8e2490aaf52650942ba99f1212982d5c,
         type: 3}
@@ -860,12 +860,12 @@ PrefabInstance:
     - target: {fileID: 1580859305280787209, guid: 8e2490aaf52650942ba99f1212982d5c,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.5
+      value: 2.5
       objectReference: {fileID: 0}
     - target: {fileID: 1580859305280787209, guid: 8e2490aaf52650942ba99f1212982d5c,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.5
+      value: 2.5
       objectReference: {fileID: 0}
     - target: {fileID: 2648091145979299751, guid: 8e2490aaf52650942ba99f1212982d5c,
         type: 3}
@@ -876,7 +876,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 9f958017ae23bdb46a3f5d18cd3748a7,
+      objectReference: {fileID: -8087114880944292821, guid: b31492e6d0d05b24aa5c8102451e11d3,
         type: 3}
     - target: {fileID: 5189053524504397608, guid: 8e2490aaf52650942ba99f1212982d5c,
         type: 3}
@@ -1968,7 +1968,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70ac1b2cab3230946a5b9e82796450e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  regenTime: 1
 --- !u!1 &931889508 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2648091145979299751, guid: 8e2490aaf52650942ba99f1212982d5c,
@@ -1992,14 +1991,14 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 2.0424242, y: 3.1030302}
+    oldSize: {x: 0.25, y: 0.45}
     newSize: {x: 2.0424242, y: 3.1030302}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 2.0424242, y: 3.1030302}
+  m_Size: {x: 0.25, y: 0.45}
   m_EdgeRadius: 0
 --- !u!224 &955604308 stripped
 RectTransform:

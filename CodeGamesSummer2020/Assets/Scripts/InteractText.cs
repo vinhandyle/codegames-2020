@@ -56,12 +56,12 @@ public class InteractText : MonoBehaviour
                         text.text = "Picked up: Navigational Module";
                         GlobalControl.mapUnlocked = true;
                     }
-                    else if (type == "heartless")
+                    else if (type == "Heartless")
                     {
                         text.text = "Picked up: Heartless Generator";
                         GlobalControl.heartlessUnlocked = true;
                     }
-                    else if (type == "familiar")
+                    else if (type == "Lost")
                     {
                         text.text = "Picked up: Lost Reactor";
                         GlobalControl.familiarUnlocked = true;

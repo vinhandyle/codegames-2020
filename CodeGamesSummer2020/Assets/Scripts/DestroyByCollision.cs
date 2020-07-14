@@ -38,6 +38,11 @@ public class DestroyByCollision : MonoBehaviour
                 GlobalControl.block_DH_1 = false;
                 other.gameObject.SetActive(false);
             }
+            else if (other.gameObject.name == "Block_DH_4")
+            {
+                GlobalControl.block_DH_4 = false;
+                other.gameObject.SetActive(false);
+            }
         }
     }
 }

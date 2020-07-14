@@ -23,6 +23,7 @@ public class EnterDoor : MonoBehaviour
         {
             Player.x = gameObject.transform.position.x;
             Player.y = gameObject.transform.position.y;
+            GlobalControl.switched = true;
         }
 
         if (gameObject.name == "Start_to_IT_X")
@@ -40,6 +41,18 @@ public class EnterDoor : MonoBehaviour
         else if (gameObject.name == "GP_1_to_GP_2")
         {
             if (GlobalControl.locked_2)
+            {
+                locked = true;
+                gameObject.GetComponent<SpriteRenderer>().sprite = lockedDoor;
+            }
+            else
+            {
+                gameObject.GetComponent<SpriteRenderer>().sprite = unlockedDoor;
+            }
+        }
+        else if (gameObject.name == "DH_4_to_DH_6")
+        {
+            if (GlobalControl.locked_3)
             {
                 locked = true;
                 gameObject.GetComponent<SpriteRenderer>().sprite = lockedDoor;
@@ -129,7 +142,6 @@ public class EnterDoor : MonoBehaviour
         GlobalControl.area = load;
 
         SceneManager.LoadScene(load, LoadSceneMode.Single);
-        GlobalControl.switched = true;
         yield return null;
         SceneManager.UnloadSceneAsync(SceneManager.GetActiveScene().name);
     }

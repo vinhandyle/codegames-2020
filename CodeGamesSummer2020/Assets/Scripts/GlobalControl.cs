@@ -33,7 +33,7 @@ public class GlobalControl : MonoBehaviour
 
     public static bool gunUnlocked = true;         // Energy Cannon
     public static bool mapUnlocked = true;         // Navigational Module
-    public static bool heartlessUnlocked = true;   // Heartless Generator
+    public static bool heartlessUnlocked = false;   // Heartless Generator
 
     public static bool dashUnlocked = true;        // Booster Rocket
     public static bool clingUnlocked = false;       // Climbing Claws
@@ -41,7 +41,7 @@ public class GlobalControl : MonoBehaviour
 
     public static bool basicUnlocked = true;       // Basic Reactor
     public static bool imperialUnlocked = false;    // Strange Reactor
-    public static bool familiarUnlocked = true;    // Lost Reactor
+    public static bool familiarUnlocked = false;    // Lost Reactor
     public static bool unstableUnlocked = false;    // Unstable Reactor
 
     public static bool scrapFound = true;          // Hyper Scrap
@@ -81,12 +81,15 @@ public class GlobalControl : MonoBehaviour
 
     public static bool locked_1 = true;            // Birthplace-Start Door
     public static bool locked_2 = false;           // The Lift to Heaven Door
+    public static bool locked_3 = true;            // DH_4_to_DH_6
 
     // Destructibles
     public static bool block_starter = true;
     public static bool secret_unstable = true;
 
     public static bool block_DH_1 = true;
+    public static bool block_DH_4 = true;
+    public static bool secret_DH_5 = true;
 
     public static bool block_GP_1 = true;
 
@@ -229,6 +232,5 @@ public class GlobalControl : MonoBehaviour
         SceneManager.LoadScene(load, LoadSceneMode.Single);
         yield return null;
         SceneManager.UnloadSceneAsync(SceneManager.GetActiveScene().name);
-        switched = true;
     }
 }

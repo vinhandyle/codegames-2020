@@ -41,12 +41,14 @@ public class GoThrough : MonoBehaviour
                 Player.x = gameObject.transform.position.x - 0.5f;
                 Player.y = gameObject.transform.position.y;
             }
+            GlobalControl.switched = true;
         }
     }
 
     // Update is called once per frame
     void Update()
     {
+
         if (on)
         {
             // Test Openings
@@ -126,7 +128,7 @@ public class GoThrough : MonoBehaviour
             }
 
             //          DH_3 to DH_4
-            else if(opName == "DH_3_to_DH_4")
+            else if (opName == "DH_3_to_DH_4")
             {
                 StartCoroutine(SceneSwitch("DH_4", "DH_4_to_DH_3"));
             }
@@ -143,6 +145,26 @@ public class GoThrough : MonoBehaviour
             else if (opName == "DH_5_to_DH_4")
             {
                 StartCoroutine(SceneSwitch("DH_4", "DH_4_to_DH_5"));
+            }
+
+            //          DH_5 to DH_5S
+            else if (opName == "DH_5_to_DH_5S")
+            {
+                StartCoroutine(SceneSwitch("DH_5S", "DH_5S_to_DH_5"));
+            }
+            else if (opName == "DH_5S_to_DH_5")
+            {
+                StartCoroutine(SceneSwitch("DH_5", "DH_5_to_DH_5S"));
+            }
+
+            //          DH_5 to DH_6
+            else if (opName == "DH_5_to_DH_6")
+            {
+                StartCoroutine(SceneSwitch("DH_6", "DH_6_to_DH_5"));
+            }
+            else if (opName == "DH_6_to_DH_5")
+            {
+                StartCoroutine(SceneSwitch("DH_5", "DH_5_to_DH_6"));
             }
 
             // SG
@@ -207,7 +229,6 @@ public class GoThrough : MonoBehaviour
         GlobalControl.area = load;
 
         SceneManager.LoadScene(load, LoadSceneMode.Single);
-        GlobalControl.switched = true;
         yield return null;
         SceneManager.UnloadSceneAsync(SceneManager.GetActiveScene().name);
     }

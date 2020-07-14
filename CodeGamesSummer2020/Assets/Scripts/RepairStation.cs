@@ -14,6 +14,7 @@ public class RepairStation : MonoBehaviour
         {
             Player.x = gameObject.transform.position.x;
             Player.y = gameObject.transform.position.y;
+            GlobalControl.switched = true;
         }
     }
 
