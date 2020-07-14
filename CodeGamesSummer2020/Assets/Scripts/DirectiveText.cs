@@ -18,18 +18,25 @@ public class DirectiveText : MonoBehaviour
     {
         if (MenuBtn.inMenu)
         {
-            text.text = "<b>Objective:</b> ";
-            if (GlobalControl.data < 50)
+            if (GlobalControl.counter_1 == 5)
             {
-                text.text += "Save Humanity";
-            }
-            else if (GlobalControl.data < 100)
-            {
-                text.text += "...Humanity";
+                text.text = "<b>Errats Left: " + GlobalControl.humansLeft;
             }
             else
             {
-                text.text += "Eradicate Humanity";
+                text.text = "<b>Objective:</b> ";
+                if (GlobalControl.data < 50)
+                {
+                    text.text += "Save Humanity";
+                }
+                else if (GlobalControl.data < 100)
+                {
+                    text.text += "...Humanity";
+                }
+                else
+                {
+                    text.text += "Eradicate Humanity";
+                }
             }
         }
         else

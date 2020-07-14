@@ -75,13 +75,13 @@ public class MainMenuText : MonoBehaviour
                 {
                     text.text = "<b>Save Humanity</b> \n" +
                                 "Capture the remaining humans. \n" +
-                                "<i>Everyone into space!</i>";
+                                "<i>To infinity and beyond!</i>";
                 }
                 else if (type == "trophy3" && GlobalControl.ending_2)
                 {
                     text.text = "<b>Return to the Past</b> \n" +
                                 "Free the remaining humans. \n" +
-                                "<i>Will it be different this time?</i>";
+                                "<i>Reject modernity. Embrace tradition.</i>";
                 }
                 else if (type == "trophy4" && GlobalControl.ending_3)
                 {

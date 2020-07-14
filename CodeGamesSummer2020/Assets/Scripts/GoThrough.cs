@@ -71,7 +71,7 @@ public class GoThrough : MonoBehaviour
 
             // IT (Start)
 
-                // Start_ to IT_1
+            //      Start_ to IT_1
             else if (opName == "Start_to_IT_1")
             {
                 StartCoroutine(SceneSwitch("IT_1", "IT_1_to_Start_"));
@@ -82,7 +82,7 @@ public class GoThrough : MonoBehaviour
             }
 
 
-                // Start_ to IT_1S
+            //        Start_ to IT_1S
             else if (opName == "Start_to_IT_1S")
             {
                 StartCoroutine(SceneSwitch("IT_1S", "IT_1S_to_Start_"));
@@ -92,7 +92,7 @@ public class GoThrough : MonoBehaviour
                 StartCoroutine(SceneSwitch("Start_", "Start_to_IT_1S"));
             }
 
-                // IT_1 to IT_2
+            //        IT_1 to IT_2
             else if (opName == "IT_1_to_IT_2")
             {
                 StartCoroutine(SceneSwitch("IT_2", "IT_2_to_IT_1"));
@@ -107,7 +107,43 @@ public class GoThrough : MonoBehaviour
 
             // IT (Return)
 
-            // DH
+            //          DH_1 to DH_2
+
+            else if (opName == "DH_1_to_DH_2")
+            {
+                StartCoroutine(SceneSwitch("DH_2", "DH_2_to_DH_1"));
+                GlobalControl.counter_1 += 2;
+            }
+
+            //          DH_2 to DH_3
+            else if (opName == "DH_2_to_DH_3")
+            {
+                StartCoroutine(SceneSwitch("DH_3", "DH_3_to_DH_2"));
+            }
+            else if (opName == "DH_3_to_DH_2")
+            {
+                StartCoroutine(SceneSwitch("DH_2", "DH_2_to_DH_3"));
+            }
+
+            //          DH_3 to DH_4
+            else if(opName == "DH_3_to_DH_4")
+            {
+                StartCoroutine(SceneSwitch("DH_4", "DH_4_to_DH_3"));
+            }
+            else if (opName == "DH_4_to_DH_3")
+            {
+                StartCoroutine(SceneSwitch("DH_3", "DH_3_to_DH_4"));
+            }
+
+            //          DH_4 to DH_5
+            else if (opName == "DH_4_to_DH_5")
+            {
+                StartCoroutine(SceneSwitch("DH_5", "DH_5_to_DH_4"));
+            }
+            else if (opName == "DH_5_to_DH_4")
+            {
+                StartCoroutine(SceneSwitch("DH_4", "DH_4_to_DH_5"));
+            }
 
             // SG
 
@@ -121,7 +157,7 @@ public class GoThrough : MonoBehaviour
 
             // Transition (IT-GP)
 
-                // IT_2 to GP_1
+            // IT_2 to GP_1
             else if (opName == "IT_2_to_GP_1")
             {
                 StartCoroutine(SceneSwitch("GP_1", "GP_1_to_IT_2"));

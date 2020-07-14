@@ -33,19 +33,49 @@ public class AreaText : MonoBehaviour
             {
                 text.text = "Homecoming";
             }
-            else if (GlobalControl.area == "IT_2")
-            {
-                text.text = "Service Arm";
-            }
             else if (GlobalControl.area == "IT_1S")
             {
                 text.text = "Meltdown";
+            }
+            else if (GlobalControl.area == "IT_2")
+            {
+                text.text = "Service Arm";
             }
 
             // Dreg Heap
             else if (GlobalControl.area == "DH_1")
             {
+                text.text = "Descent";
+            }
+            else if (GlobalControl.area == "DH_2")
+            {
                 text.text = "Death Basin";
+            }
+            else if (GlobalControl.area == "DH_3")
+            {
+                text.text = "Crawlway";
+            }
+            else if (GlobalControl.area == "DH_4") // many platforms, 3 
+            {
+                text.text = "Encampment";
+            }
+            else if (GlobalControl.area == "DH_5") // pond with secret in the side, needs wall jump, 1
+            {
+                text.text = "Sludge Pond";
+            }
+            else if (GlobalControl.area == "DH_5S") // Wall jump and dash challenge
+            {
+                text.text = "Rotten Depths";
+            }
+            else if (GlobalControl.area == "DH_6") // Vertical platforming, lots of puddles, shortcut to camp at top
+            {
+                text.text = "Waste Deposit";
+            }
+
+            // Sunset Garden
+            else if (GlobalControl.area == "SG_1")
+            {
+                text.text = "Exit Chute";
             }
 
             // Grey Palace

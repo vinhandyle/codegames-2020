@@ -31,12 +31,12 @@ public class GlobalControl : MonoBehaviour
     public static bool solarUnlocked = false;       // Solar Panel
     public static bool geoUnlocked = true;         // Geothermal Extractor
 
-    public static bool gunUnlocked = false;         // Energy Cannon
+    public static bool gunUnlocked = true;         // Energy Cannon
     public static bool mapUnlocked = true;         // Navigational Module
     public static bool heartlessUnlocked = true;   // Heartless Generator
 
     public static bool dashUnlocked = true;        // Booster Rocket
-    public static bool clingUnlocked = true;       // Climbing Claws
+    public static bool clingUnlocked = false;       // Climbing Claws
     public static bool doubleUnlocked = true;      // Booster Rocket MK2
 
     public static bool basicUnlocked = true;       // Basic Reactor
@@ -61,10 +61,11 @@ public class GlobalControl : MonoBehaviour
     public static int scrapNum = 0;                // Number of hyper scraps in possession
 
     // Toggle
-    public static string reactor = "basic";        // Name of equipped reactor
+    public static string reactor = "imperial";        // Name of equipped reactor
     public static bool h2e = true;                 // True = HP to Energy, False = Energy to HP
 
     // World
+    public static int humansLeft = 6;              // How many humans left to capture (6: May-October)
     public static int bossDowned = 0;              // How many bosses have been defeated
     public static bool switched = false;           // Used to set position on scene switch
 
@@ -84,6 +85,9 @@ public class GlobalControl : MonoBehaviour
     // Destructibles
     public static bool block_starter = true;
     public static bool secret_unstable = true;
+
+    public static bool block_DH_1 = true;
+
     public static bool block_GP_1 = true;
 
 
@@ -94,6 +98,13 @@ public class GlobalControl : MonoBehaviour
     public static bool patrol_1_0_2 = true;
 
     public static bool patrol_1_1_0 = true;        // Institute of Technology
+
+    public static bool errat_0 = true;             // Dreg Heap
+    public static bool errat_1 = true;
+    public static bool errat_2 = true;
+    public static bool errat_3 = true;
+    public static bool errat_4 = true;
+    public static bool errat_5 = true;
 
     public static GlobalControl Instance;
 
@@ -123,6 +134,13 @@ public class GlobalControl : MonoBehaviour
         if (ending_1 && ending_2 && ending_3)
         {
             complete = true;
+        }
+
+        // Endings
+        if (humansLeft == 0)
+        { // Save Humanity
+            humansLeft--;
+            StartCoroutine(SceneSwitch("Ending_1", ""));
         }
 
         // Reactors
@@ -162,6 +180,10 @@ public class GlobalControl : MonoBehaviour
             else if (checkpoint == "Checkpoint_1")
             {
                 StartCoroutine(SceneSwitch("IT_1", checkpoint));
+            }
+            else if (checkpoint == "Checkpoint_2")
+            {
+                StartCoroutine(SceneSwitch("DH_2", checkpoint));
             }
             else
             {

@@ -25,19 +25,13 @@ public class DialogueBtn : MonoBehaviour
         {
             if (GlobalControl.area == "GP_0A")
             {
-                if (GlobalControl.counter_1 < 7 && GlobalControl.counter_1 != 4)
-                {
-                    if (gameObject.name == "Next")
-                    {
-                        img.color = new Color(1f, 1f, 1f, 1f);
-                    }
+                if (GlobalControl.counter_1 < 2 && gameObject.name == "Next")
+                {                   
+                    img.color = new Color(1f, 1f, 1f, 1f);                   
                 }
-                else if (GlobalControl.counter_1 == 4)
-                {
-                    if (gameObject.name == "Accept" || gameObject.name == "Decline")
-                    {
-                        img.color = new Color(1f, 1f, 1f, 1f);
-                    }
+                else if (GlobalControl.counter_1 == 2 && gameObject.name != "Next")
+                {                    
+                    img.color = new Color(1f, 1f, 1f, 1f);                    
                 }
                 else
                 {

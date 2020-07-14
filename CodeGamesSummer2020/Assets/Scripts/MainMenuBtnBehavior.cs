@@ -55,6 +55,12 @@ public class MainMenuBtnBehavior : MonoBehaviour
             GlobalControl.bossDowned = 0;
             GlobalControl.prevArea = "";
             GlobalControl.checkpoint = "";
+            GlobalControl.errat_0 = true;
+            GlobalControl.errat_1 = true;
+            GlobalControl.errat_2 = true;
+            GlobalControl.errat_3 = true;
+            GlobalControl.errat_4 = true;
+            GlobalControl.errat_5 = true;
             GlobalControl.resetObjects();
             GlobalControl.respawnAll();
 

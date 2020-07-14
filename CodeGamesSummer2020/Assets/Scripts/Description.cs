@@ -140,7 +140,7 @@ public class Description : MonoBehaviour
             }
             else if (descOf == "imperial" && GlobalControl.imperialUnlocked)   // Imperial Reactor description
             {
-                text.text = "<b>Strange Reactor</b> ";
+                text.text = "<b>Gentle Reactor</b> ";
                 if (GlobalControl.reactor == "imperial")
                 {
                     text.text += "- <i>Equipped</i>";

@@ -20,23 +20,25 @@ public class DialogueBtnBehavior : MonoBehaviour
     {
         if (type == "next")
         {
-            if (GlobalControl.area == "GP_0A")
+            if (GlobalControl.area == "GP_0A" && GlobalControl.counter_1 < 2)
             {
                 GlobalControl.counter_1++;
             }
         }
-        else if (type == "positive")
+        else if (type == "positive" && GlobalControl.counter_1 == 2)
         {
             if (GlobalControl.area == "GP_0A")
             {
-                GlobalControl.counter_1 = 5;
+                GlobalControl.counter_1 = 3;
+                GlobalControl.imperialUnlocked = true;
+                GlobalControl.reactor = "imperial";
             }
         }
-        else if (type == "negative")
+        else if (type == "negative" && GlobalControl.counter_1 == 2)
         {
             if (GlobalControl.area == "GP_0A")
             {
-                GlobalControl.counter_1 = 6;
+                GlobalControl.counter_1 = 4;
             }
         }
     }

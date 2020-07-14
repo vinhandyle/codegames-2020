@@ -84,8 +84,20 @@ public class EnterDoor : MonoBehaviour
 
         // Other
         if(doorName == "GP_2_to_GP_1" && !triggeredOnce)
-        {
+        { // The Lift to Heaven
             StartCoroutine(waitThenExecute(2f, SceneSwitch("GP_0A", "GP_0A_to_GP_2")));
+        }
+        if (doorName == "GP_0A_to_GP_2")
+        { // Audience Chamber (First)
+            if (GlobalControl.counter_1 == 3 || GlobalControl.counter_1 == 4)
+            {
+                StartCoroutine(waitThenExecute(2f, SceneSwitch("DH_1", "DH_1_to_GP_0A")));
+                if (GlobalControl.counter_1 == 4)
+                {
+                    GlobalControl.healthCurr = 1;
+                }
+                GlobalControl.energyCurr = 0;
+            }
         }
     }
 

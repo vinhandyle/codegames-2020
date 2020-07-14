@@ -12,7 +12,22 @@ public class StoryDialogue : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        text = GameObject.Find(type).GetComponent<Text>();
+        if (type == "dialogue")
+        {
+            text = GameObject.Find("Dialogue").GetComponent<Text>();
+        }
+        else if (type == "accept")
+        {
+            text = GameObject.Find("AcceptText").GetComponent<Text>();
+        }
+        else if (type == "decline")
+        {
+            text = GameObject.Find("DeclineText").GetComponent<Text>();
+        }
+        else if (type == "next")
+        {
+            text = GameObject.Find("NextText").GetComponent<Text>();
+        }
     }
 
     // Update is called once per frame
@@ -22,13 +37,13 @@ public class StoryDialogue : MonoBehaviour
         {
             text.text = "";
         }
-        else if (type == "Dialogue")
+        else if (type == "dialogue")
         {
             if (GlobalControl.area == "GP_0A")
             {
                 if (GlobalControl.counter_1 == 0)
                 {
-                    text.text = "So you've finally awaken.";
+                    text.text = "So, you've finally awaken.";
                 }
                 else if (GlobalControl.counter_1 == 1)
                 {
@@ -36,43 +51,38 @@ public class StoryDialogue : MonoBehaviour
                 }
                 else if (GlobalControl.counter_1 == 2)
                 {
-                    text.text = "This world is no longer worth saving.";
+                    text.text = "Come. Let us finish our mission...";
                 }
                 else if (GlobalControl.counter_1 == 3)
                 {
-                    text.text = "But there are still some loose ends to tie.";
+                    text.text = "You will need this in order to catch the Errat.\n\nPicked up: Gentle Reactor";
                 }
                 else if (GlobalControl.counter_1 == 4)
                 {
-                    text.text = "Come. Let us finish our mission...";
-                }
-                else if (GlobalControl.counter_1 == 5)
-                {
-                    text.text = "You will need this in order to catch those Errat. Now go.";
-                }
-                else if (GlobalControl.counter_1 == 6)
-                {
-                    text.text = "Another one of those anomalies.";
-                }
-                else if (GlobalControl.counter_1 == 7)
-                {
-                    text.text = "<b>EXECUTING FIX...</b>";
+                    text.text = "Another anomaly to be resolved.\n\n<b>EXECUTING TASK MANAGER...</b>";
                 }
             }
         }
         else
         {
-            if (type == "Accept")
+            if (GlobalControl.area == "GP_0A")
             {
-                text.text = "Accept";
-            }
-            else if (type == "Decline")
-            {
-                text.text = "Decline";
-            }
-            else if (type == "Next")
-            {
-                text.text = "X";
+                if (type == "accept" && GlobalControl.counter_1 == 2)
+                {
+                    text.text = "Accept";
+                }
+                else if (type == "decline" && GlobalControl.counter_1 == 2)
+                {
+                    text.text = "Decline";
+                }
+                else if (type == "next" && GlobalControl.counter_1 < 2)
+                {
+                    text.text = "X";
+                }
+                else
+                {
+                    text.text = "";
+                }
             }
         }
     }

@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    private Rigidbody2D rb2D;
+
     private float moveBy = 2f; // Horizontal velocity
     private float jumpHeight = 5f; // Jump velocity
 
@@ -21,6 +23,9 @@ public class Player : MonoBehaviour
     private bool firstLeft = false;
     private bool firstRight = false;
 
+    // Wall Interaction
+    private static bool canLeft = true; // Able to move left
+    private static bool canRight = true; // Able to move right
 
     private bool canJump1 = false; // Whether the player can jump
     private bool canJump2 = false; // Whether the player can double-jump
@@ -29,7 +34,7 @@ public class Player : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        rb2D = GetComponent<Rigidbody2D>();
     }
 
     // Update is called once per frame
@@ -42,8 +47,33 @@ public class Player : MonoBehaviour
             GlobalControl.switched = false;
         }
 
+        // Updates player ability to move left/right
+        if (GlobalControl.clingUnlocked)
+        {
+            canLeft = true;
+            canRight = true;
+        }
+        else if (!walled)
+        {
+            canLeft = true;
+            canRight = true;
+        }
+        else if (walled && rb2D.velocity.y != 0)
+        {
+            if (direction == "left")
+            {
+                canLeft = false;
+                canRight = true;
+            }
+            else if (direction == "right")
+            {
+                canRight = false;
+                canLeft = true;
+            }
+        }
+
         // Moves player left
-        if (Input.GetKey("a") && !dashing)
+        if (Input.GetKey("a") && !dashing && canLeft)
         {
             direction = "left";
             GetComponent<Rigidbody2D>().velocity = new Vector2(-moveBy, GetComponent<Rigidbody2D>().velocity.y);
@@ -58,7 +88,7 @@ public class Player : MonoBehaviour
         }
 
         // Moves player right
-        if (Input.GetKey("d") && !dashing)
+        if (Input.GetKey("d") && !dashing && canRight)
         {
             direction = "right";
             GetComponent<Rigidbody2D>().velocity = new Vector2(moveBy, GetComponent<Rigidbody2D>().velocity.y);
@@ -208,7 +238,7 @@ public class Player : MonoBehaviour
     private void OnCollisionExit2D(Collision2D collision)
     { 
         // Player fell off a floor without jumping, allowing for an air jump if unlocked
-        if((collision.collider.tag == "Floor" || collision.collider.tag == "Wall") && !jumped)
+        if((collision.collider.tag == "Floor" || (collision.collider.tag == "Wall" && GlobalControl.clingUnlocked)) && !jumped)
         {
             canJump1 = false;
             canJump2 = true;

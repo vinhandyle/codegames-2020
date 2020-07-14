@@ -19,27 +19,47 @@ sceneSetups:
   isLoaded: 0
   isActive: 0
   isSubScene: 0
-- path: Assets/Scenes/IT_1.unity
+- path: Assets/Scenes/IT/IT_1.unity
   isLoaded: 0
   isActive: 0
   isSubScene: 0
-- path: Assets/Scenes/IT_1S.unity
+- path: Assets/Scenes/IT/IT_1S.unity
   isLoaded: 0
   isActive: 0
   isSubScene: 0
-- path: Assets/Scenes/IT_2.unity
+- path: Assets/Scenes/IT/IT_2.unity
   isLoaded: 0
   isActive: 0
   isSubScene: 0
-- path: Assets/Scenes/GP_1.unity
+- path: Assets/Scenes/GP/GP_1.unity
   isLoaded: 0
   isActive: 0
   isSubScene: 0
-- path: Assets/Scenes/GP_2.unity
+- path: Assets/Scenes/GP/GP_2.unity
   isLoaded: 0
   isActive: 0
   isSubScene: 0
-- path: Assets/Scenes/GP_0A.unity
+- path: Assets/Scenes/GP/GP_0A.unity
+  isLoaded: 0
+  isActive: 0
+  isSubScene: 0
+- path: Assets/Scenes/DH/DH_1.unity
+  isLoaded: 0
+  isActive: 0
+  isSubScene: 0
+- path: Assets/Scenes/DH/DH_2.unity
+  isLoaded: 0
+  isActive: 0
+  isSubScene: 0
+- path: Assets/Scenes/DH/DH_3.unity
+  isLoaded: 0
+  isActive: 0
+  isSubScene: 0
+- path: Assets/Scenes/DH/DH_4.unity
   isLoaded: 1
   isActive: 1
+  isSubScene: 0
+- path: Assets/Scenes/DH/DH_5.unity
+  isLoaded: 0
+  isActive: 0
   isSubScene: 0

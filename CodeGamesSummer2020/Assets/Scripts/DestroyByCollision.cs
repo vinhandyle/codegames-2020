@@ -19,7 +19,7 @@ public class DestroyByCollision : MonoBehaviour
     // When the bullet hits something
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.CompareTag("Wall") || other.gameObject.CompareTag("Floor") || other.gameObject.CompareTag("Ceiling") || other.gameObject.CompareTag("Enemy"))
+        if (other.gameObject.CompareTag("Wall") || other.gameObject.CompareTag("Floor") || other.gameObject.CompareTag("Ceiling") || other.gameObject.CompareTag("Enemy") || (other.gameObject.name.Substring(0, 5) == "Errat" && GlobalControl.reactor == "imperial"))
         {
             // Destroy bullet
             if (gameObject.CompareTag("Player Bullet"))
@@ -32,7 +32,12 @@ public class DestroyByCollision : MonoBehaviour
             {
                 GlobalControl.secret_unstable = false;
                 other.gameObject.SetActive(false);
-            }           
+            }
+            else if (other.gameObject.name == "Block_DH_1")
+            {
+                GlobalControl.block_DH_1 = false;
+                other.gameObject.SetActive(false);
+            }
         }
     }
 }

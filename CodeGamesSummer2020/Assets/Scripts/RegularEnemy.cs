@@ -16,7 +16,13 @@ public class RegularEnemy : MonoBehaviour
         if ((gameObject.name == "Patrol_1_0_0" && !GlobalControl.patrol_1_0_0) ||
             (gameObject.name == "Patrol_1_0_1" && !GlobalControl.patrol_1_0_1) ||
             (gameObject.name == "Patrol_1_0_2" && !GlobalControl.patrol_1_0_2) ||
-            (gameObject.name == "Patrol_1_1_0" && !GlobalControl.patrol_1_1_0))
+            (gameObject.name == "Patrol_1_1_0" && !GlobalControl.patrol_1_1_0) ||
+            (gameObject.name == "Errat_0" && !GlobalControl.errat_0) ||
+            (gameObject.name == "Errat_1" && !GlobalControl.errat_1) ||
+            (gameObject.name == "Errat_2" && !GlobalControl.errat_2) ||
+            (gameObject.name == "Errat_3" && !GlobalControl.errat_3) ||
+            (gameObject.name == "Errat_4" && !GlobalControl.errat_4) ||
+            (gameObject.name == "Errat_5" && !GlobalControl.errat_5))
         {
             gameObject.SetActive(false);
         }
@@ -103,6 +109,13 @@ public class RegularEnemy : MonoBehaviour
             }
         }
 
+        // Errat
+        else if (gameObject.name.Substring(0, 5) == "Errat")
+        { // Dreg Heap
+            healthMax = 1;
+            damage = 0;
+        }
+
         healthCurr = healthMax;
     }
 
@@ -131,6 +144,36 @@ public class RegularEnemy : MonoBehaviour
             else if (gameObject.name == "Patrol_1_1_1")
             {
                 GlobalControl.patrol_1_1_0 = false;
+            }
+
+            // Dreg Heap
+            else if (gameObject.name.Substring(0, 5) == "Errat")
+            {
+                if (gameObject.name == "Errat_0")
+                {
+                    GlobalControl.errat_0 = false;
+                }
+                else if (gameObject.name == "Errat_1")
+                {
+                    GlobalControl.errat_1 = false;
+                }
+                else if (gameObject.name == "Errat_2")
+                {
+                    GlobalControl.errat_2 = false;
+                }
+                else if (gameObject.name == "Errat_3")
+                {
+                    GlobalControl.errat_3 = false;
+                }
+                else if (gameObject.name == "Errat_4")
+                {
+                    GlobalControl.errat_4 = false;
+                }
+                else if (gameObject.name == "Errat_5")
+                {
+                    GlobalControl.errat_5 = false;
+                }
+                GlobalControl.humansLeft--;
             }
         }
 
@@ -161,14 +204,21 @@ public class RegularEnemy : MonoBehaviour
     {
         if (other.gameObject.tag == "Player Bullet")
         {
-            healthCurr -= GlobalControl.damage;
-            Debug.Log(healthCurr + " HP remaining!");
+            if (gameObject.CompareTag("Enemy"))
+            {
+                healthCurr -= GlobalControl.damage;
+                Debug.Log(healthCurr + " HP remaining!");
+            }
+            else if (gameObject.name.Substring(0, 5) == "Errat" && GlobalControl.reactor == "imperial")
+            {
+                healthCurr = 0;
+            }
         }
     }
 
     private void OnTriggerStay2D(Collider2D other)
     {
-        if (!(gameObject.name.Substring(0, 6) == "Turret") && other.gameObject.CompareTag("Player") && !GlobalControl.immune)
+        if (!(gameObject.name.Substring(0, 6) == "Turret" || gameObject.name.Substring(0, 5) == "Errat") && other.gameObject.CompareTag("Player") && !GlobalControl.immune)
         {
             if (GlobalControl.reactor == "unstable")
             {
