@@ -26,105 +26,100 @@ public class Description : MonoBehaviour
             else if (descOf == "battery" && GlobalControl.batteryUnlocked)     // Battery description
             {
                 text.text = "<b>Battery</b> \n" +
-                            "Stores the energy you collected.\n" +
-                            "Max capacity: " + GlobalControl.energyMax +
-                            "\n\n<i>An external energy storage. It is able to store energy collected through different means. " +
-                            "Contains several nodes in which additonal batteries can be connected to, increasing its capacity.</i>";
+                            "Maximum energy capacity: " + GlobalControl.energyMax +
+                            "\n\n<i>A device that can store electrical energy and can be connected to the main body. On the side " +
+                            "facing outwards, there are three outlets. </i>";
+                if (GlobalControl.extraFound)
+                {
+                    text.text += "<i>The battery extensions can be inserted there.</i>";
+                }
             }
             else if (descOf == "solar" && GlobalControl.solarUnlocked)         // Solar Panel description
             {
                 text.text = "<b>Solar Panel</b> \n" +
-                            "Generates energy while under sunlight.\n" +
-                            "Generates 1 energy per second.\n\n" +
-                            "<i>A simple module of photo-voltaic cells to be mounted overhead. Though a lot of dust has settled " +
-                            "on its surface, the module has not sustained any serious damage.</i>";
+                            "Generates 1 energy per second while under sunlight.\n\n" +
+                            "<i>A simple module of photo-voltaic cells that can be mounted above the main body. Though a lot of " +
+                            "dust has settled on its surface, the module has not sustained any serious damage.</i>";
             }
             else if (descOf == "geothermal" && GlobalControl.geoUnlocked)      // Geothermal Extractor description
             {
                 text.text = "<b>Geothermal Extractor</b> \n" +
-                            "Generates energy while above a heat vent.\n" +
-                            "Generates 5 energy per second.\n\n" +
-                            "<i>A portable geothermal heat pump to be mounted underfoot. Because of its small size, it is only " +
-                            "effective when the source of heat is very close to the surface of the ground. This design flaw " +
-                            "may explain why it has long been abandoned in such a remote area.</i>";
+                            "Generates 5 energy per second while above a heat vent.\n\n" +
+                            "<i>A portable geothermal heat pump that can be mounted on the sides of the main body. Its small size " +
+                            "restricts its use range. For maximum effectiveness, locate shallow ground sources of heat.</i>";
             }
             else if (descOf == "dash" && GlobalControl.dashUnlocked)           // Dash item description
             {
                 text.text = "<b>Booster Rocket</b> \n" +
                             "Grants the ability to dash along the ground or through the air.\n\n" +
-                            "<i>A small propulsion device constructed from a Hyper Scrap. Short bursts of speed is a feature " +
-                            "found only in Machina tasked with the capture of rogue humans and Machina. A notable example of " +
-                            "which resides in the Twilight Town. Being an inferior copy, it requires time to re-engage.</i>";
+                            "<i>A small propulsion device constructed from a hyper scrap. Attached to the back of the main body, " +
+                            "it provides short bursts of horizontal speed. It requires time to cool down between uses. </i>";
             }
             else if (descOf == "cling" && GlobalControl.clingUnlocked)         // Wall jump item description
             {
                 text.text = "<b>Climbing Claws</b> \n" +
                             "Grants the ability to cling to and leap off from walls.\n\n" +
-                            "<i>A modified variant of the ice axe, constructed from a Hyper Scrap. As tool for exploration, " +
-                            "this device is of little use for the inhabitants of Imperalis. But the Construction Machina's " +
-                            "ability to create it implies that it could still be useful, but perhaps not now...</i>";
+                            "<i>A modified variant of the ice axe, constructed from a hyper scrap. The reduced difficulty of " +
+                            "traversing the environment will allow for more exploration.</i>";
             }
             else if (descOf == "double" && GlobalControl.doubleUnlocked)       // Double jump item description
             {
                 text.text = "<b>Booster Rocket MK2</b> \n" +
                             "Grants the ability to jump again in mid-air.\n\n" +
-                            "<i>A small propulsion device constructed from a Hyper Scrap. As a more lightweight model, it is " +
-                            "able to re-engage on contact with solid ground. Flight is a feature exclusive to Aerial Machina " +
-                            "which this tries to imitate.</i>";
+                            "<i>Another small propulsion device constructed from a hyper scrap. Attached below the main body, it " +
+                            "provides a short burst of vertical speed. The device needs to be re-engaged, by making contact with " +
+                            "the ground or a wall, before it can be used again.</i>";
             }
             else if (descOf == "gun" && GlobalControl.gunUnlocked)             // Energy Cannon description
             {
                 text.text = "<b>Energy Cannon</b> \n" +
                             "Uses energy to fire an energy bullet.\n\n" +
-                            "<i>A staple for most Machina, it serves a means to an end. Unlike the weapons of yore, no " +
-                            "ammunition is required to operate it. However, a reactor is needed to concentrate the energy " +
-                            "gathered from external sources into something powerful. Fortunately, all Machina are powered " +
-                            "by an internal reactor.</i>";
+                            "<i>Standard Machina equipment. It operates using the stored energy the reactor has concentrated, " +
+                            "making physical ammunition obselete. </i>";
             }
             else if (descOf == "map" && GlobalControl.mapUnlocked)             // Map item description
             {
                 text.text = "<b>Navigational Module</b> \n" +
                             "Shows current location within Imperalis.\n\n" +
-                            "<i>Records of the old world have disappeared after the Troubles. The place that one need know " +
-                            "about is the great Imperalis, humanity's last safe haven. Commonly used to track the location " +
-                            "of the Machina, they can also be used for navigation by the Azimuth. After being seeped in sludge, " +
-                            "this device is no longer connected to the network.</i>";
+                            "<i>A device used to collect and store information on places the user has explored. A network is" +
+                            "used to collectivize and distribute this information among the modules used by the Machina and " +
+                            "Azimuths. ";
+                if (GlobalControl.data > 50)
+                {
+                    text.text += "This network is also used to track their whereabouts. ";
+                }
+                text.text += "This particular module's connection to the network has been severely damaged. </i>";
             }
             else if (descOf == "heartless" && GlobalControl.heartlessUnlocked) // Health-Energy item description
             {
                 text.text = "<b>Heartless Generator</b> \n" +
                             "Convert 1 health unit into 3 energy units or 5 energy units to 1 health unit.\n\n" +
-                            "<i>Mass can be converted into energy and energy into mass. Once a difficult task now trivialized " +
-                            "by this tiny device. It finds more usage in the Machina whose mass can easily be replaced at " +
-                            "repair stations. However, this conversion is limited since some energy is loss when converted " +
-                            "into mass.</i> \n\n";
+                            "<i>A device that can covert matter into energy and energy into matter. The conversion is not perfect " +
+                            "as some energy is lost during the process. ";
             }
             else if (descOf == "scrap" && GlobalControl.scrapFound)            // Hyper Scrap description
             {
                 text.text = "<b>Hyper Scrap</b> \n" +
-                            "Bring to a Construction Machina to craft an special item.\n" +
+                            "The remains of a powerful Machina.\n" +
                             "In Possession: " + GlobalControl.scrapNum +
-                            "\n\n<i>The Machina were not created for the sake of violence as seen by the lack of individual " +
-                            "strength. After the Ego defection, however, the Emperor constructed three combat-specialized Machina " +
-                            "to prevent a potential uprising. None have occurred, yet...</i>";
+                            "\n\n<i>Composed of shattered glass, burnt plastic, broken chips, damaged wires, and hunks of metal. " +
+                            "It serves no immediate purpose but a Construction Machina could make use of it. </i>";
             }
             else if (descOf == "extra" && GlobalControl.extraFound)            // Extra Battery description
             {
-                text.text = "<b>Extra Battery</b> \n" +
+                text.text = "<b>Battery Extension</b> \n" +
                             "Increases the Battery's energy capacity by 10.\n" +
                             "In Possession: " + GlobalControl.extraNum +
-                            "\n\n<i>An external energy storage extension. They are fitted into the nodes of a Battery though most " +
-                            "are already fully stocked. It is rare to find spares laying around. " +
-                            ".</i>";
+                            "\n\n<i>A compact electrical energy storage which has very little use on its own. When inserted into a " +
+                            "battery, it expands the battery's storage capacity.</i>";
             }
             else if (descOf == "plating" && GlobalControl.plateFound)          // Special Plating description
             {
                 text.text = "<b>Special Plating</b> \n" +
                             "Increases health by 10.\n" +
                             "In Possession: " + GlobalControl.plateNum +
-                            "\n\n<i>From the moment they are created to the time of their disassemby, a Machina's components do " +
-                            "not change. Modifications are unnecessary when they are built to successfully carry out their task." +
-                            "Only those who'd go rogue would even consider altering their inital design.</i>";
+                            "\n\n<i>Rare Machina equipment. Attaches to the main body in order to improve durability. Its usage  " +
+                            "is prioritized to Machina operating in harsh or important locations.</i>";
             }
             else if (descOf == "basic" && GlobalControl.basicUnlocked)         // Basic Reactor description
             {
@@ -134,9 +129,14 @@ public class Description : MonoBehaviour
                     text.text += "- <i>Equipped</i>";
                 }
                 text.text += "\nDamage: " + (1 + GlobalControl.scrapNum) + "  Energy Use: 1 \n\n" +
-                             "<i>The standard model for the Machina. It provides just enough power to get the job done. " +
-                             "This particular reactor has been specially designed by the Doctor to grow more powerful when " +
-                             "overcoming great obstacles. Perhaps this is a privilege granted only to the [REDACTED].</i>";
+                             "<i>The standard model for reactors. It serves two distinct functions: to power the Machina and to " +
+                             "create fuel for their cannon. Each function is independent of one another, preventing Machina from " +
+                             "ceasing operation when there isn't enough energy to operate their cannon. </i>";
+                if (GlobalControl.bossDowned > 0)
+                {
+                    text.text += "<i>This particular reactor seems to have been modified to grow more efficient after overcoming " +
+                                 "great obstacles. </i>";
+                }
             }
             else if (descOf == "imperial" && GlobalControl.imperialUnlocked)   // Imperial Reactor description
             {
@@ -146,10 +146,10 @@ public class Description : MonoBehaviour
                     text.text += "- <i>Equipped</i>";
                 }
                 text.text += "\nDamage: 0  Energy Use: 1 \n\n" +
-                            "<i>A specialized by designed by the Emperor specifically for the capture of the Errat. Most Machina " +
-                            "cannot operate in the the Dreg Heap, as the fine dust and frigid temperatures of this wretched place " +
-                            "compromises their delicate circuitry. The Emperor cannot leave its station. That leaves only ones from " +
-                            "the [REDACTED] to complete this important task.</i>";
+                            "<i>A specialized reactor by the Emperor specifically for the capture of the Errat. Most Machina " +
+                            "cannot operate in the the Dreg Heap, as the fine dust and frigid temperatures of the location " +
+                            "compromises their delicate circuitry. The Emperor cannot leave its station, transferring this task " +
+                            "to us.</i>";
             }
             else if (descOf == "familiar" && GlobalControl.familiarUnlocked)   // Familiar Reactor description
             {
@@ -159,9 +159,8 @@ public class Description : MonoBehaviour
                     text.text += "- <i>Equipped</i>";
                 }
                 text.text += "\nDamage: " + (0 + GlobalControl.data / 10) + "  Energy Use: 2 \n\n" +
-                            "<i>Beneath the great nation of Imperalis lies that which should be forgotten about. Though most of it " +
-                            "is utterly useless, one could find treasure in this dreary place. This reactor is proof of that. " +
-                            "Somehow, it feels familiar. Inscribed on its exterior: \"Knowledge is power\".</i>";
+                            "<i>An abandoned reactor found in the Dreg Heap. Despite being worn down and almost falling apart, it " +
+                            "is somehow familiar. Inscribed on its exterior: \"Knowledge is power\".</i>";
             }
             else if (descOf == "unstable" && GlobalControl.unstableUnlocked)   // Unstable Reactor description
             {
@@ -171,9 +170,8 @@ public class Description : MonoBehaviour
                     text.text += "- <i>Equipped</i>";
                 }
                 text.text += "\nDamage: 10  Energy Use: 1 \n\n" +
-                            "<i>An experimental reactor that should not be used in any practical situation. The last project of an " +
-                            "old man who came to terms with his mortality. Containing a great deal of volatile substances, the " +
-                            "slightest touch could cause it to explode.</i>";
+                            "<i>A reactor found in a hidden lab within the Institute of Technology. There is a faint green glow " +
+                            "resulting from its high radioactivity. Extremely hot for a reactor, it might explode at any moment.</i>";
             }
         }
         else

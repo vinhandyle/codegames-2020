@@ -96,13 +96,13 @@
     <Compile Include="Assets\Scripts\MenuBtnBehavior.cs" />
     <Compile Include="Assets\Scripts\MenuBtnText.cs" />
     <Compile Include="Assets\Scripts\ObjectPooler.cs" />
+    <Compile Include="Assets\Scripts\Obstacles.cs" />
     <Compile Include="Assets\Scripts\PickUpItem.cs" />
     <Compile Include="Assets\Scripts\Player.cs" />
     <Compile Include="Assets\Scripts\PointAndShoot.cs" />
     <Compile Include="Assets\Scripts\ReactorBtn.cs" />
     <Compile Include="Assets\Scripts\ReactorBtnBehavior.cs" />
     <Compile Include="Assets\Scripts\ReactorManage.cs" />
-    <Compile Include="Assets\Scripts\RegularEnemy.cs" />
     <Compile Include="Assets\Scripts\RepairStation.cs" />
     <Compile Include="Assets\Scripts\StoryDialogue.cs" />
     <Compile Include="Assets\Scripts\Talk.cs" />

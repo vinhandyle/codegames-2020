@@ -25,7 +25,7 @@ public class AreaText : MonoBehaviour
             // Starting Area
             if (GlobalControl.area == "Start_")
             {
-                text.text = "Start";
+                text.text = "Origin";
             }
 
             // Institute of Technology
