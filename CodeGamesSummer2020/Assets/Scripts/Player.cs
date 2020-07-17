@@ -49,17 +49,30 @@ public class Player : MonoBehaviour
 
         // Updates player ability to move left/right
         if (GlobalControl.clingUnlocked)
-        {
+        { 
             canLeft = true;
             canRight = true;
         }
         else if (!walled)
-        {
+        { 
             canLeft = true;
             canRight = true;
         }
         else if (walled && rb2D.velocity.y != 0)
-        {
+        { // Prevents clinging mid-jump or while falling
+            if (direction == "left")
+            {
+                canLeft = false;
+                canRight = true;
+            }
+            else if (direction == "right")
+            {
+                canRight = false;
+                canLeft = true;
+            }
+        }
+        else if (walled && rb2D.velocity.y == 0 && (!canJump1 || !canJump2))
+        { // Prevents clinging during the apex of a jump
             if (direction == "left")
             {
                 canLeft = false;

@@ -36,7 +36,6 @@ public class PointAndShoot : MonoBehaviour
             direction.Normalize();
             fireBullet(direction, rotationZ);
             StartCoroutine(cooldown());
-            GlobalControl.energyCurr -= GlobalControl.energyUse;
         }
     }
 
@@ -50,6 +49,7 @@ public class PointAndShoot : MonoBehaviour
             bullet.transform.position = player.transform.position;
             bullet.transform.rotation = Quaternion.Euler(0.0f, 0.0f, rotation2);
             bullet.GetComponent<Rigidbody2D>().velocity = direction * bulletSpeed;
+            GlobalControl.energyCurr -= GlobalControl.energyUse;
         }
     }
 

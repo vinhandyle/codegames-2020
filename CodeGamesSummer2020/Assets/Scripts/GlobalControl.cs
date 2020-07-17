@@ -146,6 +146,12 @@ public class GlobalControl : MonoBehaviour
             StartCoroutine(SceneSwitch("Ending_1", ""));
         }
 
+        // Return to Main Menu
+        if (area == "Engind_1")
+        {
+            StartCoroutine(delayedSwitch(10f, SceneSwitch("Main Menu", "")));
+        }
+
         // Reactors
         if (reactor == "basic")
         {
@@ -232,5 +238,11 @@ public class GlobalControl : MonoBehaviour
         SceneManager.LoadScene(load, LoadSceneMode.Single);
         yield return null;
         SceneManager.UnloadSceneAsync(SceneManager.GetActiveScene().name);
+    }
+
+    IEnumerator delayedSwitch(float time, IEnumerator action)
+    {
+        yield return new WaitForSeconds(time);
+        StartCoroutine(action);
     }
 }

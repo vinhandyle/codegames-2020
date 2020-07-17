@@ -35,6 +35,7 @@ public class EnterDoor : MonoBehaviour
             }
             else
             {
+                locked = false;
                 gameObject.GetComponent<SpriteRenderer>().sprite = unlockedDoor;
             }
         }
@@ -47,6 +48,7 @@ public class EnterDoor : MonoBehaviour
             }
             else
             {
+                locked = false;
                 gameObject.GetComponent<SpriteRenderer>().sprite = unlockedDoor;
             }
         }
@@ -59,6 +61,7 @@ public class EnterDoor : MonoBehaviour
             }
             else
             {
+                locked = false;
                 gameObject.GetComponent<SpriteRenderer>().sprite = unlockedDoor;
             }
         }
