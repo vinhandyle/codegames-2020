@@ -29,7 +29,8 @@ public class Player : MonoBehaviour
 
     private bool canJump1 = false; // Whether the player can jump
     private bool canJump2 = false; // Whether the player can double-jump
-    private bool jumped = false; //Whether the first jump started
+    private bool jumped = false; // Whether the first jump started
+    private bool midJump = false; // Whether the player is mid-jump
 
     // Start is called before the first frame update
     void Start()
@@ -49,12 +50,12 @@ public class Player : MonoBehaviour
 
         // Updates player ability to move left/right
         if (GlobalControl.clingUnlocked)
-        { 
+        {
             canLeft = true;
             canRight = true;
         }
         else if (!walled)
-        { 
+        {
             canLeft = true;
             canRight = true;
         }
@@ -71,7 +72,7 @@ public class Player : MonoBehaviour
                 canLeft = true;
             }
         }
-        else if (walled && rb2D.velocity.y == 0 && (!canJump1 || !canJump2))
+        else if (walled && rb2D.velocity.y == 0 && midJump && (!canJump1 || !canJump2))
         { // Prevents clinging during the apex of a jump
             if (direction == "left")
             {
@@ -83,6 +84,11 @@ public class Player : MonoBehaviour
                 canRight = false;
                 canLeft = true;
             }
+        }
+        else if (!midJump)
+        { // If player is on a wall, unrestrict all
+            canLeft = true;
+            canRight = true;
         }
 
         // Moves player left
@@ -188,7 +194,8 @@ public class Player : MonoBehaviour
         {
             // Prevents jumping again mid-air
             canJump1 = false;
-            jumped = true;            
+            jumped = true;
+            midJump = true;
 
             // The actual jump
             GetComponent<Rigidbody2D>().velocity = new Vector2(GetComponent<Rigidbody2D>().velocity.x, 0);
@@ -207,6 +214,7 @@ public class Player : MonoBehaviour
             // Prevents infinite jumps
             canJump2 = false;
             jumped = false;
+            midJump = true;
 
             //The actual jump
             GetComponent<Rigidbody2D>().velocity = new Vector2(GetComponent<Rigidbody2D>().velocity.x, jumpHeight);
@@ -227,6 +235,11 @@ public class Player : MonoBehaviour
         if (collision.collider.tag == "Wall")
         {
             walled = true;
+            // If player is not on a wall, player is still mid air (player y-coord > wall y-coord + wall height / 2)
+            if (rb2D.position.y >= collision.collider.gameObject.transform.position.y + collision.collider.GetComponent<BoxCollider2D>().size.y)
+            {
+                midJump = false;
+            }
         }
     }
 
@@ -238,11 +251,17 @@ public class Player : MonoBehaviour
             canJump1 = true;
             canJump2 = false;
             jumped = false;
+
         }
 
         if (collision.collider.tag == "Wall")
         {
             walled = true;
+            // If player is not on a wall, player is still mid air (player y-coord > wall y-coord + wall height / 2)
+            if (rb2D.position.y >= collision.collider.gameObject.transform.position.y + collision.collider.GetComponent<BoxCollider2D>().size.y)
+            {
+                midJump = false;
+            }
         }
 
     }
