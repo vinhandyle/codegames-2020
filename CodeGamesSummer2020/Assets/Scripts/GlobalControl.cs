@@ -74,7 +74,7 @@ public class GlobalControl : MonoBehaviour
     public static string checkpoint = "";          // Area name of last repair station used
 
     // Dialogue
-    public static int counter_1 = 0;               // Counter for First dialogue
+    public static int counter_1 = 7;               // Counter for First dialogue
 
     // Doors
     public static string nextDoor = "";            // The door on the other side, from which the player will exit from
@@ -147,7 +147,7 @@ public class GlobalControl : MonoBehaviour
         }
 
         // Return to Main Menu
-        if (area == "Engind_1")
+        if (area == "Ending_1")
         {
             StartCoroutine(delayedSwitch(10f, SceneSwitch("Main Menu", "")));
         }

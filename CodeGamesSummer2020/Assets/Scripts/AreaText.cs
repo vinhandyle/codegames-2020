@@ -55,11 +55,11 @@ public class AreaText : MonoBehaviour
             {
                 text.text = "Crawlway";
             }
-            else if (GlobalControl.area == "DH_4") // many platforms, 3 
+            else if (GlobalControl.area == "DH_4") 
             {
                 text.text = "Encampment";
             }
-            else if (GlobalControl.area == "DH_5") // pond with secret in the side, needs wall jump, 1
+            else if (GlobalControl.area == "DH_5") 
             {
                 text.text = "Sludge Pond";
             }
@@ -70,6 +70,10 @@ public class AreaText : MonoBehaviour
             else if (GlobalControl.area == "DH_6") // Vertical platforming, lots of puddles, shortcut to camp at top
             {
                 text.text = "Waste Deposit";
+            }
+            else if (GlobalControl.area == "DH_7")
+            {
+                text.text = "Mysterious Path";
             }
 
             // Sunset Garden

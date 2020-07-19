@@ -233,10 +233,10 @@ public class Player : MonoBehaviour
         }
 
         if (collision.collider.tag == "Wall")
-        {
             walled = true;
+        {
             // If player is not on a wall, player is still mid air (player y-coord > wall y-coord + wall height / 2)
-            if (rb2D.position.y >= collision.collider.gameObject.transform.position.y + collision.collider.GetComponent<BoxCollider2D>().size.y)
+            if (rb2D.position.y >= collision.collider.gameObject.transform.position.y + collision.collider.GetComponent<BoxCollider2D>().size.y / 2)
             {
                 midJump = false;
             }
@@ -258,7 +258,7 @@ public class Player : MonoBehaviour
         {
             walled = true;
             // If player is not on a wall, player is still mid air (player y-coord > wall y-coord + wall height / 2)
-            if (rb2D.position.y >= collision.collider.gameObject.transform.position.y + collision.collider.GetComponent<BoxCollider2D>().size.y)
+            if (rb2D.position.y >= collision.collider.gameObject.transform.position.y + collision.collider.GetComponent<BoxCollider2D>().size.y / 2)
             {
                 midJump = false;
             }
