@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class GlobalControl : MonoBehaviour 
 {
     // Endings
-    public static bool ending_1 = true;           // Save Humanity
+    public static bool ending_1 = false;           // Save Humanity
     public static bool ending_2 = true;           // Return to the Past
     public static bool ending_3 = true;           // End the Cycle
     public static bool complete = false;           // Get all endings
