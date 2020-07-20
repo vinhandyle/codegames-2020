@@ -10,6 +10,7 @@ public class GlobalControl : MonoBehaviour
     public static bool ending_2 = true;           // Return to the Past
     public static bool ending_3 = true;           // End the Cycle
     public static bool complete = false;           // Get all endings
+    public static bool triggerOnce = false;
 
 
     // Energy
@@ -69,12 +70,12 @@ public class GlobalControl : MonoBehaviour
     public static int bossDowned = 0;              // How many bosses have been defeated
     public static bool switched = false;           // Used to set position on scene switch
 
-    public static string area = "";                // Area name for scene change purposes
+    public static string area = "Ending_1";                // Area name for scene change purposes
     public static string prevArea = "";            // Name of previous area
     public static string checkpoint = "";          // Area name of last repair station used
 
     // Dialogue
-    public static int counter_1 = 7;               // Counter for First dialogue
+    public static int counter_1 = 0;               // Counter for First dialogue
 
     // Doors
     public static string nextDoor = "";            // The door on the other side, from which the player will exit from
@@ -147,9 +148,16 @@ public class GlobalControl : MonoBehaviour
         }
 
         // Return to Main Menu
-        if (area == "Ending_1")
+        if (area == "Ending_1" && !triggerOnce)
         {
-            StartCoroutine(delayedSwitch(10f, SceneSwitch("Main Menu", "")));
+            triggerOnce = true;
+            StartCoroutine(delayedSwitch(8.5f, SceneSwitch("Main Menu", "")));
+            ending_1 = true;
+        }
+
+        if (area == "Main Menu")
+        {
+            triggerOnce = false;
         }
 
         // Reactors
@@ -190,13 +198,24 @@ public class GlobalControl : MonoBehaviour
             {
                 StartCoroutine(SceneSwitch("IT_1", checkpoint));
             }
+
+            // DH - Death Basin
             else if (checkpoint == "Checkpoint_2")
             {
                 StartCoroutine(SceneSwitch("DH_2", checkpoint));
             }
+
+            // No checkpoints used
             else
             {
-                StartCoroutine(SceneSwitch("Start_", ""));
+                if (counter_1 > 5)
+                {
+                    StartCoroutine(SceneSwitch("DH_2", ""));
+                }
+                else
+                {
+                    StartCoroutine(SceneSwitch("Start_", ""));
+                }
             }
 
             // Full restore

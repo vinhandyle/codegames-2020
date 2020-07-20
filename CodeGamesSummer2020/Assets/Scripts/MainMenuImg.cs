@@ -6,18 +6,23 @@ using UnityEngine.UI;
 public class MainMenuImg : MonoBehaviour
 {
     private Image img;
+    public bool animated;
 
     // Start is called before the first frame update
     void Start()
     {
         img = GetComponent<Image>();
-        img.color = new Color(1f, 1f, 1f, 0f);
+        if (!animated)
+        {
+            img.color = new Color(1f, 1f, 1f, 0f);
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
-        if ((MainMenuBtn.inControl && gameObject.name == "Controls") || 
+        // Main Menu 
+       if ((MainMenuBtn.inControl && gameObject.name == "Controls") || 
             (MainMenuBtn.inTrophy && 
             ((gameObject.name == "TrophyImg_1" && GlobalControl.complete) || 
             (gameObject.name == "TrophyImg_2" && GlobalControl.ending_1) ||
@@ -26,9 +31,18 @@ public class MainMenuImg : MonoBehaviour
         {
             img.color = new Color(1f, 1f, 1f, 1f);
         }
-        else
+        else if (!animated)
         {
             img.color = new Color(1f, 1f, 1f, 0f);
         }
+
+        // Endings
+        if (Time.time >= 3.35f && GlobalControl.area == "Ending_1")
+         {
+             if (gameObject.name == "Countdown")
+             {
+                img.color = new Color(1f, 1f, 1f, 0f);
+             }
+         }      
     }
 }
