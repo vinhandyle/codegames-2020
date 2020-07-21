@@ -67,7 +67,7 @@ public class AreaText : MonoBehaviour
             {
                 text.text = "Rotten Depths";
             }
-            else if (GlobalControl.area == "DH_6") // Vertical platforming, lots of puddles, shortcut to camp at top
+            else if (GlobalControl.area == "DH_6")
             {
                 text.text = "Waste Deposit";
             }
@@ -75,12 +75,12 @@ public class AreaText : MonoBehaviour
             {
                 text.text = "Mysterious Path";
             }
+            else if (GlobalControl.area == "DH_8") // Kin on right side
+            {
+                text.text = "Injection Point";
+            }
 
             // Sunset Garden
-            else if (GlobalControl.area == "SG_1")
-            {
-                text.text = "Exit Chute";
-            }
 
             // Grey Palace
             else if (GlobalControl.area == "GP_0A")

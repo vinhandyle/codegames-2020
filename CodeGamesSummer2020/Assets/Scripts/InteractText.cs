@@ -51,7 +51,7 @@ public class InteractText : MonoBehaviour
                         text.text = "Picked up: Geothermal Extractor";
                         GlobalControl.geoUnlocked = true;
                     }
-                    else if (type == "map")
+                    else if (type == "Map")
                     {
                         text.text = "Picked up: Navigational Module";
                         GlobalControl.mapUnlocked = true;

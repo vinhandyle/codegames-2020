@@ -84,14 +84,35 @@ public class EnterDoor : MonoBehaviour
             }
 
             // In-Game Doors
-            else if(doorName == "Start_to_IT_X")
+
+            // Birthplace to Origin
+            else if (doorName == "Start_to_IT_X")
             {
                 StartCoroutine(SceneSwitch("IT_X", "IT_X_to_Start_"));
             }
+
+            // Palace Entrance to The Lift to Heaven
             else if (doorName == "GP_1_to_GP_2")
             {
                 StartCoroutine(SceneSwitch("GP_2", "GP_2_to_GP_1"));
                 GlobalControl.locked_2 = true;
+            }
+
+            // Waste Deposit to Encampment
+            else if (doorName == "DH_4_to_DH_6")
+            {
+                StartCoroutine(SceneSwitch("DH_6", "DH_6_to_DH_4"));
+            }
+            else if (doorName == "DH_6_to_DH_4")
+            {
+                StartCoroutine(SceneSwitch("DH_4", "DH_4_to_DH_6"));
+                GlobalControl.locked_3 = false;
+            }
+
+            // Mysterious Path to The Lift from Hell
+            else if (doorName == "DH_7_to_IT_3")
+            {
+                StartCoroutine(SceneSwitch("IT_3", "IT_3_to_X"));
             }
 
             inRange = false;

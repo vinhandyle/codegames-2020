@@ -64,6 +64,7 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\AreaText.cs" />
     <Compile Include="Assets\Scripts\Boundary.cs" />
+    <Compile Include="Assets\Scripts\Bullet.cs" />
     <Compile Include="Assets\Scripts\DataText.cs" />
     <Compile Include="Assets\Scripts\Description.cs" />
     <Compile Include="Assets\Scripts\DestroyByBoundary.cs" />

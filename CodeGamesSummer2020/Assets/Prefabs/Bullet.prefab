@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 5817128283400328173}
   - component: {fileID: -3455355031119054821}
   - component: {fileID: 7954287895178613045}
+  - component: {fileID: 3794335499018997407}
   m_Layer: 19
   m_Name: Bullet
   m_TagString: Player Bullet
@@ -82,7 +83,7 @@ SpriteRenderer:
   m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!50 &4002532654593906655
@@ -156,3 +157,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f417678e959efa41a86882ed482f088, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &3794335499018997407
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4002532654593906642}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7814ba77678e9a34990339b0eeac2dec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  regular: {fileID: 2208703988740019828, guid: c6f681c3cec8abd45a55c1dfa6cc8eea, type: 3}
+  unstable: {fileID: 4385501425044414559, guid: c6f681c3cec8abd45a55c1dfa6cc8eea,
+    type: 3}
+  imperial: {fileID: 3029603797402824116, guid: c6f681c3cec8abd45a55c1dfa6cc8eea,
+    type: 3}

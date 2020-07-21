@@ -33,7 +33,7 @@ public class GlobalControl : MonoBehaviour
     public static bool geoUnlocked = true;         // Geothermal Extractor
 
     public static bool gunUnlocked = true;         // Energy Cannon
-    public static bool mapUnlocked = true;         // Navigational Module
+    public static bool mapUnlocked = false;         // Navigational Module
     public static bool heartlessUnlocked = false;   // Heartless Generator
 
     public static bool dashUnlocked = true;        // Booster Rocket
@@ -70,7 +70,7 @@ public class GlobalControl : MonoBehaviour
     public static int bossDowned = 0;              // How many bosses have been defeated
     public static bool switched = false;           // Used to set position on scene switch
 
-    public static string area = "Ending_1";                // Area name for scene change purposes
+    public static string area = "";                // Area name for scene change purposes
     public static string prevArea = "";            // Name of previous area
     public static string checkpoint = "";          // Area name of last repair station used
 
