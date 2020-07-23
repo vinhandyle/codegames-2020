@@ -6,10 +6,8 @@ using UnityEngine.UI;
 public class Map : MonoBehaviour
 {
     Image img;
-    public static bool mapUnlocked = true;
-    public static bool mapOpen = false;
 
-    // The Institute
+    // The Institute of Technology
     public Sprite home;
 
     // Start is called before the first frame update
@@ -22,7 +20,7 @@ public class Map : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (MenuBackground.inMenu && mapUnlocked && mapOpen)
+        if (MenuBackground.inMenu && GlobalControl.menu == "map")
         { 
           // If map was last open, reopen when opening menu
             img.color = new Color(1f, 1f, 1f, 1f);

@@ -309,7 +309,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -10, y: 219}
+  m_AnchoredPosition: {x: -10, y: 221}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3820432590926838048
@@ -346,7 +346,7 @@ MonoBehaviour:
     m_BestFit: 0
     m_MinSize: 10
     m_MaxSize: 40
-    m_Alignment: 0
+    m_Alignment: 3
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
@@ -624,8 +624,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -28}
-  m_SizeDelta: {x: 454, y: 392}
+  m_AnchoredPosition: {x: 0, y: -36}
+  m_SizeDelta: {x: 454, y: 400}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1861881817768453995
 CanvasRenderer:
@@ -1056,7 +1056,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   item: {fileID: 21300000, guid: e7e11a0b34a94f545a51e1e29dd6995b, type: 3}
   enemy: {fileID: 0}
-  report: {fileID: 0}
+  report: {fileID: 21300000, guid: 5f88c27d28ecf8d4c9e14ac396a8e8a9, type: 3}
 --- !u!1 &1861881817939807357
 GameObject:
   m_ObjectHideFlags: 0
@@ -1202,7 +1202,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   item: {fileID: 21300000, guid: e7e11a0b34a94f545a51e1e29dd6995b, type: 3}
   enemy: {fileID: 0}
-  report: {fileID: 0}
+  report: {fileID: 21300000, guid: 5f88c27d28ecf8d4c9e14ac396a8e8a9, type: 3}
 --- !u!1 &1861881817957050949
 GameObject:
   m_ObjectHideFlags: 0
@@ -2066,7 +2066,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   item: {fileID: 21300000, guid: e7e11a0b34a94f545a51e1e29dd6995b, type: 3}
   enemy: {fileID: 0}
-  report: {fileID: 0}
+  report: {fileID: 21300000, guid: 5f88c27d28ecf8d4c9e14ac396a8e8a9, type: 3}
 --- !u!1 &1861881818492635177
 GameObject:
   m_ObjectHideFlags: 0
@@ -2212,7 +2212,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   item: {fileID: 21300000, guid: e7e11a0b34a94f545a51e1e29dd6995b, type: 3}
   enemy: {fileID: 0}
-  report: {fileID: 0}
+  report: {fileID: 21300000, guid: 5f88c27d28ecf8d4c9e14ac396a8e8a9, type: 3}
 --- !u!1 &1861881818552025794
 GameObject:
   m_ObjectHideFlags: 0
@@ -2358,7 +2358,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   item: {fileID: 21300000, guid: e7e11a0b34a94f545a51e1e29dd6995b, type: 3}
   enemy: {fileID: 0}
-  report: {fileID: 0}
+  report: {fileID: 21300000, guid: 5f88c27d28ecf8d4c9e14ac396a8e8a9, type: 3}
 --- !u!1 &1861881818577668232
 GameObject:
   m_ObjectHideFlags: 0
@@ -2806,7 +2806,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   item: {fileID: 21300000, guid: e7e11a0b34a94f545a51e1e29dd6995b, type: 3}
   enemy: {fileID: 0}
-  report: {fileID: 0}
+  report: {fileID: 21300000, guid: 5f88c27d28ecf8d4c9e14ac396a8e8a9, type: 3}
 --- !u!1 &1861881818871612412
 GameObject:
   m_ObjectHideFlags: 0
@@ -3072,8 +3072,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   item: {fileID: 21300000, guid: e7e11a0b34a94f545a51e1e29dd6995b, type: 3}
-  enemy: {fileID: 0}
-  report: {fileID: 0}
+  enemy: {fileID: 21300000, guid: f8cca15571090ab4b90bad02cdf12b50, type: 3}
+  report: {fileID: 21300000, guid: 5f88c27d28ecf8d4c9e14ac396a8e8a9, type: 3}
 --- !u!1 &1861881819051052017
 GameObject:
   m_ObjectHideFlags: 0
@@ -3279,7 +3279,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -3455,8 +3455,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   item: {fileID: 21300000, guid: e7e11a0b34a94f545a51e1e29dd6995b, type: 3}
-  enemy: {fileID: 0}
-  report: {fileID: 0}
+  enemy: {fileID: 21300000, guid: b8dcb8ab2aea6774982ce3566976e232, type: 3}
+  report: {fileID: 21300000, guid: 5f88c27d28ecf8d4c9e14ac396a8e8a9, type: 3}
 --- !u!1 &1861881819381596059
 GameObject:
   m_ObjectHideFlags: 0
@@ -3845,6 +3845,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9bb88e454c9c5a54ea8d6ee8f8db8754, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pre: {fileID: 8151659171521005120, guid: 865c415f055e6f44d939b58c0e68d7ca, type: 3}
+  post: {fileID: -9028339919136122654, guid: 865c415f055e6f44d939b58c0e68d7ca, type: 3}
 --- !u!1 &1861881819599125021
 GameObject:
   m_ObjectHideFlags: 0
@@ -3990,7 +3992,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   item: {fileID: 21300000, guid: e7e11a0b34a94f545a51e1e29dd6995b, type: 3}
   enemy: {fileID: 0}
-  report: {fileID: 0}
+  report: {fileID: 21300000, guid: 5f88c27d28ecf8d4c9e14ac396a8e8a9, type: 3}
 --- !u!1 &1861881819612791169
 GameObject:
   m_ObjectHideFlags: 0
@@ -4026,7 +4028,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -160}
+  m_AnchoredPosition: {x: 0, y: -170}
   m_SizeDelta: {x: 400, y: 130}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1861881819612791181
@@ -4050,7 +4052,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -4305,7 +4307,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   item: {fileID: 21300000, guid: e7e11a0b34a94f545a51e1e29dd6995b, type: 3}
   enemy: {fileID: 0}
-  report: {fileID: 0}
+  report: {fileID: 21300000, guid: 5f88c27d28ecf8d4c9e14ac396a8e8a9, type: 3}
 --- !u!1 &2465712527065232227
 GameObject:
   m_ObjectHideFlags: 0
@@ -4392,7 +4394,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -140, y: 219}
+  m_AnchoredPosition: {x: -140, y: 220}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &9043766957773149855
@@ -4429,7 +4431,7 @@ MonoBehaviour:
     m_BestFit: 0
     m_MinSize: 10
     m_MaxSize: 40
-    m_Alignment: 0
+    m_Alignment: 3
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
@@ -4460,7 +4462,7 @@ GameObject:
   - component: {fileID: 5083403646106047387}
   - component: {fileID: 8027783075682396753}
   m_Layer: 5
-  m_Name: Image
+  m_Name: Top Bound
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5512,7 +5514,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_Maskable: 1
   m_OnCullStateChanged:

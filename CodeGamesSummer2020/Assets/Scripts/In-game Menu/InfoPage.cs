@@ -7,11 +7,24 @@ public class InfoPage : MonoBehaviour
 {
     Image img;
 
+    public Sprite pre;
+    public Sprite post;
+
     // Start is called before the first frame update
     void Start()
     {
         img = GetComponent<Image>();
         img.color = new Color(1f, 1f, 1f, 0f);
+
+        // Updates control page to avoid spoilers
+        if (GlobalControl.heartlessUnlocked)
+        {
+            gameObject.GetComponent<Image>().sprite = post;
+        }
+        else
+        {
+            gameObject.GetComponent<Image>().sprite = pre;
+        }
     }
 
     // Update is called once per frame

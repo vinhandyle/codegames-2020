@@ -8,8 +8,8 @@ sceneSetups:
   isActive: 0
   isSubScene: 0
 - path: Assets/Scenes/DH/DH_4.unity
-  isLoaded: 0
-  isActive: 0
+  isLoaded: 1
+  isActive: 1
   isSubScene: 0
 - path: Assets/Scenes/DH/DH_5.unity
   isLoaded: 0
@@ -24,6 +24,6 @@ sceneSetups:
   isActive: 0
   isSubScene: 0
 - path: Assets/Scenes/DH/DH_8.unity
-  isLoaded: 1
-  isActive: 1
+  isLoaded: 0
+  isActive: 0
   isSubScene: 0

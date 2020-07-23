@@ -7,8 +7,8 @@ public class GlobalControl : MonoBehaviour
 {
     // Endings
     public static bool ending_1 = false;           // Save Humanity
-    public static bool ending_2 = true;           // Return to the Past
-    public static bool ending_3 = true;           // End the Cycle
+    public static bool ending_2 = false;           // Return to the Past
+    public static bool ending_3 = false;           // End the Cycle
     public static bool complete = false;           // Get all endings
     public static bool triggerOnce = false;
 
@@ -56,7 +56,7 @@ public class GlobalControl : MonoBehaviour
     public static bool plating_2 = false;
 
     // Inventory Numbers
-    public static string menu = "inventory";       // Which menu the player was in
+    public static string menu = "help";            // Which menu the player was in
     public static int plateNum = 0;                // Number of special plating obtained
     public static int extraNum = 0;                // Number of extra batteries obtained
     public static int scrapNum = 0;                // Number of hyper scraps in possession
@@ -283,6 +283,11 @@ public class GlobalControl : MonoBehaviour
 
     public static void unlockAll()
     {
+        // Endings
+        ending_1 = true;
+        ending_2 = true;
+        ending_3 = true;
+
         // Inventory
         batteryUnlocked = true;   
         solarUnlocked = true;       

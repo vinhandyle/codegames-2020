@@ -37,7 +37,7 @@ public class MainMenuImg : MonoBehaviour
         }
 
         // Endings
-        if (Time.time >= 3.35f && GlobalControl.area == "Ending_1")
+        if (Time.time >= 3.35f && GlobalControl.area != "Ending_1")
          {
              if (gameObject.name == "Countdown")
              {

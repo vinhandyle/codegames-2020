@@ -19,13 +19,13 @@ public class Description : MonoBehaviour
     {
         if (MenuBackground.inMenu)
         {
-            if (descOf == "")                                                  // Empty description
+            if (descOf == "")                                                   // Empty description
             {
                 text.text = "";
             }
             else if (GlobalControl.menu == "inventory")
             {
-                if (descOf == "1" && GlobalControl.batteryUnlocked)     // Battery description
+                if (descOf == "1" && GlobalControl.batteryUnlocked)             // Battery description
                 {
                     text.text = "<b>Battery</b> \n" +
                                 "Maximum energy capacity: " + GlobalControl.energyMax +
@@ -36,28 +36,28 @@ public class Description : MonoBehaviour
                         text.text += "<i>The battery extensions can be inserted there.</i>";
                     }
                 }
-                else if (descOf == "2" && GlobalControl.solarUnlocked)         // Solar Panel description
+                else if (descOf == "2" && GlobalControl.solarUnlocked)          // Solar Panel description
                 {
                     text.text = "<b>Solar Panel</b> \n" +
                                 "Generates 1 energy per second while under sunlight.\n\n" +
                                 "<i>A simple module of photo-voltaic cells that can be mounted above the main body. Though a lot of " +
                                 "dust has settled on its surface, the module has not sustained any serious damage.</i>";
                 }
-                else if (descOf == "3" && GlobalControl.geoUnlocked)      // Geothermal Extractor description
+                else if (descOf == "3" && GlobalControl.geoUnlocked)            // Geothermal Extractor description
                 {
                     text.text = "<b>Geothermal Extractor</b> \n" +
                                 "Generates 5 energy per second while above a heat vent.\n\n" +
                                 "<i>A portable geothermal heat pump that can be mounted on the sides of the main body. Its small size " +
                                 "restricts its use range. For maximum effectiveness, locate shallow ground sources of heat.</i>";
                 }
-                else if (descOf == "4" && GlobalControl.heartlessUnlocked) // Health-Energy item description
+                else if (descOf == "4" && GlobalControl.heartlessUnlocked)      // Health-Energy item description
                 {
                     text.text = "<b>Heartless Generator</b> \n" +
                                 "Convert 1 health unit into 3 energy units or 5 energy units to 1 health unit.\n\n" +
                                 "<i>A device that can covert matter into energy and energy into matter. The conversion is not perfect " +
                                 "as some energy is lost during the process.</i> ";
                 }
-                else if (descOf == "5" && GlobalControl.mapUnlocked)             // Map item description
+                else if (descOf == "5" && GlobalControl.mapUnlocked)            // Map item description
                 {
                     text.text = "<b>Navigational Module</b> \n" +
                                 "Shows current location within Imperalis.\n\n" +
@@ -77,14 +77,14 @@ public class Description : MonoBehaviour
                                 "<i>A small propulsion device constructed from a hyper scrap. Attached to the back of the main body, " +
                                 "it provides short bursts of horizontal speed. It requires time to cool down between uses. </i>";
                 }
-                else if (descOf == "7" && GlobalControl.clingUnlocked)         // Wall jump item description
+                else if (descOf == "7" && GlobalControl.clingUnlocked)          // Wall jump item description
                 {
                     text.text = "<b>Climbing Claws</b> \n" +
                                 "Grants the ability to cling to and leap off from walls.\n\n" +
                                 "<i>A modified variant of the ice axe, constructed from a hyper scrap. The reduced difficulty of " +
                                 "traversing the environment will allow for more exploration.</i>";
                 }
-                else if (descOf == "8" && GlobalControl.doubleUnlocked)       // Double jump item description
+                else if (descOf == "8" && GlobalControl.doubleUnlocked)         // Double jump item description
                 {
                     text.text = "<b>Booster Rocket MK2</b> \n" +
                                 "Grants the ability to jump again in mid-air.\n\n" +
@@ -92,7 +92,7 @@ public class Description : MonoBehaviour
                                 "provides a short burst of vertical speed. The device needs to be re-engaged, by making contact with " +
                                 "the ground or a wall, before it can be used again.</i>";
                 }
-                else if (descOf == "9" && GlobalControl.gunUnlocked)             // Energy Cannon description
+                else if (descOf == "9" && GlobalControl.gunUnlocked)            // Energy Cannon description
                 {
                     text.text = "<b>Energy Cannon</b> \n" +
                                 "Uses energy to fire an energy bullet.\n\n" +
@@ -116,7 +116,7 @@ public class Description : MonoBehaviour
                                      "great obstacles. </i>";
                     }
                 }
-                else if (descOf == "11" && GlobalControl.imperialUnlocked)   // Imperial Reactor description
+                else if (descOf == "11" && GlobalControl.imperialUnlocked)      // Imperial Reactor description
                 {
                     text.text = "<b>Gentle Reactor</b> ";
                     if (GlobalControl.reactor == "imperial")
@@ -129,7 +129,7 @@ public class Description : MonoBehaviour
                                 "compromises their delicate circuitry. The Emperor cannot leave its station, transferring this task " +
                                 "to us.</i>";
                 }
-                else if (descOf == "12" && GlobalControl.familiarUnlocked)   // Familiar Reactor description
+                else if (descOf == "12" && GlobalControl.familiarUnlocked)      // Familiar Reactor description
                 {
                     text.text = "<b>Lost Reactor</b> ";
                     if (GlobalControl.reactor == "familiar")
@@ -140,7 +140,7 @@ public class Description : MonoBehaviour
                                 "<i>An abandoned reactor found in the Dreg Heap. Despite being worn down and almost falling apart, it " +
                                 "is somehow familiar. Inscribed on its exterior: \"Knowledge is power\".</i>";
                 }
-                else if (descOf == "13" && GlobalControl.unstableUnlocked)   // Unstable Reactor description
+                else if (descOf == "13" && GlobalControl.unstableUnlocked)      // Unstable Reactor description
                 {
                     text.text = "<b>Unstable Reactor</b> ";
                     if (GlobalControl.reactor == "unstable")
@@ -151,7 +151,7 @@ public class Description : MonoBehaviour
                                 "<i>A reactor found in a hidden lab within the Institute of Technology. There is a faint green glow " +
                                 "resulting from its high radioactivity. Extremely hot for a reactor, it might explode at any moment.</i>";
                 }
-                else if (descOf == "14" && GlobalControl.plateFound)          // Special Plating description
+                else if (descOf == "14" && GlobalControl.plateFound)            // Special Plating description
                 {
                     text.text = "<b>Special Plating</b> \n" +
                                 "Increases health by 10.\n" +
@@ -183,45 +183,45 @@ public class Description : MonoBehaviour
             }
             else if (GlobalControl.menu == "enemies")
             {
-                if (descOf == "1" && GlobalControl.downed_patrol)
+                if (descOf == "1" && GlobalControl.downed_patrol)               // Patrol Machina
                 {
-
+                    text.text = "<b>Patrol Machina</b> \n";
                 }
-                else if (descOf == "2" && GlobalControl.downed_pursuit)
+                else if (descOf == "2" && GlobalControl.downed_pursuit)         // Pursuit Maachina
                 {
-
+                    text.text = "<b>Pursuit Machina</b> \n";
                 }
-                else if (descOf == "3" && GlobalControl.downed_aerial)
+                else if (descOf == "3" && GlobalControl.downed_aerial)          // Aerial Machina
                 {
-
+                    text.text = "<b>Aerial Machina</b> \n";
                 }
-                else if (descOf == "6" && GlobalControl.downed_aquatic)
+                else if (descOf == "6" && GlobalControl.downed_aquatic)         // Aquatic Machina
                 {
-
+                    text.text = "<b>Aquatic Machina</b> \n";
                 }
-                else if (descOf == "7" && GlobalControl.downed_turret)
+                else if (descOf == "7" && GlobalControl.downed_turret)          // Turret Machina
                 {
-
+                    text.text = "<b>Turret Machina</b> \n";
                 }
-                else if (descOf == "8" && GlobalControl.found_errat)
+                else if (descOf == "8" && GlobalControl.found_errat)            // Errat
                 {
-
+                    text.text = "<b>Errat</b> \n";
                 }
-                else if (descOf == "9" && GlobalControl.downed_boss_1)
+                else if (descOf == "9" && GlobalControl.downed_boss_1)          // Overseer Machina
                 {
-
+                    text.text = "<b>Overseer Machina</b> \n";
                 }
-                else if (descOf == "10" && GlobalControl.downed_boss_2)
+                else if (descOf == "10" && GlobalControl.downed_boss_2)         // Containment Machina
                 {
-
+                    text.text = "<b>Containment Machina</b> \n";
                 }
-                else if (descOf == "11" && GlobalControl.downed_boss_4)
+                else if (descOf == "11" && GlobalControl.downed_boss_4)         // Subnautical Machina
                 {
-
+                    text.text = "<b>Subnautical Machina</b> \n";
                 }
-                else if (descOf == "15" && GlobalControl.downed_boss_4)
+                else if (descOf == "15" && GlobalControl.downed_boss_4)         // The Emperor
                 {
-
+                    text.text = "<b>The Emperor</b> \n";
                 }
                 else
                 {
@@ -231,45 +231,45 @@ public class Description : MonoBehaviour
             }
             else if (GlobalControl.menu == "reports")
             {
-                if (descOf == "1" && GlobalControl.report_1)
+                if (descOf == "1" && GlobalControl.report_1)                    // Ego Report #1
                 {
-
+                    text.text = "<b>Ego Report #1</b> \n";
                 }
-                else if (descOf == "2" && GlobalControl.report_2)
+                else if (descOf == "2" && GlobalControl.report_2)               // Ego Report #2
                 {
-
+                    text.text = "<b>Ego Report #2</b> \n";
                 }
-                else if (descOf == "3" && GlobalControl.report_3)
+                else if (descOf == "3" && GlobalControl.report_3)               // Ego Report #3
                 {
-
+                    text.text = "<b>Ego Report #3</b> \n";
                 }
-                else if (descOf == "6" && GlobalControl.report_4)
+                else if (descOf == "6" && GlobalControl.report_4)               // Ego Report #4
                 {
-
+                    text.text = "<b>Ego Report #4</b> \n";
                 }
-                else if (descOf == "7" && GlobalControl.report_5)
+                else if (descOf == "7" && GlobalControl.report_5)               // Ego Report #5
                 {
-
+                    text.text = "<b>Ego Report #5</b> \n";
                 }
-                else if (descOf == "8" && GlobalControl.report_6)
+                else if (descOf == "8" && GlobalControl.report_6)               // Ego Report #6
                 {
-
+                    text.text = "<b>Ego Report #6</b> \n";
                 }
-                else if (descOf == "9" && GlobalControl.report_7)
+                else if (descOf == "9" && GlobalControl.report_7)               // Ego Report #7
                 {
-
+                    text.text = "<b>Ego Report #7</b> \n";
                 }
-                else if (descOf == "10" && GlobalControl.report_8)
+                else if (descOf == "10" && GlobalControl.report_8)              // Ego Report #8
                 {
-
+                    text.text = "<b>Ego Report #8</b> \n";
                 }
-                else if (descOf == "11" && GlobalControl.report_9)
+                else if (descOf == "11" && GlobalControl.report_9)              // Ego Report #9
                 {
-
+                    text.text = "<b>Ego Report #9</b> \n";
                 }
-                else if (descOf == "15" && GlobalControl.report_10)
+                else if (descOf == "15" && GlobalControl.report_10)             // Ego Report #10
                 {
-
+                    text.text = "<b>Ego Report #10</b> \n";
                 }
                 else
                 {
