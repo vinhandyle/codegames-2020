@@ -9,7 +9,9 @@ public class InteractText : MonoBehaviour
     public string attachedTo;
     public static string type = "";
     public static string stickied = ""; // Retain sticky info after object is set inactive
+    public static string stickied2 = "";
     public static bool interacted = false;
+    public static bool notif = false;
 
     // Start is called before the first frame update
     void Start()
@@ -26,19 +28,28 @@ public class InteractText : MonoBehaviour
         }
         else
         { 
-            if (attachedTo == stickied || attachedTo == PickUpItem.sticky || attachedTo == EnterDoor.sticky)
+            if (attachedTo == stickied || attachedTo == stickied2 ||
+                attachedTo == EnterDoor.sticky || 
+                attachedTo == PickUpItem.sticky ||
+                attachedTo == Talk.sticky ||
+                attachedTo == Examine.sticky)
             {
                 stickied = PickUpItem.sticky;
+                if(attachedTo.Substring(0, 3) == "Ego")
+                    stickied2 = Examine.sticky;
+
                 if (interacted)
                 {
                     // Post-interaction
 
-                    // Items that can be picked up
+                    /*-----Items that can be picked up-----*/
                     if (type == "Item (battery)")
                     {
                         text.text = "Picked up: Battery";
                         GlobalControl.batteryUnlocked = true;
                     }
+
+                    // In-game
                     else if (type == "Starter")
                     {
                         text.text = "Picked up: Battery \n" +
@@ -78,7 +89,7 @@ public class InteractText : MonoBehaviour
                         text.text = "Picked up: Hyper Scrap";
                         GlobalControl.scrapFound = true;
                     }
-                    else if (type == "batteries")
+                    else if (type == "extra")
                     {
                         text.text = "Picked up: Extra Battery";
                         GlobalControl.extraFound = true;
@@ -89,12 +100,12 @@ public class InteractText : MonoBehaviour
                         GlobalControl.plateFound = true;
                     }
 
-                    // Items that can be examined
+                    /*-----Items that can be examined-----*/
 
                     // Ego Series Harvest
                     else if (type == "ego")
                     {
-                        text.text = "Harvested Memory Drive";
+                        text.text = "Harvested: Memory Drive";
                         GlobalControl.data += 10;
 
                         // Obtain Ego report
@@ -140,13 +151,49 @@ public class InteractText : MonoBehaviour
                         }
                     }
 
+                    /*-----NPC dialogue-----*/
+
+                    // Errat
+                    else if (GlobalControl.counter_1 != 5)
+                    {
+                        if (type == "Errat_0")
+                        {
+                            text.text = "A Machina! What are you doing down here?";
+                        }
+                        else if (type == "Errat_1")
+                        {
+                            text.text = "There's a crack in this part of the wall.";
+                        }
+                        else if (type == "Errat_2")
+                        {
+                            text.text = "The passageway here is blocked by rocks.";
+                        }
+                        else if (type == "Errat_3")
+                        {
+                            text.text = "We are the last humans. Please help us end this nightmare.";
+                        }
+                        else if (type == "Errat_4")
+                        {
+                            text.text = "It's been so long since I've seen the sky...";
+                        }
+                        else if (type == "Errat_5")
+                        {
+                            text.text = "You do not want to fall down there.";
+                        }
+                    }
+
                     else
                     {
                         text.text = "";
                     }
 
                     // Lingering textbox on item pickup
-                    StartCoroutine(wait(2f));
+                    if (type == "ego" || type == "Starter" || type == "geothermal" || type == "Map" || type == "Heartless" ||
+                        type == "Lost" || type == "Unstable" || type == "plating" || type == "extra" || type == "scrap")
+                    {
+                        StartCoroutine(wait(2f));
+                    }
+
                 }
                 else
                 {
@@ -185,7 +232,7 @@ public class InteractText : MonoBehaviour
             {
                 text.text = "Interact";
             }
-            else if (!PickUpItem.notif)
+            else if (!notif)
             {
                 text.text = "";
             }
@@ -197,8 +244,9 @@ public class InteractText : MonoBehaviour
         yield return new WaitForSeconds(time);
         type = "";
         stickied = "";
+        stickied2 = "";
         text.text = "";
         interacted = false;
-        PickUpItem.notif = false;
+        notif = false;
     }
 }

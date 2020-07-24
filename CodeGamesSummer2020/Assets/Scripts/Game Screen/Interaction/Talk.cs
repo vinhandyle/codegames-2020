@@ -5,7 +5,7 @@ using UnityEngine;
 public class Talk : MonoBehaviour
 {
     public static bool inRange = false;
-    public static string npcName = "";
+    public string npcName = "";
     public static string sticky = ""; // used for interact text attachedto
 
     // Start is called before the first frame update
@@ -20,13 +20,13 @@ public class Talk : MonoBehaviour
         if (inRange && Input.GetKeyDown("w") && !InteractText.interacted)
         {
             InteractText.interacted = true;
-            InteractText.type = npcName;
+            InteractText.type = sticky;
         }
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.name == "Player" && !(gameObject.name.Substring(0, 5) == "Errat" && GlobalControl.imperialUnlocked))
+        if (other.name == "Player" & !InteractText.notif && !(gameObject.name.Substring(0, 5) == "Errat" && GlobalControl.imperialUnlocked))
         {
             inRange = true;
             sticky = npcName;
@@ -37,12 +37,12 @@ public class Talk : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D other)
     {
-        if (other.name == "Player" && !(gameObject.name.Substring(0, 5) == "Errat" && GlobalControl.imperialUnlocked))
+        if (other.name == "Player" && !InteractText.notif && !(gameObject.name.Substring(0, 5) == "Errat" && GlobalControl.imperialUnlocked))
         {
             inRange = false;
+            InteractText.interacted = false;
             sticky = "";
-            if (!InteractText.interacted)
-                InteractText.type = "";
+            InteractText.type = "";
         }
     }
 }

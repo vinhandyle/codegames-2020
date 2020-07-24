@@ -6,7 +6,7 @@ public class Examine : MonoBehaviour
 {
     public bool harvestable; 
     public static bool inRange = false;
-    public static string objName = "";
+    public string objName = "";
     public static string sticky = ""; // used for interact text attachedto
 
     // Start is called before the first frame update
@@ -35,9 +35,12 @@ public class Examine : MonoBehaviour
         if (inRange && Input.GetKeyDown("w") && !InteractText.interacted)
         {
             InteractText.interacted = true;
+
             if (harvestable)
             {
                 InteractText.type = "ego";
+                gameObject.SetActive(false);
+                InteractText.notif = true;
             }
             else
             {

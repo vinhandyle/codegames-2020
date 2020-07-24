@@ -218,7 +218,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 130, y: 219}
+  m_AnchoredPosition: {x: 130, y: 221}
   m_SizeDelta: {x: 200, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4322849589235858703
@@ -255,7 +255,7 @@ MonoBehaviour:
     m_BestFit: 0
     m_MinSize: 10
     m_MaxSize: 40
-    m_Alignment: 1
+    m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
@@ -2210,7 +2210,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a657034d14b06b4aaf1fbbb2408f195, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  item: {fileID: 21300000, guid: e7e11a0b34a94f545a51e1e29dd6995b, type: 3}
+  item: {fileID: 21300000, guid: fdc65e77acc820b499764c5866d64ecd, type: 3}
   enemy: {fileID: 0}
   report: {fileID: 21300000, guid: 5f88c27d28ecf8d4c9e14ac396a8e8a9, type: 3}
 --- !u!1 &1861881818552025794
@@ -3071,7 +3071,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a657034d14b06b4aaf1fbbb2408f195, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  item: {fileID: 21300000, guid: e7e11a0b34a94f545a51e1e29dd6995b, type: 3}
+  item: {fileID: 21300000, guid: e48401cd0684be94ab60f13848686699, type: 3}
   enemy: {fileID: 21300000, guid: f8cca15571090ab4b90bad02cdf12b50, type: 3}
   report: {fileID: 21300000, guid: 5f88c27d28ecf8d4c9e14ac396a8e8a9, type: 3}
 --- !u!1 &1861881819051052017
@@ -3990,7 +3990,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a657034d14b06b4aaf1fbbb2408f195, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  item: {fileID: 21300000, guid: e7e11a0b34a94f545a51e1e29dd6995b, type: 3}
+  item: {fileID: 21300000, guid: ca27f3fa00dffe440abd6021e082af74, type: 3}
   enemy: {fileID: 0}
   report: {fileID: 21300000, guid: 5f88c27d28ecf8d4c9e14ac396a8e8a9, type: 3}
 --- !u!1 &1861881819612791169
@@ -4305,7 +4305,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a657034d14b06b4aaf1fbbb2408f195, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  item: {fileID: 21300000, guid: e7e11a0b34a94f545a51e1e29dd6995b, type: 3}
+  item: {fileID: 21300000, guid: 9a4c0847430c9e445863d0bc942c3ec2, type: 3}
   enemy: {fileID: 0}
   report: {fileID: 21300000, guid: 5f88c27d28ecf8d4c9e14ac396a8e8a9, type: 3}
 --- !u!1 &2465712527065232227

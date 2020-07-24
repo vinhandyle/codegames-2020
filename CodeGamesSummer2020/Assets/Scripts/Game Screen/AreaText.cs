@@ -55,11 +55,11 @@ public class AreaText : MonoBehaviour
             {
                 text.text = "Crawlway";
             }
-            else if (GlobalControl.area == "DH_4") 
+            else if (GlobalControl.area == "DH_4")
             {
                 text.text = "Encampment";
             }
-            else if (GlobalControl.area == "DH_5") 
+            else if (GlobalControl.area == "DH_5")
             {
                 text.text = "Sludge Pond";
             }
@@ -75,12 +75,16 @@ public class AreaText : MonoBehaviour
             {
                 text.text = "Mysterious Path";
             }
-            else if (GlobalControl.area == "DH_8") // Kin on right side
+            else if (GlobalControl.area == "DH_8")
             {
                 text.text = "Injection Point";
             }
 
             // Sunset Garden
+            else if (GlobalControl.area == "SG_1")
+            {
+                text.text = "Disposal Area";
+            }
 
             // Grey Palace
             else if (GlobalControl.area == "GP_0A")

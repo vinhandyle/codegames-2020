@@ -109,6 +109,17 @@ public class EnterDoor : MonoBehaviour
                 GlobalControl.locked_3 = false;
             }
 
+            // Injection Point to Disposal Area
+            else if (doorName == "DH_8_to_SG_1")
+            {
+                StartCoroutine(SceneSwitch("SG_1", "SG_1_to_DH_8"));
+            }
+            else if (doorName == "SG_1_to_DH_4")
+            {
+                StartCoroutine(SceneSwitch("DH_8", "DH_8_to_SG_1"));
+                GlobalControl.locked_3 = false;
+            }
+
             // Mysterious Path to The Lift from Hell
             else if (doorName == "DH_7_to_IT_3")
             {

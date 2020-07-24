@@ -6,8 +6,7 @@ public class PickUpItem : MonoBehaviour
 {
     public string objName;
     public static bool inRange = false;
-    public static bool notif = false;
-    public static string itemName = "";
+    public string itemName = "";
     public static string sticky = ""; // used for interact text attachedto
 
     // Start is called before the first frame update
@@ -40,7 +39,7 @@ public class PickUpItem : MonoBehaviour
             InteractText.interacted = true;
             InteractText.type = itemName;
             gameObject.SetActive(false);
-            notif = true;
+            InteractText.notif = true;
         }
     }
 
@@ -51,7 +50,7 @@ public class PickUpItem : MonoBehaviour
             inRange = true;
             sticky = itemName;
             if (!InteractText.interacted)
-            InteractText.type = "item";
+                InteractText.type = "item";
         }        
     }
 
@@ -62,7 +61,7 @@ public class PickUpItem : MonoBehaviour
             inRange = false;
             sticky = "";
             if (!InteractText.interacted)
-            InteractText.type = "";
+                InteractText.type = "";
         }        
     }
 }
