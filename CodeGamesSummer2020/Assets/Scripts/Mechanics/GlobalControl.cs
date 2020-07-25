@@ -117,7 +117,6 @@ public class GlobalControl : MonoBehaviour
     public static bool block_starter = true;
     public static bool secret_unstable = true;
 
-    public static bool block_DH_1 = true;
     public static bool block_DH_4 = true;
     public static bool secret_DH_5 = true;
 
@@ -240,9 +239,9 @@ public class GlobalControl : MonoBehaviour
             // No checkpoints used
             else
             {
-                if (counter_1 > 5)
+                if (counter_1 > 0)
                 {
-                    StartCoroutine(SceneSwitch("DH_2", ""));
+                    StartCoroutine(SceneSwitch("DH_2", "Checkpoint_2"));
                 }
                 else
                 {

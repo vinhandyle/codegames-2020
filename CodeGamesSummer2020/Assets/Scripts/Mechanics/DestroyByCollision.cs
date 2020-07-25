@@ -33,11 +33,6 @@ public class DestroyByCollision : MonoBehaviour
                 GlobalControl.secret_unstable = false;
                 other.gameObject.SetActive(false);
             }
-            else if (other.gameObject.name == "Block_DH_1")
-            {
-                GlobalControl.block_DH_1 = false;
-                other.gameObject.SetActive(false);
-            }
             else if (other.gameObject.name == "Block_DH_4")
             {
                 GlobalControl.block_DH_4 = false;

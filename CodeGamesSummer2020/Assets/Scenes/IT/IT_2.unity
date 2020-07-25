@@ -1008,6 +1008,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: Patrol_1_1_0
       objectReference: {fileID: 0}
+    - target: {fileID: 9011395507147666628, guid: 0a413d63b9e46bc4ca7d2e8bb62ee0e3,
+        type: 3}
+      propertyPath: range
+      value: 2.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 9011395507147666628, guid: 0a413d63b9e46bc4ca7d2e8bb62ee0e3,
+        type: 3}
+      propertyPath: speed
+      value: 0.01
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0a413d63b9e46bc4ca7d2e8bb62ee0e3, type: 3}
 --- !u!1001 &718816964

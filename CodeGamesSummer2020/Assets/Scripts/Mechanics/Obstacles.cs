@@ -8,11 +8,20 @@ public class Obstacles : MonoBehaviour
     public int healthMax;
     public int healthCurr;
     public int damage;
-    public bool hazard; // Enemy, Boss, or Hazard
+
+    // Variables used in AI
+    public float x;
+    public float y;
+    public float range;
+    public float speed;
+    public int aiState;
+
+    public bool hazard; // Enemy or Hazard
 
     // Start is called before the first frame update
     void Start()
     {
+        // Retain alive.dead status when reloading scene
         if ((gameObject.name == "Patrol_1_0_0" && !GlobalControl.patrol_1_0_0) ||
             (gameObject.name == "Patrol_1_0_1" && !GlobalControl.patrol_1_0_1) ||
             (gameObject.name == "Patrol_1_0_2" && !GlobalControl.patrol_1_0_2) ||
@@ -26,6 +35,10 @@ public class Obstacles : MonoBehaviour
         {
             gameObject.SetActive(false);
         }
+
+        // Set starting position
+        x = transform.position.x;
+        y = transform.position.y;
 
         // Initialize enemy health and damage
 
@@ -222,7 +235,30 @@ public class Obstacles : MonoBehaviour
 
         if (gameObject.name.Substring(0, 6) == "Patrol")
         {
-            // Insert AI here
+            // Moving left
+            if (aiState == 0)
+            {
+                if (transform.position.x > x - range)
+                {
+                    transform.position += new Vector3(-speed, 0, 0);
+                }
+                else
+                {
+                    aiState = 1;
+                }
+            }
+            // Moving right
+            else if (aiState == 1)
+            {
+                if (transform.position.x < x + range)
+                {
+                    transform.position += new Vector3(speed, 0, 0);
+                }
+                else
+                {
+                    aiState = 0;
+                }
+            }
         }
         else if (gameObject.name.Substring(0, 7) == "Pursuit")
         {
