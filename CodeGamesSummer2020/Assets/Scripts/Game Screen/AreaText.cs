@@ -83,8 +83,71 @@ public class AreaText : MonoBehaviour
             // Sunset Garden
             else if (GlobalControl.area == "SG_1")
             {
-                text.text = "Disposal Area";
+                text.text = "Lower Disposal Area";
             }
+            else if (GlobalControl.area == "SG_2")
+            {
+                text.text = "Central Disposal Area";
+            }
+            else if (GlobalControl.area == "SG_3")
+            {
+                text.text = "Upper Disposal Area";
+            }
+            else if (GlobalControl.area == "SG_4")
+            {
+                text.text = "Lower Prep Area";
+            }
+            else if (GlobalControl.area == "SG_5")
+            {
+                text.text = "Upper Prep Area";
+            }
+            else if (GlobalControl.area == "SG_6")
+            {
+                text.text = "Assembly Line";
+            }
+            else if (GlobalControl.area == "SG_7")
+            {
+                text.text = "Disassembly Line";
+            }
+            else if (GlobalControl.area == "SG_8")
+            {
+                text.text = "Quality Control";
+            }
+            else if (GlobalControl.area == "SG_9")
+            {
+                text.text = "Intake";
+            }
+            else if (GlobalControl.area == "SG_10")
+            {
+                text.text = "Storage Area";
+            }
+            else if (GlobalControl.area == "SG_10S")
+            {
+                text.text = "Storage Depths";
+            }
+            else if (GlobalControl.area == "SG_11")
+            {
+                text.text = "Backdoor";
+            }
+            else if (GlobalControl.area == "SG_12")
+            {
+                text.text = "Overpass";
+            }
+            else if (GlobalControl.area == "SG_12S")
+            {
+                text.text = "Garden Heights";
+            }
+            else if (GlobalControl.area == "SG_13")
+            {
+                text.text = "Corner Office";
+            }
+
+            // Twilight Town
+            else if (GlobalControl.area == "TT_1")
+            {
+                text.text = "Town Outskirts";
+            }
+
 
             // Grey Palace
             else if (GlobalControl.area == "GP_0A")

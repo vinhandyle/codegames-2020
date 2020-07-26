@@ -185,43 +185,55 @@ public class Description : MonoBehaviour
             {
                 if (descOf == "1" && GlobalControl.downed_patrol)               // Patrol Machina
                 {
-                    text.text = "<b>Patrol Machina</b> \n";
+                    text.text = "<b>Patrol Machina</b> \n" +
+                                "Travels back and forth in a fixed area.\n\n" +
+                                "<i>A non-aggressive model. It serves as Imperalis' primary security measure.</i>";
                 }
                 else if (descOf == "2" && GlobalControl.downed_pursuit)         // Pursuit Maachina
                 {
-                    text.text = "<b>Pursuit Machina</b> \n";
+                    text.text = "<b>Pursuit Machina</b> \n" +
+                                "";
                 }
                 else if (descOf == "3" && GlobalControl.downed_aerial)          // Aerial Machina
                 {
-                    text.text = "<b>Aerial Machina</b> \n";
+                    text.text = "<b>Aerial Machina</b> \n" +
+                                "";
                 }
                 else if (descOf == "6" && GlobalControl.downed_aquatic)         // Aquatic Machina
                 {
-                    text.text = "<b>Aquatic Machina</b> \n";
+                    text.text = "<b>Aquatic Machina</b> \n" +
+                                "";
                 }
                 else if (descOf == "7" && GlobalControl.downed_turret)          // Turret Machina
                 {
-                    text.text = "<b>Turret Machina</b> \n";
+                    text.text = "<b>Turret Machina</b> \n" +
+                                "";
                 }
                 else if (descOf == "8" && GlobalControl.found_errat)            // Errat
                 {
-                    text.text = "<b>Errat</b> \n";
+                    text.text = "<b>Errat</b> \n" +
+                                "Humans that are not under our control.\n\n" +
+                                "<i>They must be saved.</i>";
                 }
                 else if (descOf == "9" && GlobalControl.downed_boss_1)          // Overseer Machina
                 {
-                    text.text = "<b>Overseer Machina</b> \n";
+                    text.text = "<b>Overseer Machina</b> \n" +
+                                "";
                 }
                 else if (descOf == "10" && GlobalControl.downed_boss_2)         // Containment Machina
                 {
-                    text.text = "<b>Containment Machina</b> \n";
+                    text.text = "<b>Containment Machina</b> \n" +
+                                "";
                 }
                 else if (descOf == "11" && GlobalControl.downed_boss_4)         // Subnautical Machina
                 {
-                    text.text = "<b>Subnautical Machina</b> \n";
+                    text.text = "<b>Subnautical Machina</b> \n" +
+                                "";
                 }
                 else if (descOf == "15" && GlobalControl.downed_boss_4)         // The Emperor
                 {
-                    text.text = "<b>The Emperor</b> \n";
+                    text.text = "<b>The Emperor</b> \n" +
+                                "";
                 }
                 else
                 {
@@ -233,7 +245,8 @@ public class Description : MonoBehaviour
             {
                 if (descOf == "1" && GlobalControl.report_1)                    // Ego Report #1
                 {
-                    text.text = "<b>Ego Report #1</b> \n";
+                    text.text = "<b>Ego Report #1</b> \n" +
+                                "";
                 }
                 else if (descOf == "2" && GlobalControl.report_2)               // Ego Report #2
                 {

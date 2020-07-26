@@ -10,7 +10,10 @@ public class MenuBtn : MonoBehaviour
     public Sprite item;
     public Sprite enemy;
     public Sprite report;
-    
+
+    public Sprite extra_1;
+    public Sprite extra_2;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -53,7 +56,18 @@ public class MenuBtn : MonoBehaviour
                     (gameObject.name == "Btn_16" && GlobalControl.scrapFound)))
             {
                 img.color = new Color(1f, 1f, 1f, 1f);
-                gameObject.GetComponent<Image>().sprite = item;
+                if (gameObject.name == "Btn_12" && GlobalControl.data == 100)
+                {
+                    gameObject.GetComponent<Image>().sprite = extra_2;
+                }
+                else if (gameObject.name == "Btn_12" && GlobalControl.data >= 50)
+                {
+                    gameObject.GetComponent<Image>().sprite = extra_1;
+                }
+                else
+                {
+                    gameObject.GetComponent<Image>().sprite = item;
+                }
             }
 
             // Enemies
