@@ -3,7 +3,11 @@ sceneSetups:
   isLoaded: 0
   isActive: 0
   isSubScene: 0
-- path: Assets/Scenes/IT/IT_2.unity
+- path: Assets/Scenes/SG/SG_1.unity
   isLoaded: 1
   isActive: 1
+  isSubScene: 0
+- path: Assets/Scenes/IT/IT_2.unity
+  isLoaded: 0
+  isActive: 0
   isSubScene: 0

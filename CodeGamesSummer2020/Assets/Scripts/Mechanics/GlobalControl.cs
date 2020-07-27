@@ -139,6 +139,8 @@ public class GlobalControl : MonoBehaviour
     public static bool errat_4 = true;
     public static bool errat_5 = true;
 
+    public static bool pursuit_1_2_0 = true;       // Sunset Garden
+
     /*---------------------Wall of Text Ends---------------------*/
 
     public static GlobalControl Instance;

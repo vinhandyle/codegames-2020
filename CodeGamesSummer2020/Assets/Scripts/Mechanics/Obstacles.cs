@@ -14,7 +14,8 @@ public class Obstacles : MonoBehaviour
     public float y;
     public float range;
     public float speed;
-    public int aiState;
+    public string aiState;
+    public List<Sprite> sprites;
 
     public bool hazard; // Enemy or Hazard
 
@@ -31,7 +32,8 @@ public class Obstacles : MonoBehaviour
             (gameObject.name == "Errat_2" && !GlobalControl.errat_2) ||
             (gameObject.name == "Errat_3" && !GlobalControl.errat_3) ||
             (gameObject.name == "Errat_4" && !GlobalControl.errat_4) ||
-            (gameObject.name == "Errat_5" && !GlobalControl.errat_5))
+            (gameObject.name == "Errat_5" && !GlobalControl.errat_5) ||
+            (gameObject.name == "Pursuit_1_2_0" && !GlobalControl.pursuit_1_2_0))
         {
             gameObject.SetActive(false);
         }
@@ -69,8 +71,8 @@ public class Obstacles : MonoBehaviour
         {
             if (gameObject.name.Substring(7, 2) == "_1")
             { // Tier 1: Sunset Garden
-                //healthMax = ;
-                //damage = ;
+                healthMax = 3;
+                damage = 2;
             }
             else if (gameObject.name.Substring(7, 2) == "_2")
             { // Tier 2: Grey Palace
@@ -236,7 +238,7 @@ public class Obstacles : MonoBehaviour
         if (gameObject.name.Substring(0, 6) == "Patrol")
         {
             // Moving left
-            if (aiState == 0)
+            if (aiState == "moveLeft")
             {
                 if (transform.position.x > x - range)
                 {
@@ -244,11 +246,11 @@ public class Obstacles : MonoBehaviour
                 }
                 else
                 {
-                    aiState = 1;
+                    aiState = "moveRight";
                 }
             }
             // Moving right
-            else if (aiState == 1)
+            else if (aiState == "moveRight")
             {
                 if (transform.position.x < x + range)
                 {
@@ -256,13 +258,85 @@ public class Obstacles : MonoBehaviour
                 }
                 else
                 {
-                    aiState = 0;
+                    aiState = "moveLeft";
                 }
             }
         }
         else if (gameObject.name.Substring(0, 7) == "Pursuit")
         {
-            // Insert AI here
+            /*---Scout Mode---*/
+            if (aiState == "passive_right")
+            {
+                // Detect player when facing towards and at the same level
+                if ((Player.rb2D.position.y < transform.position.y + gameObject.GetComponent<BoxCollider2D>().size.y / 2 && Player.rb2D.position.y > transform.position.y - gameObject.GetComponent<BoxCollider2D>().size.y / 2) && Player.rb2D.position.x > transform.position.x && Player.rb2D.position.x < x + range)
+                {
+                    gameObject.GetComponent<SpriteRenderer>().sprite = sprites[2];
+                    aiState = "hostile_right";
+                }
+
+                // Move Right
+                if (transform.position.x < x + range)
+                {
+                    transform.position += new Vector3(speed, 0, 0);
+                }
+                else
+                {
+                    gameObject.GetComponent<SpriteRenderer>().sprite = sprites[1];
+                    aiState = "passive_left";
+                }
+            }
+            else if (aiState == "passive_left")
+            {
+                // Detect player when facing towards and at the same level
+                if ((Player.rb2D.position.y < transform.position.y + gameObject.GetComponent<BoxCollider2D>().size.y / 2 && Player.rb2D.position.y > transform.position.y - gameObject.GetComponent<BoxCollider2D>().size.y / 2) && Player.rb2D.position.x < transform.position.x && Player.rb2D.position.x > x - range)
+                {
+                    gameObject.GetComponent<SpriteRenderer>().sprite = sprites[3];
+                    aiState = "hostile_left";
+                }
+
+                // Move Left
+                if (transform.position.x > x - range)
+                {
+                    transform.position += new Vector3(-speed, 0, 0);
+                }
+                else
+                {
+                    gameObject.GetComponent<SpriteRenderer>().sprite = sprites[0];
+                    aiState = "passive_right";
+                }
+            }
+
+            /*---Chase Mode---*/
+            else if (aiState == "hostile_right")
+            {
+                if (Player.rb2D.position.x < transform.position.x)
+                {
+                    gameObject.GetComponent<SpriteRenderer>().sprite = sprites[3];
+                    aiState = "hostile_left";
+                }
+                else
+                {
+                    transform.position += new Vector3(speed, 0, 0);
+                }
+            }
+            else if (aiState == "hostile_left")
+            {
+                if (Player.rb2D.position.x > transform.position.x)
+                {
+                    gameObject.GetComponent<SpriteRenderer>().sprite = sprites[2];
+                    aiState = "hostile_right";
+                }
+                else
+                {
+                    transform.position += new Vector3(-speed, 0, 0);
+                }
+            }
+
+            /*---Stop and Assess---*/
+            else if (gameObject.name == Scope.sticky)
+            {
+                aiState = "stop";
+            }
         }
         else if (gameObject.name.Substring(0, 6) == "Aerial")
         {
@@ -279,6 +353,18 @@ public class Obstacles : MonoBehaviour
     }
 
     // Trigger contact effects
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        // Wall Collision
+        if (collision.collider.gameObject.CompareTag("Wall"))
+        {
+            if (gameObject.name.Substring(0, 7) == "Pursuit")
+            {
+                aiState = "stop";
+            }
+        }
+    }
+
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.tag == "Player Bullet")
