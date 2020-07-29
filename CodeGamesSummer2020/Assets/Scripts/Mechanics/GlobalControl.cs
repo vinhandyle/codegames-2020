@@ -297,7 +297,7 @@ public class GlobalControl : MonoBehaviour
         mapUnlocked = true;         
         heartlessUnlocked = true;   
         dashUnlocked = true;        
-        clingUnlocked = true;       
+        //clingUnlocked = true;       
         doubleUnlocked = true;      
         basicUnlocked = true;      
         imperialUnlocked = true;    

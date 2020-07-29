@@ -38,11 +38,13 @@ public class Scope : MonoBehaviour
                         if ((Obstacles.refState == "passive_left" &&                                                                                                                                                // Facing left
                             gameObject.transform.parent.position.x > other.transform.position.x &&                                                                                                                  // To the right of the wall
                             Player.rb2D.position.x < gameObject.transform.parent.position.x &&                                                                                                                      // Player is to the left 
-                            Player.rb2D.position.x + Player.rb2D.gameObject.GetComponent<CircleCollider2D>().radius < other.transform.position.x - other.gameObject.GetComponent<BoxCollider2D>().size.x / 2) ||    // Player is to the left of the wall
+                            Player.rb2D.position.x + Player.rb2D.gameObject.GetComponent<CircleCollider2D>().radius < other.transform.position.x - other.gameObject.GetComponent<BoxCollider2D>().size.x / 2 &&     // Player is to the left of the wall
+                            Player.rb2D.position.y + Player.rb2D.gameObject.GetComponent<CircleCollider2D>().radius < other.transform.position.y + other.gameObject.GetComponent<BoxCollider2D>().size.y /2) ||     // Player is shorter than the wall
                             (Obstacles.refState == "passive_right" &&                                                                                                                                               // Facing right
                             gameObject.transform.parent.position.x < other.transform.position.x &&                                                                                                                  // To the left of the wall
                             Player.rb2D.position.x > gameObject.transform.parent.position.x &&                                                                                                                      // Player is to the right
-                            Player.rb2D.position.x - Player.rb2D.gameObject.GetComponent<CircleCollider2D>().radius > other.transform.position.x + other.gameObject.GetComponent<BoxCollider2D>().size.x / 2) ||    // Player is to the right of the wall
+                            Player.rb2D.position.x - Player.rb2D.gameObject.GetComponent<CircleCollider2D>().radius > other.transform.position.x + other.gameObject.GetComponent<BoxCollider2D>().size.x / 2 &&     // Player is to the right of the wall
+                            Player.rb2D.position.y + Player.rb2D.gameObject.GetComponent<CircleCollider2D>().radius < other.transform.position.y + other.gameObject.GetComponent<BoxCollider2D>().size.y / 2) ||    // Player is shorter than the wall
                             (Obstacles.refState == "passive_left" && Player.rb2D.position.x > gameObject.transform.parent.position.x) ||                                                                            // Player is behind
                             (Obstacles.refState == "passive_right" && Player.rb2D.position.x < gameObject.transform.parent.position.x))
                         {
@@ -59,14 +61,15 @@ public class Scope : MonoBehaviour
                         // Logic for following player when blocked by a wall
                         // If player is in the same direction as the blocking wall, stop
                         // If player is now in the opposite direction, pursue
-                        if ((Obstacles.refState == "hostile_left" && Player.rb2D.position.x < gameObject.transform.parent.position.x && other.transform.position.x < gameObject.transform.parent.position.x) ||
-                            (Obstacles.refState == "hostile_right" && Player.rb2D.position.x > gameObject.transform.parent.position.x && other.transform.position.x > gameObject.transform.parent.position.x))
+                        // The wall's top must be above the Machina's bottom to stop it
+                        if ((Obstacles.refState == "hostile_left" && Player.rb2D.position.x < gameObject.transform.parent.position.x && 
+                            other.transform.position.x < gameObject.transform.parent.position.x && 
+                            other.transform.position.y + other.gameObject.GetComponent<BoxCollider2D>().size.y / 2 > gameObject.transform.parent.position.y - gameObject.transform.parent.GetComponent<BoxCollider2D>().size.y / 2) ||
+                            (Obstacles.refState == "hostile_right" && Player.rb2D.position.x > gameObject.transform.parent.position.x &&
+                            other.transform.position.x > gameObject.transform.parent.position.x &&
+                            other.transform.position.y + other.gameObject.GetComponent<BoxCollider2D>().size.y / 2 > gameObject.transform.parent.position.y - gameObject.transform.parent.GetComponent<BoxCollider2D>().size.y / 2))
                         {
                             Obstacles.refState2_a = "stop";
-                        }
-                        else
-                        {
-                            Obstacles.refState2_a = "";
                         }
                     }
                 }
@@ -85,14 +88,10 @@ public class Scope : MonoBehaviour
                 {
                     // Logic for following player when floor ends
                     // If left or right colliders leaves floor collider, stop
-                    if ((gameObject.name == "Detect_Floor_Left" && transform.position.x + GetComponent<BoxCollider2D>().size.x / 2 < other.transform.position.x - other.gameObject.GetComponent<BoxCollider2D>().size.x / 2) ||
-                        (gameObject.name == "Detect_Floor_Right" && transform.position.x - GetComponent<BoxCollider2D>().size.x / 2 > other.transform.position.x + other.gameObject.GetComponent<BoxCollider2D>().size.x / 2))
+                    if ((gameObject.name == "Detect_Floor_Left" && Obstacles.refState == "hostile_left" && transform.position.x + GetComponent<BoxCollider2D>().size.x / 2 < other.transform.position.x - other.gameObject.GetComponent<BoxCollider2D>().size.x / 2) ||
+                        (gameObject.name == "Detect_Floor_Right" && Obstacles.refState == "hostile_right" && transform.position.x - GetComponent<BoxCollider2D>().size.x / 2 > other.transform.position.x + other.gameObject.GetComponent<BoxCollider2D>().size.x / 2))
                     {
                         Obstacles.refState2_a = "stop";
-                    }
-                    else
-                    {
-                        Obstacles.refState2_a = "";
                     }
                 }
             }

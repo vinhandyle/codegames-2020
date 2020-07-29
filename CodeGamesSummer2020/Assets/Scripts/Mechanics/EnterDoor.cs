@@ -114,7 +114,7 @@ public class EnterDoor : MonoBehaviour
             {
                 StartCoroutine(SceneSwitch("SG_1", "SG_1_to_DH_8"));
             }
-            else if (doorName == "SG_1_to_DH_4")
+            else if (doorName == "SG_1_to_DH_8")
             {
                 StartCoroutine(SceneSwitch("DH_8", "DH_8_to_SG_1"));
                 GlobalControl.locked_3 = false;

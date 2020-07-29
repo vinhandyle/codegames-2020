@@ -189,6 +189,35 @@ public class GoThrough : MonoBehaviour
 
             // SG
 
+            //          SG_1 to SG_2
+            else if (opName == "SG_1_to_SG_2 (A)")
+            {
+                StartCoroutine(SceneSwitch("SG_2", "SG_2_to_SG_1 (A)"));
+            }
+            else if (opName == "SG_2_to_SG_1 (A)")
+            {
+                StartCoroutine(SceneSwitch("SG_1", "SG_1_to_SG_2 (A)"));
+            }
+
+            else if (opName == "SG_1_to_SG_2 (B)")
+            {
+                StartCoroutine(SceneSwitch("SG_2", "SG_2_to_SG_1 (B)"));
+            }
+            else if (opName == "SG_2_to_SG_1 (B)")
+            {
+                StartCoroutine(SceneSwitch("SG_1", "SG_1_to_SG_2 (B)"));
+            }
+
+            //          SG_1 to SG_11
+            else if (opName == "SG_1_to_SG_11")
+            {
+                StartCoroutine(SceneSwitch("SG_11", "SG_11_to_SG_1"));
+            }
+            else if (opName == "SG_11_to_SG_1")
+            {
+                StartCoroutine(SceneSwitch("SG_1", "SG_1_to_SG_11"));
+            }
+
             // TT
 
             // MB
@@ -208,8 +237,6 @@ public class GoThrough : MonoBehaviour
             {
                 StartCoroutine(SceneSwitch("IT_2", "IT_2_to_GP_1"));
             }
-
-            // Transition (DH-SG)
 
             // Transition (SG-TT)
 

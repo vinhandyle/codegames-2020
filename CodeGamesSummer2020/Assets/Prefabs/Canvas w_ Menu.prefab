@@ -2225,7 +2225,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   item: {fileID: 21300000, guid: fdc65e77acc820b499764c5866d64ecd, type: 3}
-  enemy: {fileID: 0}
+  enemy: {fileID: 21300000, guid: 5643b76d12535bf48a9e2f8612c75e43, type: 3}
   report: {fileID: 21300000, guid: 5f88c27d28ecf8d4c9e14ac396a8e8a9, type: 3}
   extra_1: {fileID: 0}
   extra_2: {fileID: 0}

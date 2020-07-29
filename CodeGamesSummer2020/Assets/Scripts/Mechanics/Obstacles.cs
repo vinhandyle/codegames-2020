@@ -337,7 +337,7 @@ public class Obstacles : MonoBehaviour
                 }
                 else
                 {
-                    transform.position += new Vector3(speed, 0, 0);
+                    transform.position += new Vector3(2 * speed, 0, 0);
                 }
             }
             else if (aiState == "hostile_left")
@@ -354,7 +354,7 @@ public class Obstacles : MonoBehaviour
                 }
                 else
                 {
-                    transform.position += new Vector3(-speed, 0, 0);
+                    transform.position += new Vector3(-2 * speed, 0, 0);
                 }
             }
             else if (aiState == "stop")
@@ -373,18 +373,21 @@ public class Obstacles : MonoBehaviour
                         aiState = "passive_left";
                     }
                     time = 0;
+                    refState2_a = "";
                 }
                 else if (Player.rb2D.position.x > transform.position.x && refState3 == "hostile_left")
                 {
                     gameObject.GetComponent<SpriteRenderer>().sprite = sprites[2];
                     aiState = "hostile_right";
                     time = 0;
+                    refState2_a = "";
                 }
                 else if (Player.rb2D.position.x < transform.position.x && refState3 == "hostile_right")
                 {
                     gameObject.GetComponent<SpriteRenderer>().sprite = sprites[3];
                     aiState = "hostile_left";
                     time = 0;
+                    refState2_a = "";
                 }
             }
         }
