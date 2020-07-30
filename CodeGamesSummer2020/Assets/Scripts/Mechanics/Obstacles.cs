@@ -8,25 +8,34 @@ public class Obstacles : MonoBehaviour
     public int healthMax;
     public int healthCurr;
     public int damage;
+    public List<Sprite> sprites;
+    public bool hazard; // Enemy or Hazard
 
-    // Variables used in AI
+    /*-----Variables used in AI-----*/
+    // Starting Position
     public float x;
     public float y;
+
+    // Movement
     public float range;
     public float speed;
 
+    // Time
     public int time;                // 145 frames ~ 1 second
-    public int deAggroTime; 
+    public int deAggroTime;
 
+    // States -> refState,type,variant(if applicable)_num
+    // type: Obstacles to Scope (1), Scope to Obstacles (2), Obstacles to Obstacles (3)
+    // variant: multiple of same type in same num, use a->z
+    // num: Pursuit (1), Aerial (2), Aquatic (3), Turret (4), Overseer (5), Containment (6), Subnautical (7), Emperor (8)
+    // e.g. refState2b_5
     public string aiState;
-    public static string refState;  // obs to scope ref
-    public static string refState2; // scope to obs ref
-    public static string refState2_a;
-    public static string refState3; // obs to obs ref
-
-    public List<Sprite> sprites;
-
-    public bool hazard; // Enemy or Hazard
+    
+    /* Pursuit */
+    public static string refState_1;  
+    public static string refState2_1; 
+    public static string refState2a_1;
+    public static string refState3_1; 
 
     // Start is called before the first frame update
     void Start()
@@ -282,7 +291,7 @@ public class Obstacles : MonoBehaviour
                 // Detect player when facing towards and at the same level
                 if (Player.rb2D.position.y - Player.rb2D.gameObject.GetComponent<CircleCollider2D>().radius < transform.position.y + gameObject.GetComponent<BoxCollider2D>().size.y / 2 &&
                     Player.rb2D.position.y + Player.rb2D.gameObject.GetComponent<CircleCollider2D>().radius > transform.position.y - gameObject.GetComponent<BoxCollider2D>().size.y / 2 &&
-                    Player.rb2D.position.x > transform.position.x && refState2 != "passive")
+                    Player.rb2D.position.x > transform.position.x && refState2_1 != "passive")
                 {
                     gameObject.GetComponent<SpriteRenderer>().sprite = sprites[2];
                     aiState = "hostile_right";
@@ -304,7 +313,7 @@ public class Obstacles : MonoBehaviour
                 // Detect player when facing towards and at the same level
                 if (Player.rb2D.position.y - Player.rb2D.gameObject.GetComponent<CircleCollider2D>().radius < transform.position.y + gameObject.GetComponent<BoxCollider2D>().size.y / 2 &&
                     Player.rb2D.position.y + Player.rb2D.gameObject.GetComponent<CircleCollider2D>().radius > transform.position.y - gameObject.GetComponent<BoxCollider2D>().size.y / 2 &&
-                    Player.rb2D.position.x < transform.position.x && refState2 != "passive")
+                    Player.rb2D.position.x < transform.position.x && refState2_1 != "passive")
                 {
                     gameObject.GetComponent<SpriteRenderer>().sprite = sprites[3];
                     aiState = "hostile_left";
@@ -330,9 +339,9 @@ public class Obstacles : MonoBehaviour
                     gameObject.GetComponent<SpriteRenderer>().sprite = sprites[3];
                     aiState = "hostile_left";
                 }
-                else if (refState2_a == "stop")
+                else if (refState2a_1 == "stop")
                 {
-                    refState3 = aiState;
+                    refState3_1 = aiState;
                     aiState = "stop";
                 }
                 else
@@ -347,9 +356,9 @@ public class Obstacles : MonoBehaviour
                     gameObject.GetComponent<SpriteRenderer>().sprite = sprites[2];
                     aiState = "hostile_right";
                 }
-                else if (refState2_a == "stop")
+                else if (refState2a_1 == "stop")
                 {
-                    refState3 = aiState;
+                    refState3_1 = aiState;
                     aiState = "stop";
                 }
                 else
@@ -362,32 +371,32 @@ public class Obstacles : MonoBehaviour
                 time++;
                 if (time > deAggroTime)
                 {
-                    if (refState3 == "hostile_left")
+                    if (refState3_1 == "hostile_left")
                     {
                         gameObject.GetComponent<SpriteRenderer>().sprite = sprites[0];
                         aiState = "passive_right";
                     }
-                    else if (refState3 == "hostile_right")
+                    else if (refState3_1 == "hostile_right")
                     {
                         gameObject.GetComponent<SpriteRenderer>().sprite = sprites[1];
                         aiState = "passive_left";
                     }
                     time = 0;
-                    refState2_a = "";
+                    refState2a_1 = "";
                 }
-                else if (Player.rb2D.position.x > transform.position.x && refState3 == "hostile_left")
+                else if (Player.rb2D.position.x > transform.position.x && refState3_1 == "hostile_left")
                 {
                     gameObject.GetComponent<SpriteRenderer>().sprite = sprites[2];
                     aiState = "hostile_right";
                     time = 0;
-                    refState2_a = "";
+                    refState2a_1 = "";
                 }
-                else if (Player.rb2D.position.x < transform.position.x && refState3 == "hostile_right")
+                else if (Player.rb2D.position.x < transform.position.x && refState3_1 == "hostile_right")
                 {
                     gameObject.GetComponent<SpriteRenderer>().sprite = sprites[3];
                     aiState = "hostile_left";
                     time = 0;
-                    refState2_a = "";
+                    refState2a_1 = "";
                 }
             }
         }
@@ -405,7 +414,11 @@ public class Obstacles : MonoBehaviour
         {
             // Insert AI here
         }
-        refState = aiState;
+
+        if (gameObject.name.Substring(0, 7) == "Pursuit")
+        {
+            refState_1 = aiState;
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D other)

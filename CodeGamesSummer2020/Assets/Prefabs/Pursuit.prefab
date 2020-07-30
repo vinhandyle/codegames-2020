@@ -153,7 +153,7 @@ GameObject:
   - component: {fileID: 8702010987354923882}
   - component: {fileID: 8702010987354923883}
   - component: {fileID: 8702010987354923884}
-  - component: {fileID: 8702010987354923885}
+  - component: {fileID: 1767064972682678304}
   m_Layer: 9
   m_Name: Detect_Player
   m_TagString: Untagged
@@ -214,7 +214,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attachedTo: Pursuit
---- !u!50 &8702010987354923885
+--- !u!50 &1767064972682678304
 Rigidbody2D:
   serializedVersion: 4
   m_ObjectHideFlags: 0
@@ -232,7 +232,7 @@ Rigidbody2D:
   m_GravityScale: 1
   m_Material: {fileID: 0}
   m_Interpolate: 0
-  m_SleepingMode: 0
+  m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 2
 --- !u!1 &8702010988049087865
@@ -246,7 +246,7 @@ GameObject:
   - component: {fileID: 8702010988049087866}
   - component: {fileID: 8702010988049087869}
   - component: {fileID: 8702010988049087868}
-  - component: {fileID: 8702010988049087867}
+  - component: {fileID: 7304260396652291425}
   m_Layer: 9
   m_Name: Detect_Wall
   m_TagString: Untagged
@@ -307,7 +307,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attachedTo: Pursuit
---- !u!50 &8702010988049087867
+--- !u!50 &7304260396652291425
 Rigidbody2D:
   serializedVersion: 4
   m_ObjectHideFlags: 0
@@ -325,7 +325,7 @@ Rigidbody2D:
   m_GravityScale: 1
   m_Material: {fileID: 0}
   m_Interpolate: 0
-  m_SleepingMode: 0
+  m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 2
 --- !u!1 &8702010988271928956
@@ -339,8 +339,7 @@ GameObject:
   - component: {fileID: 8702010988271928957}
   - component: {fileID: 8702010988271928945}
   - component: {fileID: 8702010988271928944}
-  - component: {fileID: 8702010988271928959}
-  - component: {fileID: 8702010988271928958}
+  - component: {fileID: 1240223863459541209}
   m_Layer: 9
   m_Name: Detect_Floor_Right
   m_TagString: Untagged
@@ -401,7 +400,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attachedTo: Pursuit
---- !u!50 &8702010988271928959
+--- !u!50 &1240223863459541209
 Rigidbody2D:
   serializedVersion: 4
   m_ObjectHideFlags: 0
@@ -419,22 +418,9 @@ Rigidbody2D:
   m_GravityScale: 1
   m_Material: {fileID: 0}
   m_Interpolate: 0
-  m_SleepingMode: 0
+  m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 2
---- !u!114 &8702010988271928958
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8702010988271928956}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9c274a71f564af845835988caf11a5cc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  attachedTo: Pursuit
 --- !u!1 &8702010988328612774
 GameObject:
   m_ObjectHideFlags: 0
@@ -446,8 +432,7 @@ GameObject:
   - component: {fileID: 8702010988328612775}
   - component: {fileID: 8702010988328612795}
   - component: {fileID: 8702010988328612794}
-  - component: {fileID: 8702010988328612793}
-  - component: {fileID: 8702010988328612792}
+  - component: {fileID: 7278195219660489558}
   m_Layer: 9
   m_Name: Detect_Floor_Left
   m_TagString: Untagged
@@ -508,7 +493,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attachedTo: Pursuit
---- !u!50 &8702010988328612793
+--- !u!50 &7278195219660489558
 Rigidbody2D:
   serializedVersion: 4
   m_ObjectHideFlags: 0
@@ -526,19 +511,6 @@ Rigidbody2D:
   m_GravityScale: 1
   m_Material: {fileID: 0}
   m_Interpolate: 0
-  m_SleepingMode: 0
+  m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 2
---- !u!114 &8702010988328612792
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8702010988328612774}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9c274a71f564af845835988caf11a5cc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  attachedTo: Pursuit
