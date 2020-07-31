@@ -139,7 +139,10 @@ public class GlobalControl : MonoBehaviour
     public static bool errat_4 = true;
     public static bool errat_5 = true;
 
-    public static bool pursuit_1_2_0 = true;       // Sunset Garden
+    public static bool patrol_1_2_0 = true;        // Sunset Garden
+    public static bool patrol_1_2_1 = true;
+    public static bool pursuit_1_2_0 = true;
+    public static bool pursuit_1_2_1 = true;
 
     /*---------------------Wall of Text Ends---------------------*/
 
@@ -280,6 +283,11 @@ public class GlobalControl : MonoBehaviour
         patrol_1_0_2 = true;
 
         patrol_1_1_0 = true;
+
+        patrol_1_2_0 = true;
+        patrol_1_2_1 = true;
+        pursuit_1_2_0 = true;
+        pursuit_1_2_1 = true;
     }
 
     public static void unlockAll()
@@ -297,7 +305,7 @@ public class GlobalControl : MonoBehaviour
         mapUnlocked = true;         
         heartlessUnlocked = true;   
         dashUnlocked = true;        
-        //clingUnlocked = true;       
+        clingUnlocked = true;       
         doubleUnlocked = true;      
         basicUnlocked = true;      
         imperialUnlocked = true;    

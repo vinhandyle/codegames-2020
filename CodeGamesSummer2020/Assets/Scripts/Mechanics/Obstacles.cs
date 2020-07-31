@@ -45,13 +45,16 @@ public class Obstacles : MonoBehaviour
             (gameObject.name == "Patrol_1_0_1" && !GlobalControl.patrol_1_0_1) ||
             (gameObject.name == "Patrol_1_0_2" && !GlobalControl.patrol_1_0_2) ||
             (gameObject.name == "Patrol_1_1_0" && !GlobalControl.patrol_1_1_0) ||
+            (gameObject.name == "Patrol_1_2_0" && !GlobalControl.patrol_1_2_0) ||
+            (gameObject.name == "Patrol_1_2_1" && !GlobalControl.patrol_1_2_1) ||
             (gameObject.name == "Errat_0" && !GlobalControl.errat_0) ||
             (gameObject.name == "Errat_1" && !GlobalControl.errat_1) ||
             (gameObject.name == "Errat_2" && !GlobalControl.errat_2) ||
             (gameObject.name == "Errat_3" && !GlobalControl.errat_3) ||
             (gameObject.name == "Errat_4" && !GlobalControl.errat_4) ||
             (gameObject.name == "Errat_5" && !GlobalControl.errat_5) ||
-            (gameObject.name == "Pursuit_1_2_0" && !GlobalControl.pursuit_1_2_0))
+            (gameObject.name == "Pursuit_1_2_0" && !GlobalControl.pursuit_1_2_0) ||
+            (gameObject.name == "Pursuit_1_2_1" && !GlobalControl.pursuit_1_2_1))
         {
             gameObject.SetActive(false);
         }
@@ -442,6 +445,7 @@ public class Obstacles : MonoBehaviour
                         gameObject.GetComponent<SpriteRenderer>().sprite = sprites[2];
                         aiState = "hostile_right";
                     }
+                    time = 0;
                 }
             }
             else if (gameObject.name.Substring(0, 5) == "Errat" && GlobalControl.reactor == "imperial")

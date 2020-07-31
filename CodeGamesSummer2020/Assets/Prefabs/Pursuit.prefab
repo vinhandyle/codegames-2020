@@ -129,6 +129,12 @@ MonoBehaviour:
   healthMax: 0
   healthCurr: 0
   damage: 0
+  sprites:
+  - {fileID: 1541768236209622592, guid: 02cd75040e72a7e458da7d1b074848d8, type: 3}
+  - {fileID: -7873324833166617311, guid: 02cd75040e72a7e458da7d1b074848d8, type: 3}
+  - {fileID: -4034812355596944967, guid: 02cd75040e72a7e458da7d1b074848d8, type: 3}
+  - {fileID: 9185675996606674728, guid: 02cd75040e72a7e458da7d1b074848d8, type: 3}
+  hazard: 0
   x: 0
   y: 0
   range: 2
@@ -136,12 +142,6 @@ MonoBehaviour:
   time: 0
   deAggroTime: 1000
   aiState: passive_right
-  sprites:
-  - {fileID: 1541768236209622592, guid: 02cd75040e72a7e458da7d1b074848d8, type: 3}
-  - {fileID: -7873324833166617311, guid: 02cd75040e72a7e458da7d1b074848d8, type: 3}
-  - {fileID: -4034812355596944967, guid: 02cd75040e72a7e458da7d1b074848d8, type: 3}
-  - {fileID: 9185675996606674728, guid: 02cd75040e72a7e458da7d1b074848d8, type: 3}
-  hazard: 0
 --- !u!1 &8702010987354923881
 GameObject:
   m_ObjectHideFlags: 0
@@ -355,7 +355,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8702010988271928956}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.105, y: 0, z: 0}
+  m_LocalPosition: {x: 0.1375, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 8702010986843159172}
@@ -385,7 +385,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.21, y: 0.3}
+  m_Size: {x: 0.105, y: 0.3}
   m_EdgeRadius: 0
 --- !u!114 &8702010988271928944
 MonoBehaviour:
@@ -448,7 +448,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8702010988328612774}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.105, y: 0, z: 0}
+  m_LocalPosition: {x: -0.137, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 8702010986843159172}
@@ -478,7 +478,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.21, y: 0.3}
+  m_Size: {x: 0.105, y: 0.3}
   m_EdgeRadius: 0
 --- !u!114 &8702010988328612794
 MonoBehaviour:
