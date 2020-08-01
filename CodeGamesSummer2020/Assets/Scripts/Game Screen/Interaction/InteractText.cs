@@ -7,6 +7,7 @@ public class InteractText : MonoBehaviour
 {
     private Text text;
     public string attachedTo;
+
     public static string type = "";
     public static string stickied = ""; // Retain sticky info after object is set inactive
     public static string stickied2 = "";
@@ -32,6 +33,7 @@ public class InteractText : MonoBehaviour
                 attachedTo == EnterDoor.sticky || 
                 attachedTo == PickUpItem.sticky ||
                 attachedTo == Talk.sticky ||
+                attachedTo == TriggerSwitch.sticky ||
                 attachedTo == Examine.sticky)
             {
                 stickied = PickUpItem.sticky;
@@ -182,6 +184,7 @@ public class InteractText : MonoBehaviour
                         }
                     }
 
+                    // Blank everything else
                     else
                     {
                         text.text = "";
@@ -192,6 +195,15 @@ public class InteractText : MonoBehaviour
                         type == "Lost" || type == "Unstable" || type == "plating" || type == "extra" || type == "scrap")
                     {
                         StartCoroutine(wait(2f));
+                    }
+                    else if (type == "trigger")
+                    {
+                        type = "";
+                        stickied = "";
+                        stickied2 = "";
+                        text.text = "";
+                        interacted = false;
+                        notif = false;
                     }
 
                 }
@@ -217,7 +229,17 @@ public class InteractText : MonoBehaviour
                             text.text = "Enter";
                         }
                     }
-
+                    else if (type == "trigger")
+                    {
+                        if (TriggerSwitch.refState == "inactive")
+                        {
+                            text.text = "";
+                        }
+                        else
+                        {
+                            text.text = "Interact";
+                        }
+                    }
                     else if (type == "misc")
                     {
                         text.text = "Examine";
@@ -230,7 +252,7 @@ public class InteractText : MonoBehaviour
             }
             else if (attachedTo == "Rest" && type == "rest")
             {
-                text.text = "Interact";
+                text.text = "Recharge";
             }
             else if (!notif)
             {

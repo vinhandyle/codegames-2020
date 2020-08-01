@@ -44,7 +44,7 @@ public class Player : MonoBehaviour
         // Set new player position when entering door or moving through an opening 
         if (GlobalControl.switched)
         {
-            transform.position = new Vector2(x, y);
+            transform.position = new Vector3(x, y, transform.position.z);
             GlobalControl.switched = false;
         }
 

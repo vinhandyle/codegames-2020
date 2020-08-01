@@ -5,8 +5,9 @@ using UnityEngine;
 public class PickUpItem : MonoBehaviour
 {
     public string objName;
-    public static bool inRange = false;
     public string itemName = "";
+
+    public static bool inRange = false;
     public static string sticky = ""; // used for interact text attachedto
 
     // Start is called before the first frame update

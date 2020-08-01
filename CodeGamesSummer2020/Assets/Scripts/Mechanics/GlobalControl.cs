@@ -113,6 +113,9 @@ public class GlobalControl : MonoBehaviour
     public static bool locked_2 = false;           // The Lift to Heaven Door
     public static bool locked_3 = true;            // DH_4_to_DH_6
 
+    // Switches
+    public static string state_SG_10 = "active";
+
     // Destructibles
     public static bool block_starter = true;
     public static bool secret_unstable = true;
@@ -120,8 +123,9 @@ public class GlobalControl : MonoBehaviour
     public static bool block_DH_4 = true;
     public static bool secret_DH_5 = true;
 
-    public static bool block_GP_1 = true;
+    public static bool block_SG_10 = true;
 
+    public static bool block_GP_1 = true;
 
     // Enemy State
 
@@ -239,6 +243,12 @@ public class GlobalControl : MonoBehaviour
             else if (checkpoint == "Checkpoint_2")
             {
                 StartCoroutine(SceneSwitch("DH_2", checkpoint));
+            }
+
+            // SG - Sunset Garden
+            else if (checkpoint == "Checkpoint_3")
+            {
+                StartCoroutine(SceneSwitch("SG_10", checkpoint));
             }
 
             // No checkpoints used

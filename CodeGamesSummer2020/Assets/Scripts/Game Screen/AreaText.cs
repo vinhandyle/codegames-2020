@@ -89,55 +89,55 @@ public class AreaText : MonoBehaviour
             {
                 text.text = "Central Disposal Area";
             }
-            else if (GlobalControl.area == "SG_3")
+            else if (GlobalControl.area == "SG_2S")
             {
                 text.text = "Upper Disposal Area";
             }
-            else if (GlobalControl.area == "SG_4")
+            else if (GlobalControl.area == "SG_3")
             {
                 text.text = "Lower Prep Area";
             }
-            else if (GlobalControl.area == "SG_5")
+            else if (GlobalControl.area == "SG_4")
             {
                 text.text = "Upper Prep Area";
             }
-            else if (GlobalControl.area == "SG_6")
+            else if (GlobalControl.area == "SG_5")
             {
                 text.text = "Assembly Line";
             }
-            else if (GlobalControl.area == "SG_7")
+            else if (GlobalControl.area == "SG_6")
             {
                 text.text = "Disassembly Line";
             }
-            else if (GlobalControl.area == "SG_8")
+            else if (GlobalControl.area == "SG_7")
             {
                 text.text = "Quality Control";
             }
-            else if (GlobalControl.area == "SG_9")
+            else if (GlobalControl.area == "SG_8")
             {
                 text.text = "Intake";
             }
-            else if (GlobalControl.area == "SG_10")
+            else if (GlobalControl.area == "SG_9")
             {
                 text.text = "Storage Area";
             }
-            else if (GlobalControl.area == "SG_10S")
+            else if (GlobalControl.area == "SG_9S")
             {
                 text.text = "Storage Depths";
             }
-            else if (GlobalControl.area == "SG_11")
+            else if (GlobalControl.area == "SG_10")
             {
                 text.text = "Backdoor";
             }
-            else if (GlobalControl.area == "SG_12")
+            else if (GlobalControl.area == "SG_11")
             {
                 text.text = "Overpass";
             }
-            else if (GlobalControl.area == "SG_12S")
+            else if (GlobalControl.area == "SG_11S")
             {
                 text.text = "Garden Heights";
             }
-            else if (GlobalControl.area == "SG_13")
+            else if (GlobalControl.area == "SG_12")
             {
                 text.text = "Corner Office";
             }

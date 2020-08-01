@@ -5593,7 +5593,7 @@ GameObject:
   - component: {fileID: 1801097903}
   - component: {fileID: 1801097902}
   m_Layer: 0
-  m_Name: SG_1_to_SG_11
+  m_Name: SG_1_to_SG_10
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6701,6 +6701,12 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8702010986843159173, guid: e133dd8f0e538f94b9676489daa6a1fe,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -7873324833166617311, guid: 02cd75040e72a7e458da7d1b074848d8,
+        type: 3}
     - target: {fileID: 8702010986843159175, guid: e133dd8f0e538f94b9676489daa6a1fe,
         type: 3}
       propertyPath: deAggroTime
@@ -6710,6 +6716,11 @@ PrefabInstance:
         type: 3}
       propertyPath: range
       value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8702010986843159175, guid: e133dd8f0e538f94b9676489daa6a1fe,
+        type: 3}
+      propertyPath: aiState
+      value: passive_left
       objectReference: {fileID: 0}
     - target: {fileID: 8702010987354923884, guid: e133dd8f0e538f94b9676489daa6a1fe,
         type: 3}

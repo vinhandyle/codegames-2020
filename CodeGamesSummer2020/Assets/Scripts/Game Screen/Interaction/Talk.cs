@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class Talk : MonoBehaviour
 {
-    public static bool inRange = false;
     public string npcName = "";
+
+    public static bool inRange = false;
     public static string sticky = ""; // used for interact text attachedto
 
     // Start is called before the first frame update

@@ -207,14 +207,24 @@ public class GoThrough : MonoBehaviour
                 StartCoroutine(SceneSwitch("SG_1", "SG_1_to_SG_2 (B)"));
             }
 
-            //          SG_1 to SG_11
-            else if (opName == "SG_1_to_SG_11")
+            //          SG_1 to SG_10
+            else if (opName == "SG_1_to_SG_10")
             {
-                StartCoroutine(SceneSwitch("SG_11", "SG_11_to_SG_1"));
+                StartCoroutine(SceneSwitch("SG_10", "SG_10_to_SG_1"));
             }
-            else if (opName == "SG_11_to_SG_1")
+            else if (opName == "SG_10_to_SG_1")
             {
-                StartCoroutine(SceneSwitch("SG_1", "SG_1_to_SG_11"));
+                StartCoroutine(SceneSwitch("SG_1", "SG_1_to_SG_10"));
+            }
+
+            //          SG_2 to SG_2S
+            else if (opName == "SG_2_to_SG_2S")
+            {
+                StartCoroutine(SceneSwitch("SG_2S", "SG_2S_to_SG_2"));
+            }
+            else if (opName == "SG_2S_to_SG_2")
+            {
+                StartCoroutine(SceneSwitch("SG_2", "SG_2_to_SG_2S"));
             }
 
             //          SG_2 to SG_3
@@ -227,14 +237,54 @@ public class GoThrough : MonoBehaviour
                 StartCoroutine(SceneSwitch("SG_2", "SG_2_to_SG_3"));
             }
 
-            //          SG_2 to SG_4
-            else if (opName == "SG_2_to_SG_4")
+            //          SG_3 to SG_4
+            else if (opName == "SG_3_to_SG_4")
             {
-                StartCoroutine(SceneSwitch("SG_4", "SG_4_to_SG_2"));
+                StartCoroutine(SceneSwitch("SG_4", "SG_4_to_SG_3"));
             }
-            else if (opName == "SG_4_to_SG_2")
+            else if (opName == "SG_4_to_SG_3")
             {
-                StartCoroutine(SceneSwitch("SG_2", "SG_2_to_SG_4"));
+                StartCoroutine(SceneSwitch("SG_3", "SG_3_to_SG_4"));
+            }
+
+            //          SG_3 to SG_5
+            else if (opName == "SG_3_to_SG_5")
+            {
+                StartCoroutine(SceneSwitch("SG_5", "SG_5_to_SG_3"));
+            }
+            else if (opName == "SG_5_to_SG_3")
+            {
+                StartCoroutine(SceneSwitch("SG_3", "SG_3_to_SG_5"));
+            }
+
+            //          SG_3 to SG_9
+            else if (opName == "SG_3_to_SG_9")
+            {
+                StartCoroutine(SceneSwitch("SG_9", "SG_9_to_SG_3"));
+            }
+            else if (opName == "SG_9_to_SG_3")
+            {
+                StartCoroutine(SceneSwitch("SG_3", "SG_3_to_SG_9"));
+            }
+
+            //          SG_3 to SG_10
+            else if (opName == "SG_3_to_SG_10")
+            {
+                StartCoroutine(SceneSwitch("SG_10", "SG_10_to_SG_3"));
+            }
+            else if (opName == "SG_10_to_SG_3")
+            {
+                StartCoroutine(SceneSwitch("SG_3", "SG_3_to_SG_10"));
+            }
+
+            //          SG_9 to SG_10
+            else if (opName == "SG_9_to_SG_10")
+            {
+                StartCoroutine(SceneSwitch("SG_10", "SG_10_to_SG_9"));
+            }
+            else if (opName == "SG_10_to_SG_9")
+            {
+                StartCoroutine(SceneSwitch("SG_9", "SG_9_to_SG_10"));
             }
 
             /*-----TT-----*/

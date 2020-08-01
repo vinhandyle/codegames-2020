@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class Examine : MonoBehaviour
 {
-    public bool harvestable; 
-    public static bool inRange = false;
+    public bool harvestable;
     public string objName = "";
+
+    public static bool inRange = false;
     public static string sticky = ""; // used for interact text attachedto
 
     // Start is called before the first frame update

@@ -357,7 +357,7 @@ GameObject:
   - component: {fileID: 193842752}
   - component: {fileID: 193842751}
   m_Layer: 0
-  m_Name: SG_2_to_SG_3
+  m_Name: SG_2_to_SG_2S
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1088,7 +1088,7 @@ GameObject:
   - component: {fileID: 506884615}
   - component: {fileID: 506884614}
   m_Layer: 0
-  m_Name: SG_2_to_SG_4
+  m_Name: SG_2_to_SG_3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1751,12 +1751,12 @@ PrefabInstance:
     - target: {fileID: 4452588045915576806, guid: 0a413d63b9e46bc4ca7d2e8bb62ee0e3,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.63
+      value: 0.26
       objectReference: {fileID: 0}
     - target: {fileID: 4452588045915576806, guid: 0a413d63b9e46bc4ca7d2e8bb62ee0e3,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2.34
+      value: 4.25
       objectReference: {fileID: 0}
     - target: {fileID: 4452588045915576806, guid: 0a413d63b9e46bc4ca7d2e8bb62ee0e3,
         type: 3}
@@ -2894,12 +2894,12 @@ PrefabInstance:
     - target: {fileID: 8702010986843159172, guid: e133dd8f0e538f94b9676489daa6a1fe,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.22
+      value: 0.61
       objectReference: {fileID: 0}
     - target: {fileID: 8702010986843159172, guid: e133dd8f0e538f94b9676489daa6a1fe,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 4.316
+      value: -2.286
       objectReference: {fileID: 0}
     - target: {fileID: 8702010986843159172, guid: e133dd8f0e538f94b9676489daa6a1fe,
         type: 3}
@@ -2946,6 +2946,12 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8702010986843159173, guid: e133dd8f0e538f94b9676489daa6a1fe,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -7873324833166617311, guid: 02cd75040e72a7e458da7d1b074848d8,
+        type: 3}
     - target: {fileID: 8702010986843159175, guid: e133dd8f0e538f94b9676489daa6a1fe,
         type: 3}
       propertyPath: deAggroTime
@@ -2955,6 +2961,11 @@ PrefabInstance:
         type: 3}
       propertyPath: range
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8702010986843159175, guid: e133dd8f0e538f94b9676489daa6a1fe,
+        type: 3}
+      propertyPath: aiState
+      value: passive_left
       objectReference: {fileID: 0}
     - target: {fileID: 8702010987354923884, guid: e133dd8f0e538f94b9676489daa6a1fe,
         type: 3}
