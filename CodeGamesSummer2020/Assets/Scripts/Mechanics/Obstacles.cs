@@ -54,7 +54,8 @@ public class Obstacles : MonoBehaviour
             (gameObject.name == "Errat_4" && !GlobalControl.errat_4) ||
             (gameObject.name == "Errat_5" && !GlobalControl.errat_5) ||
             (gameObject.name == "Pursuit_1_2_0" && !GlobalControl.pursuit_1_2_0) ||
-            (gameObject.name == "Pursuit_1_2_1" && !GlobalControl.pursuit_1_2_1))
+            (gameObject.name == "Pursuit_1_2_1" && !GlobalControl.pursuit_1_2_1) ||
+            (gameObject.name == "Pursuit_1_2_2" && !GlobalControl.pursuit_1_2_2))
         {
             gameObject.SetActive(false);
         }
@@ -204,8 +205,24 @@ public class Obstacles : MonoBehaviour
             {
                 GlobalControl.found_errat = true;
             }
+            else if (gameObject.name == "Overseer")
+            {
+                GlobalControl.downed_boss_1 = true;
+            }
+            else if (gameObject.name == "Containment")
+            {
+                GlobalControl.downed_boss_2 = true;
+            }
+            else if (gameObject.name == "Subnautical")
+            {
+                GlobalControl.downed_boss_3 = true;
+            }
+            else if (gameObject.name == "Emperor")
+            {
+                GlobalControl.downed_boss_4 = true;
+            }
 
-            // Prevent respawn on scene switch
+            /*-----Prevent respawn on scene switch-----*/
 
             // Testing Area
             if (gameObject.name == "Patrol_1_0_0")
@@ -253,6 +270,28 @@ public class Obstacles : MonoBehaviour
                     GlobalControl.errat_5 = false;
                 }
                 GlobalControl.humansLeft--;
+            }
+
+            // Sunset Garden
+            else if (gameObject.name == "Patrol_1_2_0")
+            {
+                GlobalControl.patrol_1_2_0 = false;
+            }
+            else if (gameObject.name == "Patrol_1_2_1")
+            {
+                GlobalControl.patrol_1_2_1 = false;
+            }
+            else if (gameObject.name == "Pursuit_1_2_0")
+            {
+                GlobalControl.pursuit_1_2_0 = false;
+            }
+            else if (gameObject.name == "Pursuit_1_2_1")
+            {
+                GlobalControl.pursuit_1_2_1 = false;
+            }
+            else if (gameObject.name == "Pursuit_1_2_2")
+            {
+                GlobalControl.pursuit_1_2_2 = false;
             }
         }
 
@@ -409,18 +448,42 @@ public class Obstacles : MonoBehaviour
         {
             // Insert AI here
         }
+
+        /*-----Aquatic Machina-----*/
         else if (gameObject.name.Substring(0, 7) == "Aquatic")
         {
             // Insert AI here
         }
+
+        /*-----Turret Machina-----*/
         else if (gameObject.name.Substring(0, 6) == "Turret")
         {
             // Insert AI here
         }
 
+        // Set reference state
         if (gameObject.name.Substring(0, 7) == "Pursuit")
         {
             refState_1 = aiState;
+        }
+    }
+
+    private void OnCollisionStay2D(Collision2D collision)
+    {
+        if (collision.collider.gameObject.name == "Player")
+        {
+            /*-----Conveyor Belt AI-----*/
+            if (gameObject.name.Substring(0, 8) == "Conveyor")
+            {
+                if (aiState == "left" && Player.rb2D.velocity.x > -1.2 * Player.moveBy)
+                {
+                    Player.rb2D.velocity = new Vector2(Player.rb2D.velocity.x - Player.moveBy / 4, Player.rb2D.velocity.y);
+                }
+                else if (aiState == "right" && Player.rb2D.velocity.x < 1.2 * Player.moveBy)
+                {
+                    Player.rb2D.velocity = new Vector2(Player.rb2D.velocity.x + Player.moveBy / 4, Player.rb2D.velocity.y);
+                }
+            }
         }
     }
 

@@ -147,6 +147,7 @@ public class GlobalControl : MonoBehaviour
     public static bool patrol_1_2_1 = true;
     public static bool pursuit_1_2_0 = true;
     public static bool pursuit_1_2_1 = true;
+    public static bool pursuit_1_2_2 = true;
 
     /*---------------------Wall of Text Ends---------------------*/
 
@@ -298,6 +299,7 @@ public class GlobalControl : MonoBehaviour
         patrol_1_2_1 = true;
         pursuit_1_2_0 = true;
         pursuit_1_2_1 = true;
+        pursuit_1_2_2 = true;
     }
 
     public static void unlockAll()

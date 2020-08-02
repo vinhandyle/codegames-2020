@@ -18,28 +18,23 @@ public class GoThrough : MonoBehaviour
         {
             if (direction == "top")
             { // player starts below the opening
-                Player.x = gameObject.transform.position.x;
-                Player.y = gameObject.transform.position.y - 0.5f;
+                Player.x = Player.x2;
+                Player.y = gameObject.transform.position.y - 0.4f;
             }
-            else if (direction == "bottom-left")
-            { // player starts above and to the right of the opening
-                Player.x = gameObject.transform.position.x + 0.5f;
-                Player.y = gameObject.transform.position.y + 0.5f;
-            }
-            else if (direction == "bottom-right")
-            { // player starts above and to the left of the opening
-                Player.x = gameObject.transform.position.x - 0.5f;
-                Player.y = gameObject.transform.position.y + 0.5f;
+            else if (direction == "bottom")
+            {
+                Player.x = Player.x2;
+                Player.y = gameObject.transform.position.y + 0.8f;
             }
             else if (direction == "left")
             { // players starts to the right of the opening
                 Player.x = gameObject.transform.position.x + 0.5f;
-                Player.y = gameObject.transform.position.y;
+                Player.y = Player.y2;
             }
             else if (direction == "right")
             { // player starts to the left of the opening
                 Player.x = gameObject.transform.position.x - 0.5f;
-                Player.y = gameObject.transform.position.y;
+                Player.y = Player.y2;
             }
             GlobalControl.switched = true;
         }
@@ -189,22 +184,13 @@ public class GoThrough : MonoBehaviour
             /*-----SG-----*/
 
             //          SG_1 to SG_2
-            else if (opName == "SG_1_to_SG_2 (A)")
+            else if (opName == "SG_1_to_SG_2")
             {
-                StartCoroutine(SceneSwitch("SG_2", "SG_2_to_SG_1 (A)"));
+                StartCoroutine(SceneSwitch("SG_2", "SG_2_to_SG_1"));
             }
-            else if (opName == "SG_2_to_SG_1 (A)")
+            else if (opName == "SG_2_to_SG_1")
             {
-                StartCoroutine(SceneSwitch("SG_1", "SG_1_to_SG_2 (A)"));
-            }
-
-            else if (opName == "SG_1_to_SG_2 (B)")
-            {
-                StartCoroutine(SceneSwitch("SG_2", "SG_2_to_SG_1 (B)"));
-            }
-            else if (opName == "SG_2_to_SG_1 (B)")
-            {
-                StartCoroutine(SceneSwitch("SG_1", "SG_1_to_SG_2 (B)"));
+                StartCoroutine(SceneSwitch("SG_1", "SG_1_to_SG_2"));
             }
 
             //          SG_1 to SG_10
@@ -275,6 +261,16 @@ public class GoThrough : MonoBehaviour
             else if (opName == "SG_10_to_SG_3")
             {
                 StartCoroutine(SceneSwitch("SG_3", "SG_3_to_SG_10"));
+            }
+
+            //          SG_5 to SG_7
+            else if (opName == "SG_5_to_SG_7")
+            {
+                StartCoroutine(SceneSwitch("SG_7", "SG_7_to_SG_5"));
+            }
+            else if (opName == "SG_7_to_SG_5")
+            {
+                StartCoroutine(SceneSwitch("SG_5", "SG_5_to_SG_7"));
             }
 
             //          SG_9 to SG_10

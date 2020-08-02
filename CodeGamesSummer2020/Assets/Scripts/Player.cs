@@ -6,11 +6,13 @@ public class Player : MonoBehaviour
 {
     public static Rigidbody2D rb2D;
 
-    private float moveBy = 2f; // Horizontal velocity
+    public static float moveBy = 2f; // Horizontal velocity
     private float jumpHeight = 5f; // Jump velocity
 
     public static float x = 0;
     public static float y = 0;
+    public static float x2 = 0;
+    public static float y2 = 0;
 
     private bool canDash = true; // Whether the player can dash
     private bool dashing = false; // Prevents moving while dashing
@@ -46,6 +48,11 @@ public class Player : MonoBehaviour
         {
             transform.position = new Vector3(x, y, transform.position.z);
             GlobalControl.switched = false;
+        }
+        else
+        {
+            x2 = rb2D.position.x;
+            y2 = rb2D.position.y;
         }
 
         // Updates player ability to move left/right
