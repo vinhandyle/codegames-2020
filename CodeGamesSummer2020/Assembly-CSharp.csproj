@@ -67,6 +67,7 @@
     <Compile Include="Assets\Scripts\Game Screen\DialogueBtnBehavior.cs" />
     <Compile Include="Assets\Scripts\Game Screen\EnergyText.cs" />
     <Compile Include="Assets\Scripts\Game Screen\HealthText.cs" />
+    <Compile Include="Assets\Scripts\Game Screen\Interaction\Craft.cs" />
     <Compile Include="Assets\Scripts\Game Screen\Interaction\Examine.cs" />
     <Compile Include="Assets\Scripts\Game Screen\Interaction\InteractText.cs" />
     <Compile Include="Assets\Scripts\Game Screen\Interaction\PickUpItem.cs" />

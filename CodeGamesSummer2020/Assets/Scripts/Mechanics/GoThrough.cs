@@ -14,6 +14,7 @@ public class GoThrough : MonoBehaviour
     void Start()
     {
         // Determines at which door the player will spawn if there are multiple doors in one scene
+        // Adjacent ez, diagonal hard
         if (GlobalControl.nextDoor == gameObject.name)
         {
             if (direction == "top")
@@ -29,12 +30,27 @@ public class GoThrough : MonoBehaviour
             else if (direction == "left")
             { // players starts to the right of the opening
                 Player.x = gameObject.transform.position.x + 0.5f;
-                Player.y = Player.y2;
+                if (gameObject.name == "SG_9_to_SG_3")
+                {
+                    Debug.Log(0);
+                    Player.y = gameObject.transform.position.y - gameObject.GetComponent<BoxCollider2D>().size.y / 2;
+                }
+                else
+                {
+                    Player.y = Player.y2;
+                }
             }
             else if (direction == "right")
             { // player starts to the left of the opening
                 Player.x = gameObject.transform.position.x - 0.5f;
-                Player.y = Player.y2;
+                if (gameObject.name == "SG_3_to_SG_9")
+                {
+                    Player.y = gameObject.transform.position.y - gameObject.GetComponent<BoxCollider2D>().size.y / 2;
+                }
+                else
+                {
+                    Player.y = Player.y2;
+                }
             }
             GlobalControl.switched = true;
         }
@@ -263,6 +279,16 @@ public class GoThrough : MonoBehaviour
                 StartCoroutine(SceneSwitch("SG_3", "SG_3_to_SG_10"));
             }
 
+            //          SG_4 to SG_6
+            else if (opName == "SG_4_to_SG_6")
+            {
+                StartCoroutine(SceneSwitch("SG_6", "SG_6_to_SG_4"));
+            }
+            else if (opName == "SG_6_to_SG_4")
+            {
+                StartCoroutine(SceneSwitch("SG_4", "SG_4_to_SG_6"));
+            }
+
             //          SG_5 to SG_7
             else if (opName == "SG_5_to_SG_7")
             {
@@ -271,6 +297,26 @@ public class GoThrough : MonoBehaviour
             else if (opName == "SG_7_to_SG_5")
             {
                 StartCoroutine(SceneSwitch("SG_5", "SG_5_to_SG_7"));
+            }
+
+            //          SG_5 to SG_9
+            else if (opName == "SG_5_to_SG_9")
+            {
+                StartCoroutine(SceneSwitch("SG_9", "SG_9_to_SG_5"));
+            }
+            else if (opName == "SG_9_to_SG_5")
+            {
+                StartCoroutine(SceneSwitch("SG_5", "SG_5_to_SG_9"));
+            }
+
+            //          SG_9 to SG_9S
+            else if (opName == "SG_9_to_SG_9S")
+            {
+                StartCoroutine(SceneSwitch("SG_9S", "SG_9S_to_SG_9"));
+            }
+            else if (opName == "SG_9S_to_SG_9")
+            {
+                StartCoroutine(SceneSwitch("SG_9", "SG_9_to_SG_9S"));
             }
 
             //          SG_9 to SG_10
@@ -304,6 +350,16 @@ public class GoThrough : MonoBehaviour
             }
 
             /*-----Transition (SG-TT)-----*/
+
+            // SG_7 to TT_1
+            else if (opName == "SG_7_to_TT_1")
+            {
+                StartCoroutine(SceneSwitch("TT_1", "TT_1_to_SG_7"));
+            }
+            else if (opName == "TT_1_to_SG_7")
+            {
+                StartCoroutine(SceneSwitch("SG_7", "SG_7_to_TT_1"));
+            }
 
             /*-----Transition (TT-MB)-----*/
 

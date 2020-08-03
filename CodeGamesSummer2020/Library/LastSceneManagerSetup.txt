@@ -20,6 +20,18 @@ sceneSetups:
   isActive: 0
   isSubScene: 0
 - path: Assets/Scenes/SG/SG_5.unity
+  isLoaded: 0
+  isActive: 0
+  isSubScene: 0
+- path: Assets/Scenes/SG/SG_7.unity
+  isLoaded: 0
+  isActive: 0
+  isSubScene: 0
+- path: Assets/Scenes/SG/SG_4.unity
+  isLoaded: 0
+  isActive: 0
+  isSubScene: 0
+- path: Assets/Scenes/SG/SG_9.unity
   isLoaded: 1
   isActive: 1
   isSubScene: 0

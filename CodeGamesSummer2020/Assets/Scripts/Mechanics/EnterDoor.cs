@@ -117,7 +117,16 @@ public class EnterDoor : MonoBehaviour
             else if (doorName == "SG_1_to_DH_8")
             {
                 StartCoroutine(SceneSwitch("DH_8", "DH_8_to_SG_1"));
-                GlobalControl.locked_3 = false;
+            }
+
+            // Storage Area to Overpass
+            else if (doorName == "SG_9_to_SG_11")
+            {
+                StartCoroutine(SceneSwitch("SG_11", "SG_11_to_SG_9"));
+            }
+            else if (doorName == "SG_11_to_SG_9")
+            {
+                StartCoroutine(SceneSwitch("SG_9", "SG_9_to_SG_11"));
             }
 
             // Mysterious Path to The Lift from Hell

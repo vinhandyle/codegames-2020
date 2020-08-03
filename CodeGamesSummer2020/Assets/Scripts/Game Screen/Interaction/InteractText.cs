@@ -13,6 +13,7 @@ public class InteractText : MonoBehaviour
     public static string stickied2 = "";
     public static bool interacted = false;
     public static bool notif = false;
+    public static bool triggerOnce = false;
 
     // Start is called before the first frame update
     void Start()
@@ -34,6 +35,7 @@ public class InteractText : MonoBehaviour
                 attachedTo == PickUpItem.sticky ||
                 attachedTo == Talk.sticky ||
                 attachedTo == TriggerSwitch.sticky ||
+                attachedTo == Craft.sticky ||
                 attachedTo == Examine.sticky)
             {
                 stickied = PickUpItem.sticky;
@@ -153,6 +155,27 @@ public class InteractText : MonoBehaviour
                         }
                     }
 
+                    /*-----Crafting-----*/
+                    else if (type == "post-craft" && !triggerOnce)
+                    {
+                        if (!GlobalControl.dashUnlocked)
+                        {
+                            text.text = "Obtained: Booster Rocket";
+                            GlobalControl.dashUnlocked = true;
+                        }
+                        else if (!GlobalControl.clingUnlocked)
+                        {
+                            text.text = "Obtained: Climbing Claws";
+                            GlobalControl.clingUnlocked = true;
+                        }
+                        else if (!GlobalControl.doubleUnlocked)
+                        {
+                            text.text = "Obtained: Booster Rocket MK2";
+                            GlobalControl.doubleUnlocked = true;
+                        }
+                        GlobalControl.scrapNum--;
+                    }
+
                     /*-----NPC dialogue-----*/
 
                     // Errat
@@ -192,11 +215,13 @@ public class InteractText : MonoBehaviour
 
                     // Lingering textbox on item pickup
                     if (type == "ego" || type == "Starter" || type == "geothermal" || type == "Map" || type == "Heartless" ||
-                        type == "Lost" || type == "Unstable" || type == "plating" || type == "extra" || type == "scrap")
+                        type == "Lost" || type == "Unstable" || type == "plating" || type == "extra" || type == "scrap" ||
+                        (type == "post-craft" && !triggerOnce))
                     {
+                        triggerOnce = true;
                         StartCoroutine(wait(2f));
                     }
-                    else if (type == "trigger")
+                    else if (type == "trigger" || type == "pre-craft")
                     {
                         type = "";
                         stickied = "";
@@ -240,6 +265,10 @@ public class InteractText : MonoBehaviour
                             text.text = "Interact";
                         }
                     }
+                    else if (type == "pre-craft")
+                    {
+                        text.text = "Insert Hyper Scrap";
+                    }
                     else if (type == "misc")
                     {
                         text.text = "Examine";
@@ -270,5 +299,6 @@ public class InteractText : MonoBehaviour
         text.text = "";
         interacted = false;
         notif = false;
+        triggerOnce = false;
     }
 }

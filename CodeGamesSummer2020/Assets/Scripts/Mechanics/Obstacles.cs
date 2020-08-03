@@ -55,7 +55,8 @@ public class Obstacles : MonoBehaviour
             (gameObject.name == "Errat_5" && !GlobalControl.errat_5) ||
             (gameObject.name == "Pursuit_1_2_0" && !GlobalControl.pursuit_1_2_0) ||
             (gameObject.name == "Pursuit_1_2_1" && !GlobalControl.pursuit_1_2_1) ||
-            (gameObject.name == "Pursuit_1_2_2" && !GlobalControl.pursuit_1_2_2))
+            (gameObject.name == "Pursuit_1_2_2" && !GlobalControl.pursuit_1_2_2) ||
+            (gameObject.name == "Pursuit_1_2_3" && !GlobalControl.pursuit_1_2_3))
         {
             gameObject.SetActive(false);
         }
@@ -281,6 +282,14 @@ public class Obstacles : MonoBehaviour
             {
                 GlobalControl.patrol_1_2_1 = false;
             }
+            else if (gameObject.name == "Patrol_1_2_2")
+            {
+                GlobalControl.patrol_1_2_2 = false;
+            }
+            else if (gameObject.name == "Patrol_1_2_3")
+            {
+                GlobalControl.patrol_1_2_3 = false;
+            }
             else if (gameObject.name == "Pursuit_1_2_0")
             {
                 GlobalControl.pursuit_1_2_0 = false;
@@ -292,6 +301,10 @@ public class Obstacles : MonoBehaviour
             else if (gameObject.name == "Pursuit_1_2_2")
             {
                 GlobalControl.pursuit_1_2_2 = false;
+            }
+            else if (gameObject.name == "Pursuit_1_2_3")
+            {
+                GlobalControl.pursuit_1_2_3 = false;
             }
         }
 

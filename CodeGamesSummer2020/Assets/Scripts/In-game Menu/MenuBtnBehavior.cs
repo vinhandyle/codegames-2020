@@ -29,7 +29,6 @@ public class MenuBtnBehavior : MonoBehaviour
         {
             btn = "";
             GlobalControl.menu = menu;
-            Debug.Log(GlobalControl.menu);
         }
     }
 

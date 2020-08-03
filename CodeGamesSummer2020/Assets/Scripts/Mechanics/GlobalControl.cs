@@ -123,7 +123,9 @@ public class GlobalControl : MonoBehaviour
     public static bool block_DH_4 = true;
     public static bool secret_DH_5 = true;
 
+    public static bool block_SG_9 = true;
     public static bool block_SG_10 = true;
+    public static bool secret_SG_9 = true;
 
     public static bool block_GP_1 = true;
 
@@ -145,9 +147,12 @@ public class GlobalControl : MonoBehaviour
 
     public static bool patrol_1_2_0 = true;        // Sunset Garden
     public static bool patrol_1_2_1 = true;
+    public static bool patrol_1_2_2 = true;
+    public static bool patrol_1_2_3 = true;
     public static bool pursuit_1_2_0 = true;
     public static bool pursuit_1_2_1 = true;
     public static bool pursuit_1_2_2 = true;
+    public static bool pursuit_1_2_3 = true;
 
     /*---------------------Wall of Text Ends---------------------*/
 
@@ -297,9 +302,12 @@ public class GlobalControl : MonoBehaviour
 
         patrol_1_2_0 = true;
         patrol_1_2_1 = true;
+        patrol_1_2_2 = true;
+        patrol_1_2_3 = true;
         pursuit_1_2_0 = true;
         pursuit_1_2_1 = true;
         pursuit_1_2_2 = true;
+        pursuit_1_2_3 = true;
     }
 
     public static void unlockAll()
