@@ -15,17 +15,27 @@ public class GoThrough : MonoBehaviour
     {
         // Determines at which door the player will spawn if there are multiple doors in one scene
         // Adjacent ez, diagonal hard
+        // Conveyor belt breaks velocity conservation
         if (GlobalControl.nextDoor == gameObject.name)
         {
             if (direction == "top")
             { // player starts below the opening
                 Player.x = Player.x2;
-                Player.y = gameObject.transform.position.y - 0.4f;
+                Player.y = gameObject.transform.position.y - 0.5f;
+                Player.rb2D.velocity = new Vector2(Player.v_x, Player.v_y);
             }
             else if (direction == "bottom")
-            {
+            { // player starts below the opening
                 Player.x = Player.x2;
-                Player.y = gameObject.transform.position.y + 0.8f;
+                Player.y = gameObject.transform.position.y + 0.5f;
+                if (gameObject.name == "SG_4_to_SG_3")
+                {
+                    Player.y -= 0.3f;
+                }
+                else
+                {
+                    Player.rb2D.velocity = new Vector2(Player.v_x, Player.v_y);
+                }
             }
             else if (direction == "left")
             { // players starts to the right of the opening
@@ -289,6 +299,16 @@ public class GoThrough : MonoBehaviour
                 StartCoroutine(SceneSwitch("SG_4", "SG_4_to_SG_6"));
             }
 
+            //          SG_5 to SG_6
+            else if (opName == "SG_5_to_SG_6")
+            {
+                StartCoroutine(SceneSwitch("SG_6", "SG_6_to_SG_5"));
+            }
+            else if (opName == "SG_6_to_SG_5")
+            {
+                StartCoroutine(SceneSwitch("SG_5", "SG_5_to_SG_6"));
+            }
+
             //          SG_5 to SG_7
             else if (opName == "SG_5_to_SG_7")
             {
@@ -309,6 +329,17 @@ public class GoThrough : MonoBehaviour
                 StartCoroutine(SceneSwitch("SG_5", "SG_5_to_SG_9"));
             }
 
+            //          SG_6 to SG_8
+            else if (opName == "SG_6_to_SG_8")
+            {
+                StartCoroutine(SceneSwitch("SG_8", "SG_8_to_SG_6"));
+            }
+            else if (opName == "SG_8_to_SG_6")
+            {
+                StartCoroutine(SceneSwitch("SG_6", "SG_6_to_SG_8"));
+            }
+
+
             //          SG_9 to SG_9S
             else if (opName == "SG_9_to_SG_9S")
             {
@@ -327,6 +358,26 @@ public class GoThrough : MonoBehaviour
             else if (opName == "SG_10_to_SG_9")
             {
                 StartCoroutine(SceneSwitch("SG_9", "SG_9_to_SG_10"));
+            }
+
+            //          SG_11 to SG_11S
+            else if (opName == "SG_11_to_SG_11S")
+            {
+                StartCoroutine(SceneSwitch("SG_11S", "SG_11S_to_SG_11"));
+            }
+            else if (opName == "SG_11S_to_SG_11")
+            {
+                StartCoroutine(SceneSwitch("SG_11", "SG_11_to_SG_11S"));
+            }
+
+            //          SG_11 to SG_12
+            else if (opName == "SG_11_to_SG_12")
+            {
+                StartCoroutine(SceneSwitch("SG_12", "SG_12_to_SG_11"));
+            }
+            else if (opName == "SG_12_to_SG_11")
+            {
+                StartCoroutine(SceneSwitch("SG_11", "SG_11_to_SG_12"));
             }
 
             /*-----TT-----*/

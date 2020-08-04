@@ -13,6 +13,8 @@ public class Player : MonoBehaviour
     public static float y = 0;
     public static float x2 = 0;
     public static float y2 = 0;
+    public static float v_x = 0;
+    public static float v_y = 0;
 
     private bool canDash = true; // Whether the player can dash
     private bool dashing = false; // Prevents moving while dashing
@@ -53,6 +55,8 @@ public class Player : MonoBehaviour
         {
             x2 = rb2D.position.x;
             y2 = rb2D.position.y;
+            v_x = rb2D.velocity.x;
+            v_y = rb2D.velocity.y;
         }
 
         // Updates player ability to move left/right

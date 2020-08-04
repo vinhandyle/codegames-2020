@@ -18,7 +18,15 @@ public class TriggerSwitch : MonoBehaviour
     {
         objName = gameObject.name;
         // Set things based on pre-existing state
-        if (objName == "Switch_SG_10")
+        if (objName == "Switch_SG_8")
+        {
+            if (GlobalControl.state_SG_8 == "inactive")
+            {
+                gameObject.GetComponent<SpriteRenderer>().sprite = sprites[1];
+            }
+            state = GlobalControl.state_SG_8;
+        }
+        else if (objName == "Switch_SG_10")
         {
             if (GlobalControl.state_SG_10 == "inactive")
             {
@@ -26,6 +34,7 @@ public class TriggerSwitch : MonoBehaviour
             }
             state = GlobalControl.state_SG_10;
         }
+
     }
 
     // Update is called once per frame
@@ -35,18 +44,28 @@ public class TriggerSwitch : MonoBehaviour
         {
             InteractText.interacted = true;
 
-            if (objName == "Switch_SG_10")
+            if (objName == "Switch_SG_8")
+            {
+                if (state == "active")
+                {
+                    state = "inactive";
+                    GlobalControl.block_SG_9 = false;
+                    GlobalControl.state_SG_8 = state;
+                    gameObject.GetComponent<SpriteRenderer>().sprite = sprites[1];
+                }
+            }
+            else if (objName == "Switch_SG_10")
             {
                 if (state == "active")
                 {
                     state = "inactive";
                     GlobalControl.block_SG_10 = false;
+                    GlobalControl.state_SG_10 = state;
                     gameObject.GetComponent<SpriteRenderer>().sprite = sprites[1];
                 }
             }
         }
         refState = state;
-        GlobalControl.state_SG_10 = state;
     }
 
     private void OnTriggerEnter2D(Collider2D other)

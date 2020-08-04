@@ -22,7 +22,7 @@ public class EnterDoor : MonoBehaviour
         if (GlobalControl.nextDoor == gameObject.name)
         {
             Player.x = gameObject.transform.position.x;
-            Player.y = gameObject.transform.position.y;
+            Player.y = gameObject.transform.position.y - gameObject.GetComponent<BoxCollider2D>().size.y / 2;
             GlobalControl.switched = true;
         }
 

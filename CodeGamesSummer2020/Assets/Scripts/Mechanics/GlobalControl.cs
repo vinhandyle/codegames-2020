@@ -114,6 +114,7 @@ public class GlobalControl : MonoBehaviour
     public static bool locked_3 = true;            // DH_4_to_DH_6
 
     // Switches
+    public static string state_SG_8 = "active";
     public static string state_SG_10 = "active";
 
     // Destructibles
@@ -149,10 +150,12 @@ public class GlobalControl : MonoBehaviour
     public static bool patrol_1_2_1 = true;
     public static bool patrol_1_2_2 = true;
     public static bool patrol_1_2_3 = true;
+    public static bool patrol_1_2_4 = true;
     public static bool pursuit_1_2_0 = true;
     public static bool pursuit_1_2_1 = true;
     public static bool pursuit_1_2_2 = true;
     public static bool pursuit_1_2_3 = true;
+    public static bool pursuit_1_2_4 = true;
 
     /*---------------------Wall of Text Ends---------------------*/
 
@@ -284,11 +287,24 @@ public class GlobalControl : MonoBehaviour
         // Doors
         locked_1 = true;
         locked_2 = false;
+        locked_3 = true;
 
         // Destructibles
         block_starter = true;
         secret_unstable = true;
+
+        block_DH_4 = true;
+        secret_DH_5 = true;
+
+        block_SG_9 = true;
+        block_SG_10 = true;
+        secret_SG_9 = true;
+
         block_GP_1 = true;
+
+        // Switches
+        state_SG_8 = "active";
+        state_SG_10 = "active";
     }
 
 
@@ -304,10 +320,12 @@ public class GlobalControl : MonoBehaviour
         patrol_1_2_1 = true;
         patrol_1_2_2 = true;
         patrol_1_2_3 = true;
+        patrol_1_2_4 = true;
         pursuit_1_2_0 = true;
         pursuit_1_2_1 = true;
         pursuit_1_2_2 = true;
         pursuit_1_2_3 = true;
+        pursuit_1_2_4 = true;
     }
 
     public static void unlockAll()
@@ -325,7 +343,7 @@ public class GlobalControl : MonoBehaviour
         mapUnlocked = true;         
         heartlessUnlocked = true;   
         dashUnlocked = true;        
-        clingUnlocked = true;       
+        //clingUnlocked = true;       
         doubleUnlocked = true;      
         basicUnlocked = true;      
         imperialUnlocked = true;    

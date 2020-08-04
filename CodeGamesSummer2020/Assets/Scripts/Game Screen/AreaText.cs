@@ -145,7 +145,7 @@ public class AreaText : MonoBehaviour
             // Twilight Town
             else if (GlobalControl.area == "TT_1")
             {
-                text.text = "Town Outskirts";
+                text.text = "Outer Garden";
             }
 
 
