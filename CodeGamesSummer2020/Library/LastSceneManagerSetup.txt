@@ -36,14 +36,14 @@ sceneSetups:
   isActive: 0
   isSubScene: 0
 - path: Assets/Scenes/SG/SG_6.unity
-  isLoaded: 1
-  isActive: 1
+  isLoaded: 0
+  isActive: 0
   isSubScene: 0
 - path: Assets/Scenes/SG/SG_8.unity
   isLoaded: 0
   isActive: 0
   isSubScene: 0
 - path: Assets/Scenes/SG/SG_11.unity
-  isLoaded: 0
-  isActive: 0
+  isLoaded: 1
+  isActive: 1
   isSubScene: 0

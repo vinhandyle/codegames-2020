@@ -17,7 +17,9 @@ public class Obstacles : MonoBehaviour
     public float y;
 
     // Movement
-    public float range;
+    public float range;     // Range centered, equal sides
+    public float range_1;   // Different range lengths
+    public float range_2;
     public float speed;
 
     // Time
@@ -28,6 +30,7 @@ public class Obstacles : MonoBehaviour
     // type: Obstacles to Scope (1), Scope to Obstacles (2), Obstacles to Obstacles (3)
     // variant: multiple of same type in same num, use a->z
     // num: Pursuit (1), Aerial (2), Aquatic (3), Turret (4), Overseer (5), Containment (6), Subnautical (7), Emperor (8)
+    // Add a "H" before num for hazard AI: Crusher (1),
     // e.g. refState2b_5
     public string aiState;
     
@@ -50,6 +53,7 @@ public class Obstacles : MonoBehaviour
             (gameObject.name == "Patrol_1_2_2" && !GlobalControl.patrol_1_2_2) ||
             (gameObject.name == "Patrol_1_2_3" && !GlobalControl.patrol_1_2_3) ||
             (gameObject.name == "Patrol_1_2_4" && !GlobalControl.patrol_1_2_4) ||
+            (gameObject.name == "Patrol_1_2_5" && !GlobalControl.patrol_1_2_5) ||
             (gameObject.name == "Errat_0" && !GlobalControl.errat_0) ||
             (gameObject.name == "Errat_1" && !GlobalControl.errat_1) ||
             (gameObject.name == "Errat_2" && !GlobalControl.errat_2) ||
@@ -60,7 +64,8 @@ public class Obstacles : MonoBehaviour
             (gameObject.name == "Pursuit_1_2_1" && !GlobalControl.pursuit_1_2_1) ||
             (gameObject.name == "Pursuit_1_2_2" && !GlobalControl.pursuit_1_2_2) ||
             (gameObject.name == "Pursuit_1_2_3" && !GlobalControl.pursuit_1_2_3) ||
-            (gameObject.name == "Pursuit_1_2_4" && !GlobalControl.pursuit_1_2_4))
+            (gameObject.name == "Pursuit_1_2_4" && !GlobalControl.pursuit_1_2_4) ||
+            (gameObject.name == "Pursuit_1_2_5" && !GlobalControl.pursuit_1_2_5))
         {
             gameObject.SetActive(false);
         }
@@ -165,7 +170,15 @@ public class Obstacles : MonoBehaviour
         // Toxic Sludge
         else if (gameObject.name.Substring(0, 6) == "Sludge")
         { // Dreg Heap
-            damage = 3;
+            damage = 2;
+        }
+        else if (gameObject.name.Substring(0, 6) == "Crush_")
+        {
+            damage = 2;
+        }
+        else if (gameObject.name.Substring(0, 6) == "Molten")
+        {
+            damage = 5;
         }
 
 
@@ -294,6 +307,14 @@ public class Obstacles : MonoBehaviour
             {
                 GlobalControl.patrol_1_2_3 = false;
             }
+            else if (gameObject.name == "Patrol_1_2_4")
+            {
+                GlobalControl.patrol_1_2_4 = false;
+            }
+            else if (gameObject.name == "Patrol_1_2_5")
+            {
+                GlobalControl.patrol_1_2_5 = false;
+            }
             else if (gameObject.name == "Pursuit_1_2_0")
             {
                 GlobalControl.pursuit_1_2_0 = false;
@@ -314,7 +335,13 @@ public class Obstacles : MonoBehaviour
             {
                 GlobalControl.pursuit_1_2_4 = false;
             }
+            else if (gameObject.name == "Pursuit_1_2_5")
+            {
+                GlobalControl.pursuit_1_2_5 = false;
+            }
         }
+
+        /*----------Enemy AI----------*/
 
         /*-----Patrol Machina-----*/
         if (gameObject.name.Substring(0, 6) == "Patrol")
@@ -354,7 +381,7 @@ public class Obstacles : MonoBehaviour
                 // Detect player when facing towards and at the same level
                 if (Player.rb2D.position.y - Player.rb2D.gameObject.GetComponent<CircleCollider2D>().radius < transform.position.y + gameObject.GetComponent<BoxCollider2D>().size.y / 2 &&
                     Player.rb2D.position.y + Player.rb2D.gameObject.GetComponent<CircleCollider2D>().radius > transform.position.y - gameObject.GetComponent<BoxCollider2D>().size.y / 2 &&
-                    Player.rb2D.position.x > transform.position.x && refState2_1 != "passive")
+                    Player.rb2D.position.x > transform.position.x && (refState2_1 != "passive" && refState2_1 != null))
                 {
                     gameObject.GetComponent<SpriteRenderer>().sprite = sprites[2];
                     aiState = "hostile_right";
@@ -376,7 +403,7 @@ public class Obstacles : MonoBehaviour
                 // Detect player when facing towards and at the same level
                 if (Player.rb2D.position.y - Player.rb2D.gameObject.GetComponent<CircleCollider2D>().radius < transform.position.y + gameObject.GetComponent<BoxCollider2D>().size.y / 2 &&
                     Player.rb2D.position.y + Player.rb2D.gameObject.GetComponent<CircleCollider2D>().radius > transform.position.y - gameObject.GetComponent<BoxCollider2D>().size.y / 2 &&
-                    Player.rb2D.position.x < transform.position.x && refState2_1 != "passive")
+                    Player.rb2D.position.x < transform.position.x && (refState2_1 != "passive" && refState2_1 != null))
                 {
                     gameObject.GetComponent<SpriteRenderer>().sprite = sprites[3];
                     aiState = "hostile_left";
@@ -481,6 +508,38 @@ public class Obstacles : MonoBehaviour
         {
             // Insert AI here
         }
+
+        /*----------Hazard AI----------*/
+
+        /*-----Crusher-----*/
+        else if (gameObject.name.Substring(0, 7) == "Crusher")
+        {
+            if (aiState == "moveUp")
+            {
+                if (transform.position.y + GetComponent<BoxCollider2D>().size.y / 2 < y + range_1)
+                {
+                    transform.position += new Vector3(0, speed, 0);
+                }
+                else
+                {
+                    aiState = "moveDown";
+                }
+            }
+            else if (aiState == "moveDown")
+            {
+                if (transform.position.y - GetComponent<BoxCollider2D>().size.y / 2 > y - range_2)
+                {
+                    transform.position += new Vector3(0, -speed, 0);
+                }
+                else
+                {
+                    aiState = "moveUp";
+                }
+            }
+        }
+
+        /*----------Boss AI----------*/
+
 
         // Set reference state
         if (gameObject.name.Substring(0, 7) == "Pursuit")

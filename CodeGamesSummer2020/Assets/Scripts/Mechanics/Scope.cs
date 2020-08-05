@@ -40,7 +40,7 @@ public class Scope : MonoBehaviour
                             gameObject.transform.parent.position.x > other.transform.position.x &&                                                                                                                  // To the right of the wall
                             Player.rb2D.position.x < gameObject.transform.parent.position.x &&                                                                                                                      // Player is to the left 
                             Player.rb2D.position.x + Player.rb2D.gameObject.GetComponent<CircleCollider2D>().radius < other.transform.position.x - other.gameObject.GetComponent<BoxCollider2D>().size.x / 2 &&     // Player is to the left of the wall
-                            Player.rb2D.position.y + Player.rb2D.gameObject.GetComponent<CircleCollider2D>().radius < other.transform.position.y + other.gameObject.GetComponent<BoxCollider2D>().size.y /2) ||     // Player is shorter than the wall
+                            Player.rb2D.position.y + Player.rb2D.gameObject.GetComponent<CircleCollider2D>().radius < other.transform.position.y + other.gameObject.GetComponent<BoxCollider2D>().size.y / 2) ||     // Player is shorter than the wall
                             (Obstacles.refState_1 == "passive_right" &&                                                                                                                                               // Facing right
                             gameObject.transform.parent.position.x < other.transform.position.x &&                                                                                                                  // To the left of the wall
                             Player.rb2D.position.x > gameObject.transform.parent.position.x &&                                                                                                                      // Player is to the right
@@ -63,17 +63,25 @@ public class Scope : MonoBehaviour
                         // If player is in the same direction as the blocking wall, stop
                         // If player is now in the opposite direction, pursue
                         // The wall's top must be above the Machina's bottom to stop it
-                        if ((Obstacles.refState_1 == "hostile_left" && Player.rb2D.position.x < gameObject.transform.parent.position.x && 
-                            other.transform.position.x < gameObject.transform.parent.position.x && 
+                        if ((Obstacles.refState_1 == "hostile_left" && Player.rb2D.position.x < gameObject.transform.parent.position.x &&
+                            other.transform.position.x < gameObject.transform.parent.position.x &&
                             other.transform.position.y + other.gameObject.GetComponent<BoxCollider2D>().size.y / 2 > gameObject.transform.parent.position.y - gameObject.transform.parent.GetComponent<BoxCollider2D>().size.y / 2) ||
                             (Obstacles.refState_1 == "hostile_right" && Player.rb2D.position.x > gameObject.transform.parent.position.x &&
                             other.transform.position.x > gameObject.transform.parent.position.x &&
                             other.transform.position.y + other.gameObject.GetComponent<BoxCollider2D>().size.y / 2 > gameObject.transform.parent.position.y - gameObject.transform.parent.GetComponent<BoxCollider2D>().size.y / 2))
                         {
-                            Debug.Log(0);
                             Obstacles.refState2a_1 = "stop";
                         }
                     }
+                }
+            }
+            // No walls detected
+            else
+            {
+                if(sticky.Substring(0, 7) == "Pursuit")
+                {
+                    Obstacles.refState2_1 = "";
+                    Obstacles.refState2a_1 = "";
                 }
             }
         }
