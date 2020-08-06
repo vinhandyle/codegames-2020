@@ -19,6 +19,7 @@ public class DestructibleBlock : MonoBehaviour
             (gameObject.name == "Block_SG_9" && !GlobalControl.block_SG_9) ||
             (gameObject.name == "Block_SG_10" && !GlobalControl.block_SG_10) ||
             (gameObject.name == "Block_SG_11" && !GlobalControl.block_SG_11) ||
+            (gameObject.name == "Block_SG_12" && !GlobalControl.block_SG_12) ||
             (gameObject.name == "Secret_SG_9" && !GlobalControl.secret_SG_9))
         {
             gameObject.SetActive(false);
@@ -40,6 +41,11 @@ public class DestructibleBlock : MonoBehaviour
         else if (gameObject.name == "Block_SG_11" && !GlobalControl.block_SG_11)
         {
             gameObject.SetActive(false);
+        }
+        else if (gameObject.name == "Block_SG_12" && GlobalControl.downed_boss_1)
+        {
+            gameObject.SetActive(false);
+            GlobalControl.block_SG_12 = false;
         }
         else if (gameObject.name == "Block_GP_1" && GlobalControl.doubleUnlocked)
         {

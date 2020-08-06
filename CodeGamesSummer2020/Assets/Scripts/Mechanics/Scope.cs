@@ -8,8 +8,7 @@ public class Scope : MonoBehaviour
     public string attachedTo;
     public static string sticky;
 
-    public static bool canSee = true;
-    public static bool canJump = false;
+    public static bool seeWall = false;
 
     // Start is called before the first frame update
     void Start()
@@ -29,6 +28,7 @@ public class Scope : MonoBehaviour
         {
             if (other.CompareTag("Wall") && !(other.gameObject.transform.parent.name == "Left Side" || other.gameObject.transform.parent.name == "Right Side"))
             {
+                seeWall = true;
                 // Pursuit Interaction
                 if (sticky.Substring(0, 7) == "Pursuit")
                 {
@@ -75,8 +75,9 @@ public class Scope : MonoBehaviour
                     }
                 }
             }
+
             // No walls detected
-            else
+            else if(!seeWall)
             {
                 if(sticky.Substring(0, 7) == "Pursuit")
                 {
@@ -103,6 +104,14 @@ public class Scope : MonoBehaviour
                     {
                         Obstacles.refState2a_1 = "stop";
                     }
+                }
+            }
+            else if (other.CompareTag("Wall") && !(other.gameObject.transform.parent.name == "Left Side" || other.gameObject.transform.parent.name == "Right Side"))
+            {
+                // Update to see if there are still any walls blocking vision
+                if(sticky.Substring(0, 7) == "Pursuit")
+                {
+                    seeWall = false;
                 }
             }
         }

@@ -1520,6 +1520,8 @@ MonoBehaviour:
   x: 0
   y: 0
   range: 0
+  range_1: 0
+  range_2: 0
   speed: 0
   time: 0
   deAggroTime: 0
@@ -3554,7 +3556,7 @@ PrefabInstance:
     - target: {fileID: 8702010986843159172, guid: e133dd8f0e538f94b9676489daa6a1fe,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.46
+      value: 0.18
       objectReference: {fileID: 0}
     - target: {fileID: 8702010986843159172, guid: e133dd8f0e538f94b9676489daa6a1fe,
         type: 3}
@@ -3614,7 +3616,7 @@ PrefabInstance:
     - target: {fileID: 8702010986843159175, guid: e133dd8f0e538f94b9676489daa6a1fe,
         type: 3}
       propertyPath: range
-      value: 4
+      value: 4.2
       objectReference: {fileID: 0}
     - target: {fileID: 8702010987354923884, guid: e133dd8f0e538f94b9676489daa6a1fe,
         type: 3}
@@ -3799,6 +3801,8 @@ MonoBehaviour:
   x: 0
   y: 0
   range: 0
+  range_1: 0
+  range_2: 0
   speed: 0
   time: 0
   deAggroTime: 0

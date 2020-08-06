@@ -107,7 +107,7 @@ MonoBehaviour:
   range: 0
   range_1: 0
   range_2: 0
-  speed: 0
+  speed: 0.005
   time: 0
   deAggroTime: 0
   aiState: 

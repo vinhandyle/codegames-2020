@@ -128,6 +128,7 @@ public class GlobalControl : MonoBehaviour
     public static bool block_SG_9 = true;
     public static bool block_SG_10 = true;
     public static bool block_SG_11 = true;
+    public static bool block_SG_12 = true;
     public static bool secret_SG_9 = true;
 
     public static bool block_GP_1 = true;
@@ -154,6 +155,10 @@ public class GlobalControl : MonoBehaviour
     public static bool patrol_1_2_3 = true;
     public static bool patrol_1_2_4 = true;
     public static bool patrol_1_2_5 = true;
+    public static bool patrol_1_2_6 = true;
+    public static bool patrol_1_2_7 = true;
+    public static bool patrol_1_2_8 = true;
+    public static bool patrol_1_2_9 = true;
     public static bool pursuit_1_2_0 = true;
     public static bool pursuit_1_2_1 = true;
     public static bool pursuit_1_2_2 = true;
@@ -303,6 +308,7 @@ public class GlobalControl : MonoBehaviour
         block_SG_9 = true;
         block_SG_10 = true;
         block_SG_11 = true;
+        block_SG_12 = true;
         secret_SG_9 = true;
 
         block_GP_1 = true;
@@ -328,6 +334,10 @@ public class GlobalControl : MonoBehaviour
         patrol_1_2_3 = true;
         patrol_1_2_4 = true;
         patrol_1_2_5 = true;
+        patrol_1_2_6 = true;
+        patrol_1_2_7 = true;
+        patrol_1_2_8 = true;
+        patrol_1_2_9 = true;
         pursuit_1_2_0 = true;
         pursuit_1_2_1 = true;
         pursuit_1_2_2 = true;
@@ -369,7 +379,7 @@ public class GlobalControl : MonoBehaviour
         downed_aquatic = true;
         downed_turret = true;
         found_errat = true;
-        downed_boss_1 = true;
+        //downed_boss_1 = true;
         downed_boss_2 = true;
         downed_boss_3 = true;
         downed_boss_4 = true;

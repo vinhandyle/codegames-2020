@@ -54,6 +54,10 @@ public class Obstacles : MonoBehaviour
             (gameObject.name == "Patrol_1_2_3" && !GlobalControl.patrol_1_2_3) ||
             (gameObject.name == "Patrol_1_2_4" && !GlobalControl.patrol_1_2_4) ||
             (gameObject.name == "Patrol_1_2_5" && !GlobalControl.patrol_1_2_5) ||
+            (gameObject.name == "Patrol_1_2_6" && !GlobalControl.patrol_1_2_6) ||
+            (gameObject.name == "Patrol_1_2_7" && !GlobalControl.patrol_1_2_7) ||
+            (gameObject.name == "Patrol_1_2_8" && !GlobalControl.patrol_1_2_8) ||
+            (gameObject.name == "Patrol_1_2_9" && !GlobalControl.patrol_1_2_9) ||
             (gameObject.name == "Errat_0" && !GlobalControl.errat_0) ||
             (gameObject.name == "Errat_1" && !GlobalControl.errat_1) ||
             (gameObject.name == "Errat_2" && !GlobalControl.errat_2) ||
@@ -65,7 +69,8 @@ public class Obstacles : MonoBehaviour
             (gameObject.name == "Pursuit_1_2_2" && !GlobalControl.pursuit_1_2_2) ||
             (gameObject.name == "Pursuit_1_2_3" && !GlobalControl.pursuit_1_2_3) ||
             (gameObject.name == "Pursuit_1_2_4" && !GlobalControl.pursuit_1_2_4) ||
-            (gameObject.name == "Pursuit_1_2_5" && !GlobalControl.pursuit_1_2_5))
+            (gameObject.name == "Pursuit_1_2_5" && !GlobalControl.pursuit_1_2_5) ||
+            (gameObject.name == "Overseer" && GlobalControl.downed_boss_1))
         {
             gameObject.SetActive(false);
         }
@@ -73,6 +78,13 @@ public class Obstacles : MonoBehaviour
         // Set starting position
         x = transform.position.x;
         y = transform.position.y;
+
+        // If asymmetrical range is not set, set symmetrical range
+        if (range_1 + range_2 == 0)
+        {
+            range_1 = range;
+            range_2 = range;
+        }
 
         // Initialize enemy health and damage
 
@@ -183,8 +195,13 @@ public class Obstacles : MonoBehaviour
 
 
         /*---------------Bosses----------------*/
+        else if (gameObject.name == "Overseer")
+        {
+            healthMax = 50;
+            damage = 2;
+        }
 
-
+        // Hazards immune to damage
         if (!hazard)
         {
             healthCurr = healthMax;
@@ -315,6 +332,22 @@ public class Obstacles : MonoBehaviour
             {
                 GlobalControl.patrol_1_2_5 = false;
             }
+            else if (gameObject.name == "Patrol_1_2_6")
+            {
+                GlobalControl.patrol_1_2_6 = false;
+            }
+            else if (gameObject.name == "Patrol_1_2_7")
+            {
+                GlobalControl.patrol_1_2_7 = false;
+            }
+            else if (gameObject.name == "Patrol_1_2_8")
+            {
+                GlobalControl.patrol_1_2_8 = false;
+            }
+            else if (gameObject.name == "Patrol_1_2_9")
+            {
+                GlobalControl.patrol_1_2_9 = false;
+            }
             else if (gameObject.name == "Pursuit_1_2_0")
             {
                 GlobalControl.pursuit_1_2_0 = false;
@@ -339,6 +372,10 @@ public class Obstacles : MonoBehaviour
             {
                 GlobalControl.pursuit_1_2_5 = false;
             }
+            else if (gameObject.name == "Overseer")
+            {
+                GlobalControl.downed_boss_1 = true;
+            }
         }
 
         /*----------Enemy AI----------*/
@@ -349,7 +386,7 @@ public class Obstacles : MonoBehaviour
             // Moving left
             if (aiState == "moveLeft")
             {
-                if (transform.position.x > x - range)
+                if (transform.position.x > x - range_1)
                 {
                     transform.position += new Vector3(-speed, 0, 0);
                 }
@@ -361,7 +398,7 @@ public class Obstacles : MonoBehaviour
             // Moving right
             else if (aiState == "moveRight")
             {
-                if (transform.position.x < x + range)
+                if (transform.position.x < x + range_2)
                 {
                     transform.position += new Vector3(speed, 0, 0);
                 }
@@ -388,7 +425,7 @@ public class Obstacles : MonoBehaviour
                 }
 
                 // Move Right
-                if (transform.position.x < x + range)
+                if (transform.position.x < x + range_1)
                 {
                     transform.position += new Vector3(speed, 0, 0);
                 }
@@ -410,7 +447,7 @@ public class Obstacles : MonoBehaviour
                 }
 
                 // Move Left
-                if (transform.position.x > x - range)
+                if (transform.position.x > x - range_2)
                 {
                     transform.position += new Vector3(-speed, 0, 0);
                 }
@@ -540,6 +577,11 @@ public class Obstacles : MonoBehaviour
 
         /*----------Boss AI----------*/
 
+        /*-----Overseer Machina-----*/
+        else if (gameObject.name == "Overseer")
+        {
+
+        }
 
         // Set reference state
         if (gameObject.name.Substring(0, 7) == "Pursuit")
