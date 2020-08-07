@@ -6587,7 +6587,7 @@ PrefabInstance:
     - target: {fileID: 8702010986843159175, guid: e133dd8f0e538f94b9676489daa6a1fe,
         type: 3}
       propertyPath: deAggroTime
-      value: 725
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8702010986843159175, guid: e133dd8f0e538f94b9676489daa6a1fe,
         type: 3}

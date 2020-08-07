@@ -138,9 +138,12 @@ MonoBehaviour:
   x: 0
   y: 0
   range: 2
+  range_1: 0
+  range_2: 0
   speed: 0.008
   time: 0
-  deAggroTime: 1000
+  hold_time: 0
+  deAggroTime: 3
   aiState: passive_right
 --- !u!1 &8702010987354923881
 GameObject:

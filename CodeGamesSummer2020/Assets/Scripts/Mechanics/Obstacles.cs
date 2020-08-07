@@ -23,8 +23,13 @@ public class Obstacles : MonoBehaviour
     public float speed;
 
     // Time
-    public int time;                // 145 frames ~ 1 second
+    public int time;
     public int deAggroTime;
+    public bool hold_time = false;
+
+    // Random
+    public float randNum;
+    public bool hold_rand = false;
 
     // States -> refState,type,variant(if applicable)_num
     // type: Obstacles to Scope (1), Scope to Obstacles (2), Obstacles to Obstacles (3)
@@ -33,12 +38,21 @@ public class Obstacles : MonoBehaviour
     // Add a "H" before num for hazard AI: Crusher (1),
     // e.g. refState2b_5
     public string aiState;
-    
+
     /* Pursuit */
-    public static string refState_1;  
-    public static string refState2_1; 
+    public static string refState_1;
+    public static string refState2_1;
     public static string refState2a_1;
-    public static string refState3_1; 
+    public string refState3_1;
+
+    /* Overseer */
+    public static string refState_5;
+    public static string refState1a_5;
+    public static string refState1b_5;
+    public static string refState2_5;
+    public static string refState2a_5;
+    public string refState3_5;
+    public string refState3a_5;
 
     // Start is called before the first frame update
     void Start()
@@ -191,6 +205,10 @@ public class Obstacles : MonoBehaviour
         else if (gameObject.name.Substring(0, 6) == "Molten")
         {
             damage = 5;
+        }
+        else if (gameObject.name.Substring(0, 7) == "OM_Beam")
+        {
+            damage = 8;
         }
 
 
@@ -495,7 +513,9 @@ public class Obstacles : MonoBehaviour
             }
             else if (aiState == "stop")
             {
-                time++;
+                if (!hold_time)
+                    StartCoroutine(addSecond());
+
                 if (time > deAggroTime)
                 {
                     if (refState3_1 == "hostile_left")
@@ -580,7 +600,138 @@ public class Obstacles : MonoBehaviour
         /*-----Overseer Machina-----*/
         else if (gameObject.name == "Overseer")
         {
+            // Timer for AI
+            if (aiState != "top" && aiState != "bottom" && !hold_time)
+            {
+                StartCoroutine(addSecond());
+            }
 
+            // Gear Shift
+            if (time % 10 == 0 && time > 0 && refState3_5 != "shifted" && (refState2a_5 == "" || refState2a_5 == null))
+            {
+                if (transform.position.y <= -1.94)
+                {
+                    aiState = "top";
+                }
+                else if (transform.position.y >= 2.06)
+                {
+                    Debug.Log(0);
+                    aiState = "bottom";
+                }
+                refState3_5 = "shifted";
+            }
+
+            if (aiState == "top")
+            {
+                if (transform.position.y < 2.06)
+                {
+                    transform.position += new Vector3(0, speed, 0);
+                }
+                else
+                {
+                    aiState = "rest";
+                    refState3_5 = "";
+                }
+            }
+            else if (aiState == "bottom")
+            {
+                if (transform.position.y > -1.94)
+                {
+                    transform.position += new Vector3(0, -speed, 0);
+                }
+                else
+                {
+                    aiState = "rest";
+                    refState3_5 = "";
+                }
+            }
+
+            // Rest
+            else if (aiState == "rest")
+            {
+                // Randomize next attack
+                if (!hold_rand)
+                {
+                    if (time < 10)
+                    {
+                        StartCoroutine(delayRand(2f, 1, 2));
+                    }
+                    else if (refState3a_5 == "phase 2")
+                    {
+                        StartCoroutine(delayRand(1.5f, 1, 5));
+                    }
+                    else
+                    {
+                        StartCoroutine(delayRand(2f, 1, 3));
+                    }
+                }
+
+                if (randNum == 1)
+                {
+                    aiState = "ramping";
+                }
+                else if (randNum == 2)
+                {
+                    aiState = "exploding";
+                }
+                else if (randNum == 3)
+                {
+                    if (refState2_5 != "scorching")
+                    {
+                        aiState = "scorched";
+                    }
+                    else
+                    {
+                        StartCoroutine(delayRand(0.5f, 1, 2));
+                    }
+                }
+                else if (randNum > 3)
+                {
+                    aiState = "beam";
+                }
+                randNum = 0;
+            }
+
+            // Ramping Fire
+            else if (aiState == "ramping")
+            {
+
+            }
+
+            // Exploding Shot
+            else if (aiState == "exploding")
+            {
+
+            }
+
+            // Scorched Earth
+            else if (aiState == "scorched")
+            {
+                refState_5 = "warning";
+                aiState = "rest";
+            }
+
+            // Charge Beam
+            if (aiState != "top" && aiState != "bottom" && refState3a_5 != "phase 2" && healthCurr < 25)
+            {
+                refState3a_5 = "phase 2";
+                aiState = "beam";
+            }
+
+            if (aiState == "beam" && refState2a_5 != "beaming")
+            {
+                refState1a_5 = "warning";
+                refState2a_5 = "beaming";
+                if (transform.position.y >= 2.06)
+                {
+                    refState1b_5 = "top";
+                }
+                else if (transform.position.y <= -1.94)
+                {
+                    refState1b_5 = "bottom";
+                }
+                aiState = "rest";
+            }
         }
 
         // Set reference state
@@ -659,9 +810,23 @@ public class Obstacles : MonoBehaviour
     IEnumerator IFrame()
     {
         GlobalControl.immune = true;
-
         yield return new WaitForSeconds(1f);
-
         GlobalControl.immune = false;
+    }
+
+    IEnumerator addSecond()
+    {
+        hold_time = true;
+        yield return new WaitForSeconds(1f);
+        time++;
+        hold_time = false;
+    }
+
+    IEnumerator delayRand(float time, int min, int max)
+    {
+        hold_rand = true;
+        yield return new WaitForSeconds(time);
+        randNum = Random.Range(min, max + 1);
+        hold_rand = false;
     }
 }

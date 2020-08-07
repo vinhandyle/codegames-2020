@@ -8,18 +8,170 @@ public class Scope : MonoBehaviour
     public string attachedTo;
     public static string sticky;
 
+    // Independent movement
+    public static float x;
+    public static float y;
+    public float speed;
+    public float range;
+    public float range_1;
+    public float range_2;
+
     public static bool seeWall = false;
 
     // Start is called before the first frame update
     void Start()
     {
         sticky = attachedTo;
+
+        x = transform.position.x;
+        y = transform.position.y;
+        if (range_1 + range_2 == 0)
+        {
+            range_1 = range;
+            range_2 = range;
+        }
+
+        // Set position
+        if (gameObject.name == "Warning" || gameObject.name == "Warning (1)" || gameObject.name == "Warning (2)")
+        {
+            transform.position = new Vector3(12, 12, 0);
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        // Overseer Machina
+        if (GlobalControl.area == "SG_12")
+        {
+            // Scorched Earth
+            if (gameObject.name == "Molten_")
+            {
+                // Move obj up or down
+                if (Obstacles.refState_5 == "warning")
+                {
+                    StartCoroutine(wait(2f, "refState_5"));
+                }
+                else if (Obstacles.refState_5 == "up")
+                {
+                    Obstacles.refState2_5 = "scorching";
+                    if (transform.position.y < y + range_1)
+                    {
+                        transform.position += new Vector3(0, speed, 0);
+                    }
+                    else
+                    {
+                        StartCoroutine(wait(8f, "refState_5"));
+                    }
+                }
+                else if (Obstacles.refState_5 == "down" && transform.position.y > y)
+                {
+                    if (transform.position.y > y)
+                    {
+                        transform.position += new Vector3(0, -speed, 0);
+                    }
+                    else
+                    {
+                        Obstacles.refState2_5 = "";
+                    }
+                }
+            }
+            else if (gameObject.name == "Warning")
+            {
+                if (Obstacles.refState_5 == "warning")
+                {
+                    transform.position = new Vector3(-1.007f, -3.75f, 0);
+                }
+                else if (Obstacles.refState_5 == "up")
+                {
+                    transform.position = new Vector3(12, 12, 0);
+                }
+            }
+
+            // Charge Beam
+            else if (gameObject.name == "OM_Beam_Upper")
+            {
+                if (Obstacles.refState1b_5 == "top")
+                {
+                    if (Obstacles.refState1a_5 == "warning")
+                    {
+                        StartCoroutine(wait(5f, "refState1a_5"));
+                    }
+                    else if (Obstacles.refState1a_5 == "beam")
+                    {
+                        if (transform.position.x > x - range_1)
+                        {
+                            transform.position += new Vector3(-speed, 0, 0);
+                        }
+                        else
+                        {
+                            StartCoroutine(wait(3f, "refState1a_5"));
+                        }
+                    }
+                    else if (Obstacles.refState1a_5 == "finish")
+                    {
+                        transform.position = new Vector3(7.6526357f, 2.06f, transform.position.z);
+                        Obstacles.refState1a_5 = "";
+                        Obstacles.refState2a_5 = "";
+                    }
+                }                
+            }
+            else if (gameObject.name == "OM_Beam_Lower")
+            {
+                if (Obstacles.refState1b_5 == "bottom")
+                {
+                    if (Obstacles.refState1a_5 == "warning")
+                    {
+                        StartCoroutine(wait(5f, "refState1a_5"));
+                    }
+                    else if (Obstacles.refState1a_5 == "beam")
+                    {
+                        if (transform.position.x > x - range_1)
+                        {
+                            transform.position += new Vector3(-speed, 0, 0);
+                        }
+                        else
+                        {
+                            StartCoroutine(wait(3f, "refState1a_5"));
+                        }
+                    }
+                    else if (Obstacles.refState1a_5 == "finish")
+                    {
+                        transform.position = new Vector3(7.6526357f, -1.94f, transform.position.z);
+                        Obstacles.refState1a_5 = "";
+                        Obstacles.refState2a_5 = "";
+                    }
+                }                
+            }
+            else if (gameObject.name == "Warning (1)")
+            {
+                if (Obstacles.refState1b_5 == "top")
+                {
+                    if (Obstacles.refState1a_5 == "warning")
+                    {
+                        transform.position = new Vector3(-1.007f, 1.11f, 0);
+                    }
+                    else if (Obstacles.refState1a_5 == "beam")
+                    {
+                        transform.position = new Vector3(12, 12, 0);
+                    }
+                }                
+            }
+            else if (gameObject.name == "Warning (2)")
+            {
+                if (Obstacles.refState1b_5 == "bottom")
+                {
+                    if (Obstacles.refState1a_5 == "warning")
+                    {
+                        transform.position = new Vector3(-1.007f, -1.742f, 0);
+                    }
+                    else if (Obstacles.refState1a_5 == "beam")
+                    {
+                        transform.position = new Vector3(12, 12, 0);
+                    }
+                }
+            }
+        }
     }
 
     private void OnTriggerStay2D(Collider2D other)
@@ -113,6 +265,45 @@ public class Scope : MonoBehaviour
                 {
                     seeWall = false;
                 }
+            }
+        }
+    }
+
+    IEnumerator wait(float time, string var)
+    {
+        string s = "";
+
+        if (var == "refState_5")
+        {
+            s = Obstacles.refState_5;
+            Obstacles.refState_5 = "";
+        }
+        else if (var == "refState1a_5")
+        {
+            s = Obstacles.refState1a_5;
+            Obstacles.refState1a_5 = "";
+        }
+        yield return new WaitForSeconds(time);
+        if (var == "refState_5")
+        {
+            if (s == "warning")
+            {
+                Obstacles.refState_5 = "up";
+            }
+            else if (s == "up")
+            {
+                Obstacles.refState_5 = "down";
+            }
+        }
+        else if (var == "refState1a_5")
+        {
+            if (s == "warning")
+            {
+                Obstacles.refState1a_5 = "beam";
+            }
+            else if (s == "beam")
+            {
+                Obstacles.refState1a_5 = "finish";
             }
         }
     }
