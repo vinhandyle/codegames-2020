@@ -14,6 +14,7 @@ public class PickUpItem : MonoBehaviour
     void Start()
     {
         itemName = gameObject.name;
+
         // Object isn't called in on scene load if already picked up
         if ((GlobalControl.batteryUnlocked && objName == "battery") ||
             (GlobalControl.solarUnlocked && objName == "starter") ||
@@ -26,10 +27,13 @@ public class PickUpItem : MonoBehaviour
             (GlobalControl.extra_2 && objName == "extra_2") ||
             (GlobalControl.extra_3 && objName == "extra_3") ||
             (GlobalControl.plating_1 && objName == "plating_1") ||
-            (GlobalControl.plating_2 && objName == "plating_2"))
+            (GlobalControl.plating_2 && objName == "plating_2") ||
+            (GlobalControl.scrap_1 && objName == "scrap_1") ||
+            (GlobalControl.scrap_2 && objName == "scrap_2") ||
+            (GlobalControl.scrap_3 && objName == "scrap_3"))
         {
             gameObject.SetActive(false);
-        }
+        }       
     }
 
     // Update is called once per frame

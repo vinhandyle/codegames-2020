@@ -8,8 +8,8 @@ public class Obstacles : MonoBehaviour
     public int healthMax;
     public int healthCurr;
     public int damage;
+    public bool hazard; 
     public List<Sprite> sprites;
-    public bool hazard; // Enemy or Hazard
 
     /*-----Variables used in AI-----*/
     // Starting Position
@@ -27,6 +27,15 @@ public class Obstacles : MonoBehaviour
     public int deAggroTime;
     public bool hold_time = false;
 
+    // Projectile
+    public List<GameObject> bulletPrefab;
+    public List<float> bulletSpeed;
+    public float baseUseTime;
+    public float useTime;
+    public int maxBullet;
+    public int currBullet;
+    public bool canShoot = true;
+
     // Random
     public float randNum;
     public bool hold_rand = false;
@@ -40,19 +49,20 @@ public class Obstacles : MonoBehaviour
     public string aiState;
 
     /* Pursuit */
-    public static string refState_1;
-    public static string refState2_1;
-    public static string refState2a_1;
-    public string refState3_1;
+    public static string refState_1;    // Current aiState
+    public static string refState2_1;   // Should it be passive?
+    public static string refState2a_1;  // Should it stop?
+    public string refState3_1;          // Where was it facing before it stopped?
 
     /* Overseer */
-    public static string refState_5;
-    public static string refState1a_5;
-    public static string refState1b_5;
-    public static string refState2_5;
-    public static string refState2a_5;
-    public string refState3_5;
-    public string refState3a_5;
+    public static string refState_5;    // Scorched Earth attack phase
+    public static string refState1a_5;  // Charge Beam attack phase
+    public static string refState1b_5;  // Center segment position
+    public static string refState2_5;   // Is Scorched Earth Active?
+    public static string refState2a_5;  // Is Charge Beam active?
+    public string refState3_5;          // Is Gear Shift active?
+    public string refState3a_5;         // Current boss phase
+    public string refState3b_5;         // Using an ObjectPooler?
 
     // Start is called before the first frame update
     void Start()
@@ -99,6 +109,10 @@ public class Obstacles : MonoBehaviour
             range_1 = range;
             range_2 = range;
         }
+
+        // Load gun
+        currBullet = maxBullet;
+        useTime = baseUseTime;
 
         // Initialize enemy health and damage
 
@@ -229,6 +243,7 @@ public class Obstacles : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // On kill
         if (healthCurr <= 0 && !hazard)
         { // Set enemy inactive when hp = 0
             gameObject.SetActive(false);
@@ -607,7 +622,7 @@ public class Obstacles : MonoBehaviour
             }
 
             // Gear Shift
-            if (time % 10 == 0 && time > 0 && refState3_5 != "shifted" && (refState2a_5 == "" || refState2a_5 == null))
+            if (time > 0 && refState3_5 != "shifted" && ((time % 10 == 0 && refState3a_5 != "phase 2") || (time % 5 == 0 && refState3a_5 == "phase 2")) && (refState2a_5 == "" || refState2a_5 == null))
             {
                 if (transform.position.y <= -1.94)
                 {
@@ -615,7 +630,6 @@ public class Obstacles : MonoBehaviour
                 }
                 else if (transform.position.y >= 2.06)
                 {
-                    Debug.Log(0);
                     aiState = "bottom";
                 }
                 refState3_5 = "shifted";
@@ -649,20 +663,29 @@ public class Obstacles : MonoBehaviour
             // Rest
             else if (aiState == "rest")
             {
+                refState3b_5 = "";
+                currBullet = maxBullet;
+                useTime = baseUseTime;
+
                 // Randomize next attack
-                if (!hold_rand)
+                if (!hold_rand && (refState1a_5 == "" || refState1a_5 == null))
                 {
-                    if (time < 10)
+                    // Opening, wait 1.5 seconds for player to adjust
+                    if (time < 2)
                     {
-                        StartCoroutine(delayRand(2f, 1, 2));
+                        StartCoroutine(delayRand(1.5f, 1, 2));
                     }
+
+                    // Phase 2, 2 seconds between attacks
                     else if (refState3a_5 == "phase 2")
                     {
-                        StartCoroutine(delayRand(1.5f, 1, 5));
+                        StartCoroutine(delayRand(2f, 1, 5));
                     }
+
+                    // Phase 1, 3 seconds between attacks
                     else
                     {
-                        StartCoroutine(delayRand(2f, 1, 3));
+                        StartCoroutine(delayRand(3f, 1, 3));
                     }
                 }
 
@@ -693,15 +716,39 @@ public class Obstacles : MonoBehaviour
             }
 
             // Ramping Fire
-            else if (aiState == "ramping")
+            else if (aiState == "ramping" && (refState2a_5 == "" || refState2a_5 == null))
             {
+                Vector3 difference = (Vector3)Player.rb2D.position - new Vector3(transform.position.x - GetComponent<BoxCollider2D>().size.x / 2, transform.position.y, transform.position.z);
+                float rotationZ = Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg;
+                refState3b_5 = "pooling";
 
+                if (canShoot && currBullet > 0)
+                {
+                    float distance = difference.magnitude;
+                    Vector2 direction = difference / distance;
+                    direction.Normalize();
+                    fireBullet(direction, rotationZ, bulletSpeed[0]);
+                    currBullet--;
+                    StartCoroutine(cooldown());
+                    useTime *= 0.85f;
+                }
+                else if (currBullet <= 0)
+                {
+                    aiState = "rest";
+                }
             }
 
             // Exploding Shot
-            else if (aiState == "exploding")
+            else if (aiState == "exploding" && (refState2a_5 == "" || refState2a_5 == null))
             {
+                Vector3 difference = (Vector3)Player.rb2D.position - new Vector3(transform.position.x - GetComponent<BoxCollider2D>().size.x / 2, transform.position.y, transform.position.z);
+                float rotationZ = Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg;
 
+                float distance = difference.magnitude;
+                Vector2 direction = difference / distance;
+                direction.Normalize();
+                fireBullet(direction, rotationZ, bulletSpeed[1]);
+                aiState = "rest";
             }
 
             // Scorched Earth
@@ -807,6 +854,28 @@ public class Obstacles : MonoBehaviour
         }
     }
 
+    void fireBullet(Vector2 direction, float rotation2, float speed)
+    {
+        // Fires a bullet from the pool
+        GameObject bullet = null;
+        if (refState3b_5 == "pooling")
+        {
+            bullet = EnemyObjectPooler.SharedInstance.GetPooledObject();
+        }
+        else
+        {
+            bullet = Instantiate(bulletPrefab[0]) as GameObject;
+        }
+
+        if (bullet != null)
+        {
+            bullet.SetActive(true);
+            bullet.transform.position = new Vector3(transform.position.x - GetComponent<BoxCollider2D>().size.x / 2, transform.position.y, transform.position.z);
+            bullet.transform.rotation = Quaternion.Euler(0.0f, 0.0f, rotation2);
+            bullet.GetComponent<Rigidbody2D>().velocity = direction * speed;
+        }
+    }
+
     IEnumerator IFrame()
     {
         GlobalControl.immune = true;
@@ -828,5 +897,14 @@ public class Obstacles : MonoBehaviour
         yield return new WaitForSeconds(time);
         randNum = Random.Range(min, max + 1);
         hold_rand = false;
+    }
+
+    IEnumerator cooldown()
+    {
+        canShoot = false;
+
+        yield return new WaitForSeconds(useTime);
+
+        canShoot = true;
     }
 }

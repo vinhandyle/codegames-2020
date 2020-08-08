@@ -55,6 +55,10 @@ public class GlobalControl : MonoBehaviour
     public static bool plating_1 = false;          // Special Plating pick-ups
     public static bool plating_2 = false;
 
+    public static bool scrap_1 = false;            // Hyper Scrap pick-ups
+    public static bool scrap_2 = false;
+    public static bool scrap_3 = false;
+
     // Inventory Numbers
     public static string menu = "help";            // Which menu the player was in
     public static int plateNum = 0;                // Number of special plating obtained
@@ -222,7 +226,7 @@ public class GlobalControl : MonoBehaviour
         if (reactor == "basic")
         {
             energyUse = 1;
-            damage = 5 + bossDowned;
+            damage = 1 + bossDowned;
         }
         else if (reactor == "imperial")
         {
@@ -274,7 +278,7 @@ public class GlobalControl : MonoBehaviour
             {
                 if (counter_1 > 0)
                 {
-                    StartCoroutine(SceneSwitch("DH_2", "Checkpoint_2"));
+                    //StartCoroutine(SceneSwitch("DH_2", "Checkpoint_2"));
                 }
                 else
                 {
@@ -366,10 +370,18 @@ public class GlobalControl : MonoBehaviour
         basicUnlocked = true;      
         imperialUnlocked = true;    
         familiarUnlocked = true;    
-        unstableUnlocked = true;    
-        scrapFound = true;          
-        extraFound = true;         
+        unstableUnlocked = true;
         plateFound = true;
+        extraFound = true;         
+        scrapFound = true;
+        plating_1 = true;
+        plating_2 = true;
+        extra_1 = true;
+        extra_2 = true;
+        extra_3 = true;
+        scrap_1 = true;
+        scrap_2 = true;
+        scrap_3 = true;
 
         // Enemy Catalog
         counter_1 = 1;

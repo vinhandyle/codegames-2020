@@ -22,7 +22,7 @@ public class DestroyByCollision : MonoBehaviour
         if (other.gameObject.CompareTag("Wall") || other.gameObject.CompareTag("Floor") || other.gameObject.CompareTag("Ceiling") || other.gameObject.CompareTag("Enemy") || (other.gameObject.name.Substring(0, 5) == "Errat" && GlobalControl.reactor == "imperial"))
         {
             // Destroy bullet
-            if (gameObject.CompareTag("Player Bullet"))
+            if (gameObject.CompareTag("Player Bullet") || gameObject.CompareTag("Enemy Bullet"))
             {
                 gameObject.SetActive(false);
             }

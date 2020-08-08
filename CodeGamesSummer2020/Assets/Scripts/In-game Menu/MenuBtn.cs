@@ -56,17 +56,24 @@ public class MenuBtn : MonoBehaviour
                     (gameObject.name == "Btn_16" && GlobalControl.scrapFound)))
             {
                 img.color = new Color(1f, 1f, 1f, 1f);
-                if (gameObject.name == "Btn_12" && GlobalControl.data == 100)
+                if (gameObject.name == "Btn_12")
                 {
-                    gameObject.GetComponent<Image>().sprite = extra_2;
-                }
-                else if (gameObject.name == "Btn_12" && GlobalControl.data >= 50)
-                {
-                    gameObject.GetComponent<Image>().sprite = extra_1;
+                    if (GlobalControl.data == 100)
+                    {
+                        img.sprite = extra_2;
+                    }
+                    else if (GlobalControl.data >= 50)
+                    {
+                        img.sprite = extra_1;
+                    }
+                    else
+                    {
+                        img.sprite = item;
+                    }
                 }
                 else
                 {
-                    gameObject.GetComponent<Image>().sprite = item;
+                    img.sprite = item;
                 }
             }
 
@@ -84,7 +91,7 @@ public class MenuBtn : MonoBehaviour
                 (gameObject.name == "Btn_15" && GlobalControl.downed_boss_4)))
             {
                 img.color = new Color(1f, 1f, 1f, 1f);
-                gameObject.GetComponent<Image>().sprite = enemy;
+                img.sprite = enemy;
             }
 
             // Reports
@@ -101,7 +108,7 @@ public class MenuBtn : MonoBehaviour
                 (gameObject.name == "Btn_15" && GlobalControl.report_10)))
             {
                 img.color = new Color(1f, 1f, 1f, 1f);
-                gameObject.GetComponent<Image>().sprite = report;
+                img.sprite = report;
             }
             else
             {

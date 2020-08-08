@@ -88,10 +88,23 @@ public class InteractText : MonoBehaviour
                         text.text = "Picked up: Unstable Reactor";
                         GlobalControl.unstableUnlocked = true;
                     }
-                    else if (type == "scrap")
+                    else if (type.Substring(0, 5) == "Scrap")
                     {
                         text.text = "Picked up: Hyper Scrap";
+                        if (attachedTo == "Scrap_1")
+                        {
+                            GlobalControl.scrap_1 = true;
+                        }
+                        else if (attachedTo == "Scrap_2")
+                        {
+                            GlobalControl.scrap_2 = true;
+                        }
+                        else if (attachedTo == "Scrap_3")
+                        {
+                            GlobalControl.scrap_3 = true;
+                        }
                         GlobalControl.scrapFound = true;
+                        GlobalControl.scrapNum++;
                     }
                     else if (type == "extra")
                     {
@@ -215,7 +228,7 @@ public class InteractText : MonoBehaviour
 
                     // Lingering textbox on item pickup
                     if (type == "ego" || type == "Starter" || type == "geothermal" || type == "Map" || type == "Heartless" ||
-                        type == "Lost" || type == "Unstable" || type == "plating" || type == "extra" || type == "scrap" ||
+                        type == "Lost" || type == "Unstable" || type == "plating" || type == "extra" || type.Substring(0, 5) == "Scrap" ||
                         (type == "post-craft" && !triggerOnce))
                     {
                         triggerOnce = true;

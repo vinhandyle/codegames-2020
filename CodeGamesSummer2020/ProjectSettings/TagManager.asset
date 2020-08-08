@@ -12,6 +12,7 @@ TagManager:
   - Boundary
   - Solar
   - Geothermal
+  - Enemy Bullet
   layers:
   - Default
   - TransparentFX

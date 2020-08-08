@@ -21,7 +21,7 @@ public class DestroyByBoundary : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Boundary"))
         {
-            if (gameObject.CompareTag("Player Bullet"))
+            if (gameObject.CompareTag("Player Bullet") || gameObject.CompareTag("Enemy Bullet"))
             {
                 gameObject.SetActive(false);
             }

@@ -29,6 +29,5 @@ public class ReactorBtnBehavior : MonoBehaviour
                 GlobalControl.reactor = "imperial";
             }
         }
-        Debug.Log(GlobalControl.reactor);
     }
 }
