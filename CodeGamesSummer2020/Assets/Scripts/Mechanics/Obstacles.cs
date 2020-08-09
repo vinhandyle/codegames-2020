@@ -28,7 +28,6 @@ public class Obstacles : MonoBehaviour
     public bool hold_time = false;
 
     // Projectile
-    public List<GameObject> bulletPrefab;
     public List<float> bulletSpeed;
     public float baseUseTime;
     public float useTime;
@@ -62,7 +61,7 @@ public class Obstacles : MonoBehaviour
     public static string refState2a_5;  // Is Charge Beam active?
     public string refState3_5;          // Is Gear Shift active?
     public string refState3a_5;         // Current boss phase
-    public string refState3b_5;         // Using an ObjectPooler?
+    public string refState3b_5;         // Which ObjectPooler?
 
     // Start is called before the first frame update
     void Start()
@@ -720,7 +719,7 @@ public class Obstacles : MonoBehaviour
             {
                 Vector3 difference = (Vector3)Player.rb2D.position - new Vector3(transform.position.x - GetComponent<BoxCollider2D>().size.x / 2, transform.position.y, transform.position.z);
                 float rotationZ = Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg;
-                refState3b_5 = "pooling";
+                refState3b_5 = "pool_1";
 
                 if (canShoot && currBullet > 0)
                 {
@@ -743,6 +742,7 @@ public class Obstacles : MonoBehaviour
             {
                 Vector3 difference = (Vector3)Player.rb2D.position - new Vector3(transform.position.x - GetComponent<BoxCollider2D>().size.x / 2, transform.position.y, transform.position.z);
                 float rotationZ = Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg;
+                refState3b_5 = "pool_2";
 
                 float distance = difference.magnitude;
                 Vector2 direction = difference / distance;
@@ -858,13 +858,13 @@ public class Obstacles : MonoBehaviour
     {
         // Fires a bullet from the pool
         GameObject bullet = null;
-        if (refState3b_5 == "pooling")
+        if (refState3b_5 == "pool_1")
         {
             bullet = EnemyObjectPooler.SharedInstance.GetPooledObject();
         }
-        else
+        else if(refState3b_5 == "pool_2")
         {
-            bullet = Instantiate(bulletPrefab[0]) as GameObject;
+            bullet = EnemyObjectPooler2.SharedInstance.GetPooledObject();
         }
 
         if (bullet != null)

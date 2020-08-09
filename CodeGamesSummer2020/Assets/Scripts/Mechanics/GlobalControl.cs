@@ -74,7 +74,7 @@ public class GlobalControl : MonoBehaviour
     public static int bossDowned = 0;              // How many bosses have been defeated
     public static bool switched = false;           // Used to set position on scene switch
 
-    public static string area = "SG_12";                // Area name for scene change purposes
+    public static string area = "";                // Area name for scene change purposes
     public static string prevArea = "";            // Name of previous area
     public static string checkpoint = "";          // Area name of last repair station used
 
@@ -226,7 +226,7 @@ public class GlobalControl : MonoBehaviour
         if (reactor == "basic")
         {
             energyUse = 1;
-            damage = 1 + bossDowned;
+            damage = 10 + bossDowned;
         }
         else if (reactor == "imperial")
         {
@@ -278,7 +278,7 @@ public class GlobalControl : MonoBehaviour
             {
                 if (counter_1 > 0)
                 {
-                    //StartCoroutine(SceneSwitch("DH_2", "Checkpoint_2"));
+                    StartCoroutine(SceneSwitch("DH_2", "Checkpoint_2"));
                 }
                 else
                 {

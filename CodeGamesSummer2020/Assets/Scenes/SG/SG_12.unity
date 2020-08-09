@@ -854,12 +854,12 @@ BoxCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
+    border: {x: 0.02, y: 0.02, z: 0.02, w: 0.02}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
+    oldSize: {x: 0.32, y: 0.64}
     newSize: {x: 2, y: 4}
     adaptiveTilingThreshold: 0.5
-    drawMode: 2
+    drawMode: 1
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
@@ -904,11 +904,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 8531cb4bc47db8749ad9fc98b8a5d4ac, type: 3}
+  m_Sprite: {fileID: -7528046197353192896, guid: c1407099ba3d1f848b3b25f887226579,
+    type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
-  m_DrawMode: 2
+  m_DrawMode: 1
   m_Size: {x: 2, y: 4}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
@@ -1198,6 +1199,7 @@ GameObject:
   - component: {fileID: 409310571}
   - component: {fileID: 409310572}
   - component: {fileID: 409310573}
+  - component: {fileID: 409310574}
   m_Layer: 9
   m_Name: Overseer
   m_TagString: Enemy
@@ -1261,12 +1263,11 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 3029603797402824116, guid: c6f681c3cec8abd45a55c1dfa6cc8eea,
-    type: 3}
+  m_Sprite: {fileID: 21300000, guid: 25ed52d6db9227c43acd4a1a75ded79f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
-  m_DrawMode: 2
+  m_DrawMode: 1
   m_Size: {x: 2, y: 4}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
@@ -1288,12 +1289,12 @@ BoxCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
+    border: {x: 0.02, y: 0.02, z: 0.02, w: 0.02}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
+    oldSize: {x: 0.32, y: 0.64}
     newSize: {x: 2, y: 4}
     adaptiveTilingThreshold: 0.5
-    drawMode: 2
+    drawMode: 1
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
@@ -1325,8 +1326,6 @@ MonoBehaviour:
   time: 0
   deAggroTime: 0
   hold_time: 0
-  bulletPrefab:
-  - {fileID: 6006091208539876972, guid: 59504334e2bddd2468fb325e2f55b209, type: 3}
   bulletSpeed:
   - 7.5
   - 4
@@ -1358,6 +1357,22 @@ MonoBehaviour:
   objectToPool: {fileID: 146330153113669660, guid: 5ca652329e9fd484684e97123072be93,
     type: 3}
   amountToPool: 15
+--- !u!114 &409310574
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 409310568}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 248431fb69a62124d91240a4cad5e6c1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pooledObjects: []
+  objectToPool: {fileID: 6006091208539876972, guid: 59504334e2bddd2468fb325e2f55b209,
+    type: 3}
+  amountToPool: 3
 --- !u!1 &459614254
 GameObject:
   m_ObjectHideFlags: 0
@@ -1371,6 +1386,7 @@ GameObject:
   - component: {fileID: 459614257}
   - component: {fileID: 459614258}
   - component: {fileID: 459614259}
+  - component: {fileID: 459614260}
   m_Layer: 9
   m_Name: OM_Beam_Upper
   m_TagString: Untagged
@@ -1431,7 +1447,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 4385501425044414559, guid: c6f681c3cec8abd45a55c1dfa6cc8eea,
+  m_Sprite: {fileID: 8276888598759166865, guid: e00afbb48106b42458db1b1390ed9b6c,
     type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -1460,7 +1476,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
+    oldSize: {x: 4, y: 4}
     newSize: {x: 10, y: 4}
     adaptiveTilingThreshold: 0.5
     drawMode: 2
@@ -1486,7 +1502,7 @@ MonoBehaviour:
   y: 0
   speed: 0.05
   range: 0
-  range_1: 8
+  range_1: 10
   range_2: 0
 --- !u!114 &459614259
 MonoBehaviour:
@@ -1514,7 +1530,6 @@ MonoBehaviour:
   time: 0
   deAggroTime: 0
   hold_time: 0
-  bulletPrefab: []
   bulletSpeed: []
   baseUseTime: 0
   useTime: 0
@@ -1528,6 +1543,25 @@ MonoBehaviour:
   refState3_5: 
   refState3a_5: 
   refState3b_5: 
+--- !u!95 &459614260
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 459614254}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 13a3af4efc4d21c4f972b3962740ef92, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &462185112
 GameObject:
   m_ObjectHideFlags: 0
@@ -4002,7 +4036,6 @@ MonoBehaviour:
   time: 0
   deAggroTime: 0
   hold_time: 0
-  bulletPrefab: []
   bulletSpeed: []
   baseUseTime: 0
   useTime: 0
@@ -4213,6 +4246,7 @@ GameObject:
   - component: {fileID: 1017675544}
   - component: {fileID: 1017675543}
   - component: {fileID: 1017675546}
+  - component: {fileID: 1017675547}
   m_Layer: 9
   m_Name: OM_Beam_Lower
   m_TagString: Untagged
@@ -4251,7 +4285,7 @@ MonoBehaviour:
   y: 0
   speed: 0.05
   range: 0
-  range_1: 8
+  range_1: 10
   range_2: 0
 --- !u!61 &1017675544
 BoxCollider2D:
@@ -4270,7 +4304,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
+    oldSize: {x: 4, y: 4}
     newSize: {x: 10, y: 4}
     adaptiveTilingThreshold: 0.5
     drawMode: 2
@@ -4318,7 +4352,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 4385501425044414559, guid: c6f681c3cec8abd45a55c1dfa6cc8eea,
+  m_Sprite: {fileID: 8276888598759166865, guid: e00afbb48106b42458db1b1390ed9b6c,
     type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -4356,7 +4390,6 @@ MonoBehaviour:
   time: 0
   deAggroTime: 0
   hold_time: 0
-  bulletPrefab: []
   bulletSpeed: []
   baseUseTime: 0
   useTime: 0
@@ -4370,6 +4403,25 @@ MonoBehaviour:
   refState3_5: 
   refState3a_5: 
   refState3b_5: 
+--- !u!95 &1017675547
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1017675541}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 13a3af4efc4d21c4f972b3962740ef92, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1018966907
 GameObject:
   m_ObjectHideFlags: 0
@@ -8652,12 +8704,12 @@ BoxCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
+    border: {x: 0.02, y: 0.02, z: 0.02, w: 0.02}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
+    oldSize: {x: 0.32, y: 0.64}
     newSize: {x: 2, y: 4}
     adaptiveTilingThreshold: 0.5
-    drawMode: 2
+    drawMode: 1
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
@@ -8702,11 +8754,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 8531cb4bc47db8749ad9fc98b8a5d4ac, type: 3}
+  m_Sprite: {fileID: 5975356032342182384, guid: c1407099ba3d1f848b3b25f887226579,
+    type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
-  m_DrawMode: 2
+  m_DrawMode: 1
   m_Size: {x: 2, y: 4}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0

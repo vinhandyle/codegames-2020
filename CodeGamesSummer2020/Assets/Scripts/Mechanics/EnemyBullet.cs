@@ -5,7 +5,7 @@ using UnityEngine;
 public class EnemyBullet : MonoBehaviour
 {
     public int damage;
-    public bool pooling = false;
+    public int poolNum;
     public Vector3 position;
     public List<GameObject> frag;
 
@@ -22,7 +22,7 @@ public class EnemyBullet : MonoBehaviour
             else if (gameObject.name.Substring(0, 14) == "Large E_Bullet")
             {
                 damage = 4;
-                pooling = true;
+                poolNum = 0;
             }
         }
     }
@@ -43,25 +43,13 @@ public class EnemyBullet : MonoBehaviour
 
         if (gameObject.name.Substring(0, 14) == "Large E_Bullet" && GlobalControl.area == "SG_12")
         {
-            float x = 0;
-            float y = 0;
             position = transform.position;
 
             if (other.CompareTag("Floor") || other.CompareTag("Ceiling") || other.CompareTag("Wall") || other.CompareTag("Player"))
             {
                 for (int i = 0; i < 8; i++)
                 {
-                    // 8-spread circle
-                    if (i == 0) { x = 1; y = 0; }
-                    else if (i == 1) { x = Mathf.Sqrt(2) / 2; y = Mathf.Sqrt(2) / 2; }
-                    else if (i == 2) { x = 0; y = 1; }
-                    else if (i == 3) { x = Mathf.Sqrt(2) / -2; y = Mathf.Sqrt(2) / 2; }
-                    else if (i == 4) { x = -1; y = 0; }
-                    else if (i == 5) { x = Mathf.Sqrt(2) / -2; y = Mathf.Sqrt(2) / -2; }
-                    else if (i == 6) { x = 0; y = -1; }
-                    else if (i == 7) { x = Mathf.Sqrt(2) / 2; y = Mathf.Sqrt(2) / -2; }
-
-                    fireBullet(frag[0], new Vector2(x, y), 45 * i, 5f);
+                    fireBullet(frag[0], new Vector2(Mathf.Cos(i * Mathf.PI / 4), Mathf.Sin(i * Mathf.PI / 4)), 45 * i, 5f);
                 }
             }
         }
@@ -73,13 +61,13 @@ public class EnemyBullet : MonoBehaviour
         // Fires a bullet from the pool
         GameObject b = null;
 
-        if (pooling)
+        if (poolNum == 0)
         {
             b = EnemyObjectPooler.SharedInstance.GetPooledObject();
         }
-        else
+        else if (poolNum == 1)
         {
-            b = Instantiate(bullet) as GameObject;
+            b = EnemyObjectPooler2.SharedInstance.GetPooledObject();
         }
 
         if (bullet != null)

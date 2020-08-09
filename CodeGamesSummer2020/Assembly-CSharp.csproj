@@ -93,6 +93,7 @@
     <Compile Include="Assets\Scripts\Mechanics\DestructibleBlock.cs" />
     <Compile Include="Assets\Scripts\Mechanics\EnemyBullet.cs" />
     <Compile Include="Assets\Scripts\Mechanics\EnemyObjectPooler.cs" />
+    <Compile Include="Assets\Scripts\Mechanics\EnemyObjectPooler2.cs" />
     <Compile Include="Assets\Scripts\Mechanics\EnergySource.cs" />
     <Compile Include="Assets\Scripts\Mechanics\EnterDoor.cs" />
     <Compile Include="Assets\Scripts\Mechanics\GlobalControl.cs" />
