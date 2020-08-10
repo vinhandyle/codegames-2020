@@ -89,7 +89,7 @@ public class AreaText : MonoBehaviour
             {
                 text.text = "Central Disposal Area";
             }
-            else if (GlobalControl.area == "SG_2S")
+            else if (GlobalControl.area == "SG_2S") // Kin
             {
                 text.text = "Upper Disposal Area";
             }
@@ -121,7 +121,7 @@ public class AreaText : MonoBehaviour
             {
                 text.text = "Storage Area";
             }
-            else if (GlobalControl.area == "SG_9S")
+            else if (GlobalControl.area == "SG_9S") // Plating
             {
                 text.text = "Storage Depths";
             }
@@ -133,7 +133,7 @@ public class AreaText : MonoBehaviour
             {
                 text.text = "Overpass";
             }
-            else if (GlobalControl.area == "SG_11S")
+            else if (GlobalControl.area == "SG_11S") // Kin
             {
                 text.text = "Garden Heights";
             }
@@ -143,7 +143,7 @@ public class AreaText : MonoBehaviour
             }
 
             // Twilight Town
-            else if (GlobalControl.area == "TT_1")
+            else if (GlobalControl.area == "TT_1") // Battery
             {
                 text.text = "Outer Garden";
             }

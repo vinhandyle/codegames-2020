@@ -35,24 +35,52 @@ public class EnemyBullet : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
+        // On hit player
         if (other.name == "Player")
         {
-            gameObject.SetActive(false);
+            // Deal damage
             GlobalControl.healthCurr -= damage;
+
+            // Exploding Shot
+            if (gameObject.name.Substring(0, 14) == "Large E_Bullet" && GlobalControl.area == "SG_12")
+            {
+                position = transform.position;
+                gameObject.SetActive(false);
+
+                for (int i = 0; i < 8; i++)
+                {
+                    fireBullet(frag[0], new Vector2(Mathf.Cos(i * Mathf.PI / 4), Mathf.Sin(i * Mathf.PI / 4)), 45 * i, 5f);
+                }
+            }
+            
+            // Normal bullets
+            else
+            {
+                gameObject.SetActive(false);
+            }
         }
 
-        if (gameObject.name.Substring(0, 14) == "Large E_Bullet" && GlobalControl.area == "SG_12")
+        // On hit outer box
+        else if (other.transform.parent.name == "Bottom Floor" || other.transform.parent.name == "Top Ceiling" || other.transform.parent.name == "Left Side" || other.transform.parent.name == "Right Side" || other.transform.parent.name == "Destructibles")
         {
-            position = transform.position;
-
-            if (other.CompareTag("Floor") || other.CompareTag("Ceiling") || other.CompareTag("Wall") || other.CompareTag("Player"))
+            // Exploding Shot
+            if (gameObject.name.Substring(0, 14) == "Large E_Bullet" && GlobalControl.area == "SG_12")
             {
+                position = transform.position;
+                gameObject.SetActive(false);
+
                 for (int i = 0; i < 8; i++)
                 {
                     fireBullet(frag[0], new Vector2(Mathf.Cos(i * Mathf.PI / 4), Mathf.Sin(i * Mathf.PI / 4)), 45 * i, 5f);
                 }
             }
         }
+
+        // On hit any terrain
+        else if (other.CompareTag("Floor") || other.CompareTag("Ceiling") || other.CompareTag("Wall"))
+        {
+            
+        }        
     }
 
     // Parameters: object fired, trajectory, object/sprite rotation, object velocity

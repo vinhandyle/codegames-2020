@@ -226,7 +226,7 @@ public class GlobalControl : MonoBehaviour
         if (reactor == "basic")
         {
             energyUse = 1;
-            damage = 10 + bossDowned;
+            damage = 1 + bossDowned;
         }
         else if (reactor == "imperial")
         {
@@ -360,16 +360,16 @@ public class GlobalControl : MonoBehaviour
         // Inventory
         batteryUnlocked = true;   
         solarUnlocked = true;       
-        geoUnlocked = true;         
+        //geoUnlocked = true;         
         gunUnlocked = true;        
         mapUnlocked = true;         
         heartlessUnlocked = true;   
-        dashUnlocked = true;        
+        //dashUnlocked = true;        
         //clingUnlocked = true;       
-        doubleUnlocked = true;      
+        //doubleUnlocked = true;      
         basicUnlocked = true;      
-        imperialUnlocked = true;    
-        familiarUnlocked = true;    
+        //imperialUnlocked = true;    
+        //familiarUnlocked = true;    
         unstableUnlocked = true;
         plateFound = true;
         extraFound = true;         

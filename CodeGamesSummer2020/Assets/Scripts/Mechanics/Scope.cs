@@ -20,7 +20,10 @@ public class Scope : MonoBehaviour
     public static bool once = false;
     public static bool once_1 = false;
 
-    public static bool seeWall = false;
+    public static bool seeWall = false;     // Is there a wall in the way?
+    public static bool leftWall = false;    // Is there any wall to the left?
+    public static bool rightWall = false;   // Is there any wall to the right?
+    public static string seePlayer = null;  // Can the player be seen?
 
     // Start is called before the first frame update
     void Start()
@@ -46,6 +49,7 @@ public class Scope : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Debug.Log(seePlayer);
         // Overseer Machina
         if (GlobalControl.area == "SG_12")
         {
@@ -224,26 +228,56 @@ public class Scope : MonoBehaviour
                     // Walls block vision
                     if (gameObject.name == "Detect_Player")
                     {
-                        // Logic for determining if player should be seen
-                        if ((Obstacles.refState_1 == "passive_left" &&                                                                                                                                                // Facing left
-                            gameObject.transform.parent.position.x > other.transform.position.x &&                                                                                                                  // To the right of the wall
-                            Player.rb2D.position.x < gameObject.transform.parent.position.x &&                                                                                                                      // Player is to the left 
-                            Player.rb2D.position.x + Player.rb2D.gameObject.GetComponent<CircleCollider2D>().radius < other.transform.position.x - other.gameObject.GetComponent<BoxCollider2D>().size.x / 2 &&     // Player is to the left of the wall
-                            Player.rb2D.position.y + Player.rb2D.gameObject.GetComponent<CircleCollider2D>().radius < other.transform.position.y + other.gameObject.GetComponent<BoxCollider2D>().size.y / 2) ||     // Player is shorter than the wall
-                            (Obstacles.refState_1 == "passive_right" &&                                                                                                                                               // Facing right
-                            gameObject.transform.parent.position.x < other.transform.position.x &&                                                                                                                  // To the left of the wall
-                            Player.rb2D.position.x > gameObject.transform.parent.position.x &&                                                                                                                      // Player is to the right
-                            Player.rb2D.position.x - Player.rb2D.gameObject.GetComponent<CircleCollider2D>().radius > other.transform.position.x + other.gameObject.GetComponent<BoxCollider2D>().size.x / 2 &&     // Player is to the right of the wall
-                            Player.rb2D.position.y + Player.rb2D.gameObject.GetComponent<CircleCollider2D>().radius < other.transform.position.y + other.gameObject.GetComponent<BoxCollider2D>().size.y / 2) ||    // Player is shorter than the wall
-                            (Obstacles.refState_1 == "passive_left" && Player.rb2D.position.x > gameObject.transform.parent.position.x) ||                                                                            // Player is behind
-                            (Obstacles.refState_1 == "passive_right" && Player.rb2D.position.x < gameObject.transform.parent.position.x))
+                        // Reset sight if player goes over wall
+                        if (other.transform.position.y + other.GetComponent<BoxCollider2D>().size.y / 2 < Player.rb2D.position.y + Player.rb2D.GetComponent<CircleCollider2D>().radius)
+                            seePlayer = null;
+
+                        if (Obstacles.refState_1 == "passive_left" && other.transform.position.x < transform.position.x)
                         {
-                            Obstacles.refState2_1 = "passive";
+                            leftWall = true;
+                        }
+                        else if (Obstacles.refState_1 == "passive_right" && other.transform.position.x > transform.position.x)
+                        {
+                            rightWall = true;
+                        }
+
+                        // Facing player
+                        if ((Obstacles.refState_1 == "passive_left" && Player.rb2D.position.x < transform.position.x) || (Obstacles.refState_1 == "passive_right" && Player.rb2D.position.x > transform.position.x))
+                        {
+                            // Wall is behind player and in front of self
+                            if ((Obstacles.refState_1 == "passive_left" && other.transform.position.x < Player.rb2D.position.x && other.transform.position.x < transform.position.x) ||
+                                (Obstacles.refState_1 == "passive_right" && other.transform.position.x > Player.rb2D.position.x && other.transform.position.x > transform.position.x))
+                            {
+                                // If no walls are in front of player
+                                if (seePlayer != "false" && seePlayer != null)
+                                {
+                                    Obstacles.refState2_1 = "";
+                                }
+                            }
+                            // If there is no wall in the direction of the player but a wall behind self
+                            else if ((Obstacles.refState_1 == "passive_left" && other.transform.position.x > Player.rb2D.position.x && other.transform.position.x > transform.position.x && !leftWall) ||
+                                    (Obstacles.refState_1 == "passive_right" && other.transform.position.x < Player.rb2D.position.x && other.transform.position.x < transform.position.x && !rightWall))
+                            {
+                                // If no walls are in front of player
+                                if (seePlayer != "false" && seePlayer != null)
+                                {
+                                    Obstacles.refState2_1 = "";
+                                }
+                            }
+                            else
+                            {
+                                Obstacles.refState2_1 = "passive";
+                                seePlayer = "false";
+                            }
+
+                            // Allows all walls to be viewed
+                            if (seePlayer != "false")
+                                seePlayer = "";
                         }
                         else
                         {
-                            Obstacles.refState2_1 = "";
-                        }
+                            Obstacles.refState2_1 = "passive";
+                        }                    
                     }
                     // Walls stop movement
                     else if (gameObject.name == "Detect_Wall")
@@ -266,11 +300,19 @@ public class Scope : MonoBehaviour
             }
 
             // No walls detected
-            else if(!seeWall)
+            else if (!seeWall)
             {
-                if(sticky.Substring(0, 7) == "Pursuit")
+                if (sticky.Substring(0, 7) == "Pursuit")
                 {
-                    Obstacles.refState2_1 = "";
+                    if ((Obstacles.refState_1 == "passive_left" && Player.rb2D.position.x > gameObject.transform.parent.position.x) ||
+                        (Obstacles.refState_1 == "passive_right" && Player.rb2D.position.x < gameObject.transform.parent.position.x))
+                    {
+                        Obstacles.refState2_1 = "passive";
+                    }
+                    else
+                    {
+                        Obstacles.refState2_1 = "";
+                    }
                     Obstacles.refState2a_1 = "";
                 }
             }
@@ -295,7 +337,7 @@ public class Scope : MonoBehaviour
                     }
                 }
             }
-            else if (other.CompareTag("Wall") && !(other.gameObject.transform.parent.name == "Left Side" || other.gameObject.transform.parent.name == "Right Side"))
+            else if (gameObject.name == "Detect_Player" && other.CompareTag("Wall") && !(other.gameObject.transform.parent.name == "Left Side" || other.gameObject.transform.parent.name == "Right Side"))
             {
                 // Update to see if there are still any walls blocking vision
                 if(sticky.Substring(0, 7) == "Pursuit")

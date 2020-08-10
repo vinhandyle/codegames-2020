@@ -469,6 +469,7 @@ public class Obstacles : MonoBehaviour
             }
             else if (aiState == "passive_left")
             {
+                
                 // Detect player when facing towards and at the same level
                 if (Player.rb2D.position.y - Player.rb2D.gameObject.GetComponent<CircleCollider2D>().radius < transform.position.y + gameObject.GetComponent<BoxCollider2D>().size.y / 2 &&
                     Player.rb2D.position.y + Player.rb2D.gameObject.GetComponent<CircleCollider2D>().radius > transform.position.y - gameObject.GetComponent<BoxCollider2D>().size.y / 2 &&

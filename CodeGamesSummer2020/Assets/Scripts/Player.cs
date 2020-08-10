@@ -106,7 +106,7 @@ public class Player : MonoBehaviour
         if (Input.GetKey("a") && !dashing && canLeft)
         {
             direction = "left";
-            GetComponent<Rigidbody2D>().velocity = new Vector2(-moveBy, GetComponent<Rigidbody2D>().velocity.y);
+            rb2D.velocity = new Vector2(-moveBy, rb2D.velocity.y);
             if (firstPress)
             {
                 firstLeft = true;
@@ -121,7 +121,7 @@ public class Player : MonoBehaviour
         if (Input.GetKey("d") && !dashing && canRight)
         {
             direction = "right";
-            GetComponent<Rigidbody2D>().velocity = new Vector2(moveBy, GetComponent<Rigidbody2D>().velocity.y);
+            rb2D.velocity = new Vector2(moveBy, rb2D.velocity.y);
             if (firstPress)
             {
                 firstRight = true;
@@ -183,11 +183,11 @@ public class Player : MonoBehaviour
                 // Checking for first left/right prevents dashing when rapidly alternating between left/right
                 if (direction == "left" && firstLeft)
                 {
-                    GetComponent<Rigidbody2D>().velocity = new Vector2(-3 * moveBy, GetComponent<Rigidbody2D>().velocity.y);
+                    rb2D.velocity = new Vector2(-3 * moveBy, rb2D.velocity.y);
                 }
                 else if (direction == "right" && firstRight)
                 {
-                    GetComponent<Rigidbody2D>().velocity = new Vector2(3 * moveBy, GetComponent<Rigidbody2D>().velocity.y);
+                    rb2D.velocity = new Vector2(3 * moveBy, rb2D.velocity.y);
 
                 }
                 StartCoroutine(postDash());
@@ -201,7 +201,7 @@ public class Player : MonoBehaviour
         }
 
         // Jump if player is grounded or clinging to a wall
-        if (canJump1 && Input.GetKeyDown("space"))
+        if (canJump1 && (Input.GetKey("space") || Input.GetKeyDown("space")))
         {
             // Prevents jumping again mid-air
             canJump1 = false;
@@ -209,8 +209,8 @@ public class Player : MonoBehaviour
             midJump = true;
 
             // The actual jump
-            GetComponent<Rigidbody2D>().velocity = new Vector2(GetComponent<Rigidbody2D>().velocity.x, 0);
-            GetComponent<Rigidbody2D>().velocity = new Vector2(GetComponent<Rigidbody2D>().velocity.x, jumpHeight);
+            rb2D.velocity = new Vector2(rb2D.velocity.x, 0);
+            rb2D.velocity = new Vector2(rb2D.velocity.x, jumpHeight);
         }
 
         // Jumping without landing allows for a second jump if unlocked
@@ -228,7 +228,7 @@ public class Player : MonoBehaviour
             midJump = true;
 
             //The actual jump
-            GetComponent<Rigidbody2D>().velocity = new Vector2(GetComponent<Rigidbody2D>().velocity.x, jumpHeight);
+            rb2D.velocity = new Vector2(rb2D.velocity.x, jumpHeight);
         }
     }
 
@@ -241,6 +241,26 @@ public class Player : MonoBehaviour
             canJump1 = true;
             canJump2 = false;
             jumped = false;
+        }
+        // Allows jumping if on wall edge
+        else if (collision.collider.tag == "Wall" && collision.collider.transform.parent.name != "Destructibles" && transform.position.y - gameObject.GetComponent<CircleCollider2D>().radius > collision.collider.transform.position.y + collision.collider.GetComponent<BoxCollider2D>().size.y / 3)
+        {
+            canJump1 = true;
+            canJump2 = false;
+            jumped = false;
+        }
+        // If the player is almost on the ledge, teleports them on
+        else if (collision.collider.tag == "Wall" && collision.collider.transform.parent.name != "Destructibles" && transform.position.y < collision.collider.transform.position.y + collision.collider.GetComponent<BoxCollider2D>().size.y / 2 && 
+            transform.position.y > collision.collider.transform.position.y + collision.collider.GetComponent<BoxCollider2D>().size.y / 2 - gameObject.GetComponent<CircleCollider2D>().radius * 1.75)
+        {
+            if (direction == "left")
+            {
+                transform.position = new Vector2(transform.position.x - 0.3f, collision.collider.transform.position.y + collision.collider.gameObject.GetComponent<BoxCollider2D>().size.y / 2 + 0.1f);
+            }
+            else if (direction == "right")
+            {
+                transform.position = new Vector2(transform.position.x + 0.3f, collision.collider.transform.position.y + collision.collider.gameObject.GetComponent<BoxCollider2D>().size.y / 2 + 0.1f);
+            }
         }
 
         if (collision.collider.tag == "Wall")
@@ -263,6 +283,13 @@ public class Player : MonoBehaviour
             canJump2 = false;
             jumped = false;
 
+        }
+        // Allows jumping if on wall edge
+        else if (collision.collider.tag == "Wall" && collision.collider.transform.parent.name != "Destructibles" && transform.position.y - gameObject.GetComponent<CircleCollider2D>().radius > collision.collider.transform.position.y + collision.collider.GetComponent<BoxCollider2D>().size.y / 3)
+        {
+            canJump1 = true;
+            canJump2 = false;
+            jumped = false;
         }
 
         if (collision.collider.tag == "Wall")
