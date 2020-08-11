@@ -66,7 +66,7 @@ public class TriggerSwitch : MonoBehaviour
                 if (state == "active")
                 {
                     state = "inactive";
-                    GlobalControl.block_SG_10 = false;
+                    GlobalControl.secret_SG_9 = false;
                     GlobalControl.state_SG_10 = state;
                     gameObject.GetComponent<SpriteRenderer>().sprite = sprites[1];
                 }

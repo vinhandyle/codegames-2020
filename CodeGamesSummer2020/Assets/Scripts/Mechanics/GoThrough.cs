@@ -30,7 +30,7 @@ public class GoThrough : MonoBehaviour
                 Player.y = gameObject.transform.position.y + 0.5f;
                 if (gameObject.name == "SG_4_to_SG_3")
                 {
-                    Player.y -= 0.3f;
+                    Player.x += 0.3f;
                 }
                 else
                 {
@@ -42,13 +42,13 @@ public class GoThrough : MonoBehaviour
                 Player.x = gameObject.transform.position.x + 0.5f;
                 if (gameObject.name == "SG_9_to_SG_3")
                 {
-                    Debug.Log(0);
                     Player.y = gameObject.transform.position.y - gameObject.GetComponent<BoxCollider2D>().size.y / 2;
                 }
                 else
                 {
                     Player.y = Player.y2;
                 }
+                Player.rb2D.velocity = new Vector2(Player.v_x, Player.v_y);
             }
             else if (direction == "right")
             { // player starts to the left of the opening
@@ -61,6 +61,7 @@ public class GoThrough : MonoBehaviour
                 {
                     Player.y = Player.y2;
                 }
+                Player.rb2D.velocity = new Vector2(Player.v_x, Player.v_y);
             }
             GlobalControl.switched = true;
         }

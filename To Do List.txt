@@ -1,0 +1,21 @@
+-Mobility
+	>Airborne through openings -> no x vel X
+	>Passing through platforms from below but not above X
+
+-Fix Conveyor Belts
+	>Sometimes get stuck on side X
+	>Spazzing out when going through openings X
+	>Make slower? hell no
+
+-Fix Crushers
+	>Teleport through platform if squished X
+
+-Sunset Garden
+	>SG_8 less punishing X
+	> maybe add shortcut door somewhere around there X2
+	>Add knockback to enemies? X
+
+-Plan out Twilight Town
+	>Maglev
+	>Buildings
+	

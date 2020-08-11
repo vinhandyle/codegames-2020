@@ -127,7 +127,7 @@ public class AreaText : MonoBehaviour
             }
             else if (GlobalControl.area == "SG_10")
             {
-                text.text = "Backdoor";
+                text.text = "Back End";
             }
             else if (GlobalControl.area == "SG_11")
             {

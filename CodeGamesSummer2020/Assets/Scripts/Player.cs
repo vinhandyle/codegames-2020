@@ -5,6 +5,9 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     public static Rigidbody2D rb2D;
+    public Animator anim;
+    public SpriteRenderer sprite;
+    public List<Sprite> sprites;
 
     public static float moveBy = 2f; // Horizontal velocity
     private float jumpHeight = 5f; // Jump velocity
@@ -20,7 +23,7 @@ public class Player : MonoBehaviour
     private bool dashing = false; // Prevents moving while dashing
     private bool walled = false; // Player cannot dash when against a wall
     private bool tooLong = false; // Whether a key is held too long to dash on release
-    private string direction; // Player direction used for dashing
+    public static string direction; // Player direction used for dashing
 
     // Dashing requires double-pressing quickly, these checks if the next press is going to be the first
     private bool firstPress = true;
@@ -40,6 +43,8 @@ public class Player : MonoBehaviour
     void Start()
     {
         rb2D = GetComponent<Rigidbody2D>();
+        anim = GetComponent<Animator>();
+        sprite = GetComponent<SpriteRenderer>();
     }
 
     // Update is called once per frame
@@ -58,6 +63,64 @@ public class Player : MonoBehaviour
             v_x = rb2D.velocity.x;
             v_y = rb2D.velocity.y;
         }
+
+        /*-----Player sprite-----*/
+
+        // I-Frame
+        if (GlobalControl.immune)
+        {
+            anim.enabled = true;
+        }
+        else
+        {
+            anim.enabled = false;
+
+            // Set default sprite
+            sprite.sprite = sprites[0];
+        }
+
+        /*-----Heartless Generator-----*/
+
+        // Use Heartless Generator
+        if (Input.GetKeyDown("s"))
+        {
+            // 1 HP to 3 Energy
+            if (GlobalControl.h2e && GlobalControl.energyCurr < GlobalControl.energyMax)
+            {
+                GlobalControl.healthCurr--;
+                if (GlobalControl.energyCurr <= GlobalControl.energyMax - 3)
+                {
+                    GlobalControl.energyCurr += 3;
+                }
+                else
+                {
+                    GlobalControl.energyCurr = GlobalControl.energyMax;
+                }
+            }
+
+            // 5 energy to 1 HP
+            else if (!GlobalControl.h2e && GlobalControl.healthCurr < GlobalControl.healthMax)
+            {
+                GlobalControl.energyCurr -= 5;
+                GlobalControl.healthCurr++;
+            }
+        }
+
+        // Toggle Heartless Generator conversion type
+        if (Input.GetKeyDown("f"))
+        {
+            if (GlobalControl.h2e)
+            {
+                GlobalControl.h2e = false;
+            }
+            else
+            {
+                GlobalControl.h2e = true;
+            }
+        }
+
+
+        /*-----Mobility-----*/
 
         // Updates player ability to move left/right
         if (GlobalControl.clingUnlocked)
@@ -129,44 +192,6 @@ public class Player : MonoBehaviour
             if (firstLeft)
             {
                 firstLeft = false;
-            }
-        }
-
-        // Use Heartless Generator
-        if (Input.GetKeyDown("s"))
-        {
-            // 1 HP to 3 Energy
-            if (GlobalControl.h2e && GlobalControl.energyCurr < GlobalControl.energyMax)
-            {
-                GlobalControl.healthCurr--;
-                if (GlobalControl.energyCurr <= GlobalControl.energyMax - 3)
-                {
-                    GlobalControl.energyCurr += 3;
-                }
-                else
-                {
-                    GlobalControl.energyCurr = GlobalControl.energyMax;
-                }
-            }
-
-            // 5 energy to 1 HP
-            else if(!GlobalControl.h2e && GlobalControl.healthCurr < GlobalControl.healthMax)
-            {
-                GlobalControl.energyCurr -= 5;
-                GlobalControl.healthCurr++;
-            }
-        }
-
-        // Toggle Heartless Generator conversion type
-        if (Input.GetKeyDown("f"))
-        {
-            if (GlobalControl.h2e)
-            {
-                GlobalControl.h2e = false;
-            }
-            else
-            {
-                GlobalControl.h2e = true;
             }
         }
 
@@ -250,7 +275,8 @@ public class Player : MonoBehaviour
             jumped = false;
         }
         // If the player is almost on the ledge, teleports them on
-        else if (collision.collider.tag == "Wall" && collision.collider.transform.parent.name != "Destructibles" && transform.position.y < collision.collider.transform.position.y + collision.collider.GetComponent<BoxCollider2D>().size.y / 2 && 
+        else if (collision.collider.tag == "Wall" && collision.collider.transform.parent.name != "Destructibles" && collision.collider.transform.parent.name != "Hazards" && collision.collider.transform.parent.name.Substring(0, 4) != "Belt" &&
+            transform.position.y < collision.collider.transform.position.y + collision.collider.GetComponent<BoxCollider2D>().size.y / 2 && 
             transform.position.y > collision.collider.transform.position.y + collision.collider.GetComponent<BoxCollider2D>().size.y / 2 - gameObject.GetComponent<CircleCollider2D>().radius * 1.75)
         {
             if (direction == "left")
@@ -285,11 +311,17 @@ public class Player : MonoBehaviour
 
         }
         // Allows jumping if on wall edge
-        else if (collision.collider.tag == "Wall" && collision.collider.transform.parent.name != "Destructibles" && transform.position.y - gameObject.GetComponent<CircleCollider2D>().radius > collision.collider.transform.position.y + collision.collider.GetComponent<BoxCollider2D>().size.y / 3)
+        else if (collision.collider.tag == "Wall" && collision.collider.transform.parent.name != "Destructibles" &&
+            transform.position.y - gameObject.GetComponent<CircleCollider2D>().radius > collision.collider.transform.position.y + collision.collider.GetComponent<BoxCollider2D>().size.y / 2 - Player.rb2D.GetComponent<CircleCollider2D>().radius)
         {
             canJump1 = true;
             canJump2 = false;
             jumped = false;
+        }
+        else
+        {
+            canJump1 = false;
+            canJump2 = true;
         }
 
         if (collision.collider.tag == "Wall")
@@ -317,6 +349,8 @@ public class Player : MonoBehaviour
         if (collision.collider.tag == "Wall")
         {
             walled = false;
+            canJump1 = false;
+            canJump2 = true;
         }
     }
 

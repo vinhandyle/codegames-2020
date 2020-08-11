@@ -20,10 +20,14 @@ public class Scope : MonoBehaviour
     public static bool once = false;
     public static bool once_1 = false;
 
+    // Pursuit
     public static bool seeWall = false;     // Is there a wall in the way?
     public static bool leftWall = false;    // Is there any wall to the left?
     public static bool rightWall = false;   // Is there any wall to the right?
     public static string seePlayer = null;  // Can the player be seen?
+
+    // Crusher
+    public bool canCrush = false;
 
     // Start is called before the first frame update
     void Start()
@@ -49,7 +53,6 @@ public class Scope : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(seePlayer);
         // Overseer Machina
         if (GlobalControl.area == "SG_12")
         {
@@ -215,6 +218,60 @@ public class Scope : MonoBehaviour
         }
     }
 
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (gameObject.name == attachedTo)
+        {
+            if (other.CompareTag("Floor") || other.CompareTag("Ceiling") || other.CompareTag("Wall"))
+            {
+                if (gameObject.name.Substring(0, 6) == "Crush_")
+                {
+                    if (other.name.Length < 8 || other.name.Substring(0, 7) != "Crusher" &&
+                        ((other.transform.position.y > Player.rb2D.position.y && other.transform.position.y > transform.position.y && Player.rb2D.position.y > transform.position.y) ||
+                        (other.transform.position.y < Player.rb2D.position.y && other.transform.position.y < transform.position.y && Player.rb2D.position.y < transform.position.y)))
+                    {
+                        canCrush = true;
+                    }
+                    else
+                    {
+                        canCrush = false;
+                    }
+                }
+            }
+            else if (other.name == "Player" && canCrush)
+            {
+                // Deal damage
+                if (!GlobalControl.immune)
+                {
+                    GlobalControl.healthCurr -= 2;
+                    StartCoroutine(IFrame());
+                }
+
+                // Push player
+                if (transform.position.x > Player.rb2D.position.x)
+                {
+                    Player.rb2D.position = new Vector2(transform.position.x - GetComponent<BoxCollider2D>().size.x / 2 - Player.rb2D.GetComponent<CircleCollider2D>().radius, Player.rb2D.position.y);
+                }
+                else if (transform.position.x < Player.rb2D.position.x)
+                {
+                    Player.rb2D.position = new Vector2(transform.position.x + GetComponent<BoxCollider2D>().size.x / 2 + Player.rb2D.GetComponent<CircleCollider2D>().radius, Player.rb2D.position.y);
+                }
+                else
+                {
+                    float num = Random.Range(0, 2);
+                    if (num == 0)
+                    {
+                        Player.rb2D.velocity += new Vector2(-1f, 0);
+                    }
+                    else
+                    {
+                        Player.rb2D.velocity += new Vector2(-1f, 0);
+                    }
+                }
+            }
+        }
+    }
+
     private void OnTriggerStay2D(Collider2D other)
     {
         if (gameObject.transform.parent.name == attachedTo)
@@ -232,6 +289,7 @@ public class Scope : MonoBehaviour
                         if (other.transform.position.y + other.GetComponent<BoxCollider2D>().size.y / 2 < Player.rb2D.position.y + Player.rb2D.GetComponent<CircleCollider2D>().radius)
                             seePlayer = null;
 
+                        // Checks if there are any walls on either side
                         if (Obstacles.refState_1 == "passive_left" && other.transform.position.x < transform.position.x)
                         {
                             leftWall = true;
@@ -264,6 +322,7 @@ public class Scope : MonoBehaviour
                                     Obstacles.refState2_1 = "";
                                 }
                             }
+                            // Walls blocking sight
                             else
                             {
                                 Obstacles.refState2_1 = "passive";
@@ -274,10 +333,11 @@ public class Scope : MonoBehaviour
                             if (seePlayer != "false")
                                 seePlayer = "";
                         }
+                        // Not facing player
                         else
                         {
                             Obstacles.refState2_1 = "passive";
-                        }                    
+                        }
                     }
                     // Walls stop movement
                     else if (gameObject.name == "Detect_Wall")
@@ -317,6 +377,56 @@ public class Scope : MonoBehaviour
                 }
             }
         }
+        else if (gameObject.name == attachedTo)
+        {
+            if (other.CompareTag("Floor") || other.CompareTag("Ceiling") || other.CompareTag("Wall"))
+            {
+                if (gameObject.name.Substring(0, 6) == "Crush_")
+                {
+                    if ((other.name.Length < 8 || other.name.Substring(0, 7) != "Crusher") &&
+                        ((other.transform.position.y > Player.rb2D.position.y && other.transform.position.y > transform.position.y && Player.rb2D.position.y > transform.position.y) ||
+                        (other.transform.position.y < Player.rb2D.position.y && other.transform.position.y < transform.position.y && Player.rb2D.position.y < transform.position.y)))
+                    {
+                        canCrush = true;
+                    }
+                    else if((other.transform.position.y < Player.rb2D.position.y && transform.position.y < Player.rb2D.position.y) || (other.transform.position.y > Player.rb2D.position.y && transform.position.y > Player.rb2D.position.y))
+                    {
+                        canCrush = false;
+                    }
+                }
+            }
+            else if (other.name == "Player" && canCrush)
+            {
+                // Deal damage
+                if (!GlobalControl.immune)
+                {
+                    GlobalControl.healthCurr -= 2;
+                    StartCoroutine(IFrame());
+                }
+
+                // Push player
+                if (transform.position.x > Player.rb2D.position.x)
+                {
+                    Player.rb2D.position = new Vector2(transform.position.x - GetComponent<BoxCollider2D>().size.x / 2 - Player.rb2D.GetComponent<CircleCollider2D>().radius, Player.rb2D.position.y);
+                }
+                else if (transform.position.x < Player.rb2D.position.x)
+                {
+                    Player.rb2D.position = new Vector2(transform.position.x + GetComponent<BoxCollider2D>().size.x / 2 + Player.rb2D.GetComponent<CircleCollider2D>().radius, Player.rb2D.position.y);
+                }
+                else
+                {
+                    float num = Random.Range(0, 2);
+                    if (num == 0)
+                    {
+                        Player.rb2D.velocity += new Vector2(-1f, 0);
+                    }
+                    else
+                    {
+                        Player.rb2D.velocity += new Vector2(-1f, 0);
+                    }
+                }
+            }
+        }
     }
 
     private void OnTriggerExit2D(Collider2D other)
@@ -340,9 +450,19 @@ public class Scope : MonoBehaviour
             else if (gameObject.name == "Detect_Player" && other.CompareTag("Wall") && !(other.gameObject.transform.parent.name == "Left Side" || other.gameObject.transform.parent.name == "Right Side"))
             {
                 // Update to see if there are still any walls blocking vision
-                if(sticky.Substring(0, 7) == "Pursuit")
+                if (sticky.Substring(0, 7) == "Pursuit")
                 {
                     seeWall = false;
+                }
+            }
+            else if (gameObject.name == attachedTo)
+            {
+                if (gameObject.name.Substring(0, 6) == "Crush_")
+                {
+                    if (other.name.Substring(0, 7) != "Crusher" && (other.CompareTag("Floor") || other.CompareTag("Ceiling")))
+                    {
+                        canCrush = false;
+                    }
                 }
             }
         }
@@ -376,5 +496,12 @@ public class Scope : MonoBehaviour
             }
             once_1 = false;
         }
+    }
+
+    IEnumerator IFrame()
+    {
+        GlobalControl.immune = true;
+        yield return new WaitForSeconds(1f);
+        GlobalControl.immune = false;
     }
 }

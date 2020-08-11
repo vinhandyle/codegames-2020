@@ -38,11 +38,6 @@ public class DestroyByCollision : MonoBehaviour
                 GlobalControl.block_DH_4 = false;
                 other.gameObject.SetActive(false);
             }
-            else if (other.gameObject.name == "Secret_SG_9")
-            {
-                GlobalControl.secret_SG_9 = false;
-                other.gameObject.SetActive(false);
-            }
         }
     }
 }

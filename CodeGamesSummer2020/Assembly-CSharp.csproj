@@ -100,6 +100,7 @@
     <Compile Include="Assets\Scripts\Mechanics\GoThrough.cs" />
     <Compile Include="Assets\Scripts\Mechanics\ObjectPooler.cs" />
     <Compile Include="Assets\Scripts\Mechanics\Obstacles.cs" />
+    <Compile Include="Assets\Scripts\Mechanics\Platform.cs" />
     <Compile Include="Assets\Scripts\Mechanics\PointAndShoot.cs" />
     <Compile Include="Assets\Scripts\Mechanics\Scope.cs" />
     <Compile Include="Assets\Scripts\Player.cs" />

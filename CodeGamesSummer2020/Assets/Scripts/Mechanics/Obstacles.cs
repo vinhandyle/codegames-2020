@@ -211,10 +211,6 @@ public class Obstacles : MonoBehaviour
         { // Dreg Heap
             damage = 2;
         }
-        else if (gameObject.name.Substring(0, 6) == "Crush_")
-        {
-            damage = 2;
-        }
         else if (gameObject.name.Substring(0, 6) == "Molten")
         {
             damage = 5;
@@ -494,7 +490,7 @@ public class Obstacles : MonoBehaviour
             /*---Chase Mode---*/
             else if (aiState == "hostile_right")
             {
-                if (Player.rb2D.position.x < transform.position.x)
+                if (Player.rb2D.position.x + Player.rb2D.GetComponent<CircleCollider2D>().radius * 2 < transform.position.x - GetComponent<BoxCollider2D>().size.x / 2)
                 {
                     gameObject.GetComponent<SpriteRenderer>().sprite = sprites[3];
                     aiState = "hostile_left";
@@ -511,7 +507,7 @@ public class Obstacles : MonoBehaviour
             }
             else if (aiState == "hostile_left")
             {
-                if (Player.rb2D.position.x > transform.position.x)
+                if (Player.rb2D.position.x - Player.rb2D.GetComponent<CircleCollider2D>().radius * 2 > transform.position.x + GetComponent<BoxCollider2D>().size.x / 2)
                 {
                     gameObject.GetComponent<SpriteRenderer>().sprite = sprites[2];
                     aiState = "hostile_right";
@@ -804,12 +800,21 @@ public class Obstacles : MonoBehaviour
                 {
                     Player.rb2D.velocity = new Vector2(Player.rb2D.velocity.x + Player.moveBy / 4, Player.rb2D.velocity.y);
                 }
+                else if (aiState == "up" && Player.rb2D.velocity.y < 1.2 * Player.moveBy)
+                {
+                    Player.rb2D.velocity = new Vector2(Player.rb2D.velocity.x, Player.rb2D.velocity.y + Player.moveBy / 4);
+                }
+                else if (aiState == "down" && Player.rb2D.velocity.y > -1.2 * Player.moveBy)
+                {
+                    Player.rb2D.velocity = new Vector2(Player.rb2D.velocity.x, Player.rb2D.velocity.y - Player.moveBy / 4);
+                }
             }
         }
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
+        // On bullet hit -> take damage + other
         if (other.gameObject.tag == "Player Bullet")
         {
             if (gameObject.CompareTag("Enemy"))
@@ -837,20 +842,143 @@ public class Obstacles : MonoBehaviour
                 healthCurr = 0;
             }
         }
+
+        // On hit player -> damage + knockback
+        else if (other.name == "Player" && !GlobalControl.immune)
+        {
+            if (!(gameObject.name.Substring(0, 6) == "Turret" || gameObject.name.Substring(0, 5) == "Errat") && other.gameObject.CompareTag("Player") && !GlobalControl.immune)
+            {
+                // Damage calculation
+                if (GlobalControl.reactor == "unstable")
+                {
+                    GlobalControl.healthCurr = 0;
+                }
+                else
+                {
+                    GlobalControl.healthCurr -= damage;
+                    StartCoroutine(IFrame());
+                }
+
+                // On hit effects
+                if (gameObject.name.Substring(0, 6) == "Patrol")
+                {
+                    if (Player.rb2D.position.x > transform.position.x - GetComponent<BoxCollider2D>().size.x / 3 && Player.rb2D.position.x < transform.position.x + GetComponent<BoxCollider2D>().size.x / 3)
+                    {
+                        Player.rb2D.velocity = new Vector2(Player.rb2D.velocity.x, 2f);
+                    }
+                    else
+                    {
+                        if (transform.position.x > Player.rb2D.position.x)
+                        {
+                            Player.rb2D.velocity += new Vector2(-3f, 2f);
+                        }
+                        else if (transform.position.x < Player.rb2D.position.x)
+                        {
+                            Player.rb2D.velocity += new Vector2(3f, 2f);
+                        }
+                    }
+                }
+                else if (gameObject.name.Substring(0, 7) == "Pursuit")
+                {
+                    if (Player.rb2D.position.x > transform.position.x - GetComponent<BoxCollider2D>().size.x / 3 && Player.rb2D.position.x < transform.position.x + GetComponent<BoxCollider2D>().size.x / 3)
+                    {
+                        Player.rb2D.velocity = new Vector2(Player.rb2D.velocity.x, 3f);
+                    }
+                    else
+                    {
+                        if (transform.position.x > Player.rb2D.position.x)
+                        {
+                            Player.rb2D.velocity += new Vector2(-2f, 3f);
+                        }
+                        else if (transform.position.x < Player.rb2D.position.x)
+                        {
+                            Player.rb2D.velocity += new Vector2(2f, 3f);
+                        }
+                    }
+                }
+                else if (gameObject.name.Substring(0, 6) == "Aerial")
+                {
+
+                }
+                else if (gameObject.name.Substring(0, 7) == "Aquatic")
+                {
+
+                }
+                else if (gameObject.name == "Overseer")
+                {
+                    Player.rb2D.velocity = new Vector2(-5f, 0f);
+                }
+            }
+        }
     }
 
     private void OnTriggerStay2D(Collider2D other)
     {
-        if (!(gameObject.name.Substring(0, 6) == "Turret" || gameObject.name.Substring(0, 5) == "Errat") && other.gameObject.CompareTag("Player") && !GlobalControl.immune)
+        // On hit player -> damage + knockback
+        if (other.name == "Player" && !GlobalControl.immune)
         {
-            if (GlobalControl.reactor == "unstable")
+            if (!(gameObject.name.Substring(0, 6) == "Turret" || gameObject.name.Substring(0, 5) == "Errat") && other.gameObject.CompareTag("Player") && !GlobalControl.immune)
             {
-                GlobalControl.healthCurr = 0;
-            }
-            else
-            {
-                GlobalControl.healthCurr -= damage;
-                StartCoroutine(IFrame());
+                // Damage calculation
+                if (GlobalControl.reactor == "unstable")
+                {
+                    GlobalControl.healthCurr = 0;
+                }
+                else
+                {
+                    GlobalControl.healthCurr -= damage;
+                    StartCoroutine(IFrame());
+                }
+
+                // On hit effects
+                if (gameObject.name.Substring(0, 6) == "Patrol")
+                {
+                    if (Player.rb2D.position.x > transform.position.x - GetComponent<BoxCollider2D>().size.x / 3 && Player.rb2D.position.x < transform.position.x + GetComponent<BoxCollider2D>().size.x / 3)
+                    {
+                        Player.rb2D.velocity = new Vector2(Player.rb2D.velocity.x, 2f);
+                    }
+                    else
+                    {
+                        if (transform.position.x > Player.rb2D.position.x)
+                        {
+                            Player.rb2D.velocity += new Vector2(-3f, 2f);
+                        }
+                        else if (transform.position.x < Player.rb2D.position.x)
+                        {
+                            Player.rb2D.velocity += new Vector2(3f, 2f);
+                        }
+                    }
+                }
+                else if (gameObject.name.Substring(0, 7) == "Pursuit")
+                {
+                    if (Player.rb2D.position.x > transform.position.x - GetComponent<BoxCollider2D>().size.x / 3 && Player.rb2D.position.x < transform.position.x + GetComponent<BoxCollider2D>().size.x / 3)
+                    {
+                        Player.rb2D.velocity = new Vector2(Player.rb2D.velocity.x, 3f);
+                    }
+                    else
+                    {
+                        if (transform.position.x > Player.rb2D.position.x)
+                        {
+                            Player.rb2D.velocity += new Vector2(-2f, 3f);
+                        }
+                        else if (transform.position.x < Player.rb2D.position.x)
+                        {
+                            Player.rb2D.velocity += new Vector2(2f, 3f);
+                        }
+                    }
+                }
+                else if (gameObject.name.Substring(0, 6) == "Aerial")
+                {
+
+                }
+                else if (gameObject.name.Substring(0, 7) == "Aquatic")
+                {
+
+                }
+                else if (gameObject.name == "Overseer")
+                {
+                    Player.rb2D.velocity = new Vector2(-5f, 0f);
+                }
             }
         }
     }

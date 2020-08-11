@@ -26,6 +26,7 @@ public class EnterDoor : MonoBehaviour
             GlobalControl.switched = true;
         }
 
+        locked = false;
         if (gameObject.name == "Start_to_IT_X")
         {
             if (GlobalControl.locked_1)
@@ -55,6 +56,19 @@ public class EnterDoor : MonoBehaviour
         else if (gameObject.name == "DH_4_to_DH_6")
         {
             if (GlobalControl.locked_3)
+            {
+                locked = true;
+                gameObject.GetComponent<SpriteRenderer>().sprite = lockedDoor;
+            }
+            else
+            {
+                locked = false;
+                gameObject.GetComponent<SpriteRenderer>().sprite = unlockedDoor;
+            }
+        }
+        else if (gameObject.name == "SG_10_to_SG_3 (D)")
+        {
+            if (GlobalControl.locked_4)
             {
                 locked = true;
                 gameObject.GetComponent<SpriteRenderer>().sprite = lockedDoor;
@@ -117,6 +131,17 @@ public class EnterDoor : MonoBehaviour
             else if (doorName == "SG_1_to_DH_8")
             {
                 StartCoroutine(SceneSwitch("DH_8", "DH_8_to_SG_1"));
+            }
+
+            // Lower Prep Area to Backdoor
+            else if (doorName == "SG_3_to_SG_10 (D)")
+            {
+                StartCoroutine(SceneSwitch("SG_10", "SG_10_to_SG_3 (D)"));
+                GlobalControl.locked_4 = false;
+            }
+            else if (doorName == "SG_10_to_SG_3 (D)")
+            {
+                StartCoroutine(SceneSwitch("SG_3", "SG_3_to_SG_10 (D)"));
             }
 
             // Storage Area to Overpass

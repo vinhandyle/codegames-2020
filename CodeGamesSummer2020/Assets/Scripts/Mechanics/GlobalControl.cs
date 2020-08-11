@@ -116,6 +116,7 @@ public class GlobalControl : MonoBehaviour
     public static bool locked_1 = true;            // Birthplace-Start Door
     public static bool locked_2 = false;           // The Lift to Heaven Door
     public static bool locked_3 = true;            // DH_4_to_DH_6
+    public static bool locked_4 = true;            // SG_10_to_SG_3
 
     // Switches
     public static string state_SG_8 = "active";
@@ -130,7 +131,6 @@ public class GlobalControl : MonoBehaviour
     public static bool secret_DH_5 = true;
 
     public static bool block_SG_9 = true;
-    public static bool block_SG_10 = true;
     public static bool block_SG_11 = true;
     public static bool block_SG_12 = true;
     public static bool secret_SG_9 = true;
@@ -310,7 +310,6 @@ public class GlobalControl : MonoBehaviour
         secret_DH_5 = true;
 
         block_SG_9 = true;
-        block_SG_10 = true;
         block_SG_11 = true;
         block_SG_12 = true;
         secret_SG_9 = true;
