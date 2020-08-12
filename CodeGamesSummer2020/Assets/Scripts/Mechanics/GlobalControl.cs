@@ -25,6 +25,7 @@ public class GlobalControl : MonoBehaviour
     public static int damage;                      // player bullet damage
     public static int data;                        // Percent data collected
     public static bool immune;                     // Immune to damage (after taking damage)
+    public static bool immune_ = false;                    // Immune update once per time
 
     // Unlock 
     public static bool batteryUnlocked = false;    // Battery
@@ -68,10 +69,13 @@ public class GlobalControl : MonoBehaviour
     // Toggle
     public static string reactor = "basic";        // Name of equipped reactor
     public static bool h2e = true;                 // True = HP to Energy, False = Energy to HP
+    public static int prog = 2;                    // Progession level for unlockAll: Start(0), Post-Start(1), Post-Dreg(2), Post-Garden(3), Post-Second(4), Post-Town(5), Post-Third(6), Post-Return(7), Post-End(8)
+
 
     // World
     public static int humansLeft = 6;              // How many humans left to capture (6: May-October)
     public static int bossDowned = 0;              // How many bosses have been defeated
+    public static int update = 0;                  // Update stats when power-up obtained
     public static bool switched = false;           // Used to set position on scene switch
 
     public static string area = "";                // Area name for scene change purposes
@@ -169,6 +173,8 @@ public class GlobalControl : MonoBehaviour
     public static bool pursuit_1_2_3 = true;
     public static bool pursuit_1_2_4 = true;
     public static bool pursuit_1_2_5 = true;
+    public static bool pursuit_1_2_6 = true;
+    public static bool pursuit_1_2_7 = true;
 
     /*---------------------Wall of Text Ends---------------------*/
 
@@ -196,6 +202,31 @@ public class GlobalControl : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // Update stats
+        if (update == 1)
+        {
+            update = 0;
+            healthMax = 10 + plateNum * 20;
+            healthCurr = healthMax;
+        }
+        else if (update == 2)
+        {
+            update = 0;
+            energyMax = 10 + extraNum * 10;
+            energyCurr = energyMax;
+        }
+
+        // I-Frames
+        if (immune && immune_)
+        {
+            immune_ = false;
+            StartCoroutine(notImmune(1f));
+        }
+        else if (!immune)
+        {
+            immune_ = true;
+        }
+
         // Platinum Trophy
         if (ending_1 && ending_2 && ending_3)
         {
@@ -226,7 +257,7 @@ public class GlobalControl : MonoBehaviour
         if (reactor == "basic")
         {
             energyUse = 1;
-            damage = 1 + bossDowned;
+            damage = 10 + bossDowned;
         }
         else if (reactor == "imperial")
         {
@@ -346,7 +377,9 @@ public class GlobalControl : MonoBehaviour
         pursuit_1_2_2 = true;
         pursuit_1_2_3 = true;
         pursuit_1_2_4 = true;
-        pursuit_1_2_4 = true;
+        pursuit_1_2_5 = true;
+        pursuit_1_2_6 = true;
+        pursuit_1_2_7 = true;
     }
 
     public static void unlockAll()
@@ -356,20 +389,47 @@ public class GlobalControl : MonoBehaviour
         ending_2 = true;
         ending_3 = true;
 
+        if (prog > 0)
+        { // Post-Start
+            batteryUnlocked = true;
+            solarUnlocked = true;
+            gunUnlocked = true;
+            unstableUnlocked = true;
+
+            if (prog > 1)
+            { // Post-Dreg
+                heartlessUnlocked = true;
+                mapUnlocked = true;
+                familiarUnlocked = true;
+
+                if (prog > 2)
+                { // Post-Garden
+                    dashUnlocked = true;
+                    geoUnlocked = true;
+
+                    if (prog > 3)
+                    { // Post-Second
+                        clingUnlocked = true;
+
+                        if (prog > 4)
+                        { // Post-Town
+                          // Unlock pass
+
+                            if (prog > 5)
+                            { // Post-Third
+                                doubleUnlocked = true;
+
+                                if (prog > 6)
+                                { // Post-Return
+                                    // Extra hp
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
         // Inventory
-        batteryUnlocked = true;   
-        solarUnlocked = true;       
-        //geoUnlocked = true;         
-        gunUnlocked = true;        
-        mapUnlocked = true;         
-        heartlessUnlocked = true;   
-        //dashUnlocked = true;        
-        //clingUnlocked = true;       
-        //doubleUnlocked = true;      
-        basicUnlocked = true;      
-        //imperialUnlocked = true;    
-        //familiarUnlocked = true;    
-        unstableUnlocked = true;
         plateFound = true;
         extraFound = true;         
         scrapFound = true;
@@ -423,5 +483,11 @@ public class GlobalControl : MonoBehaviour
     {
         yield return new WaitForSeconds(time);
         StartCoroutine(action);
+    }
+
+    IEnumerator notImmune(float time)
+    {
+        yield return new WaitForSeconds(time);
+        immune = false;
     }
 }

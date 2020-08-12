@@ -21,6 +21,7 @@ public class Scope : MonoBehaviour
     public static bool once_1 = false;
 
     // Pursuit
+    public string reference;                // Scope->Obstacles
     public static bool seeWall = false;     // Is there a wall in the way?
     public static bool leftWall = false;    // Is there any wall to the left?
     public static bool rightWall = false;   // Is there any wall to the right?
@@ -132,7 +133,7 @@ public class Scope : MonoBehaviour
                     }
                     else if (Obstacles.refState1a_5 == "finish")
                     {
-                        transform.position = new Vector3(7.6526357f, 2.05f, transform.position.z);
+                        transform.position = new Vector3(9.9426357f, 2.05f, transform.position.z);
                         Obstacles.refState1a_5 = "";
                         Obstacles.refState2a_5 = "";
                     }
@@ -166,7 +167,7 @@ public class Scope : MonoBehaviour
                     }
                     else if (Obstacles.refState1a_5 == "finish")
                     {
-                        transform.position = new Vector3(7.6526357f, -1.94f, transform.position.z);
+                        transform.position = new Vector3(9.9426357f, -1.94f, transform.position.z);
                         Obstacles.refState1a_5 = "";
                         Obstacles.refState2a_5 = "";
                     }
@@ -309,7 +310,8 @@ public class Scope : MonoBehaviour
                                 // If no walls are in front of player
                                 if (seePlayer != "false" && seePlayer != null)
                                 {
-                                    Obstacles.refState2_1 = "";
+                                    reference = "";
+                                    Obstacles.refState2_1 = reference;
                                 }
                             }
                             // If there is no wall in the direction of the player but a wall behind self
@@ -319,13 +321,15 @@ public class Scope : MonoBehaviour
                                 // If no walls are in front of player
                                 if (seePlayer != "false" && seePlayer != null)
                                 {
-                                    Obstacles.refState2_1 = "";
+                                    reference = "";
+                                    Obstacles.refState2_1 = reference;
                                 }
                             }
                             // Walls blocking sight
                             else
                             {
-                                Obstacles.refState2_1 = "passive";
+                                reference = "passive";
+                                Obstacles.refState2_1 = reference;
                                 seePlayer = "false";
                             }
 
@@ -336,7 +340,8 @@ public class Scope : MonoBehaviour
                         // Not facing player
                         else
                         {
-                            Obstacles.refState2_1 = "passive";
+                            reference = "passive";
+                            Obstacles.refState2_1 = reference;
                         }
                     }
                     // Walls stop movement
@@ -367,11 +372,13 @@ public class Scope : MonoBehaviour
                     if ((Obstacles.refState_1 == "passive_left" && Player.rb2D.position.x > gameObject.transform.parent.position.x) ||
                         (Obstacles.refState_1 == "passive_right" && Player.rb2D.position.x < gameObject.transform.parent.position.x))
                     {
-                        Obstacles.refState2_1 = "passive";
+                        reference = "passive";
+                        Obstacles.refState2_1 = reference;
                     }
                     else
                     {
-                        Obstacles.refState2_1 = "";
+                        reference = "";
+                        Obstacles.refState2_1 = reference;
                     }
                     Obstacles.refState2a_1 = "";
                 }

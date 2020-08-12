@@ -1,21 +1,20 @@
--Mobility
-	>Airborne through openings -> no x vel X
-	>Passing through platforms from below but not above X
-
--Fix Conveyor Belts
-	>Sometimes get stuck on side X
-	>Spazzing out when going through openings X
-	>Make slower? hell no
-
--Fix Crushers
-	>Teleport through platform if squished X
-
--Sunset Garden
-	>SG_8 less punishing X
-	> maybe add shortcut door somewhere around there X2
-	>Add knockback to enemies? X
+-Bugs
+	>Multiple pursuits will not aggro if landing in sight, will aggro after direction change
 
 -Plan out Twilight Town
+	>Outer Garden
+		>Extra Battery
 	>Maglev
 	>Buildings
+	>Obstacles
+		>Aerial 
+			>Flies a path, shoots at player with time in between barrages
+		>Containment
+			>Designed to catch the Ego, became harder to control, locked away
+
+-Kin Harvest
+	>Rotten Depths
+	>Upper Disposal Area
+	>Garden Heights
 	
+-Other

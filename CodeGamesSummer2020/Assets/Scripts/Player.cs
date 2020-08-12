@@ -234,7 +234,6 @@ public class Player : MonoBehaviour
             midJump = true;
 
             // The actual jump
-            rb2D.velocity = new Vector2(rb2D.velocity.x, 0);
             rb2D.velocity = new Vector2(rb2D.velocity.x, jumpHeight);
         }
 
@@ -261,21 +260,21 @@ public class Player : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision)
     {
         // Touching a floor / wall (with cling unlocked) resets the use of jump
-        if (collision.collider.tag == "Floor" || (collision.collider.tag == "Wall" && GlobalControl.clingUnlocked))
+        if (collision.collider.CompareTag("Floor") || (collision.collider.CompareTag("Wall") && GlobalControl.clingUnlocked))
         {
             canJump1 = true;
             canJump2 = false;
             jumped = false;
         }
         // Allows jumping if on wall edge
-        else if (collision.collider.tag == "Wall" && collision.collider.transform.parent.name != "Destructibles" && transform.position.y - gameObject.GetComponent<CircleCollider2D>().radius > collision.collider.transform.position.y + collision.collider.GetComponent<BoxCollider2D>().size.y / 3)
+        else if (collision.collider.CompareTag("Wall") && collision.collider.transform.parent.name != "Destructibles" && transform.position.y - gameObject.GetComponent<CircleCollider2D>().radius > collision.collider.transform.position.y + collision.collider.GetComponent<BoxCollider2D>().size.y / 3)
         {
             canJump1 = true;
             canJump2 = false;
             jumped = false;
         }
         // If the player is almost on the ledge, teleports them on
-        else if (collision.collider.tag == "Wall" && collision.collider.transform.parent.name != "Destructibles" && collision.collider.transform.parent.name != "Hazards" && collision.collider.transform.parent.name.Substring(0, 4) != "Belt" &&
+        else if (collision.collider.CompareTag("Wall") && collision.collider.transform.parent.name != "Destructibles" && collision.collider.transform.parent.name != "Hazards" && collision.collider.transform.parent.name.Substring(0, 4) != "Belt" &&
             transform.position.y < collision.collider.transform.position.y + collision.collider.GetComponent<BoxCollider2D>().size.y / 2 && 
             transform.position.y > collision.collider.transform.position.y + collision.collider.GetComponent<BoxCollider2D>().size.y / 2 - gameObject.GetComponent<CircleCollider2D>().radius * 1.75)
         {
@@ -289,7 +288,7 @@ public class Player : MonoBehaviour
             }
         }
 
-        if (collision.collider.tag == "Wall")
+        if (collision.collider.CompareTag("Wall"))
             walled = true;
         {
             // If player is not on a wall, player is still mid air (player y-coord > wall y-coord + wall height / 2)
@@ -303,7 +302,7 @@ public class Player : MonoBehaviour
     private void OnCollisionStay2D(Collision2D collision)
     {
         // Prevents jumping bug when touching floor and wall
-        if (collision.collider.tag == "Floor" || (collision.collider.tag == "Wall" && GlobalControl.clingUnlocked))
+        if (collision.collider.CompareTag("Floor") || (collision.collider.CompareTag("Wall") && GlobalControl.clingUnlocked))
         {
             canJump1 = true;
             canJump2 = false;
@@ -311,20 +310,15 @@ public class Player : MonoBehaviour
 
         }
         // Allows jumping if on wall edge
-        else if (collision.collider.tag == "Wall" && collision.collider.transform.parent.name != "Destructibles" &&
+        else if (collision.collider.CompareTag("Wall") && collision.collider.transform.parent.name != "Destructibles" &&
             transform.position.y - gameObject.GetComponent<CircleCollider2D>().radius > collision.collider.transform.position.y + collision.collider.GetComponent<BoxCollider2D>().size.y / 2 - Player.rb2D.GetComponent<CircleCollider2D>().radius)
         {
             canJump1 = true;
             canJump2 = false;
             jumped = false;
         }
-        else
-        {
-            canJump1 = false;
-            canJump2 = true;
-        }
 
-        if (collision.collider.tag == "Wall")
+        if (collision.collider.CompareTag("Wall"))
         {
             walled = true;
             // If player is not on a wall, player is still mid air (player y-coord > wall y-coord + wall height / 2)
@@ -340,13 +334,13 @@ public class Player : MonoBehaviour
     private void OnCollisionExit2D(Collision2D collision)
     { 
         // Player fell off a floor without jumping, allowing for an air jump if unlocked
-        if((collision.collider.tag == "Floor" || (collision.collider.tag == "Wall" && GlobalControl.clingUnlocked)) && !jumped)
+        if((collision.collider.CompareTag("Floor") || (collision.collider.CompareTag("Wall") && GlobalControl.clingUnlocked)) && !jumped)
         {
             canJump1 = false;
             canJump2 = true;
         }
 
-        if (collision.collider.tag == "Wall")
+        if (collision.collider.CompareTag("Wall"))
         {
             walled = false;
             canJump1 = false;

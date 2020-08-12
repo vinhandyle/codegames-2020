@@ -180,7 +180,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 13173751}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.558, y: -3.493, z: 10}
+  m_LocalPosition: {x: -1.558, y: -3.493, z: 30}
   m_LocalScale: {x: 0.75, y: 0.75, z: 1}
   m_Children: []
   m_Father: {fileID: 909617757}
@@ -372,6 +372,8 @@ MonoBehaviour:
   range: 0
   range_1: 0
   range_2: 0
+  reference: 
+  canCrush: 0
 --- !u!212 &131550471
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1397,6 +1399,8 @@ MonoBehaviour:
   healthCurr: 0
   damage: 0
   hazard: 0
+  animated: 0
+  attachedTo: 
   sprites: []
   x: 0
   y: 0
@@ -1405,8 +1409,10 @@ MonoBehaviour:
   range_2: 0
   speed: 0.01
   time: 0
+  time_: 0
   deAggroTime: 0
   hold_time: 0
+  time_hold: 0
   bulletSpeed:
   - 7.5
   - 4
@@ -1483,7 +1489,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 459614254}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 7.09, y: 2.05, z: 31}
+  m_LocalPosition: {x: 9.38, y: 2.05, z: 31}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 242201197}
@@ -1585,6 +1591,8 @@ MonoBehaviour:
   range: 0
   range_1: 10
   range_2: 0
+  reference: 
+  canCrush: 0
 --- !u!114 &459614259
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1601,6 +1609,8 @@ MonoBehaviour:
   healthCurr: 0
   damage: 0
   hazard: 1
+  animated: 0
+  attachedTo: 
   sprites: []
   x: 0
   y: 0
@@ -1609,8 +1619,10 @@ MonoBehaviour:
   range_2: 0
   speed: 0
   time: 0
+  time_: 0
   deAggroTime: 0
   hold_time: 0
+  time_hold: 0
   bulletSpeed: []
   baseUseTime: 0
   useTime: 0
@@ -4259,6 +4271,8 @@ MonoBehaviour:
   range: 0
   range_1: 1
   range_2: 0
+  reference: 
+  canCrush: 0
 --- !u!114 &982347541
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4275,6 +4289,8 @@ MonoBehaviour:
   healthCurr: 0
   damage: 0
   hazard: 1
+  animated: 0
+  attachedTo: 
   sprites: []
   x: 0
   y: 0
@@ -4283,8 +4299,10 @@ MonoBehaviour:
   range_2: 0
   speed: 0
   time: 0
+  time_: 0
   deAggroTime: 0
   hold_time: 0
+  time_hold: 0
   bulletSpeed: []
   baseUseTime: 0
   useTime: 0
@@ -4511,7 +4529,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1017675541}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 7.09, y: -1.94, z: 31}
+  m_LocalPosition: {x: 9.38, y: -1.94, z: 31}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 242201197}
@@ -4536,6 +4554,8 @@ MonoBehaviour:
   range: 0
   range_1: 10
   range_2: 0
+  reference: 
+  canCrush: 0
 --- !u!61 &1017675544
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -4629,6 +4649,8 @@ MonoBehaviour:
   healthCurr: 0
   damage: 0
   hazard: 1
+  animated: 0
+  attachedTo: 
   sprites: []
   x: 0
   y: 0
@@ -4637,8 +4659,10 @@ MonoBehaviour:
   range_2: 0
   speed: 0
   time: 0
+  time_: 0
   deAggroTime: 0
   hold_time: 0
+  time_hold: 0
   bulletSpeed: []
   baseUseTime: 0
   useTime: 0
@@ -4850,6 +4874,8 @@ MonoBehaviour:
   range: 0
   range_1: 0
   range_2: 0
+  reference: 
+  canCrush: 0
 --- !u!212 &1026030168
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -5631,6 +5657,8 @@ MonoBehaviour:
   range: 0
   range_1: 0
   range_2: 0
+  reference: 
+  canCrush: 0
 --- !u!212 &1207153324
 SpriteRenderer:
   m_ObjectHideFlags: 0

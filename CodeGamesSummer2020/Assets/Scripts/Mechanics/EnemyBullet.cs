@@ -36,10 +36,11 @@ public class EnemyBullet : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other)
     {
         // On hit player
-        if (other.name == "Player")
+        if (other.name == "Player" && !GlobalControl.immune)
         {
             // Deal damage
             GlobalControl.healthCurr -= damage;
+            GlobalControl.immune = true;
 
             // Exploding Shot
             if (gameObject.name.Substring(0, 14) == "Large E_Bullet" && GlobalControl.area == "SG_12")
@@ -79,8 +80,13 @@ public class EnemyBullet : MonoBehaviour
         // On hit any terrain
         else if (other.CompareTag("Floor") || other.CompareTag("Ceiling") || other.CompareTag("Wall"))
         {
-            
-        }        
+    
+        }         
+    }
+
+    private void OnTriggerExit2D(Collider2D other)
+    {
+
     }
 
     // Parameters: object fired, trajectory, object/sprite rotation, object velocity

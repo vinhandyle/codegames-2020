@@ -386,7 +386,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 233513457}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.46, y: 6.26, z: 0}
+  m_LocalPosition: {x: 0.46, y: 6.26, z: -1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 178605382}
@@ -1476,6 +1476,8 @@ MonoBehaviour:
   healthCurr: 0
   damage: 0
   hazard: 1
+  animated: 0
+  attachedTo: 
   sprites: []
   x: 0
   y: 0
@@ -1848,6 +1850,8 @@ MonoBehaviour:
   healthCurr: 0
   damage: 0
   hazard: 1
+  animated: 0
+  attachedTo: 
   sprites: []
   x: 0
   y: 0
@@ -2038,7 +2042,7 @@ GameObject:
   m_Component:
   - component: {fileID: 824740313}
   - component: {fileID: 824740314}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: QCA
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4144,6 +4148,8 @@ MonoBehaviour:
   healthCurr: 0
   damage: 0
   hazard: 1
+  animated: 0
+  attachedTo: 
   sprites: []
   x: 0
   y: 0

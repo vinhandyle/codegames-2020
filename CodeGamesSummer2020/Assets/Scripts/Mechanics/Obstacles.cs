@@ -8,7 +8,9 @@ public class Obstacles : MonoBehaviour
     public int healthMax;
     public int healthCurr;
     public int damage;
-    public bool hazard; 
+    public bool hazard;
+    public bool animated;
+    public string attachedTo;
     public List<Sprite> sprites;
 
     /*-----Variables used in AI-----*/
@@ -23,9 +25,9 @@ public class Obstacles : MonoBehaviour
     public float speed;
 
     // Time
-    public int time;
+    public int time;    // AI time
     public int deAggroTime;
-    public bool hold_time = false;
+    public bool hold_time = false; // hold time
 
     // Projectile
     public List<float> bulletSpeed;
@@ -93,6 +95,8 @@ public class Obstacles : MonoBehaviour
             (gameObject.name == "Pursuit_1_2_3" && !GlobalControl.pursuit_1_2_3) ||
             (gameObject.name == "Pursuit_1_2_4" && !GlobalControl.pursuit_1_2_4) ||
             (gameObject.name == "Pursuit_1_2_5" && !GlobalControl.pursuit_1_2_5) ||
+            (gameObject.name == "Pursuit_1_2_6" && !GlobalControl.pursuit_1_2_6) ||
+            (gameObject.name == "Pursuit_1_2_7" && !GlobalControl.pursuit_1_2_7) ||
             (gameObject.name == "Overseer" && GlobalControl.downed_boss_1))
         {
             gameObject.SetActive(false);
@@ -400,6 +404,14 @@ public class Obstacles : MonoBehaviour
             {
                 GlobalControl.pursuit_1_2_5 = false;
             }
+            else if (gameObject.name == "Pursuit_1_2_6")
+            {
+                GlobalControl.pursuit_1_2_6 = false;
+            }
+            else if (gameObject.name == "Pursuit_1_2_7")
+            {
+                GlobalControl.pursuit_1_2_7 = false;
+            }
             else if (gameObject.name == "Overseer")
             {
                 GlobalControl.downed_boss_1 = true;
@@ -443,12 +455,13 @@ public class Obstacles : MonoBehaviour
             /*---Scout Mode---*/
             if (aiState == "passive_right")
             {
+                gameObject.GetComponent<SpriteRenderer>().sprite = sprites[0];
+
                 // Detect player when facing towards and at the same level
                 if (Player.rb2D.position.y - Player.rb2D.gameObject.GetComponent<CircleCollider2D>().radius < transform.position.y + gameObject.GetComponent<BoxCollider2D>().size.y / 2 &&
                     Player.rb2D.position.y + Player.rb2D.gameObject.GetComponent<CircleCollider2D>().radius > transform.position.y - gameObject.GetComponent<BoxCollider2D>().size.y / 2 &&
                     Player.rb2D.position.x > transform.position.x && (refState2_1 != "passive" && refState2_1 != null))
                 {
-                    gameObject.GetComponent<SpriteRenderer>().sprite = sprites[2];
                     aiState = "hostile_right";
                 }
 
@@ -459,19 +472,18 @@ public class Obstacles : MonoBehaviour
                 }
                 else
                 {
-                    gameObject.GetComponent<SpriteRenderer>().sprite = sprites[1];
                     aiState = "passive_left";
                 }
             }
             else if (aiState == "passive_left")
             {
-                
+                gameObject.GetComponent<SpriteRenderer>().sprite = sprites[1];
+
                 // Detect player when facing towards and at the same level
                 if (Player.rb2D.position.y - Player.rb2D.gameObject.GetComponent<CircleCollider2D>().radius < transform.position.y + gameObject.GetComponent<BoxCollider2D>().size.y / 2 &&
                     Player.rb2D.position.y + Player.rb2D.gameObject.GetComponent<CircleCollider2D>().radius > transform.position.y - gameObject.GetComponent<BoxCollider2D>().size.y / 2 &&
                     Player.rb2D.position.x < transform.position.x && (refState2_1 != "passive" && refState2_1 != null))
                 {
-                    gameObject.GetComponent<SpriteRenderer>().sprite = sprites[3];
                     aiState = "hostile_left";
                 }
 
@@ -482,7 +494,6 @@ public class Obstacles : MonoBehaviour
                 }
                 else
                 {
-                    gameObject.GetComponent<SpriteRenderer>().sprite = sprites[0];
                     aiState = "passive_right";
                 }
             }
@@ -490,9 +501,10 @@ public class Obstacles : MonoBehaviour
             /*---Chase Mode---*/
             else if (aiState == "hostile_right")
             {
+                gameObject.GetComponent<SpriteRenderer>().sprite = sprites[2];
+
                 if (Player.rb2D.position.x + Player.rb2D.GetComponent<CircleCollider2D>().radius * 2 < transform.position.x - GetComponent<BoxCollider2D>().size.x / 2)
                 {
-                    gameObject.GetComponent<SpriteRenderer>().sprite = sprites[3];
                     aiState = "hostile_left";
                 }
                 else if (refState2a_1 == "stop")
@@ -507,9 +519,10 @@ public class Obstacles : MonoBehaviour
             }
             else if (aiState == "hostile_left")
             {
+                gameObject.GetComponent<SpriteRenderer>().sprite = sprites[3];
+
                 if (Player.rb2D.position.x - Player.rb2D.GetComponent<CircleCollider2D>().radius * 2 > transform.position.x + GetComponent<BoxCollider2D>().size.x / 2)
                 {
-                    gameObject.GetComponent<SpriteRenderer>().sprite = sprites[2];
                     aiState = "hostile_right";
                 }
                 else if (refState2a_1 == "stop")
@@ -522,6 +535,8 @@ public class Obstacles : MonoBehaviour
                     transform.position += new Vector3(-2 * speed, 0, 0);
                 }
             }
+
+            /*-----Stop and Deaggro-----*/
             else if (aiState == "stop")
             {
                 if (!hold_time)
@@ -531,12 +546,10 @@ public class Obstacles : MonoBehaviour
                 {
                     if (refState3_1 == "hostile_left")
                     {
-                        gameObject.GetComponent<SpriteRenderer>().sprite = sprites[0];
                         aiState = "passive_right";
                     }
                     else if (refState3_1 == "hostile_right")
                     {
-                        gameObject.GetComponent<SpriteRenderer>().sprite = sprites[1];
                         aiState = "passive_left";
                     }
                     time = 0;
@@ -544,18 +557,42 @@ public class Obstacles : MonoBehaviour
                 }
                 else if (Player.rb2D.position.x > transform.position.x && refState3_1 == "hostile_left")
                 {
-                    gameObject.GetComponent<SpriteRenderer>().sprite = sprites[2];
                     aiState = "hostile_right";
                     time = 0;
                     refState2a_1 = "";
                 }
                 else if (Player.rb2D.position.x < transform.position.x && refState3_1 == "hostile_right")
                 {
-                    gameObject.GetComponent<SpriteRenderer>().sprite = sprites[3];
                     aiState = "hostile_left";
                     time = 0;
                     refState2a_1 = "";
                 }
+            }
+
+            if (Player.rb2D.position.y - Player.rb2D.GetComponent<CircleCollider2D>().radius > transform.position.y + gameObject.GetComponent<BoxCollider2D>().size.y / 2 && aiState.Substring(0, 7) == "hostile")
+            {
+                if(!hold_time)
+                StartCoroutine(addSecond());
+            }
+            else
+            {
+                time = 0;
+            }
+
+            if (time / 2 >= deAggroTime)
+            {
+                if (aiState == "hostile_right")
+                {
+                    aiState = "passive_right";
+                    gameObject.GetComponent<SpriteRenderer>().sprite = sprites[0];
+                }
+                else if (aiState == "hostile_left")
+                {
+                    aiState = "passive_left";
+                    gameObject.GetComponent<SpriteRenderer>().sprite = sprites[1];
+                }
+
+                time = 0;
             }
         }
 
@@ -817,11 +854,16 @@ public class Obstacles : MonoBehaviour
         // On bullet hit -> take damage + other
         if (other.gameObject.tag == "Player Bullet")
         {
-            if (gameObject.CompareTag("Enemy"))
+            if (gameObject.CompareTag("Enemy") && !hazard)
             {
+                // Take damage
                 healthCurr -= GlobalControl.damage;
                 Debug.Log(healthCurr + " HP remaining!");
 
+                // Damage indication
+                StartCoroutine(dmgFlash(0.05f));
+
+                // Other effects
                 if (gameObject.name.Substring(0, 7) == "Pursuit")
                 {
                     if (Player.rb2D.position.x < transform.position.x)
@@ -846,7 +888,7 @@ public class Obstacles : MonoBehaviour
         // On hit player -> damage + knockback
         else if (other.name == "Player" && !GlobalControl.immune)
         {
-            if (!(gameObject.name.Substring(0, 6) == "Turret" || gameObject.name.Substring(0, 5) == "Errat") && other.gameObject.CompareTag("Player") && !GlobalControl.immune)
+            if (!(gameObject.name.Substring(0, 6) == "Turret" || gameObject.name.Substring(0, 5) == "Errat"))
             {
                 // Damage calculation
                 if (GlobalControl.reactor == "unstable")
@@ -856,7 +898,7 @@ public class Obstacles : MonoBehaviour
                 else
                 {
                     GlobalControl.healthCurr -= damage;
-                    StartCoroutine(IFrame());
+                    GlobalControl.immune = true;
                 }
 
                 // On hit effects
@@ -917,7 +959,7 @@ public class Obstacles : MonoBehaviour
         // On hit player -> damage + knockback
         if (other.name == "Player" && !GlobalControl.immune)
         {
-            if (!(gameObject.name.Substring(0, 6) == "Turret" || gameObject.name.Substring(0, 5) == "Errat") && other.gameObject.CompareTag("Player") && !GlobalControl.immune)
+            if (!(gameObject.name.Substring(0, 6) == "Turret" || gameObject.name.Substring(0, 5) == "Errat"))
             {
                 // Damage calculation
                 if (GlobalControl.reactor == "unstable")
@@ -927,7 +969,7 @@ public class Obstacles : MonoBehaviour
                 else
                 {
                     GlobalControl.healthCurr -= damage;
-                    StartCoroutine(IFrame());
+                    GlobalControl.immune = true;
                 }
 
                 // On hit effects
@@ -983,6 +1025,11 @@ public class Obstacles : MonoBehaviour
         }
     }
 
+    private void OnTriggerExit2D(Collider2D other)
+    {
+
+    }
+
     void fireBullet(Vector2 direction, float rotation2, float speed)
     {
         // Fires a bullet from the pool
@@ -1003,13 +1050,6 @@ public class Obstacles : MonoBehaviour
             bullet.transform.rotation = Quaternion.Euler(0.0f, 0.0f, rotation2);
             bullet.GetComponent<Rigidbody2D>().velocity = direction * speed;
         }
-    }
-
-    IEnumerator IFrame()
-    {
-        GlobalControl.immune = true;
-        yield return new WaitForSeconds(1f);
-        GlobalControl.immune = false;
     }
 
     IEnumerator addSecond()
@@ -1035,5 +1075,18 @@ public class Obstacles : MonoBehaviour
         yield return new WaitForSeconds(useTime);
 
         canShoot = true;
+    }
+
+    IEnumerator dmgFlash(float time)
+    {
+        GetComponent<SpriteRenderer>().enabled = false;
+        if(animated)
+        GetComponent<Animator>().enabled = false;
+
+        yield return new WaitForSeconds(time);
+
+        GetComponent<SpriteRenderer>().enabled = true;
+        if(animated)
+        GetComponent<Animator>().enabled = true;
     }
 }

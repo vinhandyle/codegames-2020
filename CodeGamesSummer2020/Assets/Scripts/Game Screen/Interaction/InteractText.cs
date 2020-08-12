@@ -63,7 +63,7 @@ public class InteractText : MonoBehaviour
                         GlobalControl.solarUnlocked = true;
                         GlobalControl.gunUnlocked = true;
                     }
-                    else if (type == "geothermal")
+                    else if (type == "Geothermal")
                     {
                         text.text = "Picked up: Geothermal Extractor";
                         GlobalControl.geoUnlocked = true;
@@ -106,15 +106,39 @@ public class InteractText : MonoBehaviour
                         GlobalControl.scrapFound = true;
                         GlobalControl.scrapNum++;
                     }
-                    else if (type == "extra")
+                    else if (type.Substring(0, 5) == "Extra")
                     {
                         text.text = "Picked up: Extra Battery";
+                        if (attachedTo == "Extra_1")
+                        {
+                            GlobalControl.extra_1 = true;
+                        }
+                        else if (attachedTo == "Extra_2")
+                        {
+                            GlobalControl.extra_2 = true;
+                        }
+                        else if (attachedTo == "Extra_3")
+                        {
+                            GlobalControl.extra_3 = true;
+                        }
                         GlobalControl.extraFound = true;
+                        GlobalControl.extraNum++;
+                        GlobalControl.update = 2;
                     }
-                    else if (type == "plating")
+                    else if (type.Substring(0, 7) == "Plating")
                     {
+                        if (attachedTo == "Plating_1")
+                        {
+
+                        }
+                        else if (attachedTo == "Plating_2")
+                        {
+
+                        }
                         text.text = "Picked up: Special Plating";
                         GlobalControl.plateFound = true;
+                        GlobalControl.plateNum++;
+                        GlobalControl.update = 1;
                     }
 
                     /*-----Items that can be examined-----*/
@@ -227,9 +251,9 @@ public class InteractText : MonoBehaviour
                     }
 
                     // Lingering textbox on item pickup
-                    if (type == "ego" || type == "Starter" || type == "geothermal" || type == "Map" || type == "Heartless" ||
-                        type == "Lost" || type == "Unstable" || type == "plating" || type == "extra" || type.Substring(0, 5) == "Scrap" ||
-                        (type == "post-craft" && !triggerOnce))
+                    if (type == "ego" || type == "Starter" || type == "Geothermal" || type == "Map" || type == "Heartless" ||
+                        type == "Lost" || type == "Unstable" || type.Substring(0, 7) == "Plating" || type.Substring(0, 5) == "Extra" || 
+                        type.Substring(0, 5) == "Scrap" || (type == "post-craft" && !triggerOnce))
                     {
                         triggerOnce = true;
                         StartCoroutine(wait(2f));

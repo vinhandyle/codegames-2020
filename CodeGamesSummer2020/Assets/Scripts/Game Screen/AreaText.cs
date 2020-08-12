@@ -121,7 +121,7 @@ public class AreaText : MonoBehaviour
             {
                 text.text = "Storage Area";
             }
-            else if (GlobalControl.area == "SG_9S") // Plating
+            else if (GlobalControl.area == "SG_9S")
             {
                 text.text = "Storage Depths";
             }
@@ -143,11 +143,96 @@ public class AreaText : MonoBehaviour
             }
 
             // Twilight Town
-            else if (GlobalControl.area == "TT_1") // Battery
+            else if (GlobalControl.area == "TT_1") // Extra Battery
             {
                 text.text = "Outer Garden";
             }
+            else if (GlobalControl.area == "TT_2")
+            {
+                text.text = "Central Plaza";
+            }
+            else if (GlobalControl.area == "TT_3")
+            {
+                text.text = "Secluded Path";
+            }
+            else if (GlobalControl.area == "TT_4")
+            {
+                text.text = "City Intersection";
+            }
+            else if (GlobalControl.area == "TT_5")
+            {
+                text.text = "Residential Section";
+            }
+            else if (GlobalControl.area == "TT_6")
+            {
+                text.text = "Alleyway";
+            }
+            else if (GlobalControl.area == "TT_7")
+            {
+                text.text = "Azimuth Hall";
+            }
+            else if (GlobalControl.area == "TT_8")
+            {
+                text.text = "Dead End";
+            }
+            else if (GlobalControl.area == "TT_9")
+            {
+                text.text = "Yawyella";
+            }
+            else if (GlobalControl.area == "TT_10")
+            {
+                text.text = "Attic";
+            }
+            else if (GlobalControl.area == "TT_11")
+            {
+                text.text = "Breakout";
+            }
+            else if (GlobalControl.area == "TT_12")
+            {
+                text.text = "Closed-Off Section";
+            }
+            else if (GlobalControl.area == "TT_12S")
+            {
+                text.text = "Dark Alley";
+            }
+            else if (GlobalControl.area == "TT_13")
+            {
+                text.text = "Suppression";
+            }
+            else if (GlobalControl.area == "TT_14")
+            {
+                text.text = "Main Station";
+            }
+            else if (GlobalControl.area == "TT_15")
+            {
+                text.text = "Vac-Train";
+            }
+            else if (GlobalControl.area == "TT_15S")
+            {
+                text.text = "Far Station";
+            }
+            else if (GlobalControl.area == "TT_16")
+            {
+                text.text = "Seaside Station";
+            }
+            else if (GlobalControl.area == "TT_2")
+            {
+                text.text = "City Outskirts";
+            }
 
+            // Midnight Bay
+            else if (GlobalControl.area == "MB_1")
+            {
+                text.text = "Stormy Beach";
+            }
+            else if (GlobalControl.area == "MB_2")
+            {
+                text.text = "Great Maw";
+            }
+            else if (GlobalControl.area == "MB_4")
+            {
+                text.text = "Hull";
+            }
 
             // Grey Palace
             else if (GlobalControl.area == "GP_0A")
