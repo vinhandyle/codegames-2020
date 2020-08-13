@@ -19,8 +19,8 @@ public class Player : MonoBehaviour
     public static float v_x = 0;
     public static float v_y = 0;
 
-    private bool canDash = true; // Whether the player can dash
-    private bool dashing = false; // Prevents moving while dashing
+    public static bool canDash = true; // Whether the player can dash
+    public static bool dashing = false; // Prevents moving while dashing
     private bool walled = false; // Player cannot dash when against a wall
     private bool tooLong = false; // Whether a key is held too long to dash on release
     public static string direction; // Player direction used for dashing
@@ -34,8 +34,8 @@ public class Player : MonoBehaviour
     private static bool canLeft = true; // Able to move left
     private static bool canRight = true; // Able to move right
 
-    private bool canJump1 = false; // Whether the player can jump
-    private bool canJump2 = false; // Whether the player can double-jump
+    public static bool canJump1 = false; // Whether the player can jump
+    public static bool canJump2 = false; // Whether the player can double-jump
     private bool jumped = false; // Whether the first jump started
     private bool midJump = false; // Whether the player is mid-jump
 
@@ -54,6 +54,7 @@ public class Player : MonoBehaviour
         if (GlobalControl.switched)
         {
             transform.position = new Vector3(x, y, transform.position.z);
+            dashing = false;
             GlobalControl.switched = false;
         }
         else
@@ -82,7 +83,7 @@ public class Player : MonoBehaviour
         /*-----Heartless Generator-----*/
 
         // Use Heartless Generator
-        if (Input.GetKeyDown("s"))
+        if (Input.GetKeyDown("s") && GlobalControl.heartlessUnlocked)
         {
             // 1 HP to 3 Energy
             if (GlobalControl.h2e && GlobalControl.energyCurr < GlobalControl.energyMax)
@@ -107,7 +108,7 @@ public class Player : MonoBehaviour
         }
 
         // Toggle Heartless Generator conversion type
-        if (Input.GetKeyDown("f"))
+        if (Input.GetKeyDown("f") && GlobalControl.heartlessUnlocked)
         {
             if (GlobalControl.h2e)
             {
@@ -265,6 +266,7 @@ public class Player : MonoBehaviour
             canJump1 = true;
             canJump2 = false;
             jumped = false;
+            midJump = false;
         }
         // Allows jumping if on wall edge
         else if (collision.collider.CompareTag("Wall") && collision.collider.transform.parent.name != "Destructibles" && transform.position.y - gameObject.GetComponent<CircleCollider2D>().radius > collision.collider.transform.position.y + collision.collider.GetComponent<BoxCollider2D>().size.y / 3)
@@ -272,6 +274,7 @@ public class Player : MonoBehaviour
             canJump1 = true;
             canJump2 = false;
             jumped = false;
+            midJump = false;
         }
         // If the player is almost on the ledge, teleports them on
         else if (collision.collider.CompareTag("Wall") && collision.collider.transform.parent.name != "Destructibles" && collision.collider.transform.parent.name != "Hazards" && collision.collider.transform.parent.name.Substring(0, 4) != "Belt" &&
@@ -289,8 +292,10 @@ public class Player : MonoBehaviour
         }
 
         if (collision.collider.CompareTag("Wall"))
-            walled = true;
         {
+            walled = true;
+            dashing = false;
+
             // If player is not on a wall, player is still mid air (player y-coord > wall y-coord + wall height / 2)
             if (rb2D.position.y >= collision.collider.gameObject.transform.position.y + collision.collider.GetComponent<BoxCollider2D>().size.y / 2)
             {
@@ -307,6 +312,7 @@ public class Player : MonoBehaviour
             canJump1 = true;
             canJump2 = false;
             jumped = false;
+            midJump = false;
 
         }
         // Allows jumping if on wall edge
@@ -316,6 +322,7 @@ public class Player : MonoBehaviour
             canJump1 = true;
             canJump2 = false;
             jumped = false;
+            midJump = true;
         }
 
         if (collision.collider.CompareTag("Wall"))
@@ -327,7 +334,6 @@ public class Player : MonoBehaviour
                 midJump = false;
             }
         }
-
     }
 
     //Triggers when the collision ends

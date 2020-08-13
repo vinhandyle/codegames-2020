@@ -221,7 +221,17 @@ public class Scope : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (gameObject.name == attachedTo)
+        if (transform.parent.name == attachedTo)
+        {
+            if (other.name == "Player")
+            {
+                if (gameObject.name == "Detect_Player" && transform.parent.name.Substring(0, 6) == "Aerial")
+                {
+                    Obstacles.refState2_2 = "in";
+                }
+            }
+        }
+        else if (gameObject.name == attachedTo)
         {
             if (other.CompareTag("Floor") || other.CompareTag("Ceiling") || other.CompareTag("Wall"))
             {
@@ -462,7 +472,14 @@ public class Scope : MonoBehaviour
                     seeWall = false;
                 }
             }
-            else if (gameObject.name == attachedTo)
+            else if (other.name == "Player")
+            {
+                if (gameObject.name == "Detect_Player" && transform.parent.name.Substring(0, 6) == "Aerial")
+                {
+                    Obstacles.refState2_2 = "out";
+                }
+            }
+        else if (gameObject.name == attachedTo)
             {
                 if (gameObject.name.Substring(0, 6) == "Crush_")
                 {

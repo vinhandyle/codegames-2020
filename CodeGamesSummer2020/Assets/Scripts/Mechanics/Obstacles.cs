@@ -23,6 +23,7 @@ public class Obstacles : MonoBehaviour
     public float range_1;   // Different range lengths
     public float range_2;
     public float speed;
+    public float speed_1;
 
     // Time
     public int time;    // AI time
@@ -33,6 +34,7 @@ public class Obstacles : MonoBehaviour
     public List<float> bulletSpeed;
     public float baseUseTime;
     public float useTime;
+    public float rechargeTime;
     public int maxBullet;
     public int currBullet;
     public bool canShoot = true;
@@ -48,12 +50,17 @@ public class Obstacles : MonoBehaviour
     // Add a "H" before num for hazard AI: Crusher (1),
     // e.g. refState2b_5
     public string aiState;
+    public string path;
+    public string pathState;
 
     /* Pursuit */
     public static string refState_1;    // Current aiState
     public static string refState2_1;   // Should it be passive?
     public static string refState2a_1;  // Should it stop?
     public string refState3_1;          // Where was it facing before it stopped?
+
+    /* Aerial */
+    public static string refState2_2;   // Is player in range?
 
     /* Overseer */
     public static string refState_5;    // Scorched Earth attack phase
@@ -83,12 +90,7 @@ public class Obstacles : MonoBehaviour
             (gameObject.name == "Patrol_1_2_7" && !GlobalControl.patrol_1_2_7) ||
             (gameObject.name == "Patrol_1_2_8" && !GlobalControl.patrol_1_2_8) ||
             (gameObject.name == "Patrol_1_2_9" && !GlobalControl.patrol_1_2_9) ||
-            (gameObject.name == "Errat_0" && !GlobalControl.errat_0) ||
-            (gameObject.name == "Errat_1" && !GlobalControl.errat_1) ||
-            (gameObject.name == "Errat_2" && !GlobalControl.errat_2) ||
-            (gameObject.name == "Errat_3" && !GlobalControl.errat_3) ||
-            (gameObject.name == "Errat_4" && !GlobalControl.errat_4) ||
-            (gameObject.name == "Errat_5" && !GlobalControl.errat_5) ||
+            (gameObject.name == "Patrol_2_3_0" && !GlobalControl.patrol_2_3_0) ||
             (gameObject.name == "Pursuit_1_2_0" && !GlobalControl.pursuit_1_2_0) ||
             (gameObject.name == "Pursuit_1_2_1" && !GlobalControl.pursuit_1_2_1) ||
             (gameObject.name == "Pursuit_1_2_2" && !GlobalControl.pursuit_1_2_2) ||
@@ -97,6 +99,13 @@ public class Obstacles : MonoBehaviour
             (gameObject.name == "Pursuit_1_2_5" && !GlobalControl.pursuit_1_2_5) ||
             (gameObject.name == "Pursuit_1_2_6" && !GlobalControl.pursuit_1_2_6) ||
             (gameObject.name == "Pursuit_1_2_7" && !GlobalControl.pursuit_1_2_7) ||
+            (gameObject.name == "Aerial_1_3_0" && !GlobalControl.aerial_1_3_0) ||
+            (gameObject.name == "Errat_0" && !GlobalControl.errat_0) ||
+            (gameObject.name == "Errat_1" && !GlobalControl.errat_1) ||
+            (gameObject.name == "Errat_2" && !GlobalControl.errat_2) ||
+            (gameObject.name == "Errat_3" && !GlobalControl.errat_3) ||
+            (gameObject.name == "Errat_4" && !GlobalControl.errat_4) ||
+            (gameObject.name == "Errat_5" && !GlobalControl.errat_5) ||
             (gameObject.name == "Overseer" && GlobalControl.downed_boss_1))
         {
             gameObject.SetActive(false);
@@ -131,8 +140,8 @@ public class Obstacles : MonoBehaviour
             }
             else if (gameObject.name.Substring(6, 2) == "_2")
             { // Tier 2: Twilight Town, Midnight Bay
-                //healthMax = ;
-                //damage = ;
+                healthMax = 8;
+                damage = 2;
             }
             else if (gameObject.name.Substring(6, 2) == "_3")
             { // Tier 3: IT (2nd), Grey Palace
@@ -161,8 +170,8 @@ public class Obstacles : MonoBehaviour
         {
             if (gameObject.name.Substring(6, 2) == "_1")
             { // Tier 1: Twilight Town
-                //healthMax = ;
-                //damage = ;
+                healthMax = 5;
+                damage = 2;
             }
             else if (gameObject.name.Substring(6, 2) == "_2")
             { // Tier 2: Grey Palace
@@ -416,6 +425,16 @@ public class Obstacles : MonoBehaviour
             {
                 GlobalControl.downed_boss_1 = true;
             }
+
+            // Twilight Town
+            else if (gameObject.name == "Patrol_2_3_0")
+            {
+                GlobalControl.patrol_2_3_0 = false;
+            }
+            else if (gameObject.name == "Aerial_1_3_0")
+            {
+                GlobalControl.aerial_1_3_0 = false;
+            }
         }
 
         /*----------Enemy AI----------*/
@@ -599,7 +618,240 @@ public class Obstacles : MonoBehaviour
         /*-----Aerial Machina-----*/
         else if (gameObject.name.Substring(0, 6) == "Aerial")
         {
-            // Insert AI here
+            // Change AI if player is in or out of range
+            if (refState2_2 == "in")
+            {
+                aiState = "shoot";
+            }
+            else
+            {
+                aiState = "";
+            }
+
+            if (aiState == "shoot")
+            {
+                Vector3 difference = (Vector3)Player.rb2D.position - new Vector3(transform.position.x - GetComponent<BoxCollider2D>().size.x / 2, transform.position.y, transform.position.z);
+                float rotationZ = Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg;
+
+                // Shoot x bullets at y rate then recharge for z seconds
+                if (canShoot && currBullet > 0)
+                {
+                    float distance = difference.magnitude;
+                    Vector2 direction = difference / distance;
+                    direction.Normalize();
+                    fireBullet(direction, rotationZ, bulletSpeed[0]);
+                    currBullet--;
+                    StartCoroutine(cooldown());
+                }
+                else if (currBullet == 0 && !hold_time)
+                {
+                    StartCoroutine(addSecond());
+                    if (time >= rechargeTime)
+                    {
+                        currBullet = maxBullet;
+                        time = 0;
+                    }
+                }
+            }
+
+            // Determine pathing
+            if (path.Substring(0, 4) == "line")
+            {
+                if (path == "line_h")
+                {
+                    if (pathState == "left")
+                    {
+                        if (transform.position.x > x - range_1)
+                        {
+                            transform.position += new Vector3(-speed, 0);
+                        }
+                        else
+                        {
+                            pathState = "right";
+                        }
+                    }
+                    else if (pathState == "right")
+                    {
+                        if (transform.position.x < x + range_2)
+                        {
+                            transform.position += new Vector3(speed, 0);
+                        }
+                        else
+                        {
+                            pathState = "left";
+                        }
+                    }
+                }
+                else if (path == "line_v")
+                {
+                    if (pathState == "down")
+                    {
+                        if (transform.position.y > y - range_1)
+                        {
+                            transform.position += new Vector3(0, -speed);
+                        }
+                        else
+                        {
+                            pathState = "up";
+                        }
+                    }
+                    else if (pathState == "up")
+                    {
+                        if (transform.position.y < y + range_2)
+                        {
+                            transform.position += new Vector3(0, speed);
+                        }
+                        else
+                        {
+                            pathState = "down";
+                        }
+                    }
+                }
+                else if (path == "line_d")
+                {
+                    if (pathState == "left-down")
+                    {
+                        if (transform.position.x > x - range_1)
+                        {
+                            transform.position += new Vector3(-speed, -speed_1);
+                        }
+                        else
+                        {
+                            pathState = "right-up";
+                        }
+                    }
+                    else if (pathState == "right-up")
+                    {
+                        if (transform.position.x < x + range_2)
+                        {
+                            transform.position += new Vector3(speed, speed_1);
+                        }
+                        else
+                        {
+                            pathState = "left-down";
+                        }
+                    }
+                    else if (pathState == "left-up")
+                    {
+                        if (transform.position.x > x - range_1)
+                        {
+                            transform.position += new Vector3(-speed, speed_1);
+                        }
+                        else
+                        {
+                            pathState = "right-down";
+                        }
+                    }
+                    else if (pathState == "right-down")
+                    {
+                        if (transform.position.x < x + range_2)
+                        {
+                            transform.position += new Vector3(speed, -speed_1);
+                        }
+                        else
+                        {
+                            pathState = "left-up";
+                        }
+                    }
+                }
+            }
+            else if (path.Substring(0, 3) == "box")
+            {
+                if (path == "box-clock")
+                {
+                    if (pathState == "left")
+                    {
+                        if (transform.position.x > x - range_1)
+                        {
+                            transform.position += new Vector3(-speed, 0);
+                        }
+                        else
+                        {
+                            pathState = "up";
+                        }
+                    }
+                    else if (pathState == "right")
+                    {
+                        if (transform.position.x < x + range_1)
+                        {
+                            transform.position += new Vector3(speed, 0);
+                        }
+                        else
+                        {
+                            pathState = "down";
+                        }
+                    }
+                    else if (pathState == "down")
+                    {
+                        if (transform.position.y > y - range_2)
+                        {
+                            transform.position += new Vector3(0, -speed);
+                        }
+                        else
+                        {
+                            pathState = "left";
+                        }
+                    }
+                    else if (pathState == "up")
+                    {
+                        if (transform.position.y < y + range_2)
+                        {
+                            transform.position += new Vector3(0, speed);
+                        }
+                        else
+                        {
+                            pathState = "right";
+                        }
+                    }
+                }
+                else if (path == "box-counter")
+                {
+                    if (pathState == "left")
+                    {
+                        if (transform.position.x > x - range_1)
+                        {
+                            transform.position += new Vector3(-speed, 0);
+                        }
+                        else
+                        {
+                            pathState = "down";
+                        }
+                    }
+                    else if (pathState == "right")
+                    {
+                        if (transform.position.x < x + range_1)
+                        {
+                            transform.position += new Vector3(speed, 0);
+                        }
+                        else
+                        {
+                            pathState = "up";
+                        }
+                    }
+                    else if (pathState == "down")
+                    {
+                        if (transform.position.y > y - range_2)
+                        {
+                            transform.position += new Vector3(0, -speed);
+                        }
+                        else
+                        {
+                            pathState = "right";
+                        }
+                    }
+                    else if (pathState == "up")
+                    {
+                        if (transform.position.y < y + range_2)
+                        {
+                            transform.position += new Vector3(0, speed);
+                        }
+                        else
+                        {
+                            pathState = "left";
+                        }
+                    }
+                }
+            }
         }
 
         /*-----Aquatic Machina-----*/
@@ -1034,13 +1286,23 @@ public class Obstacles : MonoBehaviour
     {
         // Fires a bullet from the pool
         GameObject bullet = null;
-        if (refState3b_5 == "pool_1")
+
+        if (gameObject.name.Substring(0, 6) == "Aerial")
         {
             bullet = EnemyObjectPooler.SharedInstance.GetPooledObject();
         }
-        else if(refState3b_5 == "pool_2")
+
+        // Overseer
+        if (gameObject.name == "Overseer")
         {
-            bullet = EnemyObjectPooler2.SharedInstance.GetPooledObject();
+            if (refState3b_5 == "pool_1")
+            {
+                bullet = EnemyObjectPooler.SharedInstance.GetPooledObject();
+            }
+            else if (refState3b_5 == "pool_2")
+            {
+                bullet = EnemyObjectPooler2.SharedInstance.GetPooledObject();
+            }
         }
 
         if (bullet != null)

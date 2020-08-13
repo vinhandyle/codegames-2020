@@ -154,6 +154,32 @@ public class EnterDoor : MonoBehaviour
                 StartCoroutine(SceneSwitch("SG_9", "SG_9_to_SG_11"));
             }
 
+            // Central Plaza to City Intersection
+            else if (doorName == "TT_2_to_TT_4")
+            {
+                StartCoroutine(SceneSwitch("TT_4", "TT_4_to_TT_2"));
+            }
+            else if (doorName == "TT_4_to_TT_2")
+            {
+                StartCoroutine(SceneSwitch("TT_2", "TT_2_to_TT_4"));
+            }
+
+            // Central Plaza to Main Station
+            else if (doorName == "TT_2_to_TT_13")
+            {
+                StartCoroutine(SceneSwitch("TT_13", "TT_13_to_TT_2"));
+            }
+
+            // City Intersection to Alleyway
+            else if (doorName == "TT_4_to_TT_7")
+            {
+                StartCoroutine(SceneSwitch("TT_7", "TT_7_to_TT_4"));
+            }
+            else if (doorName == "TT_7_to_TT_4")
+            {
+                StartCoroutine(SceneSwitch("TT_4", "TT_4_to_TT_7"));
+            }
+
             // Mysterious Path to The Lift from Hell
             else if (doorName == "DH_7_to_IT_3")
             {

@@ -158,3 +158,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 0
+  poolNum: 0
+  position: {x: 0, y: 0, z: 0}
+  frag: []

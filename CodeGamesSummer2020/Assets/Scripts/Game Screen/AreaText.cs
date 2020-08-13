@@ -147,11 +147,11 @@ public class AreaText : MonoBehaviour
             {
                 text.text = "Outer Garden";
             }
-            else if (GlobalControl.area == "TT_2")
+            else if (GlobalControl.area == "TT_2") // Repair Station
             {
                 text.text = "Central Plaza";
             }
-            else if (GlobalControl.area == "TT_3")
+            else if (GlobalControl.area == "TT_3") // Train Pass behind block, accesible via Dead End
             {
                 text.text = "Secluded Path";
             }
@@ -165,57 +165,53 @@ public class AreaText : MonoBehaviour
             }
             else if (GlobalControl.area == "TT_6")
             {
-                text.text = "Alleyway";
+                text.text = "Dead End";
             }
             else if (GlobalControl.area == "TT_7")
             {
-                text.text = "Azimuth Hall";
+                text.text = "Alley Way";
             }
             else if (GlobalControl.area == "TT_8")
             {
-                text.text = "Dead End";
+                text.text = "Azimuth Hall";
             }
-            else if (GlobalControl.area == "TT_9")
+            else if (GlobalControl.area == "TT_9") // Extra battery in hard to reach place
             {
-                text.text = "Yawyella";
+                text.text = "Loft";
             }
             else if (GlobalControl.area == "TT_10")
             {
-                text.text = "Attic";
+                text.text = "Breakout";
             }
             else if (GlobalControl.area == "TT_11")
             {
-                text.text = "Breakout";
-            }
-            else if (GlobalControl.area == "TT_12")
-            {
                 text.text = "Closed-Off Section";
             }
-            else if (GlobalControl.area == "TT_12S")
+            else if (GlobalControl.area == "TT_11S") // Kin
             {
                 text.text = "Dark Alley";
             }
-            else if (GlobalControl.area == "TT_13")
+            else if (GlobalControl.area == "TT_12") // Boss
             {
                 text.text = "Suppression";
             }
-            else if (GlobalControl.area == "TT_14")
+            else if (GlobalControl.area == "TT_13")
             {
                 text.text = "Main Station";
             }
-            else if (GlobalControl.area == "TT_15")
+            else if (GlobalControl.area == "TT_14")
             {
                 text.text = "Vac-Train";
             }
-            else if (GlobalControl.area == "TT_15S")
+            else if (GlobalControl.area == "TT_14S") // Kin
             {
                 text.text = "Far Station";
             }
-            else if (GlobalControl.area == "TT_16")
+            else if (GlobalControl.area == "TT_15")
             {
                 text.text = "Seaside Station";
             }
-            else if (GlobalControl.area == "TT_2")
+            else if (GlobalControl.area == "TT_16")
             {
                 text.text = "City Outskirts";
             }

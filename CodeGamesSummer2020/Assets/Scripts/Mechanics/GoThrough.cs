@@ -383,6 +383,32 @@ public class GoThrough : MonoBehaviour
 
             /*-----TT-----*/
 
+            // TT_1 to TT_2
+            else if (opName == "TT_1_to_TT_2")
+            {
+                StartCoroutine(SceneSwitch("TT_2", "TT_2_to_TT_1"));
+            }
+            else if (opName == "TT_2_to_TT_1")
+            {
+                StartCoroutine(SceneSwitch("TT_1", "TT_1_to_TT_2"));
+            }
+
+            // TT_2 to TT_11
+            else if (opName == "TT_2_to_TT_11")
+            {
+                StartCoroutine(SceneSwitch("TT_11", "TT_11_to_TT_2"));
+            }
+            else if (opName == "TT_11_to_TT_2")
+            {
+                StartCoroutine(SceneSwitch("TT_2", "TT_2_to_TT_11"));
+            }
+
+            // TT_2 to TT_13
+            else if (opName == "TT_13_to_TT_2")
+            {
+                StartCoroutine(SceneSwitch("TT_2", "TT_2_to_TT_13"));
+            }
+
             /*-----MB-----*/
 
             /*-----GP-----*/

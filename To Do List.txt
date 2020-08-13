@@ -1,14 +1,14 @@
 -Bugs
 	>Multiple pursuits will not aggro if landing in sight, will aggro after direction change
+	>Conveyor belt pushes into wall, jump towards then move away from wall, get stuuck X
 
 -Plan out Twilight Town
-	>Outer Garden
-		>Extra Battery
+	>Unique backgrounds
 	>Maglev
-	>Buildings
+		>Travel anim
+		>Switch
+		>Stations
 	>Obstacles
-		>Aerial 
-			>Flies a path, shoots at player with time in between barrages
 		>Containment
 			>Designed to catch the Ego, became harder to control, locked away
 
@@ -16,5 +16,7 @@
 	>Rotten Depths
 	>Upper Disposal Area
 	>Garden Heights
+	>Dark Alley
+	>Far Station
 	
 -Other

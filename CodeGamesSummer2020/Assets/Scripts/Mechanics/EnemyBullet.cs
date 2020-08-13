@@ -25,6 +25,14 @@ public class EnemyBullet : MonoBehaviour
                 poolNum = 0;
             }
         }
+
+        if (GlobalControl.area.Substring(0, 2) == "TT")
+        {
+            if (gameObject.name.Substring(0, 13) == "Tiny E_Bullet")
+            {
+                damage = 1;
+            }
+        }
     }
 
     // Update is called once per frame
@@ -75,12 +83,26 @@ public class EnemyBullet : MonoBehaviour
                     fireBullet(frag[0], new Vector2(Mathf.Cos(i * Mathf.PI / 4), Mathf.Sin(i * Mathf.PI / 4)), 45 * i, 5f);
                 }
             }
+            if (GlobalControl.area.Substring(0, 2) == "TT")
+            {
+                if (gameObject.name.Substring(0, 13) == "Tiny E_Bullet")
+                {
+                    gameObject.SetActive(false);
+                }
+            }
+
         }
 
         // On hit any terrain
         else if (other.CompareTag("Floor") || other.CompareTag("Ceiling") || other.CompareTag("Wall"))
         {
-    
+            if (GlobalControl.area.Substring(0, 2) == "TT")
+            {
+                if (gameObject.name.Substring(0, 13) == "Tiny E_Bullet")
+                {
+                    gameObject.SetActive(false);
+                }
+            }
         }         
     }
 

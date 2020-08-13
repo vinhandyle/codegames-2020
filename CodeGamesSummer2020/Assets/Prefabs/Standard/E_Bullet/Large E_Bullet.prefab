@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: -4841922430807188663}
   - component: {fileID: 3094105849387229127}
   - component: {fileID: 6688325990922969489}
-  - component: {fileID: -4518640025143982464}
   - component: {fileID: -6238493750999730274}
   m_Layer: 9
   m_Name: Large E_Bullet
@@ -146,18 +145,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f417678e959efa41a86882ed482f088, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &-4518640025143982464
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6006091208539876972}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2e69fb3582b5a1644b94e6d5f76dd6d5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &-6238493750999730274
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -171,6 +158,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 0
-  pooling: 0
+  poolNum: 0
+  position: {x: 0, y: 0, z: 0}
   frag:
   - {fileID: 146330153113669660, guid: 5ca652329e9fd484684e97123072be93, type: 3}
