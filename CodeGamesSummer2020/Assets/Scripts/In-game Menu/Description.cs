@@ -175,6 +175,12 @@ public class Description : MonoBehaviour
                                 "\n\n<i>Composed of shattered glass, burnt plastic, broken chips, damaged wires, and hunks of metal. " +
                                 "It serves no immediate purpose but a Construction Machina could make use of it. </i>";
                 }
+                else if (descOf == "17" && GlobalControl.keyUnlocked)
+                {
+                    text.text = "<b>Acess Key</b> \n" +
+                        "Allows usage of the Vacuum Pods.\n\n" +
+                        "<i></i>";
+                }
                 else
                 {
                     descOf = "";

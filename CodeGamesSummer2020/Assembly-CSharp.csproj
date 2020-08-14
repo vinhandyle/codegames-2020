@@ -104,6 +104,8 @@
     <Compile Include="Assets\Scripts\Mechanics\Platform.cs" />
     <Compile Include="Assets\Scripts\Mechanics\PointAndShoot.cs" />
     <Compile Include="Assets\Scripts\Mechanics\Scope.cs" />
+    <Compile Include="Assets\Scripts\Mechanics\SpecialTerrain.cs" />
+    <Compile Include="Assets\Scripts\Mechanics\VacPod.cs" />
     <Compile Include="Assets\Scripts\Player.cs" />
     <Compile Include="Assets\Scripts\Reactor Menu\ReactorBtn.cs" />
     <Compile Include="Assets\Scripts\Reactor Menu\ReactorBtnBehavior.cs" />

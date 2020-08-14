@@ -67,6 +67,13 @@ public class Examine : MonoBehaviour
         {
             inRange = false;
             sticky = "";
+
+            if (!harvestable)
+            {
+                InteractText.interacted = false;
+                InteractText.type = "";
+            }
+
             if (!InteractText.interacted)
                 InteractText.type = "";
         }

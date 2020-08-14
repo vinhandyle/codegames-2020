@@ -4,10 +4,6 @@
 
 -Plan out Twilight Town
 	>Unique backgrounds
-	>Maglev
-		>Travel anim
-		>Switch
-		>Stations
 	>Obstacles
 		>Containment
 			>Designed to catch the Ego, became harder to control, locked away
@@ -17,6 +13,7 @@
 	>Upper Disposal Area
 	>Garden Heights
 	>Dark Alley
-	>Far Station
+	>Far Station -built, just needs final touches
 	
 -Other
+	>

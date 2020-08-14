@@ -180,6 +180,49 @@ public class EnterDoor : MonoBehaviour
                 StartCoroutine(SceneSwitch("TT_4", "TT_4_to_TT_7"));
             }
 
+            // Stations to Vacuum Pod
+            else if (doorName == "TT_13_to_TT_14")
+            {
+                StartCoroutine(SceneSwitch("TT_14", "TT_14_to_TT_1X"));
+            }
+            else if (doorName == "TT_14S_to_TT_14")
+            {
+                StartCoroutine(SceneSwitch("TT_14", "TT_14_to_TT_1X"));
+            }
+            else if (doorName == "TT_15_to_TT_14")
+            {
+                StartCoroutine(SceneSwitch("TT_14", "TT_14_to_TT_1X"));
+            }
+            else if (doorName == "TT_14_to_TT_1X")
+            {
+                if (GlobalControl.pod_location == "main")
+                {
+                    StartCoroutine(SceneSwitch("TT_13", "TT_13_to_TT_14"));
+                }
+                else if (GlobalControl.pod_location == "far")
+                {
+                    StartCoroutine(SceneSwitch("TT_14S", "TT_14S_to_TT_14"));
+                }
+                else if (GlobalControl.pod_location == "seaside")
+                {
+                    StartCoroutine(SceneSwitch("TT_15", "TT_15_to_TT_14"));
+                }
+            }
+
+            // City Outskirts to Seaside Station
+            else if (doorName == "TT_16_to_TT_15")
+            {
+                StartCoroutine(SceneSwitch("TT_15", "TT_15_to_TT_16"));
+            }
+
+
+            // Seaside Station to City Outskirts
+            else if (doorName == "TT_15_to_TT_16")
+            {
+                StartCoroutine(SceneSwitch("TT_16", "TT_16_to_TT_15"));
+            }
+
+
             // Mysterious Path to The Lift from Hell
             else if (doorName == "DH_7_to_IT_3")
             {

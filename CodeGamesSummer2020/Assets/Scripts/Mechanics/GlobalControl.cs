@@ -35,6 +35,7 @@ public class GlobalControl : MonoBehaviour
     public static bool gunUnlocked = false;        // Energy Cannon
     public static bool mapUnlocked = false;        // Navigational Module
     public static bool heartlessUnlocked = false;  // Heartless Generator
+    public static bool keyUnlocked = true;        // Access Key
 
     public static bool dashUnlocked = false;       // Booster Rocket
     public static bool clingUnlocked = false;      // Climbing Claws
@@ -71,6 +72,9 @@ public class GlobalControl : MonoBehaviour
     public static bool h2e = true;                 // True = HP to Energy, False = Energy to HP
     public static int prog = 3;                    // Progession level for unlockAll: Start(0), Post-Start(1), Post-Dreg(2), Post-Garden(3), Post-Second(4), Post-Town(5), Post-Third(6), Post-Return(7), Post-End(8)
 
+    // Vacuum Pod
+    public static string pod_direction = "right";  // Direction of pod
+    public static string pod_location = "main";    // Where is the pod
 
     // World
     public static int humansLeft = 6;              // How many humans left to capture (6: May-October)
@@ -418,22 +422,26 @@ public class GlobalControl : MonoBehaviour
                 { // Post-Garden
                     dashUnlocked = true;
                     geoUnlocked = true;
+                    extraNum = 1;
+                    plateNum = 1;
 
                     if (prog > 3)
                     { // Post-Second
                         clingUnlocked = true;
+                        extraNum = 2;
 
                         if (prog > 4)
                         { // Post-Town
-                          // Unlock pass
+                            keyUnlocked = true;
 
                             if (prog > 5)
                             { // Post-Third
                                 doubleUnlocked = true;
+                                extraNum = 3;
 
                                 if (prog > 6)
                                 { // Post-Return
-                                    // Extra hp
+                                    plateNum = 2;
                                 }
                             }
                         }

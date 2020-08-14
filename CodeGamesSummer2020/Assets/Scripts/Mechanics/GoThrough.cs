@@ -21,6 +21,10 @@ public class GoThrough : MonoBehaviour
             if (direction == "top")
             { // player starts below the opening
                 Player.x = Player.x2;
+                if (gameObject.name == "TT_13_to_TT_2" || gameObject.name == "TT_15_to_TT_16")
+                {
+                    Player.x = gameObject.transform.position.x;
+                }
                 Player.y = gameObject.transform.position.y - 0.5f;
                 Player.rb2D.velocity = new Vector2(Player.v_x, Player.v_y);
             }
@@ -407,6 +411,12 @@ public class GoThrough : MonoBehaviour
             else if (opName == "TT_13_to_TT_2")
             {
                 StartCoroutine(SceneSwitch("TT_2", "TT_2_to_TT_13"));
+            }
+
+            // TT_15 to TT_16
+            else if (opName == "TT_15_to_TT_16")
+            {
+                StartCoroutine(SceneSwitch("TT_16", "TT_16_to_TT_15"));
             }
 
             /*-----MB-----*/

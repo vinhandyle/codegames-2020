@@ -192,6 +192,23 @@ public class InteractText : MonoBehaviour
                         }
                     }
 
+                    // Signs
+                    else if (type.Substring(0, 4) == "Sign")
+                    {
+                        if (type == "Sign_Station")
+                        {
+                            text.text = "<i>Access Key required to pass through.</i>";
+                        }
+                        else if (type == "Sign_Station_1")
+                        {
+                            text.text = "<b>Update:</b> The Midnight Bay has returned.";
+                        }
+                        else if (type == "Sign_Station_2")
+                        {
+                            text.text = "Station no longer in use. Depart immediately.";
+                        }
+                    }
+
                     /*-----Crafting-----*/
                     else if (type == "post-craft" && !triggerOnce)
                     {

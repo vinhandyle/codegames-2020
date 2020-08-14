@@ -167,6 +167,10 @@ public class AreaText : MonoBehaviour
             {
                 text.text = "Dead End";
             }
+            else if (GlobalControl.area == "TT_6S") // Kin
+            {
+                text.text = "Dark Alley";
+            }
             else if (GlobalControl.area == "TT_7")
             {
                 text.text = "Alley Way";
@@ -187,10 +191,6 @@ public class AreaText : MonoBehaviour
             {
                 text.text = "Closed-Off Section";
             }
-            else if (GlobalControl.area == "TT_11S") // Kin
-            {
-                text.text = "Dark Alley";
-            }
             else if (GlobalControl.area == "TT_12") // Boss
             {
                 text.text = "Suppression";
@@ -201,7 +201,7 @@ public class AreaText : MonoBehaviour
             }
             else if (GlobalControl.area == "TT_14")
             {
-                text.text = "Vac-Train";
+                text.text = "Vacuum Pod";
             }
             else if (GlobalControl.area == "TT_14S") // Kin
             {

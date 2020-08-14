@@ -81,6 +81,17 @@ public class TriggerSwitch : MonoBehaviour
                     gameObject.GetComponent<SpriteRenderer>().sprite = sprites[1];
                 }
             }
+            else if (objName == "Switch_TT_14")
+            {
+                if (GlobalControl.pod_direction == "right")
+                {
+                    GlobalControl.pod_direction = "left";
+                }
+                else if (GlobalControl.pod_direction == "left")
+                {
+                    GlobalControl.pod_direction = "right";
+                }
+            }
         }
         refState = state;
     }
@@ -93,6 +104,22 @@ public class TriggerSwitch : MonoBehaviour
             sticky = objName;
             if (!InteractText.interacted)
                 InteractText.type = "trigger";
+        }
+    }
+
+    private void OnTriggerStay2D(Collider2D other)
+    {
+        if (other.name == "Player")
+        {
+            if (objName == "Switch_TT_14")
+            {
+                InteractText.type = "trigger";
+
+                if (InteractText.interacted)
+                {
+                    InteractText.interacted = false;
+                }
+            }
         }
     }
 

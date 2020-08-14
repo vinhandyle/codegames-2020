@@ -53,7 +53,8 @@ public class MenuBtn : MonoBehaviour
                     (gameObject.name == "Btn_13" && GlobalControl.unstableUnlocked) ||
                     (gameObject.name == "Btn_14" && GlobalControl.plateFound) ||
                     (gameObject.name == "Btn_15" && GlobalControl.extraFound) ||
-                    (gameObject.name == "Btn_16" && GlobalControl.scrapFound)))
+                    (gameObject.name == "Btn_16" && GlobalControl.scrapFound) ||
+                    (gameObject.name == "Btn_17" && GlobalControl.keyUnlocked)))
             {
                 img.color = new Color(1f, 1f, 1f, 1f);
                 if (gameObject.name == "Btn_12")
