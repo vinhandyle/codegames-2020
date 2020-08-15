@@ -33,6 +33,7 @@ public class MainMenuBtnBehavior : MonoBehaviour
             GlobalControl.gunUnlocked = false;
             GlobalControl.mapUnlocked = false;
             GlobalControl.heartlessUnlocked = false;
+            GlobalControl.keyUnlocked = false;
             GlobalControl.dashUnlocked = false;
             GlobalControl.clingUnlocked = false;
             GlobalControl.doubleUnlocked = false;

@@ -170,14 +170,42 @@ public class EnterDoor : MonoBehaviour
                 StartCoroutine(SceneSwitch("TT_13", "TT_13_to_TT_2"));
             }
 
-            // City Intersection to Alleyway
-            else if (doorName == "TT_4_to_TT_7")
+            // Secluded Path to Dead End
+            else if (doorName == "TT_3_to_TT_6")
             {
-                StartCoroutine(SceneSwitch("TT_7", "TT_7_to_TT_4"));
+                StartCoroutine(SceneSwitch("TT_6", "TT_6_to_TT_3"));
             }
-            else if (doorName == "TT_7_to_TT_4")
+            else if (doorName == "TT_6_to_TT_3")
             {
-                StartCoroutine(SceneSwitch("TT_4", "TT_4_to_TT_7"));
+                StartCoroutine(SceneSwitch("TT_3", "TT_3_to_TT_6"));
+            }
+
+            // Residential Section to Azimuth Hall
+            else if (doorName == "TT_5_to_TT_8")
+            {
+                StartCoroutine(SceneSwitch("TT_8", "TT_8_to_TT_5"));
+            }
+            else if (doorName == "TT_8_to_TT_5")
+            {
+                StartCoroutine(SceneSwitch("TT_5", "TT_5_to_TT_8"));
+            }
+
+            // City Intersection to Alleyway
+            else if (doorName == "TT_4_to_TT_7 (A)")
+            {
+                StartCoroutine(SceneSwitch("TT_7", "TT_7_to_TT_4 (A)"));
+            }
+            else if (doorName == "TT_4_to_TT_7 (B)")
+            {
+                StartCoroutine(SceneSwitch("TT_7", "TT_7_to_TT_4 (B)"));
+            }
+            else if (doorName == "TT_7_to_TT_4 (A)")
+            {
+                StartCoroutine(SceneSwitch("TT_4", "TT_4_to_TT_7 (A)"));
+            }
+            else if (doorName == "TT_7_to_TT_4 (B)")
+            {
+                StartCoroutine(SceneSwitch("TT_4", "TT_4_to_TT_7 (B)"));
             }
 
             // Stations to Vacuum Pod
@@ -257,6 +285,17 @@ public class EnterDoor : MonoBehaviour
         if (other.name == "Player")
         {
             inRange = true;
+
+            if (InteractText.notif)
+            {
+                InteractText.type = "";
+                InteractText.stickied = "";
+                InteractText.stickied2 = "";
+                InteractText.interacted = false;
+                InteractText.notif = false;
+                InteractText.triggerOnce = false;
+            }
+
             doorName = gameObject.name;
             sticky = gameObject.name;
             InteractText.type = "door";

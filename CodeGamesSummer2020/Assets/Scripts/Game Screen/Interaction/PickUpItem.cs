@@ -21,6 +21,7 @@ public class PickUpItem : MonoBehaviour
             (GlobalControl.geoUnlocked && objName == "geo") ||
             (GlobalControl.mapUnlocked && objName == "map") ||
             (GlobalControl.heartlessUnlocked && objName == "heartless") ||
+            (GlobalControl.keyUnlocked && objName == "key") ||
             (GlobalControl.familiarUnlocked && objName == "familiar") ||
             (GlobalControl.unstableUnlocked && objName == "unstable") ||
             (GlobalControl.extra_1 && objName == "extra_1") ||

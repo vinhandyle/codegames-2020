@@ -1,12 +1,13 @@
 -Bugs
 	>Multiple pursuits will not aggro if landing in sight, will aggro after direction change
-	>Conveyor belt pushes into wall, jump towards then move away from wall, get stuuck X
+	>Multiple aerials will shoot at player if in range of at least one
 
 -Plan out Twilight Town
-	>Unique backgrounds
-	>Obstacles
-		>Containment
-			>Designed to catch the Ego, became harder to control, locked away
+	>Add sky
+	>Add windows
+	>Place enemies X
+	>Containment Machina
+		>Designed to catch the Ego, became harder to control, locked away
 
 -Kin Harvest
 	>Rotten Depths

@@ -88,6 +88,11 @@ public class InteractText : MonoBehaviour
                         text.text = "Picked up: Unstable Reactor";
                         GlobalControl.unstableUnlocked = true;
                     }
+                    else if (type == "Key")
+                    {
+                        text.text = "Picked up: Access Key";
+                        GlobalControl.keyUnlocked = true;
+                    }
                     else if (type.Substring(0, 5) == "Scrap")
                     {
                         text.text = "Picked up: Hyper Scrap";
@@ -268,7 +273,7 @@ public class InteractText : MonoBehaviour
                     }
 
                     // Lingering textbox on item pickup
-                    if (type == "ego" || type == "Starter" || type == "Geothermal" || type == "Map" || type == "Heartless" ||
+                    if (type == "ego" || type == "Starter" || type == "Geothermal" || type == "Map" || type == "Heartless" || type == "Key" ||
                         type == "Lost" || type == "Unstable" || type.Substring(0, 7) == "Plating" || type.Substring(0, 5) == "Extra" || 
                         type.Substring(0, 5) == "Scrap" || (type == "post-craft" && !triggerOnce))
                     {
@@ -347,6 +352,8 @@ public class InteractText : MonoBehaviour
     IEnumerator wait(float time)
     {
         yield return new WaitForSeconds(time);
+        if (notif)
+        {
         type = "";
         stickied = "";
         stickied2 = "";
@@ -354,5 +361,6 @@ public class InteractText : MonoBehaviour
         interacted = false;
         notif = false;
         triggerOnce = false;
+        }
     }
 }

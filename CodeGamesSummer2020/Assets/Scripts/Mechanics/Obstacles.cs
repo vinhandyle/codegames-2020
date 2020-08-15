@@ -91,6 +91,11 @@ public class Obstacles : MonoBehaviour
             (gameObject.name == "Patrol_1_2_8" && !GlobalControl.patrol_1_2_8) ||
             (gameObject.name == "Patrol_1_2_9" && !GlobalControl.patrol_1_2_9) ||
             (gameObject.name == "Patrol_2_3_0" && !GlobalControl.patrol_2_3_0) ||
+            (gameObject.name == "Patrol_2_3_1" && !GlobalControl.patrol_2_3_1) ||
+            (gameObject.name == "Patrol_2_3_2" && !GlobalControl.patrol_2_3_2) ||
+            (gameObject.name == "Patrol_2_3_3" && !GlobalControl.patrol_2_3_3) ||
+            (gameObject.name == "Patrol_2_3_4" && !GlobalControl.patrol_2_3_4) ||
+            (gameObject.name == "Patrol_2_3_5" && !GlobalControl.patrol_2_3_5) ||
             (gameObject.name == "Pursuit_1_2_0" && !GlobalControl.pursuit_1_2_0) ||
             (gameObject.name == "Pursuit_1_2_1" && !GlobalControl.pursuit_1_2_1) ||
             (gameObject.name == "Pursuit_1_2_2" && !GlobalControl.pursuit_1_2_2) ||
@@ -100,6 +105,10 @@ public class Obstacles : MonoBehaviour
             (gameObject.name == "Pursuit_1_2_6" && !GlobalControl.pursuit_1_2_6) ||
             (gameObject.name == "Pursuit_1_2_7" && !GlobalControl.pursuit_1_2_7) ||
             (gameObject.name == "Aerial_1_3_0" && !GlobalControl.aerial_1_3_0) ||
+            (gameObject.name == "Aerial_1_3_1" && !GlobalControl.aerial_1_3_1) ||
+            (gameObject.name == "Aerial_1_3_2" && !GlobalControl.aerial_1_3_2) ||
+            (gameObject.name == "Aerial_1_3_3" && !GlobalControl.aerial_1_3_3) ||
+            (gameObject.name == "Aerial_1_3_4" && !GlobalControl.aerial_1_3_4) ||
             (gameObject.name == "Errat_0" && !GlobalControl.errat_0) ||
             (gameObject.name == "Errat_1" && !GlobalControl.errat_1) ||
             (gameObject.name == "Errat_2" && !GlobalControl.errat_2) ||
@@ -431,9 +440,45 @@ public class Obstacles : MonoBehaviour
             {
                 GlobalControl.patrol_2_3_0 = false;
             }
+            else if (gameObject.name == "Patrol_2_3_1")
+            {
+                GlobalControl.patrol_2_3_1 = false;
+            }
+            else if (gameObject.name == "Patrol_2_3_2")
+            {
+                GlobalControl.patrol_2_3_2 = false;
+            }
+            else if (gameObject.name == "Patrol_2_3_3")
+            {
+                GlobalControl.patrol_2_3_3 = false;
+            }
+            else if (gameObject.name == "Patrol_2_3_4")
+            {
+                GlobalControl.patrol_2_3_2 = false;
+            }
+            else if (gameObject.name == "Patrol_2_3_5")
+            {
+                GlobalControl.patrol_2_3_3 = false;
+            }
             else if (gameObject.name == "Aerial_1_3_0")
             {
                 GlobalControl.aerial_1_3_0 = false;
+            }
+            else if (gameObject.name == "Aerial_1_3_1")
+            {
+                GlobalControl.aerial_1_3_1 = false;
+            }
+            else if (gameObject.name == "Aerial_1_3_2")
+            {
+                GlobalControl.aerial_1_3_2 = false;
+            }
+            else if (gameObject.name == "Aerial_1_3_3")
+            {
+                GlobalControl.aerial_1_3_3 = false;
+            }
+            else if (gameObject.name == "Aerial_1_3_4")
+            {
+                GlobalControl.aerial_1_3_4 = false;
             }
         }
 

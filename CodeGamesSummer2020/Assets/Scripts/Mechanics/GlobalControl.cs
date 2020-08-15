@@ -35,7 +35,7 @@ public class GlobalControl : MonoBehaviour
     public static bool gunUnlocked = false;        // Energy Cannon
     public static bool mapUnlocked = false;        // Navigational Module
     public static bool heartlessUnlocked = false;  // Heartless Generator
-    public static bool keyUnlocked = true;        // Access Key
+    public static bool keyUnlocked = false;        // Access Key
 
     public static bool dashUnlocked = false;       // Booster Rocket
     public static bool clingUnlocked = false;      // Climbing Claws
@@ -143,6 +143,10 @@ public class GlobalControl : MonoBehaviour
     public static bool block_SG_12 = true;
     public static bool secret_SG_9 = true;
 
+    public static bool block_TT_2 = true;
+    public static bool block_TT_6 = true;
+    public static bool block_TT_11 = true;
+
     public static bool block_GP_1 = true;
 
     // Enemy State
@@ -181,7 +185,16 @@ public class GlobalControl : MonoBehaviour
     public static bool pursuit_1_2_7 = true;
 
     public static bool patrol_2_3_0 = true;        // Twilight Town
+    public static bool patrol_2_3_1 = true;
+    public static bool patrol_2_3_2 = true;
+    public static bool patrol_2_3_3 = true;
+    public static bool patrol_2_3_4 = true;
+    public static bool patrol_2_3_5 = true;
     public static bool aerial_1_3_0 = true;
+    public static bool aerial_1_3_1 = true;
+    public static bool aerial_1_3_2 = true;
+    public static bool aerial_1_3_3 = true;
+    public static bool aerial_1_3_4 = true;
 
     /*---------------------Wall of Text Ends---------------------*/
 
@@ -358,12 +371,20 @@ public class GlobalControl : MonoBehaviour
         block_SG_12 = true;
         secret_SG_9 = true;
 
+        block_TT_2 = true;
+        block_TT_6 = true;
+        block_TT_11 = true;    
+
         block_GP_1 = true;
 
         // Switches
         state_SG_8 = "active";
         state_SG_10 = "active";
         state_SG_11 = "active";
+
+        // Vac Pod
+        pod_location = "main";
+        pod_direction = "right";
     }
 
 
@@ -395,7 +416,16 @@ public class GlobalControl : MonoBehaviour
         pursuit_1_2_7 = true;
 
         patrol_2_3_0 = true;
+        patrol_2_3_1 = true;
+        patrol_2_3_2 = true;
+        patrol_2_3_3 = true;
+        patrol_2_3_4 = true;
+        patrol_2_3_5 = true;
         aerial_1_3_0 = true;
+        aerial_1_3_1 = true;
+        aerial_1_3_2 = true;
+        aerial_1_3_3 = true;
+        aerial_1_3_4 = true;
     }
 
     public static void unlockAll()
