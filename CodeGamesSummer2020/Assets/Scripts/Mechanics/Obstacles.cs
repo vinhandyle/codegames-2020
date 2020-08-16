@@ -96,6 +96,10 @@ public class Obstacles : MonoBehaviour
             (gameObject.name == "Patrol_2_3_3" && !GlobalControl.patrol_2_3_3) ||
             (gameObject.name == "Patrol_2_3_4" && !GlobalControl.patrol_2_3_4) ||
             (gameObject.name == "Patrol_2_3_5" && !GlobalControl.patrol_2_3_5) ||
+            (gameObject.name == "Patrol_2_3_6" && !GlobalControl.patrol_2_3_6) ||
+            (gameObject.name == "Patrol_2_3_7" && !GlobalControl.patrol_2_3_7) ||
+            (gameObject.name == "Patrol_2_3_8" && !GlobalControl.patrol_2_3_8) ||
+            (gameObject.name == "Patrol_2_3_9" && !GlobalControl.patrol_2_3_9) ||
             (gameObject.name == "Pursuit_1_2_0" && !GlobalControl.pursuit_1_2_0) ||
             (gameObject.name == "Pursuit_1_2_1" && !GlobalControl.pursuit_1_2_1) ||
             (gameObject.name == "Pursuit_1_2_2" && !GlobalControl.pursuit_1_2_2) ||
@@ -109,6 +113,10 @@ public class Obstacles : MonoBehaviour
             (gameObject.name == "Aerial_1_3_2" && !GlobalControl.aerial_1_3_2) ||
             (gameObject.name == "Aerial_1_3_3" && !GlobalControl.aerial_1_3_3) ||
             (gameObject.name == "Aerial_1_3_4" && !GlobalControl.aerial_1_3_4) ||
+            (gameObject.name == "Aerial_1_3_5" && !GlobalControl.aerial_1_3_5) ||
+            (gameObject.name == "Aerial_1_3_6" && !GlobalControl.aerial_1_3_6) ||
+            (gameObject.name == "Aerial_1_3_7" && !GlobalControl.aerial_1_3_7) ||
+            (gameObject.name == "Aerial_1_3_8" && !GlobalControl.aerial_1_3_8) ||
             (gameObject.name == "Errat_0" && !GlobalControl.errat_0) ||
             (gameObject.name == "Errat_1" && !GlobalControl.errat_1) ||
             (gameObject.name == "Errat_2" && !GlobalControl.errat_2) ||
@@ -454,11 +462,27 @@ public class Obstacles : MonoBehaviour
             }
             else if (gameObject.name == "Patrol_2_3_4")
             {
-                GlobalControl.patrol_2_3_2 = false;
+                GlobalControl.patrol_2_3_4 = false;
             }
             else if (gameObject.name == "Patrol_2_3_5")
             {
-                GlobalControl.patrol_2_3_3 = false;
+                GlobalControl.patrol_2_3_5 = false;
+            }
+            else if (gameObject.name == "Patrol_2_3_6")
+            {
+                GlobalControl.patrol_2_3_6 = false;
+            }
+            else if (gameObject.name == "Patrol_2_3_7")
+            {
+                GlobalControl.patrol_2_3_7 = false;
+            }
+            else if (gameObject.name == "Patrol_2_3_8")
+            {
+                GlobalControl.patrol_2_3_8 = false;
+            }
+            else if (gameObject.name == "Patrol_2_3_9")
+            {
+                GlobalControl.patrol_2_3_9 = false;
             }
             else if (gameObject.name == "Aerial_1_3_0")
             {
@@ -479,6 +503,22 @@ public class Obstacles : MonoBehaviour
             else if (gameObject.name == "Aerial_1_3_4")
             {
                 GlobalControl.aerial_1_3_4 = false;
+            }
+            else if (gameObject.name == "Aerial_1_3_5")
+            {
+                GlobalControl.aerial_1_3_5 = false;
+            }
+            else if (gameObject.name == "Aerial_1_3_6")
+            {
+                GlobalControl.aerial_1_3_6 = false;
+            }
+            else if (gameObject.name == "Aerial_1_3_7")
+            {
+                GlobalControl.aerial_1_3_7 = false;
+            }
+            else if (gameObject.name == "Aerial_1_3_8")
+            {
+                GlobalControl.aerial_1_3_8 = false;
             }
         }
 
@@ -664,13 +704,16 @@ public class Obstacles : MonoBehaviour
         else if (gameObject.name.Substring(0, 6) == "Aerial")
         {
             // Change AI if player is in or out of range
-            if (refState2_2 == "in")
+            if (gameObject.name == Scope.signal)
             {
-                aiState = "shoot";
-            }
-            else
-            {
-                aiState = "";
+                if (refState2_2 == "in")
+                {
+                    aiState = "shoot";
+                }
+                else
+                {
+                    aiState = "";
+                }
             }
 
             if (aiState == "shoot")
@@ -801,7 +844,7 @@ public class Obstacles : MonoBehaviour
                 }
             }
             else if (path.Substring(0, 3) == "box")
-            {
+            { // Start from box center and spiral into intended path
                 if (path == "box-clock")
                 {
                     if (pathState == "left")

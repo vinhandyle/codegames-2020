@@ -80,8 +80,28 @@ sceneSetups:
   isActive: 0
   isSubScene: 0
 - path: Assets/Scenes/TT/TT_5.unity
+  isLoaded: 0
+  isActive: 0
+  isSubScene: 0
+- path: Assets/Scenes/TT/TT_8.unity
+  isLoaded: 0
+  isActive: 0
+  isSubScene: 0
+- path: Assets/Scenes/TT/TT_9.unity
+  isLoaded: 0
+  isActive: 0
+  isSubScene: 0
+- path: Assets/Scenes/TT/TT_10.unity
+  isLoaded: 0
+  isActive: 0
+  isSubScene: 0
+- path: Assets/Scenes/TT/TT_11.unity
   isLoaded: 1
   isActive: 1
+  isSubScene: 0
+- path: Assets/Scenes/TT/TT_12.unity
+  isLoaded: 0
+  isActive: 0
   isSubScene: 0
 - path: Assets/Scenes/TT/TT_13.unity
   isLoaded: 0

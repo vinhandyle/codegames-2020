@@ -55,6 +55,7 @@ public class Player : MonoBehaviour
         {
             transform.position = new Vector3(x, y, transform.position.z);
             dashing = false;
+            canDash = true;
             GlobalControl.switched = false;
         }
         else

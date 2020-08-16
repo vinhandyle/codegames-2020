@@ -130,6 +130,7 @@ public class GlobalControl : MonoBehaviour
     public static string state_SG_8 = "active";
     public static string state_SG_10 = "active";
     public static string state_SG_11 = "active";
+    public static string state_TT_11 = "active";
 
     // Destructibles
     public static bool block_starter = true;
@@ -145,7 +146,10 @@ public class GlobalControl : MonoBehaviour
 
     public static bool block_TT_2 = true;
     public static bool block_TT_6 = true;
+    public static bool block_TT_9 = true;
     public static bool block_TT_11 = true;
+    public static bool block_TT_12 = true;
+    public static bool secret_TT_6 = true;
 
     public static bool block_GP_1 = true;
 
@@ -190,11 +194,20 @@ public class GlobalControl : MonoBehaviour
     public static bool patrol_2_3_3 = true;
     public static bool patrol_2_3_4 = true;
     public static bool patrol_2_3_5 = true;
+    public static bool patrol_2_3_6 = true;
+    public static bool patrol_2_3_7 = true;
+    public static bool patrol_2_3_8 = true;
+    public static bool patrol_2_3_9 = true;
     public static bool aerial_1_3_0 = true;
     public static bool aerial_1_3_1 = true;
     public static bool aerial_1_3_2 = true;
     public static bool aerial_1_3_3 = true;
     public static bool aerial_1_3_4 = true;
+    public static bool aerial_1_3_5 = true;
+    public static bool aerial_1_3_6 = true;
+    public static bool aerial_1_3_7 = true;
+    public static bool aerial_1_3_8 = true;
+
 
     /*---------------------Wall of Text Ends---------------------*/
 
@@ -299,6 +312,7 @@ public class GlobalControl : MonoBehaviour
         if (healthCurr <= 0)
         {
             immune = false;
+            Player.canDash = true;
 
             // Testing Area 2
             if (checkpoint == "Rest_Test")
@@ -373,7 +387,10 @@ public class GlobalControl : MonoBehaviour
 
         block_TT_2 = true;
         block_TT_6 = true;
-        block_TT_11 = true;    
+        block_TT_9 = true;
+        block_TT_11 = true;
+        block_TT_12 = true;
+        secret_TT_6 = true;
 
         block_GP_1 = true;
 
@@ -421,11 +438,19 @@ public class GlobalControl : MonoBehaviour
         patrol_2_3_3 = true;
         patrol_2_3_4 = true;
         patrol_2_3_5 = true;
+        patrol_2_3_6 = true;
+        patrol_2_3_7 = true;
+        patrol_2_3_8 = true;
+        patrol_2_3_9 = true;
         aerial_1_3_0 = true;
         aerial_1_3_1 = true;
         aerial_1_3_2 = true;
         aerial_1_3_3 = true;
         aerial_1_3_4 = true;
+        aerial_1_3_5 = true;
+        aerial_1_3_6 = true;
+        aerial_1_3_7 = true;
+        aerial_1_3_8 = true;
     }
 
     public static void unlockAll()

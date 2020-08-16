@@ -29,6 +29,7 @@ public class Scope : MonoBehaviour
 
     // Crusher
     public bool canCrush = false;
+    public static string signal;
 
     // Start is called before the first frame update
     void Start()
@@ -228,6 +229,7 @@ public class Scope : MonoBehaviour
                 if (gameObject.name == "Detect_Player" && transform.parent.name.Substring(0, 6) == "Aerial")
                 {
                     Obstacles.refState2_2 = "in";
+                    signal = transform.parent.name;
                 }
             }
         }
@@ -477,6 +479,7 @@ public class Scope : MonoBehaviour
                 if (gameObject.name == "Detect_Player" && transform.parent.name.Substring(0, 6) == "Aerial")
                 {
                     Obstacles.refState2_2 = "out";
+                    signal = transform.parent.name;
                 }
             }
         else if (gameObject.name == attachedTo)

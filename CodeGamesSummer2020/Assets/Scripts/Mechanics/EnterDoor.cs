@@ -185,10 +185,6 @@ public class EnterDoor : MonoBehaviour
             {
                 StartCoroutine(SceneSwitch("TT_8", "TT_8_to_TT_5"));
             }
-            else if (doorName == "TT_8_to_TT_5")
-            {
-                StartCoroutine(SceneSwitch("TT_5", "TT_5_to_TT_8"));
-            }
 
             // City Intersection to Alleyway
             else if (doorName == "TT_4_to_TT_7 (A)")
@@ -206,6 +202,12 @@ public class EnterDoor : MonoBehaviour
             else if (doorName == "TT_7_to_TT_4 (B)")
             {
                 StartCoroutine(SceneSwitch("TT_4", "TT_4_to_TT_7 (B)"));
+            }
+
+            // 
+            else if (doorName == "TT_10_to_TT_9")
+            {
+                StartCoroutine(SceneSwitch("TT_9", "TT_9_to_TT_10"));
             }
 
             // Stations to Vacuum Pod

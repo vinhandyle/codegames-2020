@@ -1,11 +1,12 @@
 -Bugs
 	>Multiple pursuits will not aggro if landing in sight, will aggro after direction change
-	>Multiple aerials will shoot at player if in range of at least one
 
 -Plan out Twilight Town
 	>Add sky
-	>Add windows
-	>Place enemies X
+	>Add windows, furnishing to Azimuth Hall + Loft
+	>Add Azimuth
+	>Add knock back to Aerial
+	>Enemy Balancing
 	>Containment Machina
 		>Designed to catch the Ego, became harder to control, locked away
 
@@ -18,3 +19,6 @@
 	
 -Other
 	>
+
+-Ideas
+	>tHE TROUBLES -> The Great Destruction
