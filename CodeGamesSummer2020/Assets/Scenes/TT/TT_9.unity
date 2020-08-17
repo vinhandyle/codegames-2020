@@ -4180,12 +4180,12 @@ PrefabInstance:
     - target: {fileID: 638831658144665580, guid: 47994e4babd8a61478223cd1e48eda94,
         type: 3}
       propertyPath: path
-      value: line_d
+      value: line_v
       objectReference: {fileID: 0}
     - target: {fileID: 638831658144665580, guid: 47994e4babd8a61478223cd1e48eda94,
         type: 3}
       propertyPath: pathState
-      value: right-down
+      value: up
       objectReference: {fileID: 0}
     - target: {fileID: 638831658144665580, guid: 47994e4babd8a61478223cd1e48eda94,
         type: 3}
@@ -4220,7 +4220,7 @@ PrefabInstance:
     - target: {fileID: 638831658144665580, guid: 47994e4babd8a61478223cd1e48eda94,
         type: 3}
       propertyPath: speed
-      value: 0.01
+      value: 0.006
       objectReference: {fileID: 0}
     - target: {fileID: 638831658144665580, guid: 47994e4babd8a61478223cd1e48eda94,
         type: 3}
@@ -4230,17 +4230,17 @@ PrefabInstance:
     - target: {fileID: 638831658144665580, guid: 47994e4babd8a61478223cd1e48eda94,
         type: 3}
       propertyPath: range_2
-      value: 4
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 638831658144665582, guid: 47994e4babd8a61478223cd1e48eda94,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -3.06
+      value: -2.58
       objectReference: {fileID: 0}
     - target: {fileID: 638831658144665582, guid: 47994e4babd8a61478223cd1e48eda94,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.91
+      value: 1.089
       objectReference: {fileID: 0}
     - target: {fileID: 638831658144665582, guid: 47994e4babd8a61478223cd1e48eda94,
         type: 3}
@@ -4906,12 +4906,12 @@ PrefabInstance:
     - target: {fileID: 638831658144665580, guid: 47994e4babd8a61478223cd1e48eda94,
         type: 3}
       propertyPath: path
-      value: line_d
+      value: line_v
       objectReference: {fileID: 0}
     - target: {fileID: 638831658144665580, guid: 47994e4babd8a61478223cd1e48eda94,
         type: 3}
       propertyPath: pathState
-      value: left-down
+      value: down
       objectReference: {fileID: 0}
     - target: {fileID: 638831658144665580, guid: 47994e4babd8a61478223cd1e48eda94,
         type: 3}
@@ -4946,12 +4946,12 @@ PrefabInstance:
     - target: {fileID: 638831658144665582, guid: 47994e4babd8a61478223cd1e48eda94,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.68
+      value: 1.28
       objectReference: {fileID: 0}
     - target: {fileID: 638831658144665582, guid: 47994e4babd8a61478223cd1e48eda94,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 3.3742406
+      value: 0.81
       objectReference: {fileID: 0}
     - target: {fileID: 638831658144665582, guid: 47994e4babd8a61478223cd1e48eda94,
         type: 3}

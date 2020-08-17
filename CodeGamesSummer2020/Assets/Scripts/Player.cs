@@ -206,17 +206,19 @@ public class Player : MonoBehaviour
             }
             else
             {
-                dashing = true;
                 // Checking for first left/right prevents dashing when rapidly alternating between left/right
                 if (direction == "left" && firstLeft)
                 {
                     rb2D.velocity = new Vector2(-3 * moveBy, rb2D.velocity.y);
+                    dashing = true;
                 }
                 else if (direction == "right" && firstRight)
                 {
                     rb2D.velocity = new Vector2(3 * moveBy, rb2D.velocity.y);
-
+                    dashing = true;
                 }
+                
+                if(dashing)
                 StartCoroutine(postDash());
             }
         }

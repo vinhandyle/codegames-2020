@@ -25,6 +25,10 @@ public class Obstacles : MonoBehaviour
     public float speed;
     public float speed_1;
 
+    public Vector3 refDifference;
+    public float refDistance;
+    public Vector2 refDirection = new Vector2();
+
     // Time
     public int time;    // AI time
     public int deAggroTime;
@@ -54,23 +58,30 @@ public class Obstacles : MonoBehaviour
     public string pathState;
 
     /* Pursuit */
-    public static string refState_1;    // Current aiState
-    public static string refState2_1;   // Should it be passive?
-    public static string refState2a_1;  // Should it stop?
-    public string refState3_1;          // Where was it facing before it stopped?
+    public static string refState_1;            // Current aiState
+    public static string refState2_1;           // Should it be passive?
+    public static string refState2a_1;          // Should it stop?
+    public string refState3_1;                  // Where was it facing before it stopped?
 
     /* Aerial */
-    public static string refState2_2;   // Is player in range?
+    public static string refState2_2;           // Is player in range?
 
     /* Overseer */
-    public static string refState_5;    // Scorched Earth attack phase
-    public static string refState1a_5;  // Charge Beam attack phase
-    public static string refState1b_5;  // Center segment position
-    public static string refState2_5;   // Is Scorched Earth Active?
-    public static string refState2a_5;  // Is Charge Beam active?
-    public string refState3_5;          // Is Gear Shift active?
-    public string refState3a_5;         // Current boss phase
-    public string refState3b_5;         // Which ObjectPooler?
+    public static string refState_5;            // Scorched Earth attack phase
+    public static string refState1a_5;          // Charge Beam attack phase
+    public static string refState1b_5;          // Center segment position
+    public static string refState2_5;           // Is Scorched Earth Active?
+    public static string refState2a_5;          // Is Charge Beam active?
+    public string refState3_5;                  // Is Gear Shift active?
+    public string refState3a_5;                 // Current boss phase
+    public string refState3b_5;                 // Which ObjectPooler?
+
+    /* Containment */
+    public static string refState2_6 = "far";   // Is the player too far?
+    public static string refState2a_6;          // Touching outer box?
+    public string refState3_6;                  // Current boss phase
+    public string refState3a_6;                 // Previous aiState
+    public string refState3b_6;                 // Crashing?
 
     // Start is called before the first frame update
     void Start()
@@ -256,6 +267,11 @@ public class Obstacles : MonoBehaviour
         {
             healthMax = 50;
             damage = 2;
+        }
+        else if (gameObject.name == "Containment")
+        {
+            healthMax = 180;
+            damage = 5;
         }
 
         // Hazards immune to damage
@@ -520,6 +536,10 @@ public class Obstacles : MonoBehaviour
             {
                 GlobalControl.aerial_1_3_8 = false;
             }
+            else if (gameObject.name == "Containment")
+            {
+                GlobalControl.downed_boss_2 = true;
+            }
         }
 
         /*----------Enemy AI----------*/
@@ -675,8 +695,8 @@ public class Obstacles : MonoBehaviour
 
             if (Player.rb2D.position.y - Player.rb2D.GetComponent<CircleCollider2D>().radius > transform.position.y + gameObject.GetComponent<BoxCollider2D>().size.y / 2 && aiState.Substring(0, 7) == "hostile")
             {
-                if(!hold_time)
-                StartCoroutine(addSecond());
+                if (!hold_time)
+                    StartCoroutine(addSecond());
             }
             else
             {
@@ -1155,6 +1175,209 @@ public class Obstacles : MonoBehaviour
             }
         }
 
+        /*-----Containment Machina-----*/
+        else if (gameObject.name == "Containment")
+        {
+            // Keep from straying outside outer box
+            if (transform.position.x < -3.87f)
+            {
+                transform.position = new Vector3(-3.87f, transform.position.y);
+            }
+            else if (transform.position.x > 3.96f)
+            {
+                transform.position = new Vector3(3.96f, transform.position.y);
+            }
+
+            // "Collision" with outer box
+            if (refState2a_6 == "stop")
+            {
+                if (aiState == "crash" && refState3b_6 == "crashing")
+                {
+                    aiState = "rest";
+                    refState3b_6 = "";
+                }
+            }
+
+            if (transform.position.y < -2.73f)
+            {
+                transform.position = new Vector3(transform.position.x, -2.73f);
+            }
+            else if (transform.position.y > 3.9f)
+            {
+                transform.position = new Vector3(transform.position.x, 3.9f);
+            }
+
+            // Follow Player
+            if (aiState == "follow")
+            {
+                refState3a_6 = aiState;
+
+                Vector3 difference = (Vector3)Player.rb2D.position - new Vector3(transform.position.x - GetComponent<BoxCollider2D>().size.x / 2, transform.position.y, transform.position.z);
+                float distance = difference.magnitude;
+                Vector2 direction = difference / distance;
+                direction.Normalize();
+
+                // Faster Further, Slower Closer
+                if (refState2_6 == "far")
+                {
+                    if (refState3_6 == "phase 2")
+                    {
+                        transform.position += new Vector3(direction.x * speed * 3, direction.y * speed * 3);
+                    }
+                    else
+                    {
+                        transform.position += new Vector3(direction.x * speed * 2, direction.y * speed * 2);
+                    }
+                }
+                else
+                {
+                    if (refState3_6 == "phase 2")
+                    {
+                        transform.position += new Vector3(direction.x * speed * 1.5f, direction.y * speed * 1.5f);
+                    }
+                    else
+                    {
+                        transform.position += new Vector3(direction.x * speed, direction.y * speed);
+                    }
+                }
+
+                if (!hold_time)
+                {
+                    StartCoroutine(addSecond());
+                }
+
+                if (time >= 6 || (time >= 3 && refState3_6 == "phase 2"))
+                {
+                    randNum = Random.Range(0, 3);
+                    if (randNum > 0)
+                    {
+                        aiState = "rest";
+                    }
+                    else
+                    {
+                        aiState = "blink";
+                    }
+                    time = 0;
+                }
+            }
+
+            // Rest
+            else if (aiState == "rest")
+            {
+                time = 0;
+                damage = 5;
+                currBullet = maxBullet;
+
+                // Wait then randomize attack based on previous aiState and current phase
+                if (refState3_6 == "phase 2")
+                {
+                    if (refState3a_6 == "follow")
+                    {
+                        StartCoroutine(delayRand(0f, 1, 3));
+                    }
+                    else if (refState3a_6 == "berserk")
+                    {
+                        StartCoroutine(delayRand(1f, 1, 4));
+                    }
+                    else
+                    {
+                        StartCoroutine(delayRand(1f, 1, 3));
+                    }
+                }
+                else
+                {
+                    if (refState3a_6 == "follow")
+                    {
+                        StartCoroutine(delayRand(0f, 1, 3));
+                    }
+                    else
+                    {
+                        StartCoroutine(delayRand(1f, 1, 3));
+                    }
+                }
+
+                if (randNum == 1)
+                {
+                    aiState = "follow";
+                }
+                if (randNum == 2)
+                {
+                    aiState = "crash";
+                }
+                else if (randNum == 3)
+                {
+                    aiState = "explosion";
+                }
+                else if (randNum >= 4)
+                {
+                    aiState = "berserk";
+                }                
+                randNum = 0;
+            }
+
+            // Blink
+            else if (aiState == "blink")
+            {
+                refState3a_6 = aiState;
+
+                transform.position = new Vector3(Player.rb2D.position.x + Player.rb2D.velocity.x, Player.rb2D.position.y + Player.rb2D.velocity.y);
+                float rand = Random.Range(0, 3);
+                if (rand > 0)
+                {
+                    aiState = "follow";
+                }
+                else
+                {
+                    aiState = "crash";
+                }
+            }
+
+            // Crash
+            else if (aiState == "crash")
+            {
+                refState3a_6 = aiState;
+                damage = 10;
+
+                if(refState3b_6 != "crashing")
+                {
+                    refDifference = (Vector3)Player.rb2D.position - new Vector3(transform.position.x - GetComponent<BoxCollider2D>().size.x / 2, transform.position.y, transform.position.z);
+                    refDistance = refDifference.magnitude;
+                    refDirection = refDifference / refDistance;
+                    refDirection.Normalize();
+                }
+
+                refState3b_6 = "crashing";
+                transform.position += new Vector3(refDirection.x * speed * 10, refDirection.y * speed * 10);
+            }
+
+            // Explosion
+            else if (aiState == "explosion")
+            {
+                refState3a_6 = aiState;
+
+                if (canShoot && currBullet > 0)
+                {
+                    for (int i = 0; i < 8; i++)
+                    {
+                        fireBullet(new Vector2(Mathf.Cos(i * Mathf.PI / 4), Mathf.Sin(i * Mathf.PI / 4)), 45 * i, 5f);
+                    }
+                    currBullet--;
+                    StartCoroutine(cooldown());
+                }
+                else if (currBullet == 0)
+                {
+                    aiState = "rest";
+                }
+            }
+
+            // Berserk
+            else if (aiState == "berserk")
+            {
+                refState3a_6 = aiState;
+
+            }
+        }
+
         // Set reference state
         if (gameObject.name.Substring(0, 7) == "Pursuit")
         {
@@ -1375,7 +1598,8 @@ public class Obstacles : MonoBehaviour
         // Fires a bullet from the pool
         GameObject bullet = null;
 
-        if (gameObject.name.Substring(0, 6) == "Aerial")
+        // Single bullet type
+        if (gameObject.name.Substring(0, 6) == "Aerial" || gameObject.name == "Containment")
         {
             bullet = EnemyObjectPooler.SharedInstance.GetPooledObject();
         }
@@ -1396,7 +1620,14 @@ public class Obstacles : MonoBehaviour
         if (bullet != null)
         {
             bullet.SetActive(true);
-            bullet.transform.position = new Vector3(transform.position.x - GetComponent<BoxCollider2D>().size.x / 2, transform.position.y, transform.position.z);
+            if (gameObject.name == "Overseer")
+            {
+                bullet.transform.position = new Vector3(transform.position.x - GetComponent<BoxCollider2D>().size.x / 2, transform.position.y, transform.position.z);
+            }
+            else
+            {
+                bullet.transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z);
+            }
             bullet.transform.rotation = Quaternion.Euler(0.0f, 0.0f, rotation2);
             bullet.GetComponent<Rigidbody2D>().velocity = direction * speed;
         }

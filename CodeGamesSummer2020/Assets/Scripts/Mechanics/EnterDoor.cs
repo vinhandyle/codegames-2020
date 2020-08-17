@@ -174,6 +174,7 @@ public class EnterDoor : MonoBehaviour
             else if (doorName == "TT_3_to_TT_6")
             {
                 StartCoroutine(SceneSwitch("TT_6", "TT_6_to_TT_3"));
+                GlobalControl.block_TT_6 = false;
             }
             else if (doorName == "TT_6_to_TT_3")
             {

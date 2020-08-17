@@ -231,6 +231,19 @@ public class Scope : MonoBehaviour
                     Obstacles.refState2_2 = "in";
                     signal = transform.parent.name;
                 }
+                else if (gameObject.name == "Detect_Player" && transform.parent.name == "Containment")
+                {
+                    Obstacles.refState2_6 = "near";
+                }
+            }
+            else if ((other.transform.parent.name == "Top Ceiling" || other.transform.parent.name == "Bottom Floor" || 
+                other.transform.parent.name == "Left Side" || other.transform.parent.name == "Right Side" || 
+                other.transform.parent.name == "Destructibles") && other.transform.parent != null)
+            {
+                if (gameObject.name == "Detect_Outer" && transform.parent.name == "Containment")
+                {
+                    Obstacles.refState2a_6 = "stop";
+                }
             }
         }
         else if (gameObject.name == attachedTo)
@@ -452,7 +465,7 @@ public class Scope : MonoBehaviour
     {
         if (gameObject.transform.parent.name == attachedTo)
         {
-            if (other.CompareTag("Floor"))
+            if (other.CompareTag("Floor") && GlobalControl.area != "TT_12")
             {
                 // Pursuit Interaction
                 if (sticky.Substring(0, 7) == "Pursuit")
@@ -481,8 +494,21 @@ public class Scope : MonoBehaviour
                     Obstacles.refState2_2 = "out";
                     signal = transform.parent.name;
                 }
+                else if (gameObject.name == "Detect_Player" && transform.parent.name == "Containment")
+                {
+                    Obstacles.refState2_6 = "far";
+                }
             }
-        else if (gameObject.name == attachedTo)
+            else if (other.transform.parent.name == "Top Ceiling" || other.transform.parent.name == "Bottom Floor" ||
+                other.transform.parent.name == "Left Side" || other.transform.parent.name == "Right Side" ||
+                other.transform.parent.name == "Destructibles")
+            {
+                if (gameObject.name == "Detect_Outer" && transform.parent.name == "Containment")
+                {
+                    Obstacles.refState2a_6 = "";
+                }
+            }
+            else if (gameObject.name == attachedTo)
             {
                 if (gameObject.name.Substring(0, 6) == "Crush_")
                 {

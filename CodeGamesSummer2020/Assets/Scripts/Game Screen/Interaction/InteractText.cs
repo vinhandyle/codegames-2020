@@ -237,6 +237,35 @@ public class InteractText : MonoBehaviour
 
                     /*-----NPC dialogue-----*/
 
+                    // Azimuth
+                    else if (type.Substring(0, 7) == "Azimuth")
+                    {
+                        if (type == "Azimuth_0")
+                        {
+                            text.text = "<i>Purpose fulfilled.</i>";
+                        }
+                        else if (type == "Azimuth_1")
+                        {
+                            text.text = "<i>Recreation is essential.</i>";
+                        }
+                        else if (type == "Azimuth_2")
+                        {
+                            text.text = "<i>Increased security above.</i>";
+                        }
+                        else if (type == "Azimuth_3")
+                        {
+                            text.text = "<i>Glory to Imperalis!</i>";
+                        }
+                        else if (type == "Azimuth_4")
+                        {
+                            text.text = "<i>There is no longer a need for the area ahead.</i>";
+                        }
+                        else if (type == "Azimuth_5")
+                        {
+                            text.text = "<i>Access Key no longer in possession...</i>";
+                        }
+                    }
+
                     // Errat
                     else if (GlobalControl.counter_1 != 5)
                     {

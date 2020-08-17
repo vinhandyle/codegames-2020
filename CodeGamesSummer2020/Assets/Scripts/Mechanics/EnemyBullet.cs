@@ -25,6 +25,13 @@ public class EnemyBullet : MonoBehaviour
                 poolNum = 0;
             }
         }
+        else if (GlobalControl.area == "TT_12")
+        {
+            if (gameObject.name.Substring(0, 14) == "Small E_Bullet")
+            {
+                damage = 2;
+            }
+        }
 
         if (GlobalControl.area.Substring(0, 2) == "TT")
         {
