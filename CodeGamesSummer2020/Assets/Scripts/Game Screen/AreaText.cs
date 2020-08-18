@@ -193,7 +193,7 @@ public class AreaText : MonoBehaviour
             }
             else if (GlobalControl.area == "TT_12") // Boss
             {
-                text.text = "Suppression";
+                text.text = "Machina Vault";
             }
             else if (GlobalControl.area == "TT_13")
             {

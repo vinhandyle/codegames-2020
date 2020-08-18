@@ -82,7 +82,7 @@ public class GlobalControl : MonoBehaviour
     public static int update = 0;                  // Update stats when power-up obtained
     public static bool switched = false;           // Used to set position on scene switch
 
-    public static string area = "TT_12";                // Area name for scene change purposes
+    public static string area = "";                // Area name for scene change purposes
     public static string prevArea = "";            // Name of previous area
     public static string checkpoint = "";          // Area name of last repair station used
 
@@ -477,12 +477,14 @@ public class GlobalControl : MonoBehaviour
                 { // Post-Garden
                     dashUnlocked = true;
                     geoUnlocked = true;
+                    bossDowned = 1;
                     extraNum = 1;
                     plateNum = 1;
 
                     if (prog > 3)
                     { // Post-Second
                         clingUnlocked = true;
+                        bossDowned = 2;
                         extraNum = 2;
 
                         if (prog > 4)
@@ -492,6 +494,7 @@ public class GlobalControl : MonoBehaviour
                             if (prog > 5)
                             { // Post-Third
                                 doubleUnlocked = true;
+                                bossDowned = 3;
                                 extraNum = 3;
 
                                 if (prog > 6)
@@ -526,7 +529,7 @@ public class GlobalControl : MonoBehaviour
         downed_turret = true;
         found_errat = true;
         //downed_boss_1 = true;
-        downed_boss_2 = true;
+        //downed_boss_2 = true;
         downed_boss_3 = true;
         downed_boss_4 = true;
 

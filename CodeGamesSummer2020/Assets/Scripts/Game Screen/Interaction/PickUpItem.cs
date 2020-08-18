@@ -34,7 +34,13 @@ public class PickUpItem : MonoBehaviour
             (GlobalControl.scrap_3 && objName == "scrap_3"))
         {
             gameObject.SetActive(false);
-        }       
+        }
+
+        // Set object off screen to be called in later
+        if (objName == "scrap_2" && !GlobalControl.downed_boss_2)
+        {
+            transform.position = new Vector3(12, 12);
+        }
     }
 
     // Update is called once per frame
@@ -46,6 +52,12 @@ public class PickUpItem : MonoBehaviour
             InteractText.type = itemName;
             gameObject.SetActive(false);
             InteractText.notif = true;
+        }
+
+        // Call in off screen objects
+        if (objName == "scrap_2" && GlobalControl.downed_boss_2)
+        {
+            transform.position = new Vector3(0.1f, -3.019f);
         }
     }
 

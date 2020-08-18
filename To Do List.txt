@@ -1,16 +1,12 @@
 -Bugs
 	>Multiple pursuits will not aggro if landing in sight, will aggro after direction change
-	>Player dashing when not intended X
 
 -Plan out Twilight Town
 	>Add sky
-	>Add windows, furnishing to Azimuth Hall + Loft
-	>Add Azimuth all across the town X
-	>Add knock back to Aerial
-	>Enemy Balancing X
+	>Add furnishing to Azimuth Hall + Loft
+	>Energy sources, unique doors (resid + breakout) in building
 	>Containment Machina
 		>Designed to catch the Ego, became harder to control, locked away
-
 -Kin Harvest
 	>Rotten Depths
 	>Upper Disposal Area
@@ -19,9 +15,7 @@
 	>Far Station -built, just needs final touches
 	
 -Other
-	>Add up and down arrows to SG doors
 
 -Ideas
 	>First ego report : info on secret entrance to IT
-	>tHE TROUBLES -> The Great Destruction
-	>Suppressionn -> Locked away
+	>tHE TROUBLES -> The Great Destruction 

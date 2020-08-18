@@ -63,10 +63,6 @@ sceneSetups:
   isLoaded: 0
   isActive: 0
   isSubScene: 0
-- path: Assets/Scenes/TT/TT_4.unity
-  isLoaded: 0
-  isActive: 0
-  isSubScene: 0
 - path: Assets/Scenes/TT/TT_3.unity
   isLoaded: 0
   isActive: 0
@@ -79,6 +75,10 @@ sceneSetups:
   isLoaded: 0
   isActive: 0
   isSubScene: 0
+- path: Assets/Scenes/TT/TT_4.unity
+  isLoaded: 0
+  isActive: 0
+  isSubScene: 0
 - path: Assets/Scenes/TT/TT_5.unity
   isLoaded: 0
   isActive: 0
@@ -88,8 +88,8 @@ sceneSetups:
   isActive: 0
   isSubScene: 0
 - path: Assets/Scenes/TT/TT_9.unity
-  isLoaded: 0
-  isActive: 0
+  isLoaded: 1
+  isActive: 1
   isSubScene: 0
 - path: Assets/Scenes/TT/TT_10.unity
   isLoaded: 0
@@ -100,8 +100,8 @@ sceneSetups:
   isActive: 0
   isSubScene: 0
 - path: Assets/Scenes/TT/TT_12.unity
-  isLoaded: 1
-  isActive: 1
+  isLoaded: 0
+  isActive: 0
   isSubScene: 0
 - path: Assets/Scenes/TT/TT_13.unity
   isLoaded: 0
@@ -116,6 +116,10 @@ sceneSetups:
   isActive: 0
   isSubScene: 0
 - path: Assets/Scenes/TT/TT_14S.unity
+  isLoaded: 0
+  isActive: 0
+  isSubScene: 0
+- path: Assets/Scenes/TT/TT_16.unity
   isLoaded: 0
   isActive: 0
   isSubScene: 0

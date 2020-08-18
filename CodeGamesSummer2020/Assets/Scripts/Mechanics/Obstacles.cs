@@ -77,11 +77,16 @@ public class Obstacles : MonoBehaviour
     public string refState3b_5;                 // Which ObjectPooler?
 
     /* Containment */
+    public static string refState_6;            // Warning for Crash
     public static string refState2_6 = "far";   // Is the player too far?
     public static string refState2a_6;          // Touching outer box?
     public string refState3_6;                  // Current boss phase
     public string refState3a_6;                 // Previous aiState
     public string refState3b_6;                 // Crashing?
+    public int refState3c_6 = 0;                // Berserk Crash #
+    public string refState3d_6;                 // Berserk Stage
+    public bool refState3e_6 = true;            // Berserk Indicator
+    public bool refState3f_6 = false;           // Blinked?
 
     // Start is called before the first frame update
     void Start()
@@ -134,7 +139,8 @@ public class Obstacles : MonoBehaviour
             (gameObject.name == "Errat_3" && !GlobalControl.errat_3) ||
             (gameObject.name == "Errat_4" && !GlobalControl.errat_4) ||
             (gameObject.name == "Errat_5" && !GlobalControl.errat_5) ||
-            (gameObject.name == "Overseer" && GlobalControl.downed_boss_1))
+            (gameObject.name == "Overseer" && GlobalControl.downed_boss_1) ||
+            (gameObject.name == "Containment" && GlobalControl.downed_boss_2))
         {
             gameObject.SetActive(false);
         }
@@ -1085,10 +1091,12 @@ public class Obstacles : MonoBehaviour
                 if (randNum == 1)
                 {
                     aiState = "ramping";
+                    hold_rand = false;
                 }
                 else if (randNum == 2)
                 {
                     aiState = "exploding";
+                    hold_rand = false;
                 }
                 else if (randNum == 3)
                 {
@@ -1100,10 +1108,12 @@ public class Obstacles : MonoBehaviour
                     {
                         StartCoroutine(delayRand(0.5f, 1, 2));
                     }
+                    hold_rand = false;
                 }
                 else if (randNum > 3)
                 {
                     aiState = "beam";
+                    hold_rand = false;
                 }
                 randNum = 0;
             }
@@ -1188,6 +1198,15 @@ public class Obstacles : MonoBehaviour
                 transform.position = new Vector3(3.96f, transform.position.y);
             }
 
+            if (transform.position.y < -2.73f)
+            {
+                transform.position = new Vector3(transform.position.x, -2.73f);
+            }
+            else if (transform.position.y > 3.9f)
+            {
+                transform.position = new Vector3(transform.position.x, 3.9f);
+            }
+
             // "Collision" with outer box
             if (refState2a_6 == "stop")
             {
@@ -1196,15 +1215,37 @@ public class Obstacles : MonoBehaviour
                     aiState = "rest";
                     refState3b_6 = "";
                 }
+                else if (aiState == "berserk" && refState3b_6 == "crashing")
+                {
+                    refState3b_6 = "";
+                    refState3d_6 = "stage 2";
+                }
+
+                if (transform.position.x <= -3.87f)
+                {
+                    transform.position += new Vector3(0.1f, 0);
+                }
+                else if (transform.position.x >= 3.96f)
+                {
+                    transform.position += new Vector3(-0.1f, 0);
+                }
+
+                if (transform.position.y <= -2.73f)
+                {
+                    transform.position += new Vector3(0, 0.1f);
+                }
+                else if (transform.position.y >= 3.9f)
+                {
+                    transform.position += new Vector3(0, -0.1f);
+                }
             }
 
-            if (transform.position.y < -2.73f)
+            // Activate phase 2
+            if (healthCurr <= 60 && refState3_6 != "phase 2")
             {
-                transform.position = new Vector3(transform.position.x, -2.73f);
-            }
-            else if (transform.position.y > 3.9f)
-            {
-                transform.position = new Vector3(transform.position.x, 3.9f);
+                refState3_6 = "phase 2";
+                refState3d_6 = "stage 1";
+                aiState = "berserk";
             }
 
             // Follow Player
@@ -1248,8 +1289,8 @@ public class Obstacles : MonoBehaviour
 
                 if (time >= 6 || (time >= 3 && refState3_6 == "phase 2"))
                 {
-                    randNum = Random.Range(0, 3);
-                    if (randNum > 0)
+                    randNum = Random.Range(1, 4);
+                    if (randNum > 1)
                     {
                         aiState = "rest";
                     }
@@ -1258,6 +1299,7 @@ public class Obstacles : MonoBehaviour
                         aiState = "blink";
                     }
                     time = 0;
+                    randNum = 0;
                 }
             }
 
@@ -1269,49 +1311,56 @@ public class Obstacles : MonoBehaviour
                 currBullet = maxBullet;
 
                 // Wait then randomize attack based on previous aiState and current phase
-                if (refState3_6 == "phase 2")
+                if (!hold_rand)
                 {
-                    if (refState3a_6 == "follow")
+                    if (refState3_6 == "phase 2")
                     {
-                        StartCoroutine(delayRand(0f, 1, 3));
-                    }
-                    else if (refState3a_6 == "berserk")
-                    {
-                        StartCoroutine(delayRand(1f, 1, 4));
+                        if (refState3a_6 == "follow")
+                        {
+                            StartCoroutine(delayRand(0f, 1, 3));
+                        }
+                        else if (refState3a_6 == "berserk")
+                        {
+                            StartCoroutine(delayRand(3f, 1, 4));
+                        }
+                        else
+                        {
+                            StartCoroutine(delayRand(1f, 1, 3));
+                        }
                     }
                     else
                     {
-                        StartCoroutine(delayRand(1f, 1, 3));
-                    }
-                }
-                else
-                {
-                    if (refState3a_6 == "follow")
-                    {
-                        StartCoroutine(delayRand(0f, 1, 3));
-                    }
-                    else
-                    {
-                        StartCoroutine(delayRand(1f, 1, 3));
+                        if (refState3a_6 == "follow")
+                        {
+                            StartCoroutine(delayRand(0f, 1, 3));
+                        }
+                        else
+                        {
+                            StartCoroutine(delayRand(2f, 1, 3));
+                        }
                     }
                 }
 
                 if (randNum == 1)
                 {
                     aiState = "follow";
+                    hold_rand = false;
                 }
                 if (randNum == 2)
                 {
                     aiState = "crash";
+                    hold_rand = false;
                 }
                 else if (randNum == 3)
                 {
                     aiState = "explosion";
+                    hold_rand = false;
                 }
                 else if (randNum >= 4)
                 {
                     aiState = "berserk";
-                }                
+                    hold_rand = false;
+                }
                 randNum = 0;
             }
 
@@ -1320,15 +1369,40 @@ public class Obstacles : MonoBehaviour
             {
                 refState3a_6 = aiState;
 
-                transform.position = new Vector3(Player.rb2D.position.x + Player.rb2D.velocity.x, Player.rb2D.position.y + Player.rb2D.velocity.y);
-                float rand = Random.Range(0, 3);
-                if (rand > 0)
+                if (!refState3f_6)
                 {
-                    aiState = "follow";
+                    refState3f_6 = true;
+                    // If player isn't moving
+                    if (Player.rb2D.velocity.x == 0 && Player.rb2D.velocity.y == 0)
+                    {
+                        transform.position = new Vector3(Player.rb2D.position.x, Player.rb2D.position.y + 2f);
+                    }
+                    // Normal case
+                    else if (!Player.dashing)
+                    {
+                        transform.position = new Vector3(Player.rb2D.position.x + Player.rb2D.velocity.x, Player.rb2D.position.y + Player.rb2D.velocity.y);
+                    }
+                }                
+
+                if (!hold_time)
+                {
+                    StartCoroutine(addSecond());
                 }
-                else
+
+                if (time >= 1)
                 {
-                    aiState = "crash";
+                    randNum = Random.Range(1, 4);
+                    if (randNum > 1)
+                    {
+                        aiState = "follow";
+                    }
+                    else
+                    {
+                        aiState = "crash";
+                    }
+                    time = 0;
+                    randNum = 0;
+                    refState3f_6 = false;
                 }
             }
 
@@ -1338,16 +1412,35 @@ public class Obstacles : MonoBehaviour
                 refState3a_6 = aiState;
                 damage = 10;
 
-                if(refState3b_6 != "crashing")
+                if (refState3b_6 != "crashing" && time < 1)
                 {
-                    refDifference = (Vector3)Player.rb2D.position - new Vector3(transform.position.x - GetComponent<BoxCollider2D>().size.x / 2, transform.position.y, transform.position.z);
-                    refDistance = refDifference.magnitude;
-                    refDirection = refDifference / refDistance;
-                    refDirection.Normalize();
+                    refState_6 = "warning";
+                    StartCoroutine(addSecond());
+                }
+                else if (time >= 1)
+                {
+                    refState_6 = "";
+                    time = 0;
                 }
 
-                refState3b_6 = "crashing";
-                transform.position += new Vector3(refDirection.x * speed * 10, refDirection.y * speed * 10);
+                if (refState_6 != "warning" && refState_6 != null)
+                {
+                    if (refState3b_6 != "crashing")
+                    {
+                        refDifference = (Vector3)Player.rb2D.position - new Vector3(transform.position.x - GetComponent<BoxCollider2D>().size.x / 2, transform.position.y, transform.position.z);
+                        refDistance = refDifference.magnitude;
+                        refDirection = refDifference / refDistance;
+                        refDirection.Normalize();
+
+                        if (refState2a_6 == "stop")
+                        {
+                            transform.position += new Vector3(refDirection.x * speed, refDirection.y * speed);
+                        }
+                    }
+
+                    refState3b_6 = "crashing";
+                    transform.position += new Vector3(refDirection.x * speed * 10, refDirection.y * speed * 10);
+                }
             }
 
             // Explosion
@@ -1359,7 +1452,15 @@ public class Obstacles : MonoBehaviour
                 {
                     for (int i = 0; i < 8; i++)
                     {
-                        fireBullet(new Vector2(Mathf.Cos(i * Mathf.PI / 4), Mathf.Sin(i * Mathf.PI / 4)), 45 * i, 5f);
+                        // Alternateing spread
+                        if (currBullet % 2 == 0)
+                        {
+                            fireBullet(new Vector2(Mathf.Cos((2 * i + 1) * Mathf.PI / 8), Mathf.Sin((2 * i + 1) * Mathf.PI / 8)), 45 * i, 5f);
+                        }
+                        else
+                        {
+                            fireBullet(new Vector2(Mathf.Cos(i * Mathf.PI / 4), Mathf.Sin(i * Mathf.PI / 4)), 45 * i, 5f);
+                        }
                     }
                     currBullet--;
                     StartCoroutine(cooldown());
@@ -1373,8 +1474,96 @@ public class Obstacles : MonoBehaviour
             // Berserk
             else if (aiState == "berserk")
             {
-                refState3a_6 = aiState;
+                refState3a_6 = aiState;               
+                damage = 10;
 
+                if (refState3e_6)
+                {
+                    refState_6 = "warning_1";
+                    refState3e_6 = false;
+                    StartCoroutine(addSecond());
+                }
+                else if (time >= 1)
+                {
+                    refState_6 = "";
+                    time = 0;
+                }
+
+                if (refState_6 != "warning_1" && refState_6 != null)
+                {
+                    // Crash
+                    if (refState3d_6 == "stage 1" && refState3c_6 < 3)
+                    {
+                        if (refState3b_6 != "crashing")
+                        {
+                            // "Collision" with outer box
+                            if (refState2a_6 == "stop")
+                            {
+                                if (aiState == "crash" && refState3b_6 == "crashing")
+                                {
+                                    aiState = "rest";
+                                    refState3b_6 = "";
+                                }
+                                else if (aiState == "berserk" && refState3b_6 == "crashing")
+                                {
+                                    refState3b_6 = "";
+                                    refState3d_6 = "stage 2";
+                                }
+                            }
+
+                            if (transform.position.y < -2.73f)
+                            {
+                                transform.position = new Vector3(transform.position.x, -2.73f);
+                            }
+                            else if (transform.position.y > 3.9f)
+                            {
+                                transform.position = new Vector3(transform.position.x, 3.9f);
+                            }
+
+                            refDifference = (Vector3)Player.rb2D.position - new Vector3(transform.position.x - GetComponent<BoxCollider2D>().size.x / 2, transform.position.y, transform.position.z);
+                            refDistance = refDifference.magnitude;
+                            refDirection = refDifference / refDistance;
+                            refDirection.Normalize();
+                        }
+
+                        refState3b_6 = "crashing";
+
+                        transform.position += new Vector3(refDirection.x * speed * 10, refDirection.y * speed * 10);
+                    }
+                    // Explosion
+                    else if (refState3d_6 == "stage 2")
+                    {
+                        if (refState2a_6 == "stop")
+                        {
+                            refDifference = (Vector3)Player.rb2D.position - new Vector3(transform.position.x - GetComponent<BoxCollider2D>().size.x / 2, transform.position.y, transform.position.z);
+                            refDistance = refDifference.magnitude;
+                            refDirection = refDifference / refDistance;
+                            refDirection.Normalize();
+
+                            transform.position += new Vector3(refDirection.x * speed, refDirection.y * speed);
+                        }
+                        else
+                        {
+                            if (refState3c_6 < 3)
+                            {
+                                for (int i = 0; i < 8; i++)
+                                {
+                                    fireBullet(new Vector2(Mathf.Cos(i * Mathf.PI / 4), Mathf.Sin(i * Mathf.PI / 4)), 45 * i, 5f);
+                                }
+                                refState3c_6++;
+                                refState3d_6 = "stage 1";
+                            }
+                        }
+                    }
+                }
+                               
+                // Finish
+                if (refState3c_6 == 3)
+                {
+                    refState3c_6 = 0;
+                    refState3e_6 = true;
+                    aiState = "rest";
+                }
             }
         }
 
@@ -1503,7 +1692,42 @@ public class Obstacles : MonoBehaviour
                 }
                 else if (gameObject.name.Substring(0, 6) == "Aerial")
                 {
-
+                    if (Player.rb2D.position.x > transform.position.x - GetComponent<BoxCollider2D>().size.x / 3 && Player.rb2D.position.x < transform.position.x + GetComponent<BoxCollider2D>().size.x / 3)
+                    {
+                        if (Player.rb2D.position.y - Player.rb2D.GetComponent<CircleCollider2D>().radius > transform.position.y)
+                        {
+                            Player.rb2D.velocity = new Vector2(Player.rb2D.velocity.x, 2f);
+                        }
+                        else
+                        {
+                            Player.rb2D.velocity = new Vector2(Player.rb2D.velocity.x, -1f);
+                        }
+                    }
+                    else
+                    {
+                        if (transform.position.x > Player.rb2D.position.x)
+                        {
+                            if (Player.rb2D.position.y - Player.rb2D.GetComponent<CircleCollider2D>().radius > transform.position.y)
+                            {
+                                Player.rb2D.velocity = new Vector2(-3f, 2f);
+                            }
+                            else
+                            {
+                                Player.rb2D.velocity = new Vector2(-3f, -1f);
+                            }
+                        }
+                        else if (transform.position.x < Player.rb2D.position.x)
+                        {
+                            if (Player.rb2D.position.y - Player.rb2D.GetComponent<CircleCollider2D>().radius > transform.position.y)
+                            {
+                                Player.rb2D.velocity = new Vector2(3f, 2f);
+                            }
+                            else
+                            {
+                                Player.rb2D.velocity = new Vector2(3f, -1f);
+                            }
+                        }
+                    }
                 }
                 else if (gameObject.name.Substring(0, 7) == "Aquatic")
                 {
@@ -1512,6 +1736,81 @@ public class Obstacles : MonoBehaviour
                 else if (gameObject.name == "Overseer")
                 {
                     Player.rb2D.velocity = new Vector2(-5f, 0f);
+                }
+                else if (gameObject.name == "Containment")
+                {
+                    if (Player.rb2D.position.x == transform.position.x)
+                    {
+                        if (Player.rb2D.position.y - Player.rb2D.GetComponent<CircleCollider2D>().radius > transform.position.y + GetComponent<BoxCollider2D>().size.y / 2)
+                        {
+                            Player.rb2D.velocity = new Vector2(Player.rb2D.velocity.x, 2f);
+                        }
+                        else if (Player.rb2D.position.y + Player.rb2D.GetComponent<CircleCollider2D>().radius < transform.position.y - GetComponent<BoxCollider2D>().size.y / 2)
+                        {
+                            Player.rb2D.velocity = new Vector2(Player.rb2D.velocity.x, -2f);
+                        }
+                        else
+                        {
+                            float rand = Random.Range(0, 2);
+                            if (rand > 0)
+                            {
+                                Player.rb2D.velocity = new Vector2(Player.rb2D.velocity.x, -2f);
+                            }
+                            else
+                            {
+                                Player.rb2D.velocity = new Vector2(Player.rb2D.velocity.x, 2f);
+                            }
+                        }
+                    }
+                    else
+                    {
+                        if (transform.position.x > Player.rb2D.position.x)
+                        {
+                            if (Player.rb2D.position.y - Player.rb2D.GetComponent<CircleCollider2D>().radius > transform.position.y + GetComponent<BoxCollider2D>().size.y / 2)
+                            {
+                                Player.rb2D.velocity = new Vector2(-5f, 2f);
+                            }
+                            else if (Player.rb2D.position.y + Player.rb2D.GetComponent<CircleCollider2D>().radius < transform.position.y - GetComponent<BoxCollider2D>().size.y / 2)
+                            {
+                                Player.rb2D.velocity = new Vector2(-5f, -2f);
+                            }
+                            else
+                            {
+                                float rand = Random.Range(0, 2);
+                                if (rand > 0)
+                                {
+                                    Player.rb2D.velocity = new Vector2(-5f, -2f);
+                                }
+                                else
+                                {
+                                    Player.rb2D.velocity = new Vector2(-5f, 2f);
+                                }
+                            }
+                        }
+                        else if (transform.position.x < Player.rb2D.position.x)
+                        {
+                            if (Player.rb2D.position.y - Player.rb2D.GetComponent<CircleCollider2D>().radius > transform.position.y + GetComponent<BoxCollider2D>().size.y / 2)
+                            {
+                                Player.rb2D.velocity = new Vector2(5f, 2f);
+                            }
+                            else if (Player.rb2D.position.y + Player.rb2D.GetComponent<CircleCollider2D>().radius < transform.position.y - GetComponent<BoxCollider2D>().size.y / 2)
+                            {
+                                Player.rb2D.velocity = new Vector2(5f, -2f);
+                            }
+                            else
+                            {
+                                float rand = Random.Range(0, 2);
+                                if (rand > 0)
+                                {
+                                    Player.rb2D.velocity = new Vector2(5f, -2f);
+                                }
+                                else
+                                {
+                                    Player.rb2D.velocity = new Vector2(5f, 2f);
+                                }
+                            }
+                        }
+                    }
                 }
             }
         }
@@ -1574,7 +1873,42 @@ public class Obstacles : MonoBehaviour
                 }
                 else if (gameObject.name.Substring(0, 6) == "Aerial")
                 {
-
+                    if (Player.rb2D.position.x > transform.position.x - GetComponent<BoxCollider2D>().size.x / 3 && Player.rb2D.position.x < transform.position.x + GetComponent<BoxCollider2D>().size.x / 3)
+                    {
+                        if (Player.rb2D.position.y - Player.rb2D.GetComponent<CircleCollider2D>().radius > transform.position.y)
+                        {
+                            Player.rb2D.velocity = new Vector2(Player.rb2D.velocity.x, 2f);
+                        }
+                        else
+                        {
+                            Player.rb2D.velocity = new Vector2(Player.rb2D.velocity.x, -1f);
+                        }
+                    }
+                    else
+                    {
+                        if (transform.position.x > Player.rb2D.position.x)
+                        {
+                            if (Player.rb2D.position.y - Player.rb2D.GetComponent<CircleCollider2D>().radius > transform.position.y)
+                            {
+                                Player.rb2D.velocity = new Vector2(-3f, 2f);
+                            }
+                            else
+                            {
+                                Player.rb2D.velocity = new Vector2(-3f, -1f);
+                            }
+                        }
+                        else if (transform.position.x < Player.rb2D.position.x)
+                        {
+                            if (Player.rb2D.position.y - Player.rb2D.GetComponent<CircleCollider2D>().radius > transform.position.y)
+                            {
+                                Player.rb2D.velocity = new Vector2(3f, 2f);
+                            }
+                            else
+                            {
+                                Player.rb2D.velocity = new Vector2(3f, -1f);
+                            }
+                        }
+                    }
                 }
                 else if (gameObject.name.Substring(0, 7) == "Aquatic")
                 {
@@ -1583,6 +1917,81 @@ public class Obstacles : MonoBehaviour
                 else if (gameObject.name == "Overseer")
                 {
                     Player.rb2D.velocity = new Vector2(-5f, 0f);
+                }
+                else if (gameObject.name == "Containment")
+                {
+                    if (Player.rb2D.position.x == transform.position.x)
+                    {
+                        if (Player.rb2D.position.y - Player.rb2D.GetComponent<CircleCollider2D>().radius > transform.position.y + GetComponent<BoxCollider2D>().size.y / 2)
+                        {
+                            Player.rb2D.velocity = new Vector2(Player.rb2D.velocity.x, 2f);
+                        }
+                        else if (Player.rb2D.position.y + Player.rb2D.GetComponent<CircleCollider2D>().radius < transform.position.y - GetComponent<BoxCollider2D>().size.y / 2)
+                        {
+                            Player.rb2D.velocity = new Vector2(Player.rb2D.velocity.x, -2f);
+                        }
+                        else
+                        {
+                            float rand = Random.Range(0, 2);
+                            if (rand > 0)
+                            {
+                                Player.rb2D.velocity = new Vector2(Player.rb2D.velocity.x, -2f);
+                            }
+                            else
+                            {
+                                Player.rb2D.velocity = new Vector2(Player.rb2D.velocity.x, 2f);
+                            }
+                        }
+                    }
+                    else
+                    {
+                        if (transform.position.x > Player.rb2D.position.x)
+                        {
+                            if (Player.rb2D.position.y - Player.rb2D.GetComponent<CircleCollider2D>().radius > transform.position.y + GetComponent<BoxCollider2D>().size.y / 2)
+                            {
+                                Player.rb2D.velocity = new Vector2(-5f, 2f);
+                            }
+                            else if (Player.rb2D.position.y + Player.rb2D.GetComponent<CircleCollider2D>().radius < transform.position.y - GetComponent<BoxCollider2D>().size.y / 2)
+                            {
+                                Player.rb2D.velocity = new Vector2(-5f, -2f);
+                            }
+                            else
+                            {
+                                float rand = Random.Range(0, 2);
+                                if (rand > 0)
+                                {
+                                    Player.rb2D.velocity = new Vector2(-5f, -2f);
+                                }
+                                else
+                                {
+                                    Player.rb2D.velocity = new Vector2(-5f, 2f);
+                                }
+                            }
+                        }
+                        else if (transform.position.x < Player.rb2D.position.x)
+                        {
+                            if (Player.rb2D.position.y - Player.rb2D.GetComponent<CircleCollider2D>().radius > transform.position.y + GetComponent<BoxCollider2D>().size.y / 2)
+                            {
+                                Player.rb2D.velocity = new Vector2(5f, 2f);
+                            }
+                            else if (Player.rb2D.position.y + Player.rb2D.GetComponent<CircleCollider2D>().radius < transform.position.y - GetComponent<BoxCollider2D>().size.y / 2)
+                            {
+                                Player.rb2D.velocity = new Vector2(5f, -2f);
+                            }
+                            else
+                            {
+                                float rand = Random.Range(0, 2);
+                                if (rand > 0)
+                                {
+                                    Player.rb2D.velocity = new Vector2(5f, -2f);
+                                }
+                                else
+                                {
+                                    Player.rb2D.velocity = new Vector2(5f, 2f);
+                                }
+                            }
+                        }
+                    }
                 }
             }
         }
@@ -1646,7 +2055,6 @@ public class Obstacles : MonoBehaviour
         hold_rand = true;
         yield return new WaitForSeconds(time);
         randNum = Random.Range(min, max + 1);
-        hold_rand = false;
     }
 
     IEnumerator cooldown()

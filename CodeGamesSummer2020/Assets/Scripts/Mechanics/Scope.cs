@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class Scope : MonoBehaviour
 {
+    // Components
+    public SpriteRenderer sprite;
+    public Animator anim;
+
     // Remember to freeze y coord for rigid bodies
     public string attachedTo;
     public static string sticky;
@@ -49,7 +53,11 @@ public class Scope : MonoBehaviour
         if (gameObject.name == "Warning" || gameObject.name == "Warning (1)" || gameObject.name == "Warning (2)")
         {
             transform.position = new Vector3(12, 12, 0);
-        }        
+        }
+
+        // Get Components
+        sprite = GetComponent<SpriteRenderer>();
+        anim = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -215,6 +223,35 @@ public class Scope : MonoBehaviour
                 if (GlobalControl.downed_boss_1)
                 {
                     gameObject.SetActive(false);
+                }
+            }
+        }
+        if (GlobalControl.area == "TT_12")
+        {
+            if (gameObject.name == "Sparkle")
+            {
+                if (Obstacles.refState_6 == "warning")
+                {
+                    sprite.enabled =  true;
+                    anim.enabled = true;
+                }
+                else
+                {
+                    sprite.enabled = false;
+                    anim.enabled = false;
+                }
+            }
+            else if (gameObject.name == "Sparkle_1")
+            {
+                if (Obstacles.refState_6 == "warning_1")
+                {
+                    sprite.enabled = true;
+                    anim.enabled = true;
+                }
+                else
+                {
+                    sprite.enabled = false;
+                    anim.enabled = false;
                 }
             }
         }

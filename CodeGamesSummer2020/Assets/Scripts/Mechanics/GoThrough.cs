@@ -533,6 +533,16 @@ public class GoThrough : MonoBehaviour
 
             /*-----Transition (TT-MB)-----*/
 
+            // TT_16 to MB_1
+            else if (opName == "TT_16_to_MB_1")
+            {
+                StartCoroutine(SceneSwitch("MB_1", "MB_1_to_TT_16"));
+            }
+            else if (opName == "MB_1_to_TT_16")
+            {
+                StartCoroutine(SceneSwitch("TT_16", "TT_16_to_MB_1"));
+            }
+
             /*-----Transition (GH-FS)-----*/
 
             on = false;
