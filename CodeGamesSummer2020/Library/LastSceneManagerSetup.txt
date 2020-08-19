@@ -88,8 +88,8 @@ sceneSetups:
   isActive: 0
   isSubScene: 0
 - path: Assets/Scenes/TT/TT_9.unity
-  isLoaded: 1
-  isActive: 1
+  isLoaded: 0
+  isActive: 0
   isSubScene: 0
 - path: Assets/Scenes/TT/TT_10.unity
   isLoaded: 0
@@ -120,6 +120,14 @@ sceneSetups:
   isActive: 0
   isSubScene: 0
 - path: Assets/Scenes/TT/TT_16.unity
+  isLoaded: 1
+  isActive: 1
+  isSubScene: 0
+- path: Assets/Scenes/Main Menu.unity
+  isLoaded: 0
+  isActive: 0
+  isSubScene: 0
+- path: Assets/Scenes/In-Game Menu.unity
   isLoaded: 0
   isActive: 0
   isSubScene: 0

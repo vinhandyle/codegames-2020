@@ -14,7 +14,7 @@ public class MainMenuBtn : MonoBehaviour
     void Start()
     {
         img = GetComponent<Image>();
-        if (gameObject.name == "ExitBtn")
+        if (gameObject.name == "ExitBtn" || (gameObject.name == "ContiBtn" && !GlobalControl.canContinue))
         {
             img.color = new Color(1f, 1f, 1f, 0f);
         }
@@ -40,7 +40,7 @@ public class MainMenuBtn : MonoBehaviour
         }
         else
         {
-            if (gameObject.name == "ExitBtn")
+            if (gameObject.name == "ExitBtn" || (gameObject.name == "ContiBtn" && !GlobalControl.canContinue))
             {
                 img.color = new Color(1f, 1f, 1f, 0f);
             }

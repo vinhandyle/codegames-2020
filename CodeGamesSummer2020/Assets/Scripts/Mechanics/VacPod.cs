@@ -105,28 +105,29 @@ public class VacPod : MonoBehaviour
         {
             if (inMotion)
             {
+                // Speed must be 10^n or 5x10^n
                 if (GlobalControl.pod_direction == "right")
                 {
-                    transform.position += new Vector3(-0.05f, 0);
+                    transform.position += new Vector3(-0.1f, 0);
 
-                    if (transform.position.x < -5 && (gameObject.name.Substring(0, 5) == "Light" || gameObject.name.Substring(0, 4) == "Tube"))
+                    if (transform.position.x <= -5 && (gameObject.name.Substring(0, 5) == "Light" || gameObject.name.Substring(0, 4) == "Tube"))
                     {
-                        transform.position = new Vector3(5, transform.position.y, transform.position.z);
+                        transform.position = new Vector3(5f, transform.position.y, transform.position.z);
                     }
-                    else if (transform.position.x < -10 && gameObject.name.Substring(0, 4) == "Back")
+                    else if (transform.position.x <= -10 && gameObject.name.Substring(0, 4) == "Back")
                     {
-                        transform.position = new Vector3(10, transform.position.y, transform.position.z);
+                        transform.position = new Vector3(10f, transform.position.y, transform.position.z);
                     }
                 }
                 else if (GlobalControl.pod_direction == "left")
                 {
-                    transform.position += new Vector3(0.05f, 0);
+                    transform.position += new Vector3(0.1f, 0);
 
-                    if (transform.position.x > 5 && (gameObject.name.Substring(0, 5) == "Light" || gameObject.name.Substring(0, 4) == "Tube"))
+                    if (transform.position.x >= 5 && (gameObject.name.Substring(0, 5) == "Light" || gameObject.name.Substring(0, 4) == "Tube"))
                     {
                         transform.position = new Vector3(-5, transform.position.y, transform.position.z);
                     }
-                    else if (transform.position.x > 10 && gameObject.name.Substring(0, 4) == "Back")
+                    else if (transform.position.x >= 10 && gameObject.name.Substring(0, 4) == "Back")
                     {
                         transform.position = new Vector3(-10, transform.position.y, transform.position.z);
                     }

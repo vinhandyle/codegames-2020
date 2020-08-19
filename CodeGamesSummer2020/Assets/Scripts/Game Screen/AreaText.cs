@@ -225,7 +225,7 @@ public class AreaText : MonoBehaviour
             {
                 text.text = "Great Maw";
             }
-            else if (GlobalControl.area == "MB_4")
+            else if (GlobalControl.area == "MB_3")
             {
                 text.text = "Hull";
             }

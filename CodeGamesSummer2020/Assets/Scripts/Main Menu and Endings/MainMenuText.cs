@@ -28,6 +28,10 @@ public class MainMenuText : MonoBehaviour
         {
             text = GameObject.Find("StartText").GetComponent<Text>();
         }
+        else if (type == "continue")
+        {
+            text = GameObject.Find("ContiText").GetComponent<Text>();
+        }
         else if (type == "controls")
         {
             text = GameObject.Find("ControlsText").GetComponent<Text>();
@@ -107,7 +111,11 @@ public class MainMenuText : MonoBehaviour
             }
             else if (type == "start")
             {
-                text.text = "Start";
+                text.text = "New Game";
+            }
+            else if (type == "continue" && GlobalControl.canContinue)
+            {
+                text.text = "Continue";
             }
             else if (type == "controls")
             {

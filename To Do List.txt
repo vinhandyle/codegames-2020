@@ -1,12 +1,15 @@
 -Bugs
 	>Multiple pursuits will not aggro if landing in sight, will aggro after direction change
 
--Plan out Twilight Town
-	>Add sky
-	>Add furnishing to Azimuth Hall + Loft
-	>Energy sources, unique doors (resid + breakout) in building
+-Twilight Town
 	>Containment Machina
 		>Designed to catch the Ego, became harder to control, locked away
+
+-Plan out Midnight Bay
+	>Aquatic Machina
+	>Subnautical Machina
+	>Branching Paths that connect (?)
+
 -Kin Harvest
 	>Rotten Depths
 	>Upper Disposal Area
@@ -15,6 +18,10 @@
 	>Far Station -built, just needs final touches
 	
 -Other
+	>Update in-game menu for lore	
+
+-Sky Hex
+214FAB, 7980AF, 74648C
 
 -Ideas
 	>First ego report : info on secret entrance to IT

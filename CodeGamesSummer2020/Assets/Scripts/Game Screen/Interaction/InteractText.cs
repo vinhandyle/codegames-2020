@@ -264,6 +264,14 @@ public class InteractText : MonoBehaviour
                         {
                             text.text = "<i>Access Key no longer in possession...</i>";
                         }
+                        else if (type == "Azimuth_6")
+                        {
+                            text.text = "<i>The pod will begin moving after receiving some ignition energy.</i>";
+                        }
+                        else if (type == "Azimuth_7")
+                        {
+                            text.text = "<i><b>It</b> has arrived.</i>";
+                        }
                     }
 
                     // Errat

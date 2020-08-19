@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class MenuBtnBehavior : MonoBehaviour
 {
@@ -22,13 +23,22 @@ public class MenuBtnBehavior : MonoBehaviour
     public void ChangeMenu(string menu)
     {
         if (MenuBackground.inMenu && 
-            (menu == "inventory" || menu == "help" || 
+            (menu == "inventory" || menu == "help" || menu == "exit" ||
             (menu == "map" && GlobalControl.mapUnlocked) ||
             (menu == "enemies" && GlobalControl.counter_1 > 0) ||
             (menu == "reports" && GlobalControl.data > 0)))
         {
             btn = "";
-            GlobalControl.menu = menu;
+            if (menu != "exit")
+            {
+                GlobalControl.menu = menu;
+            }
+            else
+            {
+                MenuBackground.inMenu = false;
+                GlobalControl.canContinue = true;                
+                StartCoroutine(SceneSwitch("Main Menu"));
+            }
         }
     }
 
@@ -36,5 +46,12 @@ public class MenuBtnBehavior : MonoBehaviour
     public void ChangeDesc(string name)
     {
         btn = name;
+    }
+
+    IEnumerator SceneSwitch(string load)
+    {
+        SceneManager.LoadScene(load, LoadSceneMode.Single);
+        yield return null;
+        SceneManager.UnloadSceneAsync(SceneManager.GetActiveScene().name);
     }
 }

@@ -30,6 +30,7 @@ public class MenuBtn : MonoBehaviour
             // Section Headers
             if (gameObject.name == "InvBtn" ||
                 gameObject.name == "InfoBtn" ||
+                gameObject.name == "ExitBtn" ||
                 (gameObject.name == "MapBtn" && GlobalControl.mapUnlocked) ||
                 (gameObject.name == "EnemyBtn" && GlobalControl.counter_1 > 0) ||
                 (gameObject.name == "RepBtn" && GlobalControl.data > 0))

@@ -48,6 +48,9 @@ public class MainMenuBtnBehavior : MonoBehaviour
             GlobalControl.extra_3 = false;
             GlobalControl.plating_1 = false;
             GlobalControl.plating_2 = false;
+            GlobalControl.scrap_1 = false;
+            GlobalControl.scrap_2 = false;
+            GlobalControl.scrap_3 = false;
             GlobalControl.scrapNum = 0;
             GlobalControl.extraNum = 0;
             GlobalControl.plateNum = 0;
@@ -62,10 +65,18 @@ public class MainMenuBtnBehavior : MonoBehaviour
             GlobalControl.errat_3 = true;
             GlobalControl.errat_4 = true;
             GlobalControl.errat_5 = true;
+            GlobalControl.canContinue = true;
             GlobalControl.resetObjects();
             GlobalControl.respawnAll();
 
             StartCoroutine(SceneSwitch("Start_"));
+        }
+        else if (type == "continue")
+        {
+            if (GlobalControl.canContinue)
+            {
+                StartCoroutine(SceneSwitch2(GlobalControl.prevArea));
+            }
         }
         else if (type == "controls")
         {
@@ -87,6 +98,21 @@ public class MainMenuBtnBehavior : MonoBehaviour
         GlobalControl.area = load;
 
         SceneManager.LoadScene(load, LoadSceneMode.Single);
+        yield return null;
+        SceneManager.UnloadSceneAsync(SceneManager.GetActiveScene().name);
+    }
+
+    IEnumerator SceneSwitch2(string load)
+    {
+        GlobalControl.area = load;
+        GlobalControl.nextDoor = "";
+
+        SceneManager.LoadScene(load, LoadSceneMode.Single);    
+        
+        Player.x = GlobalControl.pX;
+        Player.y = GlobalControl.pY;
+        GlobalControl.switched = true;        
+
         yield return null;
         SceneManager.UnloadSceneAsync(SceneManager.GetActiveScene().name);
     }

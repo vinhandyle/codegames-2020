@@ -77,8 +77,13 @@ public class GlobalControl : MonoBehaviour
     public static string pod_location = "main";    // Where is the pod
 
     // World
+    public static float pX;                        // Player x-coord before opening menu
+    public static float pY;                        // Player y-coord before opening menu
+
     public static int humansLeft = 6;              // How many humans left to capture (6: May-October)
     public static int bossDowned = 0;              // How many bosses have been defeated
+    public static bool canContinue = false;        // Continue from Main Menu?
+
     public static int update = 0;                  // Update stats when power-up obtained
     public static bool switched = false;           // Used to set position on scene switch
 
@@ -277,6 +282,7 @@ public class GlobalControl : MonoBehaviour
         if (area == "Ending_1" && !triggerOnce)
         {
             triggerOnce = true;
+            canContinue = false;
             StartCoroutine(delayedSwitch(8.5f, SceneSwitch("Main Menu", "")));
             ending_1 = true;
         }
@@ -528,8 +534,8 @@ public class GlobalControl : MonoBehaviour
         downed_aquatic = true;
         downed_turret = true;
         found_errat = true;
-        //downed_boss_1 = true;
-        //downed_boss_2 = true;
+        downed_boss_1 = true;
+        downed_boss_2 = true;
         downed_boss_3 = true;
         downed_boss_4 = true;
 

@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class MainMenuImg : MonoBehaviour
 {
     private Image img;
+    public List<Sprite> sprites;
     public bool animated;
 
     // Start is called before the first frame update
@@ -34,6 +35,19 @@ public class MainMenuImg : MonoBehaviour
         else if (!animated)
         {
             img.color = new Color(1f, 1f, 1f, 0f);
+        }
+
+        // Controls
+        if (gameObject.name == "Controls")
+        {
+            if (GlobalControl.heartlessUnlocked)
+            {
+                img.sprite = sprites[1];
+            }
+            else
+            {
+                img.sprite = sprites[0];
+            }
         }
 
         // Endings
