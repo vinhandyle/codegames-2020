@@ -8,8 +8,8 @@ public class EnterDoor : MonoBehaviour
     public Sprite lockedDoor;
     public Sprite unlockedDoor;
 
-    public static bool inRange = false;
-    public static bool locked = false;
+    public bool inRange = false;
+    public bool locked = false;
     public static bool triggeredOnce = false;
 
     public static string doorName = ""; // Prevents interacting with multiple doors in one scene
@@ -69,6 +69,32 @@ public class EnterDoor : MonoBehaviour
         else if (gameObject.name == "SG_10_to_SG_3 (D)")
         {
             if (GlobalControl.locked_4)
+            {
+                locked = true;
+                gameObject.GetComponent<SpriteRenderer>().sprite = lockedDoor;
+            }
+            else
+            {
+                locked = false;
+                gameObject.GetComponent<SpriteRenderer>().sprite = unlockedDoor;
+            }
+        }
+        else if (gameObject.name == "MB_3_to_MB_12")
+        {
+            if (GlobalControl.locked_5)
+            {
+                locked = true;
+                gameObject.GetComponent<SpriteRenderer>().sprite = lockedDoor;
+            }
+            else
+            {
+                locked = false;
+                gameObject.GetComponent<SpriteRenderer>().sprite = unlockedDoor;
+            }
+        }
+        else if (gameObject.name == "MB_12_to_MB_3")
+        {
+            if (GlobalControl.locked_6)
             {
                 locked = true;
                 gameObject.GetComponent<SpriteRenderer>().sprite = lockedDoor;
@@ -246,13 +272,44 @@ public class EnterDoor : MonoBehaviour
                 StartCoroutine(SceneSwitch("TT_15", "TT_15_to_TT_16"));
             }
 
-
             // Seaside Station to City Outskirts
             else if (doorName == "TT_15_to_TT_16")
             {
                 StartCoroutine(SceneSwitch("TT_16", "TT_16_to_TT_15"));
             }
 
+            // Hull to Northern Arm
+            else if (doorName == "MB_3_to_MB_5")
+            {
+                StartCoroutine(SceneSwitch("MB_5", "MB_5_to_MB_3"));
+                GlobalControl.block_TT_6 = false;
+            }
+            else if (doorName == "MB_5_to_MB_3")
+            {
+                StartCoroutine(SceneSwitch("MB_3", "MB_3_to_MB_5"));
+            }
+
+            // Hull to Eastern Arm
+            else if (doorName == "MB_3_to_MB_6")
+            {
+                StartCoroutine(SceneSwitch("MB_6", "MB_6_to_MB_3"));
+                GlobalControl.block_TT_6 = false;
+            }
+            else if (doorName == "MB_6_to_MB_3")
+            {
+                StartCoroutine(SceneSwitch("MB_3", "MB_3_to_MB_6"));
+            }
+
+            // Hull to Heart of the Beast
+            else if (doorName == "MB_3_to_MB_12")
+            {
+                StartCoroutine(SceneSwitch("MB_12", "MB_12_to_MB_3"));
+                GlobalControl.block_TT_6 = false;
+            }
+            else if (doorName == "MB_12_to_MB_3")
+            {
+                StartCoroutine(SceneSwitch("MB_3", "MB_3_to_MB_12"));
+            }
 
             // Mysterious Path to The Lift from Hell
             else if (doorName == "DH_7_to_IT_3")
@@ -302,6 +359,7 @@ public class EnterDoor : MonoBehaviour
             doorName = gameObject.name;
             sticky = gameObject.name;
             InteractText.type = "door";
+            InteractText.locked = locked;
         }       
     }
 

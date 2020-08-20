@@ -961,7 +961,7 @@ PrefabInstance:
     - target: {fileID: 1580859305280787209, guid: 8e2490aaf52650942ba99f1212982d5c,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.17
+      value: -1.093
       objectReference: {fileID: 0}
     - target: {fileID: 1580859305280787209, guid: 8e2490aaf52650942ba99f1212982d5c,
         type: 3}
@@ -1008,6 +1008,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1580859305280787209, guid: 8e2490aaf52650942ba99f1212982d5c,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 2.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1580859305280787209, guid: 8e2490aaf52650942ba99f1212982d5c,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 2.5
+      objectReference: {fileID: 0}
     - target: {fileID: 2648091145979299751, guid: 8e2490aaf52650942ba99f1212982d5c,
         type: 3}
       propertyPath: m_Name
@@ -1017,7 +1027,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: d22d742c7cd1cbd439b5293342a8d3a8,
+      objectReference: {fileID: 21300000, guid: 17f82bfce6e88b741803d29b1d12ceca,
         type: 3}
     - target: {fileID: 5189053524504397608, guid: 8e2490aaf52650942ba99f1212982d5c,
         type: 3}
@@ -1037,7 +1047,7 @@ PrefabInstance:
     - target: {fileID: 5189053524504397608, guid: 8e2490aaf52650942ba99f1212982d5c,
         type: 3}
       propertyPath: m_DrawMode
-      value: 2
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8e2490aaf52650942ba99f1212982d5c, type: 3}
@@ -1070,10 +1080,10 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.32, y: 0.32}
+    oldSize: {x: 0.25, y: 0.45}
     newSize: {x: 0.5, y: 1}
     adaptiveTilingThreshold: 0.5
-    drawMode: 2
+    drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2

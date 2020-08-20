@@ -7,8 +7,13 @@ public class Map : MonoBehaviour
 {
     Image img;
 
-    // The Institute of Technology
-    public Sprite home;
+    public Sprite start;
+    public List<Sprite> dh;
+    public List<Sprite> sg;
+    public List<Sprite> tt;
+    public List<Sprite> mb;
+    public List<Sprite> it;
+    public List<Sprite> gp;
 
     // Start is called before the first frame update
     void Start()
@@ -24,7 +29,14 @@ public class Map : MonoBehaviour
         { 
           // If map was last open, reopen when opening menu
             img.color = new Color(1f, 1f, 1f, 1f);
-            img.sprite = home;           
+            if (GlobalControl.prevArea == "Start_")
+            {
+                img.sprite = start;
+            }
+            else
+            {
+                img.sprite = null;
+            }
         }
         else
         { // Close menu

@@ -130,6 +130,8 @@ public class GlobalControl : MonoBehaviour
     public static bool locked_2 = false;           // The Lift to Heaven Door
     public static bool locked_3 = true;            // DH_4_to_DH_6
     public static bool locked_4 = true;            // SG_10_to_SG_3
+    public static bool locked_5 = true;            // MB_3_to_MB_12
+    public static bool locked_6 = true;            // MB_12_to_MB_3
 
     // Switches
     public static string state_SG_8 = "active";
@@ -348,6 +350,12 @@ public class GlobalControl : MonoBehaviour
             else if (checkpoint == "Checkpoint_4")
             {
                 StartCoroutine(SceneSwitch("TT_2", checkpoint));
+            }
+
+            // MB - Hull
+            else if (checkpoint == "Checkpoint_5")
+            {
+                StartCoroutine(SceneSwitch("MB_3", checkpoint));
             }
 
             // No checkpoints used

@@ -1021,7 +1021,7 @@ public class Obstacles : MonoBehaviour
             }
 
             // Gear Shift
-            if (time > 0 && refState3_5 != "shifted" && ((time % 10 == 0 && refState3a_5 != "phase 2") || (time % 5 == 0 && refState3a_5 == "phase 2")) && (refState2a_5 == "" || refState2a_5 == null))
+            if (time > 0 && refState3_5 != "shifted" && ((time % 10 == 0 && refState3a_5 != "phase 2") || (time % 5 == 0 && refState3a_5 == "phase 2")) && (refState2a_5 == "" || refState2a_5 == null) && aiState != "ramping")
             {
                 if (transform.position.y <= -1.94)
                 {

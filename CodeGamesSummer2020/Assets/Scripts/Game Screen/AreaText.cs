@@ -229,6 +229,50 @@ public class AreaText : MonoBehaviour
             {
                 text.text = "Hull";
             }
+            else if (GlobalControl.area == "MB_3S") // Extra
+            {
+                text.text = "Helm";
+            }
+            else if (GlobalControl.area == "MB_3S2") // Kin
+            {
+                text.text = "Stowaway";
+            }
+            else if (GlobalControl.area == "MB_4")
+            {
+                text.text = "Far Northern Arm";
+            }
+            else if (GlobalControl.area == "MB_5")
+            {
+                text.text = "Northern Arm";
+            }
+            else if (GlobalControl.area == "MB_6")
+            {
+                text.text = "Eastern Arm";
+            }
+            else if (GlobalControl.area == "MB_7")
+            {
+                text.text = "Far Eastern Arm";
+            }
+            else if (GlobalControl.area == "MB_8")
+            {
+                text.text = "Far Western Arm";
+            }
+            else if (GlobalControl.area == "MB_9")
+            {
+                text.text = "Western Arm";
+            }
+            else if (GlobalControl.area == "MB_10")
+            {
+                text.text = "Southern Arm";
+            }
+            else if (GlobalControl.area == "MB_11")
+            {
+                text.text = "Far Southern Arm";
+            }
+            else if (GlobalControl.area == "MB_12")
+            {
+                text.text = "Heart of the Beast";
+            }
 
             // Grey Palace
             else if (GlobalControl.area == "GP_0A")

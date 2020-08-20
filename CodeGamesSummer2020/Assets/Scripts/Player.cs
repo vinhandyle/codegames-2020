@@ -272,7 +272,7 @@ public class Player : MonoBehaviour
             midJump = false;
         }
         // Allows jumping if on wall edge
-        else if (collision.collider.CompareTag("Wall") && collision.collider.transform.parent.name != "Destructibles" && transform.position.y - gameObject.GetComponent<CircleCollider2D>().radius > collision.collider.transform.position.y + collision.collider.GetComponent<BoxCollider2D>().size.y / 3)
+        else if (collision.collider.CompareTag("Wall") && collision.collider.transform.parent.name != "Destructibles" && transform.position.y - gameObject.GetComponent<CircleCollider2D>().radius > collision.collider.transform.position.y + collision.collider.GetComponent<BoxCollider2D>().size.y / 2 - rb2D.GetComponent<CircleCollider2D>().radius * 2)
         {
             canJump1 = true;
             canJump2 = false;

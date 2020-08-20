@@ -8,7 +8,8 @@
 -Plan out Midnight Bay
 	>Aquatic Machina
 	>Subnautical Machina
-	>Branching Paths that connect (?)
+	>add rain, darker sky(?)
+	>Destructible in Hull top right
 
 -Kin Harvest
 	>Rotten Depths
@@ -16,6 +17,7 @@
 	>Garden Heights
 	>Dark Alley
 	>Far Station -built, just needs final touches
+	>Stowaway
 	
 -Other
 	>Update in-game menu for lore	
@@ -26,3 +28,5 @@
 -Ideas
 	>First ego report : info on secret entrance to IT
 	>tHE TROUBLES -> The Great Destruction 
+	>IT, same rooms, diff paths
+	>GP, one checkpoint connected elevator which is able ascend further when shortcuts unlocked

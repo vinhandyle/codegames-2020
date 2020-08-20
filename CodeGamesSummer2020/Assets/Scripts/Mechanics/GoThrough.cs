@@ -21,7 +21,7 @@ public class GoThrough : MonoBehaviour
             if (direction == "top")
             { // player starts below the opening
                 Player.x = Player.x2;
-                if (gameObject.name == "TT_13_to_TT_2" || gameObject.name == "TT_15_to_TT_16")
+                if (gameObject.name == "TT_13_to_TT_2" || gameObject.name == "TT_15_to_TT_16" || gameObject.name == "MB_3_to_MB_2")
                 {
                     Player.x = gameObject.transform.position.x;
                 }
@@ -57,7 +57,7 @@ public class GoThrough : MonoBehaviour
             else if (direction == "right")
             { // player starts to the left of the opening
                 Player.x = gameObject.transform.position.x - 0.5f;
-                if (gameObject.name == "SG_3_to_SG_9")
+                if (gameObject.name == "SG_3_to_SG_9" || gameObject.name == "MB_2_to_MB_3")
                 {
                     Player.y = gameObject.transform.position.y - gameObject.GetComponent<BoxCollider2D>().size.y / 2;
                 }
@@ -502,6 +502,66 @@ public class GoThrough : MonoBehaviour
             }
 
             /*-----MB-----*/
+
+            // MB_1 to MB_2
+            else if (opName == "MB_1_to_MB_2")
+            {
+                StartCoroutine(SceneSwitch("MB_2", "MB_2_to_MB_1"));
+            }
+            else if (opName == "MB_2_to_MB_1")
+            {
+                StartCoroutine(SceneSwitch("MB_1", "MB_1_to_MB_2"));
+            }
+
+            // MB_2 to MB_3
+            else if (opName == "MB_2_to_MB_3")
+            {
+                StartCoroutine(SceneSwitch("MB_3", "MB_3_to_MB_2"));
+            }
+            else if (opName == "MB_3_to_MB_2")
+            {
+                StartCoroutine(SceneSwitch("MB_2", "MB_2_to_MB_3"));
+            }
+
+            // MB_3 to MB_3S
+            else if (opName == "MB_3_to_MB_3S")
+            {
+                StartCoroutine(SceneSwitch("MB_3S", "MB_3S_to_MB_3"));
+            }
+            else if (opName == "MB_3S_to_MB_3")
+            {
+                StartCoroutine(SceneSwitch("MB_3", "MB_3_to_MB_3S"));
+            }
+
+            // MB_3 to MB_3S2
+            else if (opName == "MB_3_to_MB_3S2")
+            {
+                StartCoroutine(SceneSwitch("MB_3S2", "MB_3S2_to_MB_3"));
+            }
+            else if (opName == "MB_3S2_to_MB_3")
+            {
+                StartCoroutine(SceneSwitch("MB_3", "MB_3_to_MB_3S2"));
+            }
+
+            // MB_3 to MB_9
+            else if (opName == "MB_3_to_MB_9")
+            {
+                StartCoroutine(SceneSwitch("MB_9", "MB_9_to_MB_3"));
+            }
+            else if (opName == "MB_9_to_MB_3")
+            {
+                StartCoroutine(SceneSwitch("MB_3", "MB_3_to_MB_9"));
+            }
+
+            // MB_3 to MB_10
+            else if (opName == "MB_3_to_MB_10")
+            {
+                StartCoroutine(SceneSwitch("MB_10", "MB_10_to_MB_3"));
+            }
+            else if (opName == "MB_10_to_MB_3")
+            {
+                StartCoroutine(SceneSwitch("MB_3", "MB_3_to_MB_10"));
+            }
 
             /*-----GP-----*/
 

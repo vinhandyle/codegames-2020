@@ -14,6 +14,7 @@ public class InteractText : MonoBehaviour
     public static bool interacted = false;
     public static bool notif = false;
     public static bool triggerOnce = false;
+    public static bool locked = false;
 
     // Start is called before the first frame update
     void Start()
@@ -341,13 +342,16 @@ public class InteractText : MonoBehaviour
                     }
                     else if (type == "door")
                     {
-                        if (EnterDoor.locked)
+                        if (attachedTo == EnterDoor.doorName)
                         {
-                            text.text = "Locked";
-                        }
-                        else
-                        {
-                            text.text = "Enter";
+                            if (locked)
+                            {
+                                text.text = "Locked";
+                            }
+                            else
+                            {
+                                text.text = "Enter";
+                            }
                         }
                     }
                     else if (type == "trigger")
