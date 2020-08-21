@@ -70,7 +70,7 @@ public class GlobalControl : MonoBehaviour
     // Toggle
     public static string reactor = "basic";        // Name of equipped reactor
     public static bool h2e = true;                 // True = HP to Energy, False = Energy to HP
-    public static int prog = 3;                    // Progession level for unlockAll: Start(0), Post-Start(1), Post-Dreg(2), Post-Garden(3), Post-Second(4), Post-Town(5), Post-Third(6), Post-Return(7), Post-End(8)
+    public static int prog = 2;                    // Progession level for unlockAll: Start(0), Post-Start(1), Post-Dreg(2), Post-Garden(3), Post-Second(4), Post-Town(5), Post-Third(6), Post-Return(7), Post-End(8)
 
     // Vacuum Pod
     public static string pod_direction = "right";  // Direction of pod
@@ -205,6 +205,7 @@ public class GlobalControl : MonoBehaviour
     public static bool patrol_2_3_7 = true;
     public static bool patrol_2_3_8 = true;
     public static bool patrol_2_3_9 = true;
+    public static bool patrol_2_3_10 = true;
     public static bool aerial_1_3_0 = true;
     public static bool aerial_1_3_1 = true;
     public static bool aerial_1_3_2 = true;
@@ -215,6 +216,7 @@ public class GlobalControl : MonoBehaviour
     public static bool aerial_1_3_7 = true;
     public static bool aerial_1_3_8 = true;
 
+    public static bool patrol_2_4_0 = true;        // Midnight Bay
 
     /*---------------------Wall of Text Ends---------------------*/
 
@@ -418,7 +420,6 @@ public class GlobalControl : MonoBehaviour
         pod_direction = "right";
     }
 
-
     public static void respawnAll()
     {
         patrol_1_0_0 = true;
@@ -456,6 +457,7 @@ public class GlobalControl : MonoBehaviour
         patrol_2_3_7 = true;
         patrol_2_3_8 = true;
         patrol_2_3_9 = true;
+        patrol_2_3_10 = true;
         aerial_1_3_0 = true;
         aerial_1_3_1 = true;
         aerial_1_3_2 = true;
@@ -525,7 +527,7 @@ public class GlobalControl : MonoBehaviour
         plateFound = true;
         extraFound = true;         
         scrapFound = true;
-        plating_1 = true;
+        //plating_1 = true;
         plating_2 = true;
         extra_1 = true;
         extra_2 = true;

@@ -70,6 +70,7 @@
     <Compile Include="Assets\Scripts\Game Screen\Indicator.cs" />
     <Compile Include="Assets\Scripts\Game Screen\Interaction\Craft.cs" />
     <Compile Include="Assets\Scripts\Game Screen\Interaction\Examine.cs" />
+    <Compile Include="Assets\Scripts\Game Screen\Interaction\InteractBar.cs" />
     <Compile Include="Assets\Scripts\Game Screen\Interaction\InteractText.cs" />
     <Compile Include="Assets\Scripts\Game Screen\Interaction\PickUpItem.cs" />
     <Compile Include="Assets\Scripts\Game Screen\Interaction\Talk.cs" />

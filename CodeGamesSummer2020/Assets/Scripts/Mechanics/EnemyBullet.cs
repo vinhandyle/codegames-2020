@@ -40,6 +40,13 @@ public class EnemyBullet : MonoBehaviour
                 damage = 1;
             }
         }
+        else if (GlobalControl.area.Substring(0, 2) == "MB" && GlobalControl.area != "MB_12")
+        {
+            if (gameObject.name.Substring(0, 14) == "Small E_Bullet")
+            {
+                damage = 2;
+            }
+        }
     }
 
     // Update is called once per frame
@@ -109,6 +116,15 @@ public class EnemyBullet : MonoBehaviour
                 {
                     gameObject.SetActive(false);
                 }
+
+                if (GlobalControl.area.Substring(0, 2) == "MB" && GlobalControl.area != "MB_12")
+                {
+                    if (gameObject.name.Substring(0, 13) == "Small E_Bullet")
+                    {
+                        gameObject.SetActive(false);
+                    }
+                }
+
             }
         }         
     }

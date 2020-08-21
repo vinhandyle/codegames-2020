@@ -94,6 +94,7 @@ public class InteractText : MonoBehaviour
                         text.text = "Picked up: Access Key";
                         GlobalControl.keyUnlocked = true;
                     }
+
                     else if (type.Substring(0, 5) == "Scrap")
                     {
                         text.text = "Picked up: Hyper Scrap";

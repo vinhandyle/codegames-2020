@@ -7,6 +7,7 @@ public class Obstacles : MonoBehaviour
     // Non-static variables are separate of each other when applied to different objects (i.e. multiple enemies using this script)
     public int healthMax;
     public int healthCurr;
+    public int defense;
     public int damage;
     public bool hazard;
     public bool animated;
@@ -66,6 +67,10 @@ public class Obstacles : MonoBehaviour
     /* Aerial */
     public static string refState2_2;           // Is player in range?
 
+    /* Aquatic */
+    public static string refState2_3;           // Is player in range?
+    public bool refState3_3 = false;            // Risen above water?
+
     /* Overseer */
     public static string refState_5;            // Scorched Earth attack phase
     public static string refState1a_5;          // Charge Beam attack phase
@@ -116,6 +121,7 @@ public class Obstacles : MonoBehaviour
             (gameObject.name == "Patrol_2_3_7" && !GlobalControl.patrol_2_3_7) ||
             (gameObject.name == "Patrol_2_3_8" && !GlobalControl.patrol_2_3_8) ||
             (gameObject.name == "Patrol_2_3_9" && !GlobalControl.patrol_2_3_9) ||
+            (gameObject.name == "Patrol_2_3_10" && !GlobalControl.patrol_2_3_10) ||
             (gameObject.name == "Pursuit_1_2_0" && !GlobalControl.pursuit_1_2_0) ||
             (gameObject.name == "Pursuit_1_2_1" && !GlobalControl.pursuit_1_2_1) ||
             (gameObject.name == "Pursuit_1_2_2" && !GlobalControl.pursuit_1_2_2) ||
@@ -204,7 +210,7 @@ public class Obstacles : MonoBehaviour
         {
             if (gameObject.name.Substring(6, 2) == "_1")
             { // Tier 1: Twilight Town
-                healthMax = 5;
+                healthMax = 6;
                 damage = 2;
             }
             else if (gameObject.name.Substring(6, 2) == "_2")
@@ -219,8 +225,8 @@ public class Obstacles : MonoBehaviour
         {
             if (gameObject.name.Substring(7, 2) == "_1")
             { // Tier 1: Midnight Bay
-                //healthMax = ;
-                //damage = ;
+                healthMax = 6;
+                damage = 2;
             }
             else if (gameObject.name.Substring(7, 2) == "_2")
             { // Tier 2: Grey Palace
@@ -505,6 +511,10 @@ public class Obstacles : MonoBehaviour
             else if (gameObject.name == "Patrol_2_3_9")
             {
                 GlobalControl.patrol_2_3_9 = false;
+            }
+            else if (gameObject.name == "Patrol_2_3_10")
+            {
+                GlobalControl.patrol_2_3_10 = false;
             }
             else if (gameObject.name == "Aerial_1_3_0")
             {
@@ -971,7 +981,115 @@ public class Obstacles : MonoBehaviour
         /*-----Aquatic Machina-----*/
         else if (gameObject.name.Substring(0, 7) == "Aquatic")
         {
-            // Insert AI here
+            // Switch between wander and attack
+            if (Scope.signal == gameObject.name)
+            {
+                if (refState2_3 == "in" && (Player.rb2D.position.x + Player.rb2D.GetComponent<CircleCollider2D>().radius < transform.position.x - GetComponent<BoxCollider2D>().size.x * 2 || Player.rb2D.position.x - Player.rb2D.GetComponent<CircleCollider2D>().radius > transform.position.x + GetComponent<BoxCollider2D>().size.x * 2))
+                {
+                    aiState = "attack";
+                    defense = 0;
+                }
+                else
+                {
+                    aiState = "";
+                    defense = 100;
+                }
+            }
+
+            // Wander
+            if (aiState != "attack")
+            {
+                refState3_3 = false;
+                if (transform.position.y > y)
+                {
+                    transform.position += new Vector3(0, -speed_1);
+                }
+                else
+                {
+                    if (pathState == "left")
+                    {
+                        if (transform.position.x > x - range_1)
+                        {
+                            transform.position += new Vector3(-speed, 0);
+                        }
+                        else
+                        {
+                            pathState = "right";
+                            GetComponent<SpriteRenderer>().flipX = true;
+                        }
+                    }
+                    else if (pathState == "right")
+                    {
+                        if (transform.position.x < x + range_2)
+                        {
+                            transform.position += new Vector3(speed, 0);
+                        }
+                        else
+                        {
+                            pathState = "left";
+                            GetComponent<SpriteRenderer>().flipX = false;
+                        }
+                    }
+                }
+            }
+
+            // Attack
+            else if (aiState == "attack")
+            {
+                // Repositioning
+                if (Player.rb2D.position.x < transform.position.x)
+                {
+                    pathState = "left";
+                    GetComponent<SpriteRenderer>().flipX = false;
+                }
+                else
+                {
+                    pathState = "right";
+                    GetComponent<SpriteRenderer>().flipX = true;
+                }
+
+                // Rise above surface
+                if (!refState3_3)
+                {
+                    if (transform.position.y < y + 0.3f)
+                    {
+                        transform.position += new Vector3(0, speed_1);
+                    }
+                    else
+                    {
+                        refState3_3 = true;
+                    }
+                }
+
+                // Triple Shot
+                else if (refState3_3)
+                {
+                    if (canShoot && (Player.rb2D.position.x + Player.rb2D.GetComponent<CircleCollider2D>().radius <= transform.position.x - GetComponent<BoxCollider2D>().size.x * 2 || Player.rb2D.position.x - Player.rb2D.GetComponent<CircleCollider2D>().radius >= transform.position.x + GetComponent<BoxCollider2D>().size.x * 2))
+                    {
+                        Vector3 difference = new Vector3(); 
+                        if (pathState == "left")
+                        {
+                            difference = (Vector3)Player.rb2D.position - new Vector3(transform.position.x - GetComponent<BoxCollider2D>().size.x * 2, transform.position.y, transform.position.z);
+                        }
+                        else if(pathState == "right")
+                        {
+                            difference = (Vector3)Player.rb2D.position - new Vector3(transform.position.x + GetComponent<BoxCollider2D>().size.x * 2, transform.position.y, transform.position.z);
+                        }
+
+                        float rotationZ = Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg;
+
+                        float distance = difference.magnitude;
+                        Vector2 direction = difference / distance;
+                        direction.Normalize();
+
+                        for (int i = 0; i < 3; i++)
+                        {
+                            fireBullet(new Vector2(Mathf.Cos(Mathf.Acos(direction.x) + Mathf.PI / 6 * (i - 1)), Mathf.Sin(Mathf.Asin(direction.y) + Mathf.PI / 6 * (i - 1))), rotationZ + 30 * (i - 1), bulletSpeed[0]);
+                        }
+                        StartCoroutine(cooldown());
+                    }
+                }
+            }
         }
 
         /*-----Turret Machina-----*/
@@ -1609,11 +1727,15 @@ public class Obstacles : MonoBehaviour
             if (gameObject.CompareTag("Enemy") && !hazard)
             {
                 // Take damage
-                healthCurr -= GlobalControl.damage;
+                if (GlobalControl.damage - defense > 0)
+                {
+                    healthCurr -= (GlobalControl.damage - defense);
+                }
                 Debug.Log(healthCurr + " HP remaining!");
 
                 // Damage indication
-                StartCoroutine(dmgFlash(0.05f));
+                if(!(gameObject.name.Substring(0, 7) == "Aquatic" && aiState != "attack"))
+                    StartCoroutine(dmgFlash(0.05f));
 
                 // Other effects
                 if (gameObject.name.Substring(0, 7) == "Pursuit")
@@ -2008,7 +2130,7 @@ public class Obstacles : MonoBehaviour
         GameObject bullet = null;
 
         // Single bullet type
-        if (gameObject.name.Substring(0, 6) == "Aerial" || gameObject.name == "Containment")
+        if (gameObject.name.Substring(0, 6) == "Aerial" || gameObject.name.Substring(0, 7) == "Aquatic" || gameObject.name == "Containment")
         {
             bullet = EnemyObjectPooler.SharedInstance.GetPooledObject();
         }
@@ -2029,7 +2151,20 @@ public class Obstacles : MonoBehaviour
         if (bullet != null)
         {
             bullet.SetActive(true);
-            if (gameObject.name == "Overseer")
+
+            // Custom bullet spawn position - Note that size does not take into account scale
+            if (gameObject.name.Substring(0, 7) == "Aquatic")
+            {
+                if (pathState == "left")
+                {
+                    bullet.transform.position = new Vector3(transform.position.x - GetComponent<BoxCollider2D>().size.x * 2, transform.position.y, transform.position.z);
+                }
+                else if (pathState == "right")
+                {
+                    bullet.transform.position = new Vector3(transform.position.x + GetComponent<BoxCollider2D>().size.x * 2, transform.position.y, transform.position.z);
+                }
+            }
+            else if (gameObject.name == "Overseer")
             {
                 bullet.transform.position = new Vector3(transform.position.x - GetComponent<BoxCollider2D>().size.x / 2, transform.position.y, transform.position.z);
             }

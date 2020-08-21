@@ -241,14 +241,17 @@ public class EnterDoor : MonoBehaviour
             else if (doorName == "TT_13_to_TT_14")
             {
                 StartCoroutine(SceneSwitch("TT_14", "TT_14_to_TT_1X"));
+                GlobalControl.pod_location = "main";
             }
             else if (doorName == "TT_14S_to_TT_14")
             {
                 StartCoroutine(SceneSwitch("TT_14", "TT_14_to_TT_1X"));
+                GlobalControl.pod_location = "far";
             }
             else if (doorName == "TT_15_to_TT_14")
             {
                 StartCoroutine(SceneSwitch("TT_14", "TT_14_to_TT_1X"));
+                GlobalControl.pod_location = "seaside";
             }
             else if (doorName == "TT_14_to_TT_1X")
             {

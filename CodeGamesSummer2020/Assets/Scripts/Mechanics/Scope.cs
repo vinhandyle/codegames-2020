@@ -268,6 +268,11 @@ public class Scope : MonoBehaviour
                     Obstacles.refState2_2 = "in";
                     signal = transform.parent.name;
                 }
+                else if (gameObject.name == "Detect_Player" && transform.parent.name.Substring(0, 7) == "Aquatic")
+                {
+                    Obstacles.refState2_3 = "in";
+                    signal = transform.parent.name;
+                }
                 else if (gameObject.name == "Detect_Player" && transform.parent.name == "Containment")
                 {
                     Obstacles.refState2_6 = "near";
@@ -529,6 +534,11 @@ public class Scope : MonoBehaviour
                 if (gameObject.name == "Detect_Player" && transform.parent.name.Substring(0, 6) == "Aerial")
                 {
                     Obstacles.refState2_2 = "out";
+                    signal = transform.parent.name;
+                }
+                else if (gameObject.name == "Detect_Player" && transform.parent.name.Substring(0, 7) == "Aquatic")
+                {
+                    Obstacles.refState2_3 = "out";
                     signal = transform.parent.name;
                 }
                 else if (gameObject.name == "Detect_Player" && transform.parent.name == "Containment")

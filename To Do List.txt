@@ -1,15 +1,13 @@
 -Bugs
 	>Multiple pursuits will not aggro if landing in sight, will aggro after direction change
-
--Twilight Town
-	>Containment Machina
-		>Designed to catch the Ego, became harder to control, locked away
+	>Using trigger switch kills interact text 
 
 -Plan out Midnight Bay
-	>Aquatic Machina
+	>Aquatic Machina X
 	>Subnautical Machina
 	>add rain, darker sky(?)
 	>Destructible in Hull top right
+	>Out of reach or one-way shortcuts
 
 -Kin Harvest
 	>Rotten Depths
@@ -21,6 +19,9 @@
 	
 -Other
 	>Update in-game menu for lore	
+	>Box under interaction text
+		>Constructor
+		>DH + early IT + GP
 
 -Sky Hex
 214FAB, 7980AF, 74648C
@@ -28,5 +29,7 @@
 -Ideas
 	>First ego report : info on secret entrance to IT
 	>tHE TROUBLES -> The Great Destruction 
+	>Containment: meant to capture Ego but became too difficult to control
 	>IT, same rooms, diff paths
-	>GP, one checkpoint connected elevator which is able ascend further when shortcuts unlocked
+	>GP, one checkpoint -> vertical pod, travels further when shortcuts opened
+	>GP gravity switch

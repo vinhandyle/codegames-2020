@@ -112,6 +112,12 @@ public class TriggerSwitch : MonoBehaviour
                 }
             }
         }
+
+        if (state == "inactive")
+        {
+            GetComponent<BoxCollider2D>().enabled = false;
+        }
+
         refState = state;
     }
 
