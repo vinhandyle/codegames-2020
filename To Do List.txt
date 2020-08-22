@@ -1,13 +1,12 @@
 -Bugs
 	>Multiple pursuits will not aggro if landing in sight, will aggro after direction change
-	>Using trigger switch kills interact text 
 
 -Plan out Midnight Bay
-	>Aquatic Machina X
 	>Subnautical Machina
-	>add rain, darker sky(?)
-	>Destructible in Hull top right
-	>Out of reach or one-way shortcuts
+	>add rain
+	>Add heat vents, MB_6 on bump
+	>MB_6, upper path cling-needed -> connects to required path to switch
+	>add to code: patrol 1-8, aquatic 1-3
 
 -Kin Harvest
 	>Rotten Depths
@@ -18,16 +17,12 @@
 	>Stowaway
 	
 -Other
-	>Update in-game menu for lore	
-	>Box under interaction text
-		>Constructor
-		>DH + early IT + GP
-
--Sky Hex
-214FAB, 7980AF, 74648C
+	>Update in-game menu for lore
+	>Tap for hop, Hold to JUMP		
 
 -Ideas
 	>First ego report : info on secret entrance to IT
+	>Add dash instruction in item desc
 	>tHE TROUBLES -> The Great Destruction 
 	>Containment: meant to capture Ego but became too difficult to control
 	>IT, same rooms, diff paths

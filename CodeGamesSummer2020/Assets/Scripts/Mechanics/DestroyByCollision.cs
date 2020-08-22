@@ -53,6 +53,11 @@ public class DestroyByCollision : MonoBehaviour
                 GlobalControl.secret_TT_6 = false;
                 other.gameObject.SetActive(false);
             }
+            else if (other.gameObject.name == "Secret_MB_3")
+            {
+                GlobalControl.secret_MB_3 = false;
+                other.gameObject.SetActive(false);
+            }
         }
     }
 }

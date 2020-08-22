@@ -25,7 +25,8 @@ public class DestructibleBlock : MonoBehaviour
             (gameObject.name == "Block_TT_9" && !GlobalControl.block_TT_9) ||
             (gameObject.name == "Block_TT_11" && !GlobalControl.block_TT_11) ||
             (gameObject.name == "Block_TT_12" && !GlobalControl.block_TT_12) ||
-            (gameObject.name == "Secret_TT_6" && !GlobalControl.secret_TT_6))
+            (gameObject.name == "Secret_TT_6" && !GlobalControl.secret_TT_6) ||
+            (gameObject.name == "Secret_MB_3" && !GlobalControl.secret_MB_3))
         {
             gameObject.SetActive(false);
         }

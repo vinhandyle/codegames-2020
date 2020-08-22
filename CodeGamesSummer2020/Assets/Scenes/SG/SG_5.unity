@@ -5049,16 +5049,17 @@ MonoBehaviour:
   attachedTo: Constructor
   x:
   - 0.185
-  - 0
+  - 0.185
   y:
   - 2.217
-  - 0
+  - 2.217
   w:
   - 6
-  - 0
+  - 8
+  - 9.5
   h:
   - 1
-  - 0
+  - 1
 --- !u!212 &1756313856
 SpriteRenderer:
   m_ObjectHideFlags: 0

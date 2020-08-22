@@ -31,13 +31,20 @@ public class InteractBar : MonoBehaviour
             attachedTo == Craft.sticky ||
             attachedTo == EnterDoor.sticky ||
             (attachedTo == "Rest" && InteractText.type == "rest") ||
-            (attachedTo == InteractText.stickied && InteractText.notif))
+            InteractText.notif)
         {
-            sprite.enabled = true;
             if (InteractText.notif)
             {
-                notif = true;
-                signal = attachedTo;
+                if (attachedTo == InteractText.stickied)
+                {
+                    notif = true;
+                    signal = attachedTo;
+                    sprite.enabled = true;
+                }
+            }
+            else
+            {
+                sprite.enabled = true;
             }
         }
         else if (!InteractText.notif)
@@ -57,8 +64,16 @@ public class InteractBar : MonoBehaviour
         // Change bar position + size for pre/post interaction
         if (InteractText.interacted)
         {
-            transform.localScale = new Vector3(w[1], h[1], 1f);
-            transform.position = new Vector3(x[1], y[1], transform.position.z);
+            if (attachedTo == "Constructor" && GlobalControl.doubleUnlocked)
+            {
+                transform.localScale = new Vector3(w[2], h[1], 1f);
+                transform.position = new Vector3(x[1], y[1], transform.position.z);
+            }
+            else
+            {
+                transform.localScale = new Vector3(w[1], h[1], 1f);
+                transform.position = new Vector3(x[1], y[1], transform.position.z);
+            }            
         }
         else
         {

@@ -10,6 +10,7 @@ public class Obstacles : MonoBehaviour
     public int defense;
     public int damage;
     public bool hazard;
+    public bool passive;
     public bool animated;
     public string attachedTo;
     public List<Sprite> sprites;
@@ -23,6 +24,7 @@ public class Obstacles : MonoBehaviour
     public float range;     // Range centered, equal sides
     public float range_1;   // Different range lengths
     public float range_2;
+    public float range_3;
     public float speed;
     public float speed_1;
 
@@ -122,6 +124,7 @@ public class Obstacles : MonoBehaviour
             (gameObject.name == "Patrol_2_3_8" && !GlobalControl.patrol_2_3_8) ||
             (gameObject.name == "Patrol_2_3_9" && !GlobalControl.patrol_2_3_9) ||
             (gameObject.name == "Patrol_2_3_10" && !GlobalControl.patrol_2_3_10) ||
+            (gameObject.name == "Patrol_2_4_0" && !GlobalControl.patrol_2_4_0) ||
             (gameObject.name == "Pursuit_1_2_0" && !GlobalControl.pursuit_1_2_0) ||
             (gameObject.name == "Pursuit_1_2_1" && !GlobalControl.pursuit_1_2_1) ||
             (gameObject.name == "Pursuit_1_2_2" && !GlobalControl.pursuit_1_2_2) ||
@@ -139,6 +142,7 @@ public class Obstacles : MonoBehaviour
             (gameObject.name == "Aerial_1_3_6" && !GlobalControl.aerial_1_3_6) ||
             (gameObject.name == "Aerial_1_3_7" && !GlobalControl.aerial_1_3_7) ||
             (gameObject.name == "Aerial_1_3_8" && !GlobalControl.aerial_1_3_8) ||
+            (gameObject.name == "Aquatic_1_4_0" && !GlobalControl.aquatic_1_4_0) ||
             (gameObject.name == "Errat_0" && !GlobalControl.errat_0) ||
             (gameObject.name == "Errat_1" && !GlobalControl.errat_1) ||
             (gameObject.name == "Errat_2" && !GlobalControl.errat_2) ||
@@ -225,7 +229,7 @@ public class Obstacles : MonoBehaviour
         {
             if (gameObject.name.Substring(7, 2) == "_1")
             { // Tier 1: Midnight Bay
-                healthMax = 6;
+                healthMax = 10;
                 damage = 2;
             }
             else if (gameObject.name.Substring(7, 2) == "_2")
@@ -555,6 +559,16 @@ public class Obstacles : MonoBehaviour
             else if (gameObject.name == "Containment")
             {
                 GlobalControl.downed_boss_2 = true;
+            }
+
+            // Midnight Bay
+            else if (gameObject.name == "Patrol_2_4_0")
+            {
+                GlobalControl.patrol_2_4_0 = false;
+            }
+            else if (gameObject.name == "Aquatic_1_4_0")
+            {
+                GlobalControl.aquatic_1_4_0 = false;
             }
         }
 
@@ -1004,6 +1018,10 @@ public class Obstacles : MonoBehaviour
                 {
                     transform.position += new Vector3(0, -speed_1);
                 }
+                else if (transform.position.y < y)
+                {
+                    transform.position += new Vector3(0, speed_1);
+                }
                 else
                 {
                     if (pathState == "left")
@@ -1051,13 +1069,27 @@ public class Obstacles : MonoBehaviour
                 // Rise above surface
                 if (!refState3_3)
                 {
-                    if (transform.position.y < y + 0.3f)
+                    if (Player.rb2D.position.y > transform.position.y)
                     {
-                        transform.position += new Vector3(0, speed_1);
+                        if (transform.position.y < y + range_3)
+                        {
+                            transform.position += new Vector3(0, speed_1);
+                        }
+                        else
+                        {
+                            refState3_3 = true;
+                        }
                     }
                     else
                     {
-                        refState3_3 = true;
+                        if (transform.position.y > y - range_3)
+                        {
+                            transform.position += new Vector3(0, -speed_1);
+                        }
+                        else
+                        {
+                            refState3_3 = true;
+                        }
                     }
                 }
 
@@ -1730,12 +1762,11 @@ public class Obstacles : MonoBehaviour
                 if (GlobalControl.damage - defense > 0)
                 {
                     healthCurr -= (GlobalControl.damage - defense);
-                }
-                Debug.Log(healthCurr + " HP remaining!");
 
-                // Damage indication
-                if(!(gameObject.name.Substring(0, 7) == "Aquatic" && aiState != "attack"))
+                    // Damage indication
                     StartCoroutine(dmgFlash(0.05f));
+                }
+                Debug.Log(healthCurr + " HP remaining!");                
 
                 // Other effects
                 if (gameObject.name.Substring(0, 7) == "Pursuit")
@@ -1760,7 +1791,7 @@ public class Obstacles : MonoBehaviour
         }
 
         // On hit player -> damage + knockback
-        else if (other.name == "Player" && !GlobalControl.immune)
+        else if (other.name == "Player" && !GlobalControl.immune && !passive)
         {
             if (!(gameObject.name.Substring(0, 6) == "Turret" || gameObject.name.Substring(0, 5) == "Errat"))
             {
@@ -1941,7 +1972,7 @@ public class Obstacles : MonoBehaviour
     private void OnTriggerStay2D(Collider2D other)
     {
         // On hit player -> damage + knockback
-        if (other.name == "Player" && !GlobalControl.immune)
+        if (other.name == "Player" && !GlobalControl.immune && !passive)
         {
             if (!(gameObject.name.Substring(0, 6) == "Turret" || gameObject.name.Substring(0, 5) == "Errat"))
             {
@@ -2115,6 +2146,20 @@ public class Obstacles : MonoBehaviour
                         }
                     }
                 }
+            }
+        }
+
+        // Effects
+        if (other.name == "Player" && gameObject.name.Substring(0, 5) == "Water")
+        {
+            if (Mathf.Abs(Player.rb2D.velocity.x) > 0.5f * Player.moveBy)
+            {
+                Player.rb2D.velocity /= new Vector2(1.05f, 1f);
+            }
+
+            if (Mathf.Abs(Player.rb2D.velocity.y) > Player.moveBy)
+            {
+                Player.rb2D.velocity /= new Vector2(1f, 1.05f);
             }
         }
     }

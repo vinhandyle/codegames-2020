@@ -50,6 +50,14 @@ public class TriggerSwitch : MonoBehaviour
             }
             state = GlobalControl.state_TT_11;
         }
+        else if (objName == "Switch_MB_4")
+        {
+            if (GlobalControl.state_MB_4 == "inactive")
+            {
+                gameObject.GetComponent<SpriteRenderer>().sprite = sprites[1];
+            }
+            state = GlobalControl.state_MB_4;
+        }
     }
 
     // Update is called once per frame
@@ -111,6 +119,15 @@ public class TriggerSwitch : MonoBehaviour
                     GlobalControl.pod_direction = "right";
                 }
             }
+            else if (objName == "Switch_MB_4")
+            {
+                if (state == "active")
+                {
+                    state = "inactive";
+                    GlobalControl.state_MB_4 = state;
+                    gameObject.GetComponent<SpriteRenderer>().sprite = sprites[1];
+                }
+            }
         }
 
         if (state == "inactive")
@@ -138,12 +155,7 @@ public class TriggerSwitch : MonoBehaviour
         {
             if (objName == "Switch_TT_14")
             {
-                InteractText.type = "trigger";
-
-                if (InteractText.interacted)
-                {
-                    InteractText.interacted = false;
-                }
+                InteractText.type = "trigger";                
             }
         }
     }
@@ -156,6 +168,8 @@ public class TriggerSwitch : MonoBehaviour
             sticky = "";
             if (!InteractText.interacted)
                 InteractText.type = "";
+            else
+                InteractText.interacted = false;
         }
     }
 }

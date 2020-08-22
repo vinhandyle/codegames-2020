@@ -33,6 +33,50 @@ public class SpecialTerrain : MonoBehaviour
                 sprite.sprite = sprites[0];
             }
         }
+        else if (gameObject.name == "Bay_Light_0")
+        {
+            if (GlobalControl.state_MB_4 == "inactive")
+            {
+                sprite.sprite = sprites[0];
+            }
+            else
+            {
+                sprite.sprite = sprites[1];
+            }
+        }
+        else if (gameObject.name == "Bay_Light_1")
+        {
+            if (GlobalControl.state_MB_7 == "inactive")
+            {
+                sprite.sprite = sprites[0];
+            }
+            else
+            {
+                sprite.sprite = sprites[1];
+            }
+        }
+        else if (gameObject.name == "Bay_Light_2")
+        {
+            if (GlobalControl.state_MB_8 == "inactive")
+            {
+                sprite.sprite = sprites[0];
+            }
+            else
+            {
+                sprite.sprite = sprites[1];
+            }
+        }
+        else if (gameObject.name == "Bay_Light_3")
+        {
+            if (GlobalControl.state_MB_11 == "inactive")
+            {
+                sprite.sprite = sprites[0];
+            }
+            else
+            {
+                sprite.sprite = sprites[1];
+            }
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D other)

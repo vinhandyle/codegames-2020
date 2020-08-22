@@ -70,7 +70,7 @@ public class GlobalControl : MonoBehaviour
     // Toggle
     public static string reactor = "basic";        // Name of equipped reactor
     public static bool h2e = true;                 // True = HP to Energy, False = Energy to HP
-    public static int prog = 2;                    // Progession level for unlockAll: Start(0), Post-Start(1), Post-Dreg(2), Post-Garden(3), Post-Second(4), Post-Town(5), Post-Third(6), Post-Return(7), Post-End(8)
+    public static int prog = 3;                    // Progession level for unlockAll: Start(0), Post-Start(1), Post-Dreg(2), Post-Garden(3), Post-Second(4), Post-Town(5), Post-Third(6), Post-Return(7), Post-End(8)
 
     // Vacuum Pod
     public static string pod_direction = "right";  // Direction of pod
@@ -138,6 +138,10 @@ public class GlobalControl : MonoBehaviour
     public static string state_SG_10 = "active";
     public static string state_SG_11 = "active";
     public static string state_TT_11 = "active";
+    public static string state_MB_4 = "active";
+    public static string state_MB_7 = "active";
+    public static string state_MB_8 = "active";
+    public static string state_MB_11 = "active";
 
     // Destructibles
     public static bool block_starter = true;
@@ -157,6 +161,8 @@ public class GlobalControl : MonoBehaviour
     public static bool block_TT_11 = true;
     public static bool block_TT_12 = true;
     public static bool secret_TT_6 = true;
+
+    public static bool secret_MB_3 = true;
 
     public static bool block_GP_1 = true;
 
@@ -217,6 +223,7 @@ public class GlobalControl : MonoBehaviour
     public static bool aerial_1_3_8 = true;
 
     public static bool patrol_2_4_0 = true;        // Midnight Bay
+    public static bool aquatic_1_4_0 = true;
 
     /*---------------------Wall of Text Ends---------------------*/
 
@@ -408,12 +415,20 @@ public class GlobalControl : MonoBehaviour
         block_TT_12 = true;
         secret_TT_6 = true;
 
+        secret_MB_3 = true;
+
         block_GP_1 = true;
 
         // Switches
         state_SG_8 = "active";
         state_SG_10 = "active";
         state_SG_11 = "active";
+        state_TT_11 = "active";
+        state_MB_4 = "active";
+        state_MB_7 = "active";
+        state_MB_8 = "active";
+        state_MB_11 = "active";
+
 
         // Vac Pod
         pod_location = "main";
@@ -467,6 +482,9 @@ public class GlobalControl : MonoBehaviour
         aerial_1_3_6 = true;
         aerial_1_3_7 = true;
         aerial_1_3_8 = true;
+
+        patrol_2_4_0 = true;
+        aquatic_1_4_0 = true;
     }
 
     public static void unlockAll()
