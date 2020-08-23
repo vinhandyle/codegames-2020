@@ -21,7 +21,7 @@ public class Player : MonoBehaviour
 
     public static bool canDash = true; // Whether the player can dash
     public static bool dashing = false; // Prevents moving while dashing
-    private bool walled = false; // Player cannot dash when against a wall
+    public static bool walled = false; // Player cannot dash when against a wall
     private bool tooLong = false; // Whether a key is held too long to dash on release
     public static string direction; // Player direction used for dashing
 
@@ -34,8 +34,10 @@ public class Player : MonoBehaviour
     private static bool canLeft = true; // Able to move left
     private static bool canRight = true; // Able to move right
 
-    public static bool canJump1 = false; // Whether the player can jump
-    public static bool canJump2 = false; // Whether the player can double-jump
+    public static bool canJump1 = false;
+    public static bool canJump1_ = false; // Whether the player can jump
+    public static bool canJump2 = false;
+    public static bool canJump2_ = false; // Whether the player can double-jump
     private bool jumped = false; // Whether the first jump started
     private bool midJump = false; // Whether the player is mid-jump
 
@@ -148,7 +150,7 @@ public class Player : MonoBehaviour
                 canLeft = true;
             }
         }
-        else if (walled && rb2D.velocity.y == 0 && midJump && (!canJump1 || !canJump2))
+        else if (walled && rb2D.velocity.y == 0 && midJump && (!canJump1_ || !canJump2_))
         { // Prevents clinging during the apex of a jump
             if (direction == "left")
             {
@@ -230,33 +232,67 @@ public class Player : MonoBehaviour
         }
 
         // Jump if player is grounded or clinging to a wall
-        if (canJump1 && (Input.GetKey("space") || Input.GetKeyDown("space")))
+        if (canJump1_ && (Input.GetKey("space") || Input.GetKeyDown("space")))
         {
             // Prevents jumping again mid-air
-            canJump1 = false;
             jumped = true;
             midJump = true;
 
             // The actual jump
-            rb2D.velocity = new Vector2(rb2D.velocity.x, jumpHeight);
-        }
-
-        // Jumping without landing allows for a second jump if unlocked
-        if (!canJump1 && jumped)
-        {
-            canJump2 = true;
+            if (canJump1)
+            {
+                if (GlobalControl.clingUnlocked && walled)
+                {
+                    if (!Input.GetKey("a") && !Input.GetKey("d"))
+                    {
+                        if (direction == "left")
+                        {
+                            rb2D.velocity = new Vector2(moveBy, jumpHeight);
+                        }
+                        else if (direction == "right")
+                        {
+                            rb2D.velocity = new Vector2(-moveBy, jumpHeight);
+                        }
+                    }                    
+                }
+                else
+                {
+                    rb2D.velocity = new Vector2(rb2D.velocity.x, jumpHeight);
+                }
+                canJump1 = false;
+            }
         }
 
         // Double jump
-        if (!canJump1 && canJump2 && GlobalControl.doubleUnlocked && Input.GetKeyDown("space"))
+        if (GlobalControl.doubleUnlocked && ((canJump2 && Input.GetKeyDown("space")) || (!canJump2 && canJump2_ && Input.GetKey("space"))))
         {
             // Prevents infinite jumps
-            canJump2 = false;
             jumped = false;
             midJump = true;
 
             //The actual jump
-            rb2D.velocity = new Vector2(rb2D.velocity.x, jumpHeight);
+            if (canJump2)
+            {
+                rb2D.velocity = new Vector2(rb2D.velocity.x, jumpHeight);
+                canJump2 = false;
+            }
+        }
+
+        // On jump release
+        if (Input.GetKeyUp("space"))
+        {
+            if (canJump1_)
+            {
+                rb2D.velocity = new Vector2(rb2D.velocity.x, rb2D.velocity.y / 2);
+                canJump1_ = false;
+                canJump2 = true;
+                canJump2_ = true;
+            }
+            else if (canJump2_)
+            {
+                rb2D.velocity = new Vector2(rb2D.velocity.x, rb2D.velocity.y / 2);
+                canJump2_ = false;
+            }
         }
     }
 
@@ -267,7 +303,10 @@ public class Player : MonoBehaviour
         if (collision.collider.CompareTag("Floor") || (collision.collider.CompareTag("Wall") && GlobalControl.clingUnlocked))
         {
             canJump1 = true;
+            canJump1_ = true;
             canJump2 = false;
+            canJump2_ = false;
+
             jumped = false;
             midJump = false;
         }
@@ -275,7 +314,10 @@ public class Player : MonoBehaviour
         else if (collision.collider.CompareTag("Wall") && collision.collider.transform.parent.name != "Destructibles" && transform.position.y - gameObject.GetComponent<CircleCollider2D>().radius > collision.collider.transform.position.y + collision.collider.GetComponent<BoxCollider2D>().size.y / 2 - rb2D.GetComponent<CircleCollider2D>().radius * 2)
         {
             canJump1 = true;
+            canJump1_ = true;
             canJump2 = false;
+            canJump2_ = false;
+
             jumped = false;
             midJump = false;
         }
@@ -313,7 +355,10 @@ public class Player : MonoBehaviour
         if (collision.collider.CompareTag("Floor") || (collision.collider.CompareTag("Wall") && GlobalControl.clingUnlocked))
         {
             canJump1 = true;
+            canJump1_ = true;
             canJump2 = false;
+            canJump2_ = false;
+
             jumped = false;
             midJump = false;
 
@@ -323,7 +368,10 @@ public class Player : MonoBehaviour
             transform.position.y - gameObject.GetComponent<CircleCollider2D>().radius > collision.collider.transform.position.y + collision.collider.GetComponent<BoxCollider2D>().size.y / 2 - Player.rb2D.GetComponent<CircleCollider2D>().radius)
         {
             canJump1 = true;
+            canJump1_ = true;
             canJump2 = false;
+            canJump2_ = false;
+
             jumped = false;
             midJump = true;
         }
@@ -346,14 +394,19 @@ public class Player : MonoBehaviour
         if((collision.collider.CompareTag("Floor") || (collision.collider.CompareTag("Wall") && GlobalControl.clingUnlocked)) && !jumped)
         {
             canJump1 = false;
+            canJump1_ = false;
             canJump2 = true;
+            canJump2_ = true;
         }
 
         if (collision.collider.CompareTag("Wall"))
         {
             walled = false;
+
             canJump1 = false;
+            canJump1_ = false;
             canJump2 = true;
+            canJump2_ = true;
         }
     }
 

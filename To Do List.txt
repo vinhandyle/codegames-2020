@@ -6,7 +6,7 @@
 	>add rain
 	>Add heat vents, MB_6 on bump
 	>MB_6, upper path cling-needed -> connects to required path to switch
-	>add to code: patrol 1-8, aquatic 1-3
+	>add to code: patrol 1-13, aquatic 1-3
 
 -Kin Harvest
 	>Rotten Depths
@@ -18,7 +18,9 @@
 	
 -Other
 	>Update in-game menu for lore
-	>Tap for hop, Hold to JUMP		
+	>Tap for hop, Hold to JUMP X
+	>Jump off walls properly X
+	>Revamp platforming to account for hops			
 
 -Ideas
 	>First ego report : info on secret entrance to IT

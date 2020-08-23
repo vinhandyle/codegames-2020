@@ -170,6 +170,7 @@ MonoBehaviour:
   width: 0
   height: 0
   side: 
+  inverted: 0
 --- !u!61 &34545350
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1625,7 +1626,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.32, y: 0.24}
+  m_Size: {x: 0.2, y: 0.24}
   m_EdgeRadius: 0
 --- !u!114 &569801918
 MonoBehaviour:
@@ -1955,6 +1956,7 @@ MonoBehaviour:
   width: 0
   height: 0
   side: 
+  inverted: 0
 --- !u!61 &642923171
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2080,6 +2082,7 @@ MonoBehaviour:
   width: 0
   height: 0
   side: 
+  inverted: 0
 --- !u!61 &689515281
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2700,6 +2703,7 @@ MonoBehaviour:
   width: 0
   height: 0
   side: 
+  inverted: 0
 --- !u!61 &944139679
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -3336,6 +3340,7 @@ MonoBehaviour:
   width: 0
   height: 0
   side: 
+  inverted: 0
 --- !u!61 &1074751691
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -4651,6 +4656,7 @@ MonoBehaviour:
   width: 0
   height: 0
   side: 
+  inverted: 0
 --- !u!61 &1707184580
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -5442,6 +5448,7 @@ MonoBehaviour:
   width: 0
   height: 0
   side: 
+  inverted: 0
 --- !u!61 &1969548651
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -5567,6 +5574,7 @@ MonoBehaviour:
   width: 0
   height: 0
   side: 
+  inverted: 0
 --- !u!61 &2042963270
 BoxCollider2D:
   m_ObjectHideFlags: 0

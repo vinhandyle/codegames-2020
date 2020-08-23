@@ -17,7 +17,8 @@ public class Indicator : MonoBehaviour
         {
             if (Player.canJump1)
             {
-                img.sprite = sprites[1];
+
+                img.sprite = sprites[1];                
             }
             else
             {
@@ -69,7 +70,17 @@ public class Indicator : MonoBehaviour
         {
             if (Player.canJump1)
             {
-                img.sprite = sprites[1];
+                if (GlobalControl.clingUnlocked && Player.walled)
+                {
+                    if (!Input.GetKey("a") && !Input.GetKey("d"))
+                        img.sprite = sprites[1];
+                    else
+                        img.sprite = sprites[2];
+                }
+                else
+                {
+                    img.sprite = sprites[1];
+                }
             }
             else
             {
@@ -98,7 +109,7 @@ public class Indicator : MonoBehaviour
         {
             if (GlobalControl.doubleUnlocked)
             {
-                if (Player.canJump2)
+                if (Player.canJump2 && !Player.walled)
                 {
                     img.sprite = sprites[1];
                 }
