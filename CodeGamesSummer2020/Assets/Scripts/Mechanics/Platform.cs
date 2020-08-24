@@ -9,7 +9,6 @@ public class Platform : MonoBehaviour
     public float width;
     public float height;
     public string side;
-    public bool inverted;
 
     // Start is called before the first frame update
     void Start()
@@ -23,7 +22,7 @@ public class Platform : MonoBehaviour
     void Update()
     {
         // Pass through bottom, land on top
-        if (gameObject.CompareTag("Floor") || gameObject.CompareTag("Wall"))
+        if (gameObject.CompareTag("Floor"))
         {
 
             if (Player.rb2D.position.y - Player.rb2D.GetComponent<CircleCollider2D>().radius > transform.position.y + height / 2)
@@ -45,6 +44,42 @@ public class Platform : MonoBehaviour
             else
             {
                 box.enabled = false;
+            }
+        }
+        else if (gameObject.CompareTag("Wall"))
+        {
+            if (side == "left")
+            {
+                if (Player.rb2D.position.x - Player.rb2D.GetComponent<CircleCollider2D>().radius > transform.position.y + width / 2)
+                {
+                    box.enabled = true;
+                }
+                else
+                {
+                    box.enabled = false;
+                }
+            }
+            else if (side == "right")
+            {
+                if (Player.rb2D.position.x + Player.rb2D.GetComponent<CircleCollider2D>().radius < transform.position.y - width / 2)
+                {
+                    box.enabled = true;
+                }
+                else
+                {
+                    box.enabled = false;
+                }
+            }
+            else
+            {
+                if (Player.rb2D.position.y - Player.rb2D.GetComponent<CircleCollider2D>().radius > transform.position.y + height / 2)
+                {
+                    box.enabled = true;
+                }
+                else
+                {
+                    box.enabled = false;
+                }
             }
         }
     }
