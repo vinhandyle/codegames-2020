@@ -95,6 +95,13 @@ public class Obstacles : MonoBehaviour
     public bool refState3e_6 = true;            // Berserk Indicator
     public bool refState3f_6 = false;           // Blinked?
 
+    /* Subnautical */
+    public string refState3_7 = "under";        // Above or below water?
+    public bool refState3a_7;                   // Phase 2?
+    public string refState3b_7;                 // Leap State
+    public string refState3c_7;                 // Crystal Barrage State
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -288,6 +295,11 @@ public class Obstacles : MonoBehaviour
         {
             healthMax = 180;
             damage = 5;
+        }
+        else if (gameObject.name == "Subnautical")
+        {
+            healthMax = 200;
+            damage = 4;
         }
 
         // Hazards immune to damage
@@ -1014,6 +1026,8 @@ public class Obstacles : MonoBehaviour
             if (aiState != "attack")
             {
                 refState3_3 = false;
+                GetComponent<SpriteRenderer>().sprite = sprites[0];
+
                 if (transform.position.y > y)
                 {
                     transform.position += new Vector3(0, -speed_1);
@@ -1054,6 +1068,8 @@ public class Obstacles : MonoBehaviour
             // Attack
             else if (aiState == "attack")
             {
+                GetComponent<SpriteRenderer>().sprite = sprites[1];
+
                 // Repositioning
                 if (Player.rb2D.position.x < transform.position.x)
                 {
@@ -1098,12 +1114,12 @@ public class Obstacles : MonoBehaviour
                 {
                     if (canShoot && (Player.rb2D.position.x + Player.rb2D.GetComponent<CircleCollider2D>().radius <= transform.position.x - GetComponent<BoxCollider2D>().size.x * 2 || Player.rb2D.position.x - Player.rb2D.GetComponent<CircleCollider2D>().radius >= transform.position.x + GetComponent<BoxCollider2D>().size.x * 2))
                     {
-                        Vector3 difference = new Vector3(); 
+                        Vector3 difference = new Vector3();
                         if (pathState == "left")
                         {
                             difference = (Vector3)Player.rb2D.position - new Vector3(transform.position.x - GetComponent<BoxCollider2D>().size.x * 2, transform.position.y, transform.position.z);
                         }
-                        else if(pathState == "right")
+                        else if (pathState == "right")
                         {
                             difference = (Vector3)Player.rb2D.position - new Vector3(transform.position.x + GetComponent<BoxCollider2D>().size.x * 2, transform.position.y, transform.position.z);
                         }
@@ -1532,7 +1548,7 @@ public class Obstacles : MonoBehaviour
                     {
                         transform.position = new Vector3(Player.rb2D.position.x + Player.rb2D.velocity.x, Player.rb2D.position.y + Player.rb2D.velocity.y);
                     }
-                }                
+                }
 
                 if (!hold_time)
                 {
@@ -1624,7 +1640,7 @@ public class Obstacles : MonoBehaviour
             // Berserk
             else if (aiState == "berserk")
             {
-                refState3a_6 = aiState;               
+                refState3a_6 = aiState;
                 damage = 10;
 
                 if (refState3e_6)
@@ -1706,7 +1722,7 @@ public class Obstacles : MonoBehaviour
                         }
                     }
                 }
-                               
+
                 // Finish
                 if (refState3c_6 == 3)
                 {
@@ -1714,6 +1730,313 @@ public class Obstacles : MonoBehaviour
                     refState3e_6 = true;
                     aiState = "rest";
                 }
+            }
+        }
+
+        /*-----Subnautical Machina-----*/
+        else if (gameObject.name == "Subnautical")
+        {
+            // Underwater passive effects
+            if (refState3_7 == "under")
+            {
+                defense = GlobalControl.damage / 2;
+
+                // Movement
+                if (pathState == "left")
+                {
+                    if (transform.position.x > x - range_2)
+                    {
+                        transform.position += new Vector3(-speed_1, 0);
+                    }
+                    else
+                    {
+                        pathState = "right";
+                    }
+                }
+                else if (pathState == "right")
+                {
+                    if (transform.position.x < x + range_2)
+                    {
+                        transform.position += new Vector3(speed_1, 0);
+                    }
+                    else
+                    {
+                        pathState = "left";
+                    }
+                }
+
+                // Timer
+                if (time >= 12)
+                {
+                    aiState = "surface";
+                }
+                else if(!hold_time)
+                {
+                    StartCoroutine(addSecond());
+                }
+            }
+            // Surface passive effects
+            else if (refState3_7 == "above")
+            {
+                defense = 0;
+
+                // Timer
+                if (time >= 8)
+                {
+                    aiState = "dive";
+                }
+                else if(!hold_time)
+                {
+                    StartCoroutine(addSecond());
+                }
+            }
+
+            // Surface
+            if (aiState == "surface")
+            {
+                time = 0;
+                refState3_7 = "";
+
+                // Chance to leap
+                if (refState3a_7)
+                {
+                    float r = Random.Range(0, 2);
+                    if (r > 0)
+                    {
+                        aiState = "leap";
+                    }
+                }
+
+                if (transform.position.y < y + range_1)
+                {
+                    transform.position += new Vector3(0, speed);
+                }
+                else
+                {
+                    refState3_7 = "above";
+                    aiState = "rest";
+                }
+            }
+
+            // Dive
+            else if (aiState == "dive")
+            {
+                time = 0;
+                refState3_7 = "";
+
+                if (transform.position.y > y)
+                {
+                    transform.position += new Vector3(0, -speed);
+                }
+                else
+                {
+                    refState3_7 = "under";
+                    aiState = "rest";
+                }
+            }
+
+            // Leap
+            else if (aiState == "leap")
+            {
+                if (transform.position.y >= y + range_1)
+                    refState3_7 = "above";
+
+                if (refState3b_7 == "")
+                {
+                    refState3b_7 = "up";
+                }
+                else if (refState3b_7 == "up")
+                {
+                    if (transform.position.y < y + range_3)
+                    {
+                        transform.position += new Vector3(0, speed * 5);
+                    }
+                    else
+                    {
+                        refState3b_7 = "down";
+                    }
+                }
+                else if (refState3b_7 == "down")
+                {
+                    if (transform.position.y > y + range_1)
+                    {
+                        transform.position += new Vector3(0, -speed * 2);
+                    }
+                    else
+                    {
+                        refState3b_7 = "";
+                        aiState = "rest";
+                    }
+                }
+            }
+
+            // Rest
+            else if (aiState == "rest")
+            {
+                useTime = baseUseTime;
+                currBullet = maxBullet;
+
+                if (refState3_7 == "under")
+                {
+                    if (!hold_rand)
+                    {
+                        StartCoroutine(delayRand(1f, 0, 2));
+                    }
+                }
+                else if (refState3_7 == "above")
+                {
+                    if (!hold_rand)
+                    {
+                        StartCoroutine(delayRand(1f, 3, 3));
+                    }
+                }
+
+                if (randNum == 1)
+                {
+                    aiState = "crystal";
+                    hold_rand = false;
+                }
+                else if (randNum == 2)
+                {
+                    aiState = "torpedo";
+                    hold_rand = false;
+                }
+                else if (randNum == 3)
+                {
+                    aiState = "scatter";
+                    hold_rand = false;
+                }
+                randNum = 0;
+            }
+
+            // Scatter Shot
+            else if (aiState == "scatter")
+            {
+                Vector3 difference = (Vector3)Player.rb2D.position - new Vector3(transform.position.x - GetComponent<BoxCollider2D>().size.x / 2, transform.position.y, transform.position.z);
+                float rotationZ = Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg;
+
+                if (canShoot && ((currBullet > -1 && !refState3a_7) || (currBullet > -2 && refState3a_7)))
+                {
+                    float distance = difference.magnitude;
+                    Vector2 direction = difference / distance;
+                    direction.Normalize();
+                    for (int i = 0; i < 3; i++)
+                    {
+                        if (refState3a_7)
+                        {
+                            fireBullet(new Vector2(Mathf.Cos(Mathf.Acos(direction.x) + Mathf.PI / 9 * (i - 1)), Mathf.Sin(Mathf.Asin(direction.y) + Mathf.PI / 9 * (i - 1))), rotationZ + 20 * (i - 1), bulletSpeed[0]);
+                        }
+                        else
+                        {
+                            fireBullet(new Vector2(Mathf.Cos(Mathf.Acos(direction.x) + Mathf.PI / 6 * (i - 1)), Mathf.Sin(Mathf.Asin(direction.y) + Mathf.PI / 6 * (i - 1))), rotationZ + 30 * (i - 1), bulletSpeed[0]);
+                        }
+                    }
+                    currBullet--;
+                    StartCoroutine(cooldown());
+                }
+                else if ((currBullet <= -1 && !refState3a_7) || (currBullet <= -2 && refState3a_7))
+                {
+                    aiState = "rest";
+                }
+            }
+
+            // Crystal Barrage
+            else if (aiState == "crystal")
+            {
+                Vector3 difference = (Vector3)Player.rb2D.position - new Vector3(transform.position.x - GetComponent<BoxCollider2D>().size.x / 2, transform.position.y, transform.position.z);
+                float rotationZ = Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg;
+
+                // 3 bullet
+                if (refState3c_7 == "")
+                {
+                    if (canShoot && currBullet > 0)
+                    {
+                        float distance = difference.magnitude;
+                        Vector2 direction = difference / distance;
+                        direction.Normalize();
+                        fireBullet(direction, rotationZ, bulletSpeed[0]);
+                        currBullet--;
+                        StartCoroutine(cooldown());
+                    }
+                    else if (currBullet <= 0)
+                    {
+                        refState3c_7 = "end";
+                    }
+                }
+                // Bouncing bullet
+                else if (refState3c_7 == "end")
+                {
+                    useTime = 1.5f;
+
+                    if (canShoot)
+                    {
+                        float distance = difference.magnitude;
+                        Vector2 direction = difference / distance;
+                        direction.Normalize();
+                        fireBullet(direction, rotationZ, bulletSpeed[0]);
+                        StartCoroutine(cooldown());
+
+                        if (refState3a_7)
+                        {
+                            refState3c_7 = "second";
+                            currBullet = maxBullet - 1;
+                        }
+                        else
+                        {
+                            refState3c_7 = "";
+                            aiState = "rest";
+                        }
+                    }                   
+                }
+
+                // Phase 2 extended
+                if (refState3a_7)
+                {
+                    // 2 bullet
+                    if (refState3c_7 == "second")
+                    {
+                        useTime = 0.25f;
+
+                        if (canShoot && currBullet > 0)
+                        {
+                            float distance = difference.magnitude;
+                            Vector2 direction = difference / distance;
+                            direction.Normalize();
+                            fireBullet(direction, rotationZ, bulletSpeed[0]);
+                            currBullet--;
+                            StartCoroutine(cooldown());
+                        }
+                        else if (currBullet <= 0)
+                        {
+                            refState3c_7 = "end 2";
+                        }
+                    }
+                    // Bouncing bullet
+                    else if (refState3c_7 == "end 2")
+                    {
+                        if (canShoot)
+                        {
+                            float distance = difference.magnitude;
+                            Vector2 direction = difference / distance;
+                            direction.Normalize();
+                            fireBullet(direction, rotationZ, bulletSpeed[0]);
+                            refState3c_7 = "";
+                            aiState = "rest";
+                        }                        
+                    }
+                }
+            }
+
+            // Torpedo
+            else if (aiState == "torpedo")
+            {
+
+            }
+
+            // Downpour
+            else if (aiState == "downpour")
+            {
+
             }
         }
 
@@ -1758,14 +2081,25 @@ public class Obstacles : MonoBehaviour
         {
             if (gameObject.CompareTag("Enemy") && !hazard)
             {
-                // Take damage
-                if (GlobalControl.damage - defense > 0)
+                // Unstable bypasses defense
+                if (GlobalControl.reactor == "unstable")
                 {
-                    healthCurr -= (GlobalControl.damage - defense);
+                    healthCurr -= GlobalControl.damage;
 
                     // Damage indication
                     StartCoroutine(dmgFlash(0.05f));
                 }
+                // Other reactor dmg calculation
+                else
+                {
+                    if (GlobalControl.damage - defense > 0)
+                    {
+                        healthCurr -= (GlobalControl.damage - defense);
+
+                        // Damage indication
+                        StartCoroutine(dmgFlash(0.05f));
+                    }
+                }                
                 Debug.Log(healthCurr + " HP remaining!");                
 
                 // Other effects
@@ -2192,6 +2526,21 @@ public class Obstacles : MonoBehaviour
                 bullet = EnemyObjectPooler2.SharedInstance.GetPooledObject();
             }
         }
+        else if (gameObject.name == "Subnautical")
+        {
+            if (aiState == "scatter")
+            {
+                bullet = EnemyObjectPooler2.SharedInstance.GetPooledObject();
+            }
+            else if (refState3c_7 == "" || refState3c_7 == "second")
+            {
+                bullet = EnemyObjectPooler3.SharedInstance.GetPooledObject();
+            }
+            else if (refState3c_7 == "end" || refState3c_7 == "end 2")
+            {
+                bullet = EnemyObjectPooler4.SharedInstance.GetPooledObject();
+            }
+        }
 
         if (bullet != null)
         {
@@ -2212,6 +2561,10 @@ public class Obstacles : MonoBehaviour
             else if (gameObject.name == "Overseer")
             {
                 bullet.transform.position = new Vector3(transform.position.x - GetComponent<BoxCollider2D>().size.x / 2, transform.position.y, transform.position.z);
+            }
+            else if (gameObject.name == "Subnautical")
+            {
+                bullet.transform.position = new Vector3(transform.position.x, transform.position.y + GetComponent<BoxCollider2D>().size.y / 2, transform.position.z);
             }
             else
             {

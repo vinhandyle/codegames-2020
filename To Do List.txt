@@ -1,11 +1,13 @@
 -Bugs
 	>Multiple pursuits will not aggro if landing in sight, will aggro after direction change
+	>Player flashing even when no longer i-framing, test on Aquatic
 
 -Plan out Midnight Bay
 	>Subnautical Machina
 	>add rain
 	>Add heat vents, MB_6 on bump
-	>add to code: patrol 1-13, aquatic 1-3
+	>add to code: patrol 1-13, aquatic 1-6
+	>Add kb to Aquatic
 
 -Kin Harvest
 	>Rotten Depths

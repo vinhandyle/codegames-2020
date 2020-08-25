@@ -50,7 +50,7 @@ public class Platform : MonoBehaviour
         {
             if (side == "left")
             {
-                if (Player.rb2D.position.x - Player.rb2D.GetComponent<CircleCollider2D>().radius > transform.position.y + width / 2)
+                if (Player.rb2D.position.x - Player.rb2D.GetComponent<CircleCollider2D>().radius > transform.position.x + width / 2)
                 {
                     box.enabled = true;
                 }
@@ -61,7 +61,7 @@ public class Platform : MonoBehaviour
             }
             else if (side == "right")
             {
-                if (Player.rb2D.position.x + Player.rb2D.GetComponent<CircleCollider2D>().radius < transform.position.y - width / 2)
+                if (Player.rb2D.position.x + Player.rb2D.GetComponent<CircleCollider2D>().radius < transform.position.x - width / 2)
                 {
                     box.enabled = true;
                 }
