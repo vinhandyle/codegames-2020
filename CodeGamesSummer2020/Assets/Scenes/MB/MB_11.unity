@@ -470,6 +470,10 @@ MonoBehaviour:
   refState3d_6: 
   refState3e_6: 1
   refState3f_6: 0
+  refState3_7: under
+  refState3a_7: 0
+  refState3b_7: 
+  refState3c_7: 
 --- !u!212 &141483005
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1099,12 +1103,12 @@ PrefabInstance:
     - target: {fileID: 9125056893500410215, guid: 59361cdf87cff484ab19416deb22c5be,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -4.4
+      value: 0.69
       objectReference: {fileID: 0}
     - target: {fileID: 9125056893500410215, guid: 59361cdf87cff484ab19416deb22c5be,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.23
+      value: 0.96
       objectReference: {fileID: 0}
     - target: {fileID: 9125056893500410215, guid: 59361cdf87cff484ab19416deb22c5be,
         type: 3}

@@ -226,6 +226,7 @@ public class Scope : MonoBehaviour
                 }
             }
         }
+        // Containment Machina
         if (GlobalControl.area == "TT_12")
         {
             if (gameObject.name == "Sparkle")
@@ -253,6 +254,41 @@ public class Scope : MonoBehaviour
                     sprite.enabled = false;
                     anim.enabled = false;
                 }
+            }
+        }
+        // Subnautical Machina
+        if (GlobalControl.area == "MB_12")
+        {
+            if (gameObject.name == "Rain")
+            {
+                if (Obstacles.refState1b_7 == "pouring")
+                {
+                    if (transform.position.y > y - range)
+                    {
+                        transform.position += new Vector3(0, -speed);
+                    }
+                    else
+                    {
+                        Obstacles.refState1b_7 = "finish";
+                        transform.position = new Vector3(0, y);
+                    }
+                }
+                else if (Obstacles.refState1b_7 == "storming")
+                {
+                    if (transform.position.y > y - range)
+                    {
+                        transform.position += new Vector3(0, -speed * 2);
+                    }
+                    else
+                    {
+                        Obstacles.refState1b_7 = "finish";
+                        transform.position = new Vector3(0, y);
+                    }
+                }
+            }
+            else if (gameObject.name.Substring(0, 4) == "Drop")
+            {
+
             }
         }
     }

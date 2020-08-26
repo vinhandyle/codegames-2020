@@ -34,8 +34,10 @@ public class Obstacles : MonoBehaviour
 
     // Time
     public int time;    // AI time
+    public int time_1;
     public int deAggroTime;
     public bool hold_time = false; // hold time
+    public bool hold_time_1 = false;
 
     // Projectile
     public List<float> bulletSpeed;
@@ -96,11 +98,13 @@ public class Obstacles : MonoBehaviour
     public bool refState3f_6 = false;           // Blinked?
 
     /* Subnautical */
+    public static bool refState_7;              // Torpedo active?
+    public static float refState1a_7 = 0.01f;   // Torpedo speed
+    public static string refState1b_7;          // Downpouring?
     public string refState3_7 = "under";        // Above or below water?
     public bool refState3a_7;                   // Phase 2?
     public string refState3b_7;                 // Leap State
     public string refState3c_7;                 // Crystal Barrage State
-
 
     // Start is called before the first frame update
     void Start()
@@ -1132,7 +1136,12 @@ public class Obstacles : MonoBehaviour
 
                         for (int i = 0; i < 3; i++)
                         {
-                            fireBullet(new Vector2(Mathf.Cos(Mathf.Acos(direction.x) + Mathf.PI / 6 * (i - 1)), Mathf.Sin(Mathf.Asin(direction.y) + Mathf.PI / 6 * (i - 1))), rotationZ + 30 * (i - 1), bulletSpeed[0]);
+                            if (direction.x * direction.y >= 0)                            
+                                fireBullet(new Vector2(Mathf.Cos(Mathf.Acos(direction.x) + Mathf.PI / 6 * (i - 1)), Mathf.Sin(Mathf.Asin(direction.y) + Mathf.PI / 6 * (i - 1))), rotationZ + 30 * (i - 1), bulletSpeed[0]);                            
+                            else if(direction.x > direction.y)                           
+                                fireBullet(new Vector2(Mathf.Sqrt(1 - Mathf.Pow(Mathf.Sin(Mathf.Asin(direction.y) + Mathf.PI / 6 * (i - 1)), 2)), Mathf.Sin(Mathf.Asin(direction.y) + Mathf.PI / 6 * (i - 1))), rotationZ + 30 * (i - 1), bulletSpeed[0]);
+                            else
+                                fireBullet(new Vector2(Mathf.Cos(Mathf.Acos(direction.x) + Mathf.PI / 6 * (i - 1)), Mathf.Sqrt(1 - Mathf.Pow(Mathf.Cos(Mathf.Acos(direction.x) + Mathf.PI / 6 * (i - 1)), 2))), rotationZ + 30 * (i - 1), bulletSpeed[0]);
                         }
                         StartCoroutine(cooldown());
                     }
@@ -1419,7 +1428,7 @@ public class Obstacles : MonoBehaviour
             {
                 refState3a_6 = aiState;
 
-                Vector3 difference = (Vector3)Player.rb2D.position - new Vector3(transform.position.x - GetComponent<BoxCollider2D>().size.x / 2, transform.position.y, transform.position.z);
+                Vector3 difference = (Vector3)Player.rb2D.position - new Vector3(transform.position.x, transform.position.y, transform.position.z);
                 float distance = difference.magnitude;
                 Vector2 direction = difference / distance;
                 direction.Normalize();
@@ -1766,7 +1775,7 @@ public class Obstacles : MonoBehaviour
                 }
 
                 // Timer
-                if (time >= 12)
+                if (time >= 12 && aiState != "downpour")
                 {
                     aiState = "surface";
                 }
@@ -1781,13 +1790,36 @@ public class Obstacles : MonoBehaviour
                 defense = 0;
 
                 // Timer
-                if (time >= 8)
+                if (time >= 8 && aiState != "downpour")
                 {
                     aiState = "dive";
                 }
                 else if(!hold_time)
                 {
                     StartCoroutine(addSecond());
+                }
+            }
+
+            // Downpour Timer
+            if (healthCurr < 100 && !refState3a_7)
+            {
+                refState3a_7 = true;
+                aiState = "downpour";
+            }
+            else if (refState3a_7)
+            {
+                if (time_1 >= 20)
+                {
+                    time_1 = 0;
+
+                    float rand = Random.Range(0, 3);
+
+                    if(rand > 0)
+                        aiState = "downpour";
+                }
+                else if(!hold_time_1)
+                {
+                    StartCoroutine(addSecond_1());
                 }
             }
 
@@ -1875,35 +1907,36 @@ public class Obstacles : MonoBehaviour
             {
                 useTime = baseUseTime;
                 currBullet = maxBullet;
-
+                
                 if (refState3_7 == "under")
                 {
                     if (!hold_rand)
                     {
-                        StartCoroutine(delayRand(1f, 0, 2));
+                        StartCoroutine(delayRand(2f, 1, 2));
                     }
                 }
                 else if (refState3_7 == "above")
                 {
                     if (!hold_rand)
                     {
-                        StartCoroutine(delayRand(1f, 3, 3));
+                        StartCoroutine(delayRand(2f, 1, 2));
                     }
                 }
 
                 if (randNum == 1)
                 {
-                    aiState = "crystal";
+                    if (refState3_7 == "above")
+                        aiState = "scatter";
+                    else
+                        aiState = "crystal";
                     hold_rand = false;
                 }
                 else if (randNum == 2)
                 {
-                    aiState = "torpedo";
-                    hold_rand = false;
-                }
-                else if (randNum == 3)
-                {
-                    aiState = "scatter";
+                    if (refState3_7 == "above")
+                        aiState = "scatter";
+                    else
+                        aiState = "torpedo";
                     hold_rand = false;
                 }
                 randNum = 0;
@@ -1912,7 +1945,7 @@ public class Obstacles : MonoBehaviour
             // Scatter Shot
             else if (aiState == "scatter")
             {
-                Vector3 difference = (Vector3)Player.rb2D.position - new Vector3(transform.position.x - GetComponent<BoxCollider2D>().size.x / 2, transform.position.y, transform.position.z);
+                Vector3 difference = (Vector3)Player.rb2D.position - new Vector3(transform.position.x, transform.position.y, transform.position.z);
                 float rotationZ = Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg;
 
                 if (canShoot && ((currBullet > -1 && !refState3a_7) || (currBullet > -2 && refState3a_7)))
@@ -1924,11 +1957,22 @@ public class Obstacles : MonoBehaviour
                     {
                         if (refState3a_7)
                         {
-                            fireBullet(new Vector2(Mathf.Cos(Mathf.Acos(direction.x) + Mathf.PI / 9 * (i - 1)), Mathf.Sin(Mathf.Asin(direction.y) + Mathf.PI / 9 * (i - 1))), rotationZ + 20 * (i - 1), bulletSpeed[0]);
+                            if(direction.x * direction.y >= 0)
+                                fireBullet(new Vector2(Mathf.Cos(Mathf.Acos(direction.x) + Mathf.PI / 9 * (i - 1)), Mathf.Sin(Mathf.Asin(direction.y) + Mathf.PI / 9 * (i - 1))), rotationZ + 20 * (i - 1), bulletSpeed[0]);
+                            else if(direction.x < direction.y)
+                                fireBullet(new Vector2(Mathf.Sqrt(1 - Mathf.Pow(Mathf.Sin(Mathf.Asin(direction.y) + Mathf.PI / 9 * (i - 1)), 2)), Mathf.Sin(Mathf.Asin(direction.y) + Mathf.PI / 9 * (i - 1))), rotationZ + 20 * (i - 1), bulletSpeed[0]);
+                            else
+                                fireBullet(new Vector2(Mathf.Cos(Mathf.Acos(direction.x) + Mathf.PI / 9 * (i - 1)), Mathf.Sqrt(1 - Mathf.Pow(Mathf.Cos(Mathf.Acos(direction.x) + Mathf.PI / 9 * (i - 1)), 2))), rotationZ + 20 * (i - 1), bulletSpeed[0]);
                         }
                         else
                         {
-                            fireBullet(new Vector2(Mathf.Cos(Mathf.Acos(direction.x) + Mathf.PI / 6 * (i - 1)), Mathf.Sin(Mathf.Asin(direction.y) + Mathf.PI / 6 * (i - 1))), rotationZ + 30 * (i - 1), bulletSpeed[0]);
+                            if(direction.x * direction.y >= 0)
+                                fireBullet(new Vector2(Mathf.Cos(Mathf.Acos(direction.x) + Mathf.PI / 6 * (i - 1)), Mathf.Sin(Mathf.Asin(direction.y) + Mathf.PI / 6 * (i - 1))), rotationZ + 30 * (i - 1), bulletSpeed[0]);
+                            else if(direction.x > direction.y)
+                                fireBullet(new Vector2(Mathf.Sqrt(1 - Mathf.Pow(Mathf.Sin(Mathf.Asin(direction.y) + Mathf.PI / 6 * (i - 1)), 2)), Mathf.Sin(Mathf.Asin(direction.y) + Mathf.PI / 6 * (i - 1))), rotationZ + 30 * (i - 1), bulletSpeed[0]);
+                            else
+                                fireBullet(new Vector2(Mathf.Cos(Mathf.Acos(direction.x) + Mathf.PI / 6 * (i - 1)), Mathf.Sqrt(1 - Mathf.Pow(Mathf.Cos(Mathf.Acos(direction.x) + Mathf.PI / 6 * (i - 1)), 2))), rotationZ + 30 * (i - 1), bulletSpeed[0]);
+
                         }
                     }
                     currBullet--;
@@ -1943,7 +1987,7 @@ public class Obstacles : MonoBehaviour
             // Crystal Barrage
             else if (aiState == "crystal")
             {
-                Vector3 difference = (Vector3)Player.rb2D.position - new Vector3(transform.position.x - GetComponent<BoxCollider2D>().size.x / 2, transform.position.y, transform.position.z);
+                Vector3 difference = (Vector3)Player.rb2D.position - new Vector3(transform.position.x, transform.position.y, transform.position.z);
                 float rotationZ = Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg;
 
                 // 3 bullet
@@ -2030,13 +2074,33 @@ public class Obstacles : MonoBehaviour
             // Torpedo
             else if (aiState == "torpedo")
             {
+                refState_7 = true;
 
+                if (canShoot && ((currBullet > 0 && !refState3a_7) || (currBullet > -2 && refState3a_7)))
+                {
+                    fireBullet(new Vector2(0, 1), 0, bulletSpeed[1]);
+                    currBullet--;
+                    StartCoroutine(cooldown());
+                }
+                else if ((currBullet <= 0 && !refState3a_7) || (currBullet <= -2 && refState3a_7))
+                {
+                    aiState = "rest";
+                    refState_7 = false;
+                }
             }
 
             // Downpour
             else if (aiState == "downpour")
             {
-
+                if (refState1b_7 == "")
+                {
+                    if(healthCurr < 50)
+                        refState1b_7 = "storming";
+                    else
+                        refState1b_7 = "pouring";
+                }
+                else if (refState1b_7 == "finish")               
+                    aiState = "rest";                
             }
         }
 
@@ -2528,7 +2592,7 @@ public class Obstacles : MonoBehaviour
         }
         else if (gameObject.name == "Subnautical")
         {
-            if (aiState == "scatter")
+            if (aiState == "scatter" || aiState == "torpedo")
             {
                 bullet = EnemyObjectPooler2.SharedInstance.GetPooledObject();
             }
@@ -2561,11 +2625,7 @@ public class Obstacles : MonoBehaviour
             else if (gameObject.name == "Overseer")
             {
                 bullet.transform.position = new Vector3(transform.position.x - GetComponent<BoxCollider2D>().size.x / 2, transform.position.y, transform.position.z);
-            }
-            else if (gameObject.name == "Subnautical")
-            {
-                bullet.transform.position = new Vector3(transform.position.x, transform.position.y + GetComponent<BoxCollider2D>().size.y / 2, transform.position.z);
-            }
+            }           
             else
             {
                 bullet.transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z);
@@ -2581,6 +2641,14 @@ public class Obstacles : MonoBehaviour
         yield return new WaitForSeconds(1f);
         time++;
         hold_time = false;
+    }
+
+    IEnumerator addSecond_1()
+    {
+        hold_time_1 = true;
+        yield return new WaitForSeconds(1f);
+        time_1++;
+        hold_time_1 = false;
     }
 
     IEnumerator delayRand(float time, int min, int max)

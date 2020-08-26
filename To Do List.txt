@@ -29,3 +29,4 @@
 	>IT, same rooms, diff paths
 	>GP, one checkpoint -> vertical pod, travels further when shortcuts opened
 	>GP gravity switch
+	>Custom proj for bosses

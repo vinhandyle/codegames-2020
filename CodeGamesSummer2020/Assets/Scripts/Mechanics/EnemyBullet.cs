@@ -7,6 +7,7 @@ public class EnemyBullet : MonoBehaviour
     public int damage;
     public int poolNum;
     public int bounce;
+    public bool homing;
     public Vector3 position;
     public List<GameObject> frag;
     public Rigidbody2D rb2D;
@@ -15,7 +16,11 @@ public class EnemyBullet : MonoBehaviour
     void Start()
     {
         rb2D = GetComponent<Rigidbody2D>();
+    }
 
+    // Called when object is set active
+    private void OnEnable()
+    {
         // Set projectile effects
         if (GlobalControl.area == "SG_12")
         {
@@ -26,7 +31,6 @@ public class EnemyBullet : MonoBehaviour
             else if (gameObject.name.Substring(0, 14) == "Large E_Bullet")
             {
                 damage = 4;
-                poolNum = 0;
             }
         }
         else if (GlobalControl.area == "TT_12")
@@ -45,27 +49,39 @@ public class EnemyBullet : MonoBehaviour
             }
         }
         else if (GlobalControl.area.Substring(0, 2) == "MB")
-        {
-            if (gameObject.name.Substring(0, 14) == "Small E_Bullet")
+        {          
+            if (GlobalControl.area == "MB_12")
+            {
+                if (gameObject.name.Substring(0, 12) == "Crystal Frag")
+                {
+                    damage = 1;
+                }
+                else if (gameObject.name.Substring(0, 14) == "Crystal Frag_1")
+                {
+                    if (Obstacles.refState_7)
+                    {
+                        damage = 5;
+                        homing = true;
+                    }
+                    else
+                    {
+                        damage = 2;
+                        homing = false;
+                    }
+                }
+                else if (gameObject.name.Substring(0, 14) == "Crystal Bullet")
+                {
+                    damage = 3;
+                }
+                else if (gameObject.name.Substring(0, 8) == "Snowball")
+                {
+                    damage = 4;
+                    poolNum = 1;
+                }
+            }
+            else if (gameObject.name.Substring(0, 14) == "Small E_Bullet")
             {
                 damage = 2;
-            }
-        }
-        else if (GlobalControl.area == "MB_12")
-        {
-            if (gameObject.name.Substring(0, 13) == "Tiny E_Bullet")
-            {
-                damage = 1;
-            }
-            else if (gameObject.name.Substring(0, 12) == "Med E_Bullet")
-            {
-                damage = 3;
-                poolNum = 0;
-            }
-            else if (gameObject.name.Substring(0, 14) == "Large E_Bullet")
-            {
-                damage = 4;
-                poolNum = 1;
             }
         }
     }
@@ -73,7 +89,15 @@ public class EnemyBullet : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        // Homing effect
+        if (homing)
+        {
+            Vector3 difference = (Vector3)Player.rb2D.position - new Vector3(transform.position.x, transform.position.y, transform.position.z);
+            float distance = difference.magnitude;
+            Vector2 direction = difference / distance;
+            direction.Normalize();
+            transform.position += new Vector3(direction.x * Obstacles.refState1a_7 * 2.5f, direction.y * Obstacles.refState1a_7 * 2.5f);
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -98,7 +122,7 @@ public class EnemyBullet : MonoBehaviour
             }
 
             // Crystal Barrage (first and third)
-            else if (gameObject.name.Substring(0, 12) == "Med E_Bullet" && GlobalControl.area == "MB_12")
+            else if (gameObject.name.Substring(0, 14) == "Crystal Bullet" && GlobalControl.area == "MB_12")
             {
                 position = transform.position;
                 gameObject.SetActive(false);
@@ -109,13 +133,31 @@ public class EnemyBullet : MonoBehaviour
                 }
             }
             // Crystal Barrage (second and fourth)
-            if (gameObject.name.Substring(0, 14) == "Large E_Bullet" && GlobalControl.area == "MB_12") { /* Nothing here */ }
+            if (gameObject.name.Substring(0, 8) == "Snowball" && GlobalControl.area == "MB_12") { /* Nothing here */ }
 
             // Normal bullets
             else
             {
                 gameObject.SetActive(false);
             }
+        }
+        else if (other.name == "Player" && GlobalControl.immune)
+        {
+            // Destroy homing bullets
+            if (homing)
+            {
+                gameObject.SetActive(false);
+            }
+        }
+
+        // On hit player bullet
+        else if (other.CompareTag("Player Bullet"))
+        {
+            if (gameObject.name.Substring(0, 14) == "Crystal Frag_1" && GlobalControl.area == "MB_12" && homing)
+            {
+                gameObject.SetActive(false);
+            }
+            other.gameObject.SetActive(false);
         }
 
         // On hit outer box
@@ -133,22 +175,24 @@ public class EnemyBullet : MonoBehaviour
                 }
             }
             // Crystal Barrage (first and third)
-            else if (gameObject.name.Substring(0, 12) == "Med E_Bullet" && GlobalControl.area == "MB_12")
+            else if (gameObject.name.Substring(0, 14) == "Crystal Bullet" && GlobalControl.area == "MB_12")
             {
                 position = transform.position;
                 gameObject.SetActive(false);
 
+                float rand = Random.Range(0, 2);
+
                 for (int i = 0; i < 4; i++)
                 {
-                    fireBullet(frag[0], new Vector2(Mathf.Cos((2 * i + 1) * Mathf.PI / 4), Mathf.Sin((2 * i + 1) * Mathf.PI / 4)), 45 * (2 * i + 1), 5f);
+                    fireBullet(frag[0], new Vector2(Mathf.Cos((2 * i + rand) * Mathf.PI / 4), Mathf.Sin((2 * i + rand) * Mathf.PI / 4)), 45 * (2 * i + rand), 5f);
                 }
             }
             // Crystal Barrage (second and fourth)
-            if (gameObject.name.Substring(0, 14) == "Large E_Bullet" && GlobalControl.area == "MB_12")
+            else if (gameObject.name.Substring(0, 8) == "Snowball" && GlobalControl.area == "MB_12")
             {
                 if (bounce < 5)
                 {
-                    if (other.transform.parent.name == "Top Ceiling" || other.transform.parent.name == "Bottom Floor") 
+                    if (other.transform.parent.name == "Top Ceiling" || other.transform.parent.name == "Bottom Floor")
                     {
                         rb2D.velocity = new Vector2(rb2D.velocity.x, rb2D.velocity.y * -1);
                     }
@@ -162,12 +206,18 @@ public class EnemyBullet : MonoBehaviour
                 {
                     position = transform.position;
                     gameObject.SetActive(false);
+                    bounce = 0;
 
                     for (int i = 0; i < 8; i++)
                     {
                         fireBullet(frag[0], new Vector2(Mathf.Cos(i * Mathf.PI / 4), Mathf.Sin(i * Mathf.PI / 4)), 45 * i, 5f);
                     }
-                }                
+                }
+            }
+            // Torpedo / Scatter
+            else if (gameObject.name.Substring(0, 14) == "Small E_Bullet" && GlobalControl.area == "MB_12")
+            {
+                gameObject.SetActive(false);
             }
 
 
@@ -180,7 +230,6 @@ public class EnemyBullet : MonoBehaviour
             }
 
         }
-
 
         // On hit any terrain
         else if (other.CompareTag("Floor") || other.CompareTag("Ceiling") || other.CompareTag("Wall"))
@@ -222,7 +271,6 @@ public class EnemyBullet : MonoBehaviour
         else if (poolNum == 1)
         {
             b = EnemyObjectPooler2.SharedInstance.GetPooledObject();
-            Debug.Log(0);
         }
         else if (poolNum == 2)
         {
@@ -231,7 +279,7 @@ public class EnemyBullet : MonoBehaviour
         else if (poolNum == 3)
         {
             b = EnemyObjectPooler4.SharedInstance.GetPooledObject();
-        }
+        }       
 
         if (bullet != null)
         {
@@ -239,6 +287,15 @@ public class EnemyBullet : MonoBehaviour
             b.transform.position = position;
             b.transform.rotation = Quaternion.Euler(0.0f, 0.0f, rotation2);
             b.GetComponent<Rigidbody2D>().velocity = direction * speed;
+
+            // Custom effects
+            if (b.name.Substring(0, 14) == "Crystal Frag_1")
+            {
+                if (GlobalControl.area == "MB_12")
+                {
+                    b.GetComponent<EnemyBullet>().homing = false;
+                }
+            }
         }
     }
 }
