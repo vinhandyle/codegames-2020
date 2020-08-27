@@ -136,6 +136,19 @@ public class Obstacles : MonoBehaviour
             (gameObject.name == "Patrol_2_3_9" && !GlobalControl.patrol_2_3_9) ||
             (gameObject.name == "Patrol_2_3_10" && !GlobalControl.patrol_2_3_10) ||
             (gameObject.name == "Patrol_2_4_0" && !GlobalControl.patrol_2_4_0) ||
+            (gameObject.name == "Patrol_2_4_1" && !GlobalControl.patrol_2_4_1) ||
+            (gameObject.name == "Patrol_2_4_2" && !GlobalControl.patrol_2_4_2) ||
+            (gameObject.name == "Patrol_2_4_3" && !GlobalControl.patrol_2_4_3) ||
+            (gameObject.name == "Patrol_2_4_4" && !GlobalControl.patrol_2_4_4) ||
+            (gameObject.name == "Patrol_2_4_5" && !GlobalControl.patrol_2_4_5) ||
+            (gameObject.name == "Patrol_2_4_6" && !GlobalControl.patrol_2_4_6) ||
+            (gameObject.name == "Patrol_2_4_7" && !GlobalControl.patrol_2_4_7) ||
+            (gameObject.name == "Patrol_2_4_8" && !GlobalControl.patrol_2_4_8) ||
+            (gameObject.name == "Patrol_2_4_9" && !GlobalControl.patrol_2_4_9) ||
+            (gameObject.name == "Patrol_2_4_10" && !GlobalControl.patrol_2_4_10) ||
+            (gameObject.name == "Patrol_2_4_11" && !GlobalControl.patrol_2_4_11) ||
+            (gameObject.name == "Patrol_2_4_12" && !GlobalControl.patrol_2_4_12) ||
+            (gameObject.name == "Patrol_2_4_13" && !GlobalControl.patrol_2_4_13) ||
             (gameObject.name == "Pursuit_1_2_0" && !GlobalControl.pursuit_1_2_0) ||
             (gameObject.name == "Pursuit_1_2_1" && !GlobalControl.pursuit_1_2_1) ||
             (gameObject.name == "Pursuit_1_2_2" && !GlobalControl.pursuit_1_2_2) ||
@@ -154,6 +167,12 @@ public class Obstacles : MonoBehaviour
             (gameObject.name == "Aerial_1_3_7" && !GlobalControl.aerial_1_3_7) ||
             (gameObject.name == "Aerial_1_3_8" && !GlobalControl.aerial_1_3_8) ||
             (gameObject.name == "Aquatic_1_4_0" && !GlobalControl.aquatic_1_4_0) ||
+            (gameObject.name == "Aquatic_1_4_1" && !GlobalControl.aquatic_1_4_1) ||
+            (gameObject.name == "Aquatic_1_4_2" && !GlobalControl.aquatic_1_4_2) ||
+            (gameObject.name == "Aquatic_1_4_3" && !GlobalControl.aquatic_1_4_3) ||
+            (gameObject.name == "Aquatic_1_4_4" && !GlobalControl.aquatic_1_4_4) ||
+            (gameObject.name == "Aquatic_1_4_5" && !GlobalControl.aquatic_1_4_5) ||
+            (gameObject.name == "Aquatic_1_4_6" && !GlobalControl.aquatic_1_4_6) ||
             (gameObject.name == "Errat_0" && !GlobalControl.errat_0) ||
             (gameObject.name == "Errat_1" && !GlobalControl.errat_1) ||
             (gameObject.name == "Errat_2" && !GlobalControl.errat_2) ||
@@ -161,7 +180,8 @@ public class Obstacles : MonoBehaviour
             (gameObject.name == "Errat_4" && !GlobalControl.errat_4) ||
             (gameObject.name == "Errat_5" && !GlobalControl.errat_5) ||
             (gameObject.name == "Overseer" && GlobalControl.downed_boss_1) ||
-            (gameObject.name == "Containment" && GlobalControl.downed_boss_2))
+            (gameObject.name == "Containment" && GlobalControl.downed_boss_2) ||
+            (gameObject.name == "Subnautical" && GlobalControl.downed_boss_3))
         {
             gameObject.SetActive(false);
         }
@@ -286,6 +306,10 @@ public class Obstacles : MonoBehaviour
         else if (gameObject.name.Substring(0, 7) == "OM_Beam")
         {
             damage = 8;
+        }
+        else if (gameObject.name.Substring(0, 4) == "Drop")
+        {
+            damage = 4;
         }
 
 
@@ -582,9 +606,89 @@ public class Obstacles : MonoBehaviour
             {
                 GlobalControl.patrol_2_4_0 = false;
             }
+            else if (gameObject.name == "Patrol_2_4_1")
+            {
+                GlobalControl.patrol_2_4_1 = false;
+            }
+            else if (gameObject.name == "Patrol_2_4_2")
+            {
+                GlobalControl.patrol_2_4_2 = false;
+            }
+            else if (gameObject.name == "Patrol_2_4_3")
+            {
+                GlobalControl.patrol_2_4_3 = false;
+            }
+            else if (gameObject.name == "Patrol_2_4_4")
+            {
+                GlobalControl.patrol_2_4_4 = false;
+            }
+            else if (gameObject.name == "Patrol_2_4_5")
+            {
+                GlobalControl.patrol_2_4_5 = false;
+            }
+            else if (gameObject.name == "Patrol_2_4_6")
+            {
+                GlobalControl.patrol_2_4_6 = false;
+            }
+            else if (gameObject.name == "Patrol_2_4_7")
+            {
+                GlobalControl.patrol_2_4_7 = false;
+            }
+            else if (gameObject.name == "Patrol_2_4_8")
+            {
+                GlobalControl.patrol_2_4_8 = false;
+            }
+            else if (gameObject.name == "Patrol_2_4_9")
+            {
+                GlobalControl.patrol_2_4_9 = false;
+            }
+            else if (gameObject.name == "Patrol_2_4_10")
+            {
+                GlobalControl.patrol_2_4_10 = false;
+            }
+            else if (gameObject.name == "Patrol_2_4_11")
+            {
+                GlobalControl.patrol_2_4_11 = false;
+            }
+            else if (gameObject.name == "Patrol_2_4_12")
+            {
+                GlobalControl.patrol_2_4_12 = false;
+            }
+            else if (gameObject.name == "Patrol_2_4_13")
+            {
+                GlobalControl.patrol_2_4_13 = false;
+            }
             else if (gameObject.name == "Aquatic_1_4_0")
             {
                 GlobalControl.aquatic_1_4_0 = false;
+            }
+            else if (gameObject.name == "Aquatic_1_4_1")
+            {
+                GlobalControl.aquatic_1_4_1 = false;
+            }
+            else if (gameObject.name == "Aquatic_1_4_2")
+            {
+                GlobalControl.aquatic_1_4_2 = false;
+            }
+            else if (gameObject.name == "Aquatic_1_4_3")
+            {
+                GlobalControl.aquatic_1_4_3 = false;
+            }
+            else if (gameObject.name == "Aquatic_1_4_4")
+            {
+                GlobalControl.aquatic_1_4_4 = false;
+            }
+            else if (gameObject.name == "Aquatic_1_4_5")
+            {
+                GlobalControl.aquatic_1_4_5 = false;
+            }
+            else if (gameObject.name == "Aquatic_1_4_6")
+            {
+                GlobalControl.aquatic_1_4_6 = false;
+            }
+            else if (gameObject.name == "Subnautical")
+            {
+                GlobalControl.downed_boss_3 = true;
             }
         }
 
@@ -1804,7 +1908,8 @@ public class Obstacles : MonoBehaviour
             if (healthCurr < 100 && !refState3a_7)
             {
                 refState3a_7 = true;
-                aiState = "downpour";
+                if(aiState != "dive" || aiState != "surface" || aiState != "leap")
+                    aiState = "downpour";
             }
             else if (refState3a_7)
             {
@@ -1814,8 +1919,8 @@ public class Obstacles : MonoBehaviour
 
                     float rand = Random.Range(0, 3);
 
-                    if(rand > 0)
-                        aiState = "downpour";
+                    if(rand > 0  && (aiState != "dive" || aiState != "surface" || aiState != "leap"))
+                            aiState = "downpour";
                 }
                 else if(!hold_time_1)
                 {
@@ -1907,7 +2012,9 @@ public class Obstacles : MonoBehaviour
             {
                 useTime = baseUseTime;
                 currBullet = maxBullet;
-                
+                refState_7 = false;
+                refState1b_7 = "";
+
                 if (refState3_7 == "under")
                 {
                     if (!hold_rand)
@@ -1945,24 +2052,35 @@ public class Obstacles : MonoBehaviour
             // Scatter Shot
             else if (aiState == "scatter")
             {
-                Vector3 difference = (Vector3)Player.rb2D.position - new Vector3(transform.position.x, transform.position.y, transform.position.z);
+                Vector3 difference = (Vector3)Player.rb2D.position - new Vector3(transform.position.x, transform.position.y - GetComponent<BoxCollider2D>().size.y / 2, transform.position.z);
                 float rotationZ = Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg;
 
-                if (canShoot && ((currBullet > -1 && !refState3a_7) || (currBullet > -2 && refState3a_7)))
+                if (canShoot && currBullet > -1)
                 {
                     float distance = difference.magnitude;
                     Vector2 direction = difference / distance;
                     direction.Normalize();
-                    for (int i = 0; i < 3; i++)
+
+                    int bullet;
+                    if (refState3a_7)
+                    {
+                        bullet = 5;
+                    }
+                    else
+                    {
+                        bullet = 3;
+                    }
+
+                    for (int i = 0; i < bullet; i++)
                     {
                         if (refState3a_7)
                         {
                             if(direction.x * direction.y >= 0)
-                                fireBullet(new Vector2(Mathf.Cos(Mathf.Acos(direction.x) + Mathf.PI / 9 * (i - 1)), Mathf.Sin(Mathf.Asin(direction.y) + Mathf.PI / 9 * (i - 1))), rotationZ + 20 * (i - 1), bulletSpeed[0]);
-                            else if(direction.x < direction.y)
-                                fireBullet(new Vector2(Mathf.Sqrt(1 - Mathf.Pow(Mathf.Sin(Mathf.Asin(direction.y) + Mathf.PI / 9 * (i - 1)), 2)), Mathf.Sin(Mathf.Asin(direction.y) + Mathf.PI / 9 * (i - 1))), rotationZ + 20 * (i - 1), bulletSpeed[0]);
+                                fireBullet(new Vector2(Mathf.Cos(Mathf.Acos(direction.x) + Mathf.PI / 9 * (i - 2)), Mathf.Sin(Mathf.Asin(direction.y) + Mathf.PI / 9 * (i - 2))), rotationZ + 20 * (i - 2), bulletSpeed[0]);
+                            else if(direction.x > direction.y)
+                                fireBullet(new Vector2(Mathf.Sqrt(1 - Mathf.Pow(Mathf.Sin(Mathf.Asin(direction.y) + Mathf.PI / 9 * (i - 2)), 2)), Mathf.Sin(Mathf.Asin(direction.y) + Mathf.PI / 9 * (i - 2))), rotationZ + 20 * (i - 2), bulletSpeed[0]);
                             else
-                                fireBullet(new Vector2(Mathf.Cos(Mathf.Acos(direction.x) + Mathf.PI / 9 * (i - 1)), Mathf.Sqrt(1 - Mathf.Pow(Mathf.Cos(Mathf.Acos(direction.x) + Mathf.PI / 9 * (i - 1)), 2))), rotationZ + 20 * (i - 1), bulletSpeed[0]);
+                                fireBullet(new Vector2(Mathf.Cos(Mathf.Acos(direction.x) + Mathf.PI / 9 * (i - 2)), Mathf.Sqrt(1 - Mathf.Pow(Mathf.Cos(Mathf.Acos(direction.x) + Mathf.PI / 9 * (i - 2)), 2))), rotationZ + 20 * (i - 2), bulletSpeed[0]);
                         }
                         else
                         {
@@ -1972,13 +2090,12 @@ public class Obstacles : MonoBehaviour
                                 fireBullet(new Vector2(Mathf.Sqrt(1 - Mathf.Pow(Mathf.Sin(Mathf.Asin(direction.y) + Mathf.PI / 6 * (i - 1)), 2)), Mathf.Sin(Mathf.Asin(direction.y) + Mathf.PI / 6 * (i - 1))), rotationZ + 30 * (i - 1), bulletSpeed[0]);
                             else
                                 fireBullet(new Vector2(Mathf.Cos(Mathf.Acos(direction.x) + Mathf.PI / 6 * (i - 1)), Mathf.Sqrt(1 - Mathf.Pow(Mathf.Cos(Mathf.Acos(direction.x) + Mathf.PI / 6 * (i - 1)), 2))), rotationZ + 30 * (i - 1), bulletSpeed[0]);
-
                         }
                     }
                     currBullet--;
                     StartCoroutine(cooldown());
                 }
-                else if ((currBullet <= -1 && !refState3a_7) || (currBullet <= -2 && refState3a_7))
+                else if (currBullet <= -1)
                 {
                     aiState = "rest";
                 }
@@ -1987,7 +2104,7 @@ public class Obstacles : MonoBehaviour
             // Crystal Barrage
             else if (aiState == "crystal")
             {
-                Vector3 difference = (Vector3)Player.rb2D.position - new Vector3(transform.position.x, transform.position.y, transform.position.z);
+                Vector3 difference = (Vector3)Player.rb2D.position - new Vector3(transform.position.x, transform.position.y - GetComponent<BoxCollider2D>().size.y / 2, transform.position.z);
                 float rotationZ = Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg;
 
                 // 3 bullet
@@ -2085,21 +2202,20 @@ public class Obstacles : MonoBehaviour
                 else if ((currBullet <= 0 && !refState3a_7) || (currBullet <= -2 && refState3a_7))
                 {
                     aiState = "rest";
-                    refState_7 = false;
                 }
             }
 
             // Downpour
             else if (aiState == "downpour")
             {
-                if (refState1b_7 == "")
+                if (refState1b_7 == "" || refState1b_7 == null)
                 {
                     if(healthCurr < 50)
                         refState1b_7 = "storming";
                     else
                         refState1b_7 = "pouring";
                 }
-                else if (refState1b_7 == "finish")               
+                else if (refState1b_7 == "finish")
                     aiState = "rest";                
             }
         }
@@ -2282,7 +2398,42 @@ public class Obstacles : MonoBehaviour
                 }
                 else if (gameObject.name.Substring(0, 7) == "Aquatic")
                 {
-
+                    if (Player.rb2D.position.x > transform.position.x - GetComponent<BoxCollider2D>().size.x / 3 && Player.rb2D.position.x < transform.position.x + GetComponent<BoxCollider2D>().size.x / 3)
+                    {
+                        if (Player.rb2D.position.y - Player.rb2D.GetComponent<CircleCollider2D>().radius > transform.position.y)
+                        {
+                            Player.rb2D.velocity = new Vector2(Player.rb2D.velocity.x, 2f);
+                        }
+                        else
+                        {
+                            Player.rb2D.velocity = new Vector2(Player.rb2D.velocity.x, -1f);
+                        }
+                    }
+                    else
+                    {
+                        if (transform.position.x > Player.rb2D.position.x)
+                        {
+                            if (Player.rb2D.position.y - Player.rb2D.GetComponent<CircleCollider2D>().radius > transform.position.y)
+                            {
+                                Player.rb2D.velocity = new Vector2(-3f, 2f);
+                            }
+                            else
+                            {
+                                Player.rb2D.velocity = new Vector2(-3f, -1f);
+                            }
+                        }
+                        else if (transform.position.x < Player.rb2D.position.x)
+                        {
+                            if (Player.rb2D.position.y - Player.rb2D.GetComponent<CircleCollider2D>().radius > transform.position.y)
+                            {
+                                Player.rb2D.velocity = new Vector2(3f, 2f);
+                            }
+                            else
+                            {
+                                Player.rb2D.velocity = new Vector2(3f, -1f);
+                            }
+                        }
+                    }
                 }
                 else if (gameObject.name == "Overseer")
                 {
@@ -2359,6 +2510,45 @@ public class Obstacles : MonoBehaviour
                                 {
                                     Player.rb2D.velocity = new Vector2(5f, 2f);
                                 }
+                            }
+                        }
+                    }
+                }
+                else if (gameObject.name == "Subnautical")
+                {
+                    if (Player.rb2D.position.x > transform.position.x - GetComponent<BoxCollider2D>().size.x / 3 && Player.rb2D.position.x < transform.position.x + GetComponent<BoxCollider2D>().size.x / 3)
+                    {
+                        if (Player.rb2D.position.y - Player.rb2D.GetComponent<CircleCollider2D>().radius > transform.position.y)
+                        {
+                            Player.rb2D.velocity = new Vector2(Player.rb2D.velocity.x, 2f);
+                        }
+                        else
+                        {
+                            Player.rb2D.velocity = new Vector2(Player.rb2D.velocity.x, -1f);
+                        }
+                    }
+                    else
+                    {
+                        if (transform.position.x > Player.rb2D.position.x)
+                        {
+                            if (Player.rb2D.position.y - Player.rb2D.GetComponent<CircleCollider2D>().radius > transform.position.y)
+                            {
+                                Player.rb2D.velocity = new Vector2(-3f, 2f);
+                            }
+                            else
+                            {
+                                Player.rb2D.velocity = new Vector2(-3f, -1f);
+                            }
+                        }
+                        else if (transform.position.x < Player.rb2D.position.x)
+                        {
+                            if (Player.rb2D.position.y - Player.rb2D.GetComponent<CircleCollider2D>().radius > transform.position.y)
+                            {
+                                Player.rb2D.velocity = new Vector2(3f, 2f);
+                            }
+                            else
+                            {
+                                Player.rb2D.velocity = new Vector2(3f, -1f);
                             }
                         }
                     }
@@ -2463,7 +2653,42 @@ public class Obstacles : MonoBehaviour
                 }
                 else if (gameObject.name.Substring(0, 7) == "Aquatic")
                 {
-
+                    if (Player.rb2D.position.x > transform.position.x - GetComponent<BoxCollider2D>().size.x / 3 && Player.rb2D.position.x < transform.position.x + GetComponent<BoxCollider2D>().size.x / 3)
+                    {
+                        if (Player.rb2D.position.y - Player.rb2D.GetComponent<CircleCollider2D>().radius > transform.position.y)
+                        {
+                            Player.rb2D.velocity = new Vector2(Player.rb2D.velocity.x, 2f);
+                        }
+                        else
+                        {
+                            Player.rb2D.velocity = new Vector2(Player.rb2D.velocity.x, -1f);
+                        }
+                    }
+                    else
+                    {
+                        if (transform.position.x > Player.rb2D.position.x)
+                        {
+                            if (Player.rb2D.position.y - Player.rb2D.GetComponent<CircleCollider2D>().radius > transform.position.y)
+                            {
+                                Player.rb2D.velocity = new Vector2(-3f, 2f);
+                            }
+                            else
+                            {
+                                Player.rb2D.velocity = new Vector2(-3f, -1f);
+                            }
+                        }
+                        else if (transform.position.x < Player.rb2D.position.x)
+                        {
+                            if (Player.rb2D.position.y - Player.rb2D.GetComponent<CircleCollider2D>().radius > transform.position.y)
+                            {
+                                Player.rb2D.velocity = new Vector2(3f, 2f);
+                            }
+                            else
+                            {
+                                Player.rb2D.velocity = new Vector2(3f, -1f);
+                            }
+                        }
+                    }
                 }
                 else if (gameObject.name == "Overseer")
                 {
@@ -2540,6 +2765,45 @@ public class Obstacles : MonoBehaviour
                                 {
                                     Player.rb2D.velocity = new Vector2(5f, 2f);
                                 }
+                            }
+                        }
+                    }
+                }
+                else if (gameObject.name == "Subnautical")
+                {
+                    if (Player.rb2D.position.x > transform.position.x - GetComponent<BoxCollider2D>().size.x / 3 && Player.rb2D.position.x < transform.position.x + GetComponent<BoxCollider2D>().size.x / 3)
+                    {
+                        if (Player.rb2D.position.y - Player.rb2D.GetComponent<CircleCollider2D>().radius > transform.position.y)
+                        {
+                            Player.rb2D.velocity = new Vector2(Player.rb2D.velocity.x, 2f);
+                        }
+                        else
+                        {
+                            Player.rb2D.velocity = new Vector2(Player.rb2D.velocity.x, -1f);
+                        }
+                    }
+                    else
+                    {
+                        if (transform.position.x > Player.rb2D.position.x)
+                        {
+                            if (Player.rb2D.position.y - Player.rb2D.GetComponent<CircleCollider2D>().radius > transform.position.y)
+                            {
+                                Player.rb2D.velocity = new Vector2(-3f, 2f);
+                            }
+                            else
+                            {
+                                Player.rb2D.velocity = new Vector2(-3f, -1f);
+                            }
+                        }
+                        else if (transform.position.x < Player.rb2D.position.x)
+                        {
+                            if (Player.rb2D.position.y - Player.rb2D.GetComponent<CircleCollider2D>().radius > transform.position.y)
+                            {
+                                Player.rb2D.velocity = new Vector2(3f, 2f);
+                            }
+                            else
+                            {
+                                Player.rb2D.velocity = new Vector2(3f, -1f);
                             }
                         }
                     }
@@ -2625,7 +2889,11 @@ public class Obstacles : MonoBehaviour
             else if (gameObject.name == "Overseer")
             {
                 bullet.transform.position = new Vector3(transform.position.x - GetComponent<BoxCollider2D>().size.x / 2, transform.position.y, transform.position.z);
-            }           
+            }
+            else if (gameObject.name == "Subnautical")
+            {
+                bullet.transform.position = new Vector3(transform.position.x, transform.position.y - GetComponent<BoxCollider2D>().size.y / 2, transform.position.z);
+            }
             else
             {
                 bullet.transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z);

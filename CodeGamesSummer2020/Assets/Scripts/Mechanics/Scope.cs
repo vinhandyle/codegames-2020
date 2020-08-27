@@ -12,6 +12,10 @@ public class Scope : MonoBehaviour
     public string attachedTo;
     public static string sticky;
 
+    // Timer
+    public int time;
+    public bool hold_time = false;
+
     // Independent movement
     public float x;
     public float y;
@@ -21,8 +25,8 @@ public class Scope : MonoBehaviour
     public float range_2;
 
     // Used for single trigger
-    public static bool once = false;
-    public static bool once_1 = false;
+    public bool once = false;
+    public bool once_1 = false;
 
     // Pursuit
     public string reference;                // Scope->Obstacles
@@ -261,35 +265,48 @@ public class Scope : MonoBehaviour
         {
             if (gameObject.name == "Rain")
             {
-                if (Obstacles.refState1b_7 == "pouring")
+                if ((Obstacles.refState1b_7 == "pouring") || (Obstacles.refState1b_7 == "storming"))
                 {
-                    if (transform.position.y > y - range)
+                    // Rainfall
+                    if (time >= 10)
                     {
-                        transform.position += new Vector3(0, -speed);
+                        time = 0;
+                        transform.position = new Vector3(0, y);
+                        Obstacles.refState1b_7 = "finish";
                     }
+                    else if(!hold_time)
+                        StartCoroutine(addSecond());
                     else
                     {
-                        Obstacles.refState1b_7 = "finish";
-                        transform.position = new Vector3(0, y);
-                    }
-                }
-                else if (Obstacles.refState1b_7 == "storming")
-                {
-                    if (transform.position.y > y - range)
-                    {
-                        transform.position += new Vector3(0, -speed * 2);
-                    }
-                    else
-                    {
-                        Obstacles.refState1b_7 = "finish";
-                        transform.position = new Vector3(0, y);
+                        if (Obstacles.refState1b_7 == "pouring")
+                            transform.position += new Vector3(0, -speed);
+                        else if (Obstacles.refState1b_7 == "storming")
+                            transform.position += new Vector3(0, -speed * 2);
                     }
                 }
             }
             else if (gameObject.name.Substring(0, 4) == "Drop")
             {
+                // Droplet Randomization
+                if (!once && (Obstacles.refState1b_7 == "pouring" || Obstacles.refState1b_7 == "storming"))
+                {
+                    once = true;
+                    float rand = Random.Range(-4f, 4.1f);
+                    float rand2 = Random.Range(-7f, 16.1f);
 
+                    if (transform.parent.name == "Random")
+                        transform.position = new Vector3(rand, transform.parent.position.y + rand2);
+                    else
+                        transform.position = new Vector3(rand, y);
+                }
+                else if (Obstacles.refState1b_7 == "finish")
+                {
+                    once = false;
+                }
             }
+
+            if (GlobalControl.downed_boss_3)
+                gameObject.SetActive(false);
         }
     }
 
@@ -639,5 +656,13 @@ public class Scope : MonoBehaviour
         GlobalControl.immune = true;
         yield return new WaitForSeconds(1f);
         GlobalControl.immune = false;
+    }
+
+    IEnumerator addSecond()
+    {
+        hold_time = true;
+        yield return new WaitForSeconds(1f);
+        time++;
+        hold_time = false;
     }
 }

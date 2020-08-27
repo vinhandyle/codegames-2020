@@ -52,20 +52,19 @@ public class EnemyBullet : MonoBehaviour
         {          
             if (GlobalControl.area == "MB_12")
             {
-                if (gameObject.name.Substring(0, 12) == "Crystal Frag")
+                if (gameObject.name.Substring(0, 13) == "Crystal Frag ")
                 {
                     damage = 1;
                 }
                 else if (gameObject.name.Substring(0, 14) == "Crystal Frag_1")
                 {
+                    damage = 2;
                     if (Obstacles.refState_7)
                     {
-                        damage = 5;
                         homing = true;
                     }
                     else
                     {
-                        damage = 2;
                         homing = false;
                     }
                 }
@@ -75,7 +74,7 @@ public class EnemyBullet : MonoBehaviour
                 }
                 else if (gameObject.name.Substring(0, 8) == "Snowball")
                 {
-                    damage = 4;
+                    damage = 5;
                     poolNum = 1;
                 }
             }
@@ -97,6 +96,7 @@ public class EnemyBullet : MonoBehaviour
             Vector2 direction = difference / distance;
             direction.Normalize();
             transform.position += new Vector3(direction.x * Obstacles.refState1a_7 * 2.5f, direction.y * Obstacles.refState1a_7 * 2.5f);
+            transform.rotation = Quaternion.Euler(0.0f, 0.0f, Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg);
         }
     }
 
@@ -156,8 +156,8 @@ public class EnemyBullet : MonoBehaviour
             if (gameObject.name.Substring(0, 14) == "Crystal Frag_1" && GlobalControl.area == "MB_12" && homing)
             {
                 gameObject.SetActive(false);
+                other.gameObject.SetActive(false);
             }
-            other.gameObject.SetActive(false);
         }
 
         // On hit outer box

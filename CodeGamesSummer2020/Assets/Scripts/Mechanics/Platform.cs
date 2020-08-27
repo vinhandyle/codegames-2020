@@ -9,6 +9,7 @@ public class Platform : MonoBehaviour
     public float width;
     public float height;
     public string side;
+    public bool special;
 
     // Start is called before the first frame update
     void Start()
@@ -27,8 +28,11 @@ public class Platform : MonoBehaviour
 
             if (Player.rb2D.position.y - Player.rb2D.GetComponent<CircleCollider2D>().radius > transform.position.y + height / 2)
             {
-                box.enabled = true;
-            }
+                if (!special || (special && SpecialTerrain.platform))
+                    box.enabled = true;
+                else
+                    box.enabled = false;
+            }   
             else
             {
                 box.enabled = false;

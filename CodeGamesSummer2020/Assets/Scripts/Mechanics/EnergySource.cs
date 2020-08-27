@@ -40,7 +40,10 @@ public class EnergySource : MonoBehaviour
         }
         else if (gameObject.CompareTag("Geothermal") && GlobalControl.geoUnlocked)
         {
-            GlobalControl.energyCurr += 5;
+            if (GlobalControl.energyCurr <= GlobalControl.energyMax - 5)
+                GlobalControl.energyCurr += 5;
+            else
+                GlobalControl.energyCurr = GlobalControl.energyMax;
         }
         canRegen = false;
 

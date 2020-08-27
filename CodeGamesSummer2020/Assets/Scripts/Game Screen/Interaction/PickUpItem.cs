@@ -37,7 +37,8 @@ public class PickUpItem : MonoBehaviour
         }
 
         // Set object off screen to be called in later
-        if (objName == "scrap_2" && !GlobalControl.downed_boss_2)
+        if ((objName == "scrap_2" && !GlobalControl.downed_boss_2) || 
+            (objName == "scrap_3" && !GlobalControl.downed_boss_3))
         {
             transform.position = new Vector3(12, 12);
         }
@@ -58,6 +59,10 @@ public class PickUpItem : MonoBehaviour
         if (objName == "scrap_2" && GlobalControl.downed_boss_2)
         {
             transform.position = new Vector3(0.1f, -3.019f);
+        }
+        if (objName == "scrap_3" && GlobalControl.downed_boss_3)
+        {
+            transform.position = new Vector3(-0.0654858f, -0.67417982f);
         }
     }
 

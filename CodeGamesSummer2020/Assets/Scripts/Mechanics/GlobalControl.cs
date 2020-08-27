@@ -87,7 +87,7 @@ public class GlobalControl : MonoBehaviour
     public static int update = 0;                  // Update stats when power-up obtained
     public static bool switched = false;           // Used to set position on scene switch
 
-    public static string area = "MB_12";                // Area name for scene change purposes
+    public static string area = "";                // Area name for scene change purposes
     public static string prevArea = "";            // Name of previous area
     public static string checkpoint = "";          // Area name of last repair station used
 
@@ -223,7 +223,27 @@ public class GlobalControl : MonoBehaviour
     public static bool aerial_1_3_8 = true;
 
     public static bool patrol_2_4_0 = true;        // Midnight Bay
+    public static bool patrol_2_4_1 = true;
+    public static bool patrol_2_4_2 = true;
+    public static bool patrol_2_4_3 = true;
+    public static bool patrol_2_4_4 = true;
+    public static bool patrol_2_4_5 = true;
+    public static bool patrol_2_4_6 = true;
+    public static bool patrol_2_4_7 = true;
+    public static bool patrol_2_4_8 = true;
+    public static bool patrol_2_4_9 = true;
+    public static bool patrol_2_4_10 = true;
+    public static bool patrol_2_4_11 = true;
+    public static bool patrol_2_4_12 = true;
+    public static bool patrol_2_4_13 = true;
     public static bool aquatic_1_4_0 = true;
+    public static bool aquatic_1_4_1 = true;
+    public static bool aquatic_1_4_2 = true;
+    public static bool aquatic_1_4_3 = true;
+    public static bool aquatic_1_4_4 = true;
+    public static bool aquatic_1_4_5 = true;
+    public static bool aquatic_1_4_6 = true;
+
 
     /*---------------------Wall of Text Ends---------------------*/
 
@@ -307,7 +327,7 @@ public class GlobalControl : MonoBehaviour
         if (reactor == "basic")
         {
             energyUse = 1;
-            damage = 1 + bossDowned;
+            damage = 50 + bossDowned;
         }
         else if (reactor == "imperial")
         {
@@ -484,7 +504,26 @@ public class GlobalControl : MonoBehaviour
         aerial_1_3_8 = true;
 
         patrol_2_4_0 = true;
+        patrol_2_4_1 = true;
+        patrol_2_4_2 = true;
+        patrol_2_4_3 = true;
+        patrol_2_4_4 = true;
+        patrol_2_4_5 = true;
+        patrol_2_4_6 = true;
+        patrol_2_4_7 = true;
+        patrol_2_4_8 = true;
+        patrol_2_4_9 = true;
+        patrol_2_4_10 = true;
+        patrol_2_4_11 = true;
+        patrol_2_4_12 = true;
+        patrol_2_4_13 = true;
         aquatic_1_4_0 = true;
+        aquatic_1_4_1 = true;
+        aquatic_1_4_2 = true;
+        aquatic_1_4_3 = true;
+        aquatic_1_4_4 = true;
+        aquatic_1_4_5 = true;
+        aquatic_1_4_6 = true;
     }
 
     public static void unlockAll()
@@ -545,7 +584,7 @@ public class GlobalControl : MonoBehaviour
         plateFound = true;
         extraFound = true;         
         scrapFound = true;
-        //plating_1 = true;
+        plating_1 = true;
         plating_2 = true;
         extra_1 = true;
         extra_2 = true;
@@ -564,7 +603,7 @@ public class GlobalControl : MonoBehaviour
         found_errat = true;
         downed_boss_1 = true;
         downed_boss_2 = true;
-        downed_boss_3 = true;
+        //downed_boss_3 = true;
         downed_boss_4 = true;
 
         // Reports

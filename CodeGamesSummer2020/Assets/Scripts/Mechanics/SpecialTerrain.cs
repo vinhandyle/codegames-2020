@@ -7,6 +7,7 @@ public class SpecialTerrain : MonoBehaviour
     public BoxCollider2D box;
     public SpriteRenderer sprite;
     public List<Sprite> sprites;
+    public static bool platform;
 
     // Start is called before the first frame update
     void Start()
@@ -75,6 +76,19 @@ public class SpecialTerrain : MonoBehaviour
             else
             {
                 sprite.sprite = sprites[1];
+            }
+        }
+        else if (GlobalControl.area == "MB_12")
+        {
+            if (GlobalControl.downed_boss_3)
+            {
+                platform = true;
+                sprite.enabled = true;
+            }
+            else
+            {
+                platform = false;
+                sprite.enabled = false;
             }
         }
     }

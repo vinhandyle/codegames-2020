@@ -94,7 +94,7 @@ public class EnterDoor : MonoBehaviour
         }
         else if (gameObject.name == "MB_12_to_MB_3")
         {
-            if (GlobalControl.locked_6)
+            if (!GlobalControl.downed_boss_3)
             {
                 locked = true;
                 gameObject.GetComponent<SpriteRenderer>().sprite = lockedDoor;
@@ -110,6 +110,13 @@ public class EnterDoor : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // Unlock Door
+        if (gameObject.name == "MB_12_to_MB_3" && GlobalControl.downed_boss_3)
+        {
+            locked = false;
+            gameObject.GetComponent<SpriteRenderer>().sprite = unlockedDoor;
+        }
+
         // Open Door
         if (inRange && !locked && Input.GetKeyDown("w"))
         {
