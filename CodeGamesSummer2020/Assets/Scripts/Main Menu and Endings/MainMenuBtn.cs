@@ -7,6 +7,7 @@ public class MainMenuBtn : MonoBehaviour
 {
     Image img;
 
+    public static bool confirmNew = false; // New game confirmation
     public static bool inTrophy = false; // Trophy section
     public static bool inControl = false; // Controls section
 
@@ -27,9 +28,9 @@ public class MainMenuBtn : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (inTrophy || inControl)
+        if (confirmNew || inTrophy || inControl)
         {
-            if (gameObject.name == "ExitBtn")
+            if (gameObject.name == "ExitBtn" || (gameObject.name == "StartBtn" && confirmNew))
             {
                 img.color = new Color(1f, 1f, 1f, 1f);
             }

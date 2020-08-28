@@ -16,15 +16,18 @@
 	
 -Other
 	>Update in-game menu for lore
-	>Revamp platforming to account for hops			
+	>Revamp platforming to account for hops	X (prob needs player feedback)	
+	>Revamp diagram with connecter with label
+	>More items to examine	
+	>Add diagrams to boss atks instead of long descs
 
 -Ideas
 	>First ego report : info on secret entrance to IT
-	>Add dash instruction in item desc
-	>tHE TROUBLES -> The Great Destruction 
+	>Add dash instruction in item desc X
+	>tHE TROUBLES -> The Great Destruction X
 	>Containment: meant to capture Ego but became too difficult to control
 	>IT, same rooms, diff paths
 	>GP, one checkpoint -> vertical pod, travels further when shortcuts opened
 	>GP gravity switch
-	>Confirmation b4 new game
+	>Confirmation b4 new game X
 	>Custom proj for bosses

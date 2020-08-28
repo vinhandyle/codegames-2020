@@ -73,14 +73,14 @@ public class Description : MonoBehaviour
                 else if (descOf == "6" && GlobalControl.dashUnlocked)           // Dash item description
                 {
                     text.text = "<b>Booster Rocket</b> \n" +
-                                "Grants the ability to dash along the ground or through the air.\n\n" +
+                                "Grants the ability to dash along the ground or through the air. Quickly press directional keys twice to use.\n\n" +
                                 "<i>A small propulsion device constructed from a hyper scrap. Attached to the back of the main body, " +
                                 "it provides short bursts of horizontal speed. It requires time to cool down between uses. </i>";
                 }
                 else if (descOf == "7" && GlobalControl.clingUnlocked)          // Wall jump item description
                 {
                     text.text = "<b>Climbing Claws</b> \n" +
-                                "Grants the ability to cling to and leap off from walls.\n\n" +
+                                "Grants the ability to cling to and leap off walls.\n\n" +
                                 "<i>A modified variant of the ice axe, constructed from a hyper scrap. The reduced difficulty of " +
                                 "traversing the environment will allow for more exploration.</i>";
                 }
@@ -177,9 +177,11 @@ public class Description : MonoBehaviour
                 }
                 else if (descOf == "17" && GlobalControl.keyUnlocked)
                 {
-                    text.text = "<b>Acess Key</b> \n" +
-                        "Allows usage of the Vacuum Pods.\n\n" +
-                        "<i></i>";
+                    text.text = "<b>Access Key</b> \n" +
+                                "Allows usage of the Vacuum Pods.\n\n" +
+                                "<i>To ensure security, traveling across Imperalis is heavily regulated. Possessing one of these keys " +
+                                "is dependent on whether one's assigned task requires long-distance travel. Unlike other cybernetic " +
+                                "implants, these keys can be easily extracted from their users.</i>";
                 }
                 else
                 {
@@ -192,54 +194,65 @@ public class Description : MonoBehaviour
                 if (descOf == "1" && GlobalControl.downed_patrol)               // Patrol Machina
                 {
                     text.text = "<b>Patrol Machina</b> \n" +
-                                "Travels back and forth in a fixed area.\n\n" +
-                                "<i>A non-aggressive model. It serves as Imperalis' primary security measure.</i>";
+                                "Common security model. \n\n" +
+                                "<i>Though it isn't aggressive, avoid getting in the way.</i>";
                 }
                 else if (descOf == "2" && GlobalControl.downed_pursuit)         // Pursuit Maachina
                 {
                     text.text = "<b>Pursuit Machina</b> \n" +
-                                "";
+                                "Garden watchdog model. \n\n" +
+                                "<i>Roams the grounds of the Sunset Garden, searching for foreign entities. When one is detected, an " +
+                                "aggressive assault will ensue.</i>";
                 }
                 else if (descOf == "3" && GlobalControl.downed_aerial)          // Aerial Machina
                 {
                     text.text = "<b>Aerial Machina</b> \n" +
-                                "";
+                                "Town surveillance model. \n\n" +
+                                "<i>Though the denizens of Imperalis are subservient to the Emperor, one cannot be too cautious of " +
+                                "potential dissenters. Any deviation from the norm will be shot on sight.</i>";
                 }
                 else if (descOf == "6" && GlobalControl.downed_aquatic)         // Aquatic Machina
                 {
                     text.text = "<b>Aquatic Machina</b> \n" +
-                                "";
+                                "Deepsea surveyor model. \n\n" +
+                                "<i></i>";
                 }
                 else if (descOf == "7" && GlobalControl.downed_turret)          // Turret Machina
                 {
                     text.text = "<b>Turret Machina</b> \n" +
-                                "";
+                                "Institute defense model. \n\n" +
+                                "<i></i>";
                 }
                 else if (descOf == "8" && GlobalControl.found_errat)            // Errat
                 {
                     text.text = "<b>Errat</b> \n" +
-                                "Humans that are not under our control.\n\n" +
+                                "Humans who are mistaken.\n\n" +
                                 "<i>They must be saved.</i>";
                 }
                 else if (descOf == "9" && GlobalControl.downed_boss_1)          // Overseer Machina
                 {
                     text.text = "<b>Overseer Machina</b> \n" +
-                                "";
+                                "Head of the Sunset Garden. \n\n" +
+                                "<i></i>";
                 }
                 else if (descOf == "10" && GlobalControl.downed_boss_2)         // Containment Machina
                 {
                     text.text = "<b>Containment Machina</b> \n" +
-                                "";
+                                "The Emperor's prisoner. \n\n" +
+                                "<i>Designed with the purpose of tracking down and capturing the Egos. Over time, it became harder to " +
+                                "control and was eventually locked away in a sealed off section of the Twilight Town.</i>";
                 }
-                else if (descOf == "11" && GlobalControl.downed_boss_4)         // Subnautical Machina
+                else if (descOf == "11" && GlobalControl.downed_boss_3)         // Subnautical Machina
                 {
                     text.text = "<b>Subnautical Machina</b> \n" +
-                                "";
+                                "Captain of the Midnight Bay. \n\n" +
+                                "<i></i>";
                 }
                 else if (descOf == "15" && GlobalControl.downed_boss_4)         // The Emperor
                 {
                     text.text = "<b>The Emperor</b> \n" +
-                                "";
+                                "Ruler of Imperalis." +
+                                "<i></i>";
                 }
                 else
                 {

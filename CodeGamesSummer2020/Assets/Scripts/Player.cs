@@ -376,6 +376,21 @@ public class Player : MonoBehaviour
             midJump = true;
         }
 
+        // If the player is almost on the ledge, teleports them on
+        else if (collision.collider.CompareTag("Wall") && collision.collider.transform.parent.name != "Destructibles" && collision.collider.transform.parent.name != "Hazards" && collision.collider.transform.parent.name.Substring(0, 4) != "Belt" &&
+            transform.position.y < collision.collider.transform.position.y + collision.collider.GetComponent<BoxCollider2D>().size.y / 2 &&
+            transform.position.y > collision.collider.transform.position.y + collision.collider.GetComponent<BoxCollider2D>().size.y / 2 - gameObject.GetComponent<CircleCollider2D>().radius * 1.75)
+        {
+            if (direction == "left")
+            {
+                transform.position = new Vector2(transform.position.x - 0.3f, collision.collider.transform.position.y + collision.collider.gameObject.GetComponent<BoxCollider2D>().size.y / 2 + 0.1f);
+            }
+            else if (direction == "right")
+            {
+                transform.position = new Vector2(transform.position.x + 0.3f, collision.collider.transform.position.y + collision.collider.gameObject.GetComponent<BoxCollider2D>().size.y / 2 + 0.1f);
+            }
+        }
+
         if (collision.collider.CompareTag("Wall"))
         {
             walled = true;

@@ -99,6 +99,29 @@ public class MainMenuText : MonoBehaviour
                 text.text = "";
             }
         }
+        else if (MainMenuBtn.confirmNew)
+        {
+            if (type == "title")
+            {
+                text.text = "Game Name"; // Change to real title
+            }
+            else if (type == "credit")
+            {
+                text.text = "By: Soxar";
+            }
+            else if (type == "start")
+            {
+                text.text = "Confirm Action";
+            }
+            else if (type == "exit")
+            {
+                text.text = "Exit";
+            }
+            else
+            {
+                text.text = "";
+            }
+        }
         else
         {
             if (type == "title")
@@ -111,7 +134,7 @@ public class MainMenuText : MonoBehaviour
             }
             else if (type == "start")
             {
-                text.text = "New Game";
+                    text.text = "New Game";
             }
             else if (type == "continue" && GlobalControl.canContinue)
             {

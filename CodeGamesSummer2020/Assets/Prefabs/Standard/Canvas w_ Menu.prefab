@@ -1950,7 +1950,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5826c77040897b44b4d19a71c5c0647, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  home: {fileID: 21300000, guid: 8531cb4bc47db8749ad9fc98b8a5d4ac, type: 3}
+  start: {fileID: 0}
+  dh: []
+  sg: []
+  tt: []
+  mb: []
+  it: []
+  gp: []
 --- !u!1 &1561256488727593170
 GameObject:
   m_ObjectHideFlags: 0
@@ -2616,7 +2622,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   item: {fileID: 21300000, guid: 7ccb56ea27f60214bb4e009cc422d70a, type: 3}
-  enemy: {fileID: 0}
+  enemy: {fileID: 21300000, guid: 7ab4cf47787cc9d449b01ad7c1147780, type: 3}
   report: {fileID: 21300000, guid: 5f88c27d28ecf8d4c9e14ac396a8e8a9, type: 3}
   extra_1: {fileID: 0}
   extra_2: {fileID: 0}
@@ -4016,7 +4022,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   item: {fileID: 21300000, guid: 2dde49934a570864c80ab2139dd5c225, type: 3}
-  enemy: {fileID: 0}
+  enemy: {fileID: 21300000, guid: 90c8401e01f84114e94f2d6c53d17535, type: 3}
   report: {fileID: 21300000, guid: 5f88c27d28ecf8d4c9e14ac396a8e8a9, type: 3}
   extra_1: {fileID: 0}
   extra_2: {fileID: 0}
