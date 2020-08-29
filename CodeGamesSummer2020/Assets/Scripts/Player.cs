@@ -22,6 +22,7 @@ public class Player : MonoBehaviour
     public static bool canDash = true; // Whether the player can dash
     public static bool dashing = false; // Prevents moving while dashing
     public static bool walled = false; // Player cannot dash when against a wall
+    public static bool floored = false; // Player is on floor or wall
     private bool tooLong = false; // Whether a key is held too long to dash on release
     public static string direction; // Player direction used for dashing
 
@@ -40,6 +41,7 @@ public class Player : MonoBehaviour
     public static bool canJump2_ = false; // Whether the player can double-jump
     private bool jumped = false; // Whether the first jump started
     private bool midJump = false; // Whether the player is mid-jump
+    private bool walledJump = false; // Prevents vertical ascension against wall
 
     // Start is called before the first frame update
     void Start()
@@ -231,6 +233,13 @@ public class Player : MonoBehaviour
             StartCoroutine(preDash());         
         }
 
+        // Allows jumping off wall after releasing cling
+        if ((Input.GetKeyUp("a") || Input.GetKeyUp("d")) && walled)
+        {
+            walledJump = false;
+            floored = false;
+        }
+
         // Jump if player is grounded or clinging to a wall
         if (canJump1_ && (Input.GetKey("space") || Input.GetKeyDown("space")))
         {
@@ -239,11 +248,18 @@ public class Player : MonoBehaviour
             midJump = true;
 
             // The actual jump
-            if (canJump1)
+            if (canJump1 && !walledJump)
             {
                 if (GlobalControl.clingUnlocked && walled)
                 {
-                    if (!Input.GetKey("a") && !Input.GetKey("d"))
+                    // Straight jump if against and not moving into wall
+                    if (floored)
+                    {
+                        walledJump = true;
+                        rb2D.velocity = new Vector2(rb2D.velocity.x, jumpHeight);
+                    }
+                    // Jump off wall if moving into it
+                    else if (!Input.GetKey("a") && !Input.GetKey("d"))
                     {
                         if (direction == "left")
                         {
@@ -309,6 +325,12 @@ public class Player : MonoBehaviour
 
             jumped = false;
             midJump = false;
+
+            if (collision.collider.CompareTag("Floor") || (collision.collider.CompareTag("Wall") && transform.position.y - rb2D.GetComponent<CircleCollider2D>().radius > collision.collider.transform.position.y + collision.collider.GetComponent<BoxCollider2D>().size.y / 2))
+            {
+                floored = true;
+                walledJump = false;
+            }
         }
         // Allows jumping if on wall edge
         else if (collision.collider.CompareTag("Wall") && collision.collider.transform.parent.name != "Destructibles" && transform.position.y - gameObject.GetComponent<CircleCollider2D>().radius > collision.collider.transform.position.y + collision.collider.GetComponent<BoxCollider2D>().size.y / 2 - rb2D.GetComponent<CircleCollider2D>().radius * 2)
@@ -362,6 +384,11 @@ public class Player : MonoBehaviour
             jumped = false;
             midJump = false;
 
+            if (collision.collider.CompareTag("Floor") || (collision.collider.CompareTag("Wall") && transform.position.y - rb2D.GetComponent<CircleCollider2D>().radius > collision.collider.transform.position.y + collision.collider.GetComponent<BoxCollider2D>().size.y / 2))
+            {
+                floored = true;
+                walledJump = false;
+            }
         }
         // Allows jumping if on wall edge
         else if (collision.collider.CompareTag("Wall") && collision.collider.transform.parent.name != "Destructibles" &&
@@ -413,6 +440,13 @@ public class Player : MonoBehaviour
             canJump2 = true;
             canJump2_ = true;
         }
+        else if (collision.collider.CompareTag("Floor") || (collision.collider.CompareTag("Wall") && transform.position.y - rb2D.GetComponent<CircleCollider2D>().radius > collision.collider.transform.position.y + collision.collider.GetComponent<BoxCollider2D>().size.y / 2))
+        {
+            if (!walled)
+            {
+                floored = false;
+            }
+        }
 
         if (collision.collider.CompareTag("Wall"))
         {
@@ -456,6 +490,6 @@ public class Player : MonoBehaviour
         yield return new WaitForSeconds(1.5f);
 
         canDash = true;
-    }       
+    }
 }
 

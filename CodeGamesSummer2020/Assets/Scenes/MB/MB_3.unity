@@ -868,6 +868,7 @@ MonoBehaviour:
   width: 0
   height: 0
   side: 
+  special: 0
 --- !u!61 &152925545
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -993,6 +994,7 @@ MonoBehaviour:
   width: 0
   height: 0
   side: 
+  special: 0
 --- !u!61 &154770749
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1156,6 +1158,7 @@ MonoBehaviour:
   width: 0
   height: 0
   side: 
+  special: 0
 --- !u!61 &199191852
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1689,6 +1692,7 @@ MonoBehaviour:
   width: 0
   height: 0
   side: 
+  special: 0
 --- !u!61 &341205545
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2168,6 +2172,7 @@ MonoBehaviour:
   width: 0
   height: 0
   side: 
+  special: 0
 --- !u!61 &449072344
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2398,6 +2403,7 @@ MonoBehaviour:
   width: 0
   height: 0
   side: 
+  special: 0
 --- !u!61 &541107241
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2523,6 +2529,7 @@ MonoBehaviour:
   width: 0
   height: 0
   side: 
+  special: 0
 --- !u!61 &541569733
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2756,6 +2763,7 @@ MonoBehaviour:
   width: 0
   height: 0
   side: 
+  special: 0
 --- !u!61 &623189717
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -3479,6 +3487,7 @@ MonoBehaviour:
   width: 0
   height: 0
   side: 
+  special: 0
 --- !u!61 &858866834
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -3749,6 +3758,7 @@ MonoBehaviour:
   width: 0
   height: 0
   side: 
+  special: 0
 --- !u!1 &942786105
 GameObject:
   m_ObjectHideFlags: 0
@@ -3830,6 +3840,7 @@ MonoBehaviour:
   width: 0
   height: 0
   side: 
+  special: 0
 --- !u!61 &953115890
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -4517,6 +4528,7 @@ MonoBehaviour:
   width: 0
   height: 0
   side: 
+  special: 0
 --- !u!1 &1241256951
 GameObject:
   m_ObjectHideFlags: 0
@@ -5612,6 +5624,7 @@ MonoBehaviour:
   width: 0
   height: 0
   side: 
+  special: 0
 --- !u!61 &1434606740
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -5946,6 +5959,7 @@ MonoBehaviour:
   width: 0
   height: 0
   side: 
+  special: 0
 --- !u!61 &1505689946
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -6071,6 +6085,7 @@ MonoBehaviour:
   width: 0
   height: 0
   side: 
+  special: 0
 --- !u!61 &1506542336
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -6676,6 +6691,7 @@ MonoBehaviour:
   width: 0
   height: 0
   side: 
+  special: 0
 --- !u!61 &1591754227
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -6969,6 +6985,7 @@ MonoBehaviour:
   width: 0
   height: 0
   side: 
+  special: 0
 --- !u!61 &1624955307
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -7217,7 +7234,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1653422329
 GameObject:
@@ -7268,6 +7285,7 @@ MonoBehaviour:
   width: 0
   height: 0
   side: 
+  special: 0
 --- !u!61 &1653422332
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -7393,6 +7411,7 @@ MonoBehaviour:
   width: 0
   height: 0
   side: 
+  special: 0
 --- !u!61 &1782339630
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -7640,6 +7659,7 @@ MonoBehaviour:
   width: 0
   height: 0
   side: 
+  special: 0
 --- !u!61 &1788617889
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -7904,6 +7924,7 @@ MonoBehaviour:
   width: 0
   height: 0
   side: 
+  special: 0
 --- !u!61 &1810589440
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -8105,6 +8126,7 @@ MonoBehaviour:
   width: 0
   height: 0
   side: 
+  special: 0
 --- !u!1 &1978062356
 GameObject:
   m_ObjectHideFlags: 0
@@ -8511,7 +8533,7 @@ PrefabInstance:
     - target: {fileID: 6244705988299026671, guid: a1f29a425d4a68a46aee4765291f9510,
         type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6244705988299026671, guid: a1f29a425d4a68a46aee4765291f9510,
         type: 3}
@@ -8584,6 +8606,7 @@ MonoBehaviour:
   width: 0
   height: 0
   side: 
+  special: 0
 --- !u!61 &2048551850
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -8709,6 +8732,7 @@ MonoBehaviour:
   width: 0
   height: 0
   side: 
+  special: 0
 --- !u!61 &2083903324
 BoxCollider2D:
   m_ObjectHideFlags: 0
