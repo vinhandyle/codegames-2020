@@ -172,6 +172,17 @@ public class GoThrough : MonoBehaviour
                 StartCoroutine(SceneSwitch("DH_4", "DH_4_to_DH_5"));
             }
 
+            //          DH_4 to DH_5S
+            else if (opName == "DH_4_to_DH_5S")
+            {
+                StartCoroutine(SceneSwitch("DH_5S", "DH_5S_to_DH_4"));
+            }
+            else if (opName == "DH_5S_to_DH_4")
+            {
+                StartCoroutine(SceneSwitch("DH_4", "DH_4_to_DH_5S"));
+            }
+
+
             //          DH_5 to DH_5S
             else if (opName == "DH_5_to_DH_5S")
             {

@@ -323,6 +323,14 @@ public class Player : MonoBehaviour
             canJump2 = false;
             canJump2_ = false;
 
+            if(jumped)
+            {
+                if (direction == "left")
+                    direction = "right";
+                else
+                    direction = "left";
+            }
+
             jumped = false;
             midJump = false;
 

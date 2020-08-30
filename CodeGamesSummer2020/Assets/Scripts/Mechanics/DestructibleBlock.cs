@@ -14,6 +14,7 @@ public class DestructibleBlock : MonoBehaviour
             (gameObject.name == "Secret_Unstable" && !GlobalControl.secret_unstable) ||
             (gameObject.name == "Block_DH_4" && !GlobalControl.block_DH_4) ||
             (gameObject.name == "Block_DH_5" && GlobalControl.counter_1 < 6) ||
+            (gameObject.name == "Block_DH_5S" && !GlobalControl.secret_DH_5) ||
             (gameObject.name == "Secret_DH_4" && !GlobalControl.secret_DH_5) ||
             (gameObject.name == "Block_GP_1" && !GlobalControl.block_GP_1) ||
             (gameObject.name == "Block_SG_9" && !GlobalControl.block_SG_9) ||
@@ -25,6 +26,7 @@ public class DestructibleBlock : MonoBehaviour
             (gameObject.name == "Block_TT_9" && !GlobalControl.block_TT_9) ||
             (gameObject.name == "Block_TT_11" && !GlobalControl.block_TT_11) ||
             (gameObject.name == "Block_TT_12" && !GlobalControl.block_TT_12) ||
+            (gameObject.name == "Block_TT_14S" && !GlobalControl.block_TT_14S) ||
             (gameObject.name == "Secret_TT_6" && !GlobalControl.secret_TT_6) ||
             (gameObject.name == "Secret_MB_3" && !GlobalControl.secret_MB_3))
         {

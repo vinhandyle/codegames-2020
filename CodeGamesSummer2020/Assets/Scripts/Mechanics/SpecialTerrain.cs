@@ -97,8 +97,19 @@ public class SpecialTerrain : MonoBehaviour
     {
         if (other.CompareTag("Player Bullet"))
         {
-            other.gameObject.SetActive(false);
-            VacPod.inMotion = true;
+            if (GlobalControl.area == "TT_14")
+            {
+                other.gameObject.SetActive(false);
+                VacPod.inMotion = true;
+            }            
+        }
+
+        if (other.CompareTag("Player"))
+        {
+            if (GlobalControl.area == "DH_5S")
+            {
+                Player.rb2D.position = new Vector2(-2.81f, 2.909f);
+            }
         }
     }
 }

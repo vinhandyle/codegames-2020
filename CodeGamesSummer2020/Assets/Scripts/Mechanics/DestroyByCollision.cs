@@ -38,6 +38,12 @@ public class DestroyByCollision : MonoBehaviour
                 GlobalControl.block_DH_4 = false;
                 other.gameObject.SetActive(false);
             }
+            else if (other.gameObject.name == "Block_DH_5S")
+            {
+                GlobalControl.secret_DH_5 = false;
+                other.gameObject.SetActive(false);
+            }
+
             else if (other.gameObject.name == "Block_TT_6")
             {
                 GlobalControl.block_TT_6 = false;
@@ -46,6 +52,11 @@ public class DestroyByCollision : MonoBehaviour
             else if (other.gameObject.name == "Block_TT_9")
             {
                 GlobalControl.block_TT_9 = false;
+                other.gameObject.SetActive(false);
+            }
+            else if (other.gameObject.name == "Block_TT_14S")
+            {
+                GlobalControl.block_TT_14S = false;
                 other.gameObject.SetActive(false);
             }
             else if (other.gameObject.name == "Secret_TT_6")

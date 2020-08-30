@@ -1,21 +1,25 @@
 sceneSetups:
+- path: Assets/Scenes/TT/TT_14.unity
+  isLoaded: 0
+  isActive: 0
+  isSubScene: 0
 - path: Assets/Scenes/In-Game Menu.unity
   isLoaded: 0
   isActive: 0
   isSubScene: 0
-- path: Assets/Scenes/Main Menu.unity
+- path: Assets/Scenes/TT/TT_14S.unity
   isLoaded: 0
   isActive: 0
   isSubScene: 0
-- path: Assets/Scenes/IT/Start_.unity
+- path: Assets/Scenes/MB/MB_3S2.unity
+  isLoaded: 0
+  isActive: 0
+  isSubScene: 0
+- path: Assets/Scenes/SG/SG_11S.unity
   isLoaded: 1
   isActive: 1
   isSubScene: 0
-- path: Assets/Scenes/MB/MB_3.unity
-  isLoaded: 0
-  isActive: 0
-  isSubScene: 0
-- path: Assets/Scenes/MB/MB_3S.unity
+- path: Assets/Scenes/SG/SG_11.unity
   isLoaded: 0
   isActive: 0
   isSubScene: 0

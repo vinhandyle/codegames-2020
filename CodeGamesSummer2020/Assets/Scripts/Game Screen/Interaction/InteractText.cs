@@ -47,6 +47,8 @@ public class InteractText : MonoBehaviour
                 {
                     // Post-interaction
 
+                    // Specific
+
                     /*-----Items that can be picked up-----*/
                     if (type == "Item (battery)")
                     {
@@ -93,59 +95,6 @@ public class InteractText : MonoBehaviour
                     {
                         text.text = "Picked up: Access Key";
                         GlobalControl.keyUnlocked = true;
-                    }
-
-                    else if (type.Substring(0, 5) == "Scrap")
-                    {
-                        text.text = "Picked up: Hyper Scrap";
-                        if (attachedTo == "Scrap_1")
-                        {
-                            GlobalControl.scrap_1 = true;
-                        }
-                        else if (attachedTo == "Scrap_2")
-                        {
-                            GlobalControl.scrap_2 = true;
-                        }
-                        else if (attachedTo == "Scrap_3")
-                        {
-                            GlobalControl.scrap_3 = true;
-                        }
-                        GlobalControl.scrapFound = true;
-                        GlobalControl.scrapNum++;
-                    }
-                    else if (type.Substring(0, 5) == "Extra")
-                    {
-                        text.text = "Picked up: Extra Battery";
-                        if (attachedTo == "Extra_1")
-                        {
-                            GlobalControl.extra_1 = true;
-                        }
-                        else if (attachedTo == "Extra_2")
-                        {
-                            GlobalControl.extra_2 = true;
-                        }
-                        else if (attachedTo == "Extra_3")
-                        {
-                            GlobalControl.extra_3 = true;
-                        }
-                        GlobalControl.extraFound = true;
-                        GlobalControl.extraNum++;
-                        GlobalControl.update = 2;
-                    }
-                    else if (type.Substring(0, 7) == "Plating")
-                    {
-                        if (attachedTo == "Plating_1")
-                        {
-
-                        }
-                        else if (attachedTo == "Plating_2")
-                        {
-
-                        }
-                        text.text = "Picked up: Special Plating";
-                        GlobalControl.plateFound = true;
-                        GlobalControl.plateNum++;
-                        GlobalControl.update = 1;
                     }
 
                     /*-----Items that can be examined-----*/
@@ -199,23 +148,6 @@ public class InteractText : MonoBehaviour
                         }
                     }
 
-                    // Signs
-                    else if (type.Substring(0, 4) == "Sign")
-                    {
-                        if (type == "Sign_Station")
-                        {
-                            text.text = "<i>Access Key required to pass through.</i>";
-                        }
-                        else if (type == "Sign_Station_1")
-                        {
-                            text.text = "<b>Update:</b> The Midnight Bay has returned.";
-                        }
-                        else if (type == "Sign_Station_2")
-                        {
-                            text.text = "Station no longer in use. Depart immediately.";
-                        }
-                    }
-
                     /*-----Crafting-----*/
                     else if (type == "post-craft" && !triggerOnce)
                     {
@@ -235,6 +167,81 @@ public class InteractText : MonoBehaviour
                             GlobalControl.doubleUnlocked = true;
                         }
                         GlobalControl.scrapNum--;
+                    }
+
+                    // Group
+
+                    /*-----Items that can be examined-----*/
+
+                    // Signs
+                    else if (type.Substring(0, 4) == "Sign")
+                    {
+                        if (type == "Sign_Station")
+                        {
+                            text.text = "<i>Access Key required to pass through.</i>";
+                        }
+                        else if (type == "Sign_Station_1")
+                        {
+                            text.text = "<b>Update:</b> The Midnight Bay has returned.";
+                        }
+                        else if (type == "Sign_Station_2")
+                        {
+                            text.text = "Station no longer in use. Depart immediately.";
+                        }
+                    }
+
+                    /*-----Items that can be picked up-----*/
+                    else if (type.Substring(0, 5) == "Scrap")
+                    {
+                        text.text = "Picked up: Hyper Scrap";
+                        if (attachedTo == "Scrap_1")
+                        {
+                            GlobalControl.scrap_1 = true;
+                        }
+                        else if (attachedTo == "Scrap_2")
+                        {
+                            GlobalControl.scrap_2 = true;
+                        }
+                        else if (attachedTo == "Scrap_3")
+                        {
+                            GlobalControl.scrap_3 = true;
+                        }
+                        GlobalControl.scrapFound = true;
+                        GlobalControl.scrapNum++;
+                    }
+                    else if (type.Substring(0, 5) == "Extra")
+                    {
+                        text.text = "Picked up: Extra Battery";
+                        if (attachedTo == "Extra_1")
+                        {
+                            GlobalControl.extra_1 = true;
+                        }
+                        else if (attachedTo == "Extra_2")
+                        {
+                            GlobalControl.extra_2 = true;
+                        }
+                        else if (attachedTo == "Extra_3")
+                        {
+                            GlobalControl.extra_3 = true;
+                        }
+                        GlobalControl.extraFound = true;
+                        GlobalControl.extraNum++;
+                        GlobalControl.update = 2;
+                    }
+                    else if (type.Substring(0, 7) == "Plating")
+                    {
+                        if (attachedTo == "Plating_1")
+                        {
+
+                        }
+                        else if (attachedTo == "Plating_2")
+                        {
+
+                        }
+                        text.text = "Picked up: Special Plating";
+                        GlobalControl.plateFound = true;
+                        GlobalControl.plateNum++;
+                        GlobalControl.update = 1;
                     }
 
                     /*-----NPC dialogue-----*/

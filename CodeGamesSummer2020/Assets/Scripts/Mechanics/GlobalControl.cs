@@ -160,6 +160,7 @@ public class GlobalControl : MonoBehaviour
     public static bool block_TT_9 = true;
     public static bool block_TT_11 = true;
     public static bool block_TT_12 = true;
+    public static bool block_TT_14S = true;
     public static bool secret_TT_6 = true;
 
     public static bool secret_MB_3 = true;
@@ -433,6 +434,7 @@ public class GlobalControl : MonoBehaviour
         block_TT_9 = true;
         block_TT_11 = true;
         block_TT_12 = true;
+        block_TT_14S = true;
         secret_TT_6 = true;
 
         secret_MB_3 = true;

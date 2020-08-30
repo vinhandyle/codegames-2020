@@ -14,6 +14,7 @@ public class Examine : MonoBehaviour
     void Start()
     {
         objName = gameObject.name;
+
         // Remove Ego Machina on start if already harvested
         if ((GlobalControl.report_1 && gameObject.name == "Ego_1") ||
             (GlobalControl.report_2 && gameObject.name == "Ego_2") ||
@@ -33,7 +34,7 @@ public class Examine : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (inRange && Input.GetKeyDown("w") && !InteractText.interacted)
+        if (inRange && Input.GetKeyDown("w") && !InteractText.interacted && sticky == objName)
         {
             InteractText.interacted = true;
 
