@@ -157,6 +157,7 @@ public class Obstacles : MonoBehaviour
             (gameObject.name == "Pursuit_1_2_5" && !GlobalControl.pursuit_1_2_5) ||
             (gameObject.name == "Pursuit_1_2_6" && !GlobalControl.pursuit_1_2_6) ||
             (gameObject.name == "Pursuit_1_2_7" && !GlobalControl.pursuit_1_2_7) ||
+            (gameObject.name == "Pursuit_1_2_8" && !GlobalControl.pursuit_1_2_8) ||
             (gameObject.name == "Aerial_1_3_0" && !GlobalControl.aerial_1_3_0) ||
             (gameObject.name == "Aerial_1_3_1" && !GlobalControl.aerial_1_3_1) ||
             (gameObject.name == "Aerial_1_3_2" && !GlobalControl.aerial_1_3_2) ||
@@ -166,6 +167,8 @@ public class Obstacles : MonoBehaviour
             (gameObject.name == "Aerial_1_3_6" && !GlobalControl.aerial_1_3_6) ||
             (gameObject.name == "Aerial_1_3_7" && !GlobalControl.aerial_1_3_7) ||
             (gameObject.name == "Aerial_1_3_8" && !GlobalControl.aerial_1_3_8) ||
+            (gameObject.name == "Aerial_1_3_9" && !GlobalControl.aerial_1_3_9) ||
+            (gameObject.name == "Aerial_1_3_10" && !GlobalControl.aerial_1_3_10) ||
             (gameObject.name == "Aquatic_1_4_0" && !GlobalControl.aquatic_1_4_0) ||
             (gameObject.name == "Aquatic_1_4_1" && !GlobalControl.aquatic_1_4_1) ||
             (gameObject.name == "Aquatic_1_4_2" && !GlobalControl.aquatic_1_4_2) ||
@@ -510,6 +513,10 @@ public class Obstacles : MonoBehaviour
             {
                 GlobalControl.pursuit_1_2_7 = false;
             }
+            else if (gameObject.name == "Pursuit_1_2_8")
+            {
+                GlobalControl.pursuit_1_2_8 = false;
+            }
             else if (gameObject.name == "Overseer")
             {
                 GlobalControl.downed_boss_1 = true;
@@ -595,6 +602,14 @@ public class Obstacles : MonoBehaviour
             else if (gameObject.name == "Aerial_1_3_8")
             {
                 GlobalControl.aerial_1_3_8 = false;
+            }
+            else if (gameObject.name == "Aerial_1_3_9")
+            {
+                GlobalControl.aerial_1_3_9 = false;
+            }
+            else if (gameObject.name == "Aerial_1_3_10")
+            {
+                GlobalControl.aerial_1_3_10 = false;
             }
             else if (gameObject.name == "Containment")
             {

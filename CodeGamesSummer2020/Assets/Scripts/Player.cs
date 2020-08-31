@@ -171,6 +171,12 @@ public class Player : MonoBehaviour
             canRight = true;
         }
 
+        // Dashing unaffected by gravity
+        if (dashing)
+            rb2D.gravityScale = 0;
+        else
+            rb2D.gravityScale = 1f;
+
         // Moves player left
         if (Input.GetKey("a") && !dashing && canLeft)
         {
@@ -213,12 +219,12 @@ public class Player : MonoBehaviour
                 // Checking for first left/right prevents dashing when rapidly alternating between left/right
                 if (direction == "left" && firstLeft)
                 {
-                    rb2D.velocity = new Vector2(-3 * moveBy, rb2D.velocity.y);
+                    rb2D.velocity = new Vector2(-3 * moveBy, 0);
                     dashing = true;
                 }
                 else if (direction == "right" && firstRight)
                 {
-                    rb2D.velocity = new Vector2(3 * moveBy, rb2D.velocity.y);
+                    rb2D.velocity = new Vector2(3 * moveBy, 0);
                     dashing = true;
                 }
                 
@@ -238,6 +244,12 @@ public class Player : MonoBehaviour
         {
             walledJump = false;
             floored = false;
+        }
+
+        // On directional release
+        if ((Input.GetKeyUp("a") || Input.GetKeyUp("d")) && !dashing)
+        {
+            rb2D.velocity = new Vector2(0, rb2D.velocity.y);
         }
 
         // Jump if player is grounded or clinging to a wall
@@ -299,14 +311,14 @@ public class Player : MonoBehaviour
         {
             if (canJump1_)
             {
-                rb2D.velocity = new Vector2(rb2D.velocity.x, rb2D.velocity.y / 2);
+                rb2D.velocity = new Vector2(rb2D.velocity.x, rb2D.velocity.y / 4);
                 canJump1_ = false;
                 canJump2 = true;
                 canJump2_ = true;
             }
             else if (canJump2_)
             {
-                rb2D.velocity = new Vector2(rb2D.velocity.x, rb2D.velocity.y / 2);
+                rb2D.velocity = new Vector2(rb2D.velocity.x, rb2D.velocity.y / 4);
                 canJump2_ = false;
             }
         }
@@ -325,10 +337,7 @@ public class Player : MonoBehaviour
 
             if(jumped)
             {
-                if (direction == "left")
-                    direction = "right";
-                else
-                    direction = "left";
+                walledJump = false;
             }
 
             jumped = false;
@@ -441,12 +450,20 @@ public class Player : MonoBehaviour
     private void OnCollisionExit2D(Collision2D collision)
     { 
         // Player fell off a floor without jumping, allowing for an air jump if unlocked
-        if((collision.collider.CompareTag("Floor") || (collision.collider.CompareTag("Wall") && GlobalControl.clingUnlocked)) && !jumped)
+        if((collision.collider.CompareTag("Floor") || (collision.collider.CompareTag("Wall") && GlobalControl.clingUnlocked)))
         {
             canJump1 = false;
             canJump1_ = false;
             canJump2 = true;
             canJump2_ = true;
+
+            if (jumped)
+            {
+                if (direction == "left")
+                    direction = "right";
+                else
+                    direction = "left";
+            }
         }
         else if (collision.collider.CompareTag("Floor") || (collision.collider.CompareTag("Wall") && transform.position.y - rb2D.GetComponent<CircleCollider2D>().radius > collision.collider.transform.position.y + collision.collider.GetComponent<BoxCollider2D>().size.y / 2))
         {
@@ -490,10 +507,11 @@ public class Player : MonoBehaviour
     // Cooldown for dashing
     IEnumerator postDash()
     {
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.25f);
 
         dashing = false;
         canDash = false;
+        rb2D.velocity = new Vector2(0, rb2D.velocity.y);
 
         yield return new WaitForSeconds(1.5f);
 

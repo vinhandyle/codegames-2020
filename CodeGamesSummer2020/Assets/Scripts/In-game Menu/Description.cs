@@ -209,7 +209,7 @@ public class Description : MonoBehaviour
                     text.text = "<b>Aerial Machina</b> \n" +
                                 "Town surveillance model. \n\n" +
                                 "<i>Though the denizens of Imperalis are subservient to the Emperor, one cannot be too cautious of " +
-                                "potential dissenters. Any deviation from the norm will be shot on sight.</i>";
+                                "potential dissenters. Any deviation from the status quo will be shot on sight.</i>";
                 }
                 else if (descOf == "6" && GlobalControl.downed_aquatic)         // Aquatic Machina
                 {

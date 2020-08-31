@@ -2,24 +2,16 @@
 	>Multiple pursuits will not aggro if landing in sight, will aggro after direction change
 	>Player flashing even when no longer i-framing, test on Aquatic
 	>Scatter Shot proj rotates weird, quad 2-4
-	>Wall jump -> wall jump not work (wall jump - > straight jump) X
-	>Items bug out if ego is in room X
 
 -Plan out Midnight Bay
 	>add rain
 	>add oil storages
+	>Steering wheel
 
 -Kin Harvest
-	>Rotten Depths X
-	>Upper Disposal Area
-	>Garden Heights
-	>Dark Alley
-	>Far Station -built, just needs final touches X
-	>Stowaway X
 	
 -Other
-	>Update in-game menu for lore
-	>Revamp platforming to account for hops (prob needs player feedback)	
+	>Update in-game menu for lore	
 	>Revamp diagram with connecter with label
 	>More items to examine	
 	>Add diagrams to boss atks instead of long descs

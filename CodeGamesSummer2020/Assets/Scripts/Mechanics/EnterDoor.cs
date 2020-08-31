@@ -203,17 +203,6 @@ public class EnterDoor : MonoBehaviour
                 StartCoroutine(SceneSwitch("TT_13", "TT_13_to_TT_2"));
             }
 
-            // Secluded Path to Dead End
-            else if (doorName == "TT_3_to_TT_6")
-            {
-                StartCoroutine(SceneSwitch("TT_6", "TT_6_to_TT_3"));
-                GlobalControl.block_TT_6 = false;
-            }
-            else if (doorName == "TT_6_to_TT_3")
-            {
-                StartCoroutine(SceneSwitch("TT_3", "TT_3_to_TT_6"));
-            }
-
             // Residential Section to Azimuth Hall
             else if (doorName == "TT_5_to_TT_8")
             {

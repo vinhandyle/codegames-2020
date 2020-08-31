@@ -137,6 +137,8 @@ public class GlobalControl : MonoBehaviour
     public static string state_SG_8 = "active";
     public static string state_SG_10 = "active";
     public static string state_SG_11 = "active";
+    public static string state_SG_11S = "active";
+    public static string state_SG_11S_ = "active";
     public static string state_TT_11 = "active";
     public static string state_MB_4 = "active";
     public static string state_MB_7 = "active";
@@ -152,6 +154,8 @@ public class GlobalControl : MonoBehaviour
 
     public static bool block_SG_9 = true;
     public static bool block_SG_11 = true;
+    public static bool block_SG_11S = true;
+    public static bool block_SG_11S_ = true;
     public static bool block_SG_12 = true;
     public static bool secret_SG_9 = true;
 
@@ -161,7 +165,6 @@ public class GlobalControl : MonoBehaviour
     public static bool block_TT_11 = true;
     public static bool block_TT_12 = true;
     public static bool block_TT_14S = true;
-    public static bool secret_TT_6 = true;
 
     public static bool secret_MB_3 = true;
 
@@ -201,6 +204,7 @@ public class GlobalControl : MonoBehaviour
     public static bool pursuit_1_2_5 = true;
     public static bool pursuit_1_2_6 = true;
     public static bool pursuit_1_2_7 = true;
+    public static bool pursuit_1_2_8 = true;
 
     public static bool patrol_2_3_0 = true;        // Twilight Town
     public static bool patrol_2_3_1 = true;
@@ -222,6 +226,8 @@ public class GlobalControl : MonoBehaviour
     public static bool aerial_1_3_6 = true;
     public static bool aerial_1_3_7 = true;
     public static bool aerial_1_3_8 = true;
+    public static bool aerial_1_3_9 = true;
+    public static bool aerial_1_3_10 = true;
 
     public static bool patrol_2_4_0 = true;        // Midnight Bay
     public static bool patrol_2_4_1 = true;
@@ -426,6 +432,8 @@ public class GlobalControl : MonoBehaviour
 
         block_SG_9 = true;
         block_SG_11 = true;
+        block_SG_11S = true;
+        block_SG_11S_ = true;
         block_SG_12 = true;
         secret_SG_9 = true;
 
@@ -435,7 +443,6 @@ public class GlobalControl : MonoBehaviour
         block_TT_11 = true;
         block_TT_12 = true;
         block_TT_14S = true;
-        secret_TT_6 = true;
 
         secret_MB_3 = true;
 
@@ -445,6 +452,8 @@ public class GlobalControl : MonoBehaviour
         state_SG_8 = "active";
         state_SG_10 = "active";
         state_SG_11 = "active";
+        state_SG_11S = "active";
+        state_SG_11S_ = "active";
         state_TT_11 = "active";
         state_MB_4 = "active";
         state_MB_7 = "active";
@@ -483,6 +492,7 @@ public class GlobalControl : MonoBehaviour
         pursuit_1_2_5 = true;
         pursuit_1_2_6 = true;
         pursuit_1_2_7 = true;
+        pursuit_1_2_8 = true;
 
         patrol_2_3_0 = true;
         patrol_2_3_1 = true;
@@ -504,6 +514,8 @@ public class GlobalControl : MonoBehaviour
         aerial_1_3_6 = true;
         aerial_1_3_7 = true;
         aerial_1_3_8 = true;
+        aerial_1_3_9 = true;
+        aerial_1_3_10 = true;
 
         patrol_2_4_0 = true;
         patrol_2_4_1 = true;

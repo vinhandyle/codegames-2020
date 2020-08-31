@@ -42,6 +42,22 @@ public class TriggerSwitch : MonoBehaviour
             }
             state = GlobalControl.state_SG_11;
         }
+        else if (objName == "Switch_SG_11S")
+        {
+            if (GlobalControl.state_SG_11S == "inactive")
+            {
+                gameObject.GetComponent<SpriteRenderer>().sprite = sprites[1];
+            }
+            state = GlobalControl.state_SG_11S;
+        }
+        else if (objName == "Switch_SG_11S (1)")
+        {
+            if (GlobalControl.state_SG_11S_ == "inactive")
+            {
+                gameObject.GetComponent<SpriteRenderer>().sprite = sprites[1];
+            }
+            state = GlobalControl.state_SG_11S_;
+        }
         else if (objName == "Switch_TT_11")
         {
             if (GlobalControl.state_TT_11 == "inactive")
@@ -87,7 +103,7 @@ public class TriggerSwitch : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (inRange && Input.GetKeyDown("w") && !InteractText.interacted)
+        if (inRange && Input.GetKeyDown("w") && !InteractText.interacted && objName == sticky)
         {
             InteractText.interacted = true;
 
@@ -118,6 +134,26 @@ public class TriggerSwitch : MonoBehaviour
                     state = "inactive";
                     GlobalControl.block_SG_11 = false;
                     GlobalControl.state_SG_11 = state;
+                    gameObject.GetComponent<SpriteRenderer>().sprite = sprites[1];
+                }
+            }
+            else if (objName == "Switch_SG_11S")
+            {
+                if (state == "active")
+                {
+                    state = "inactive";
+                    GlobalControl.block_SG_11S = false;
+                    GlobalControl.state_SG_11S = state;
+                    gameObject.GetComponent<SpriteRenderer>().sprite = sprites[1];
+                }
+            }
+            else if (objName == "Switch_SG_11S (1)")
+            {
+                if (state == "active")
+                {
+                    state = "inactive";
+                    GlobalControl.block_SG_11S_ = false;
+                    GlobalControl.state_SG_11S_ = state;
                     gameObject.GetComponent<SpriteRenderer>().sprite = sprites[1];
                 }
             }

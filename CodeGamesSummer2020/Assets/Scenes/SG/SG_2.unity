@@ -416,7 +416,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 237585dd11e37bd41a919eee09e3c842, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  direction: bottom-left
+  direction: top
 --- !u!212 &193842753
 SpriteRenderer:
   m_ObjectHideFlags: 0

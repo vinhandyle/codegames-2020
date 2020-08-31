@@ -63,7 +63,7 @@ public class AreaText : MonoBehaviour
             {
                 text.text = "Sludge Pond";
             }
-            else if (GlobalControl.area == "DH_5S") // Wall jump and dash challenge
+            else if (GlobalControl.area == "DH_5S") 
             {
                 text.text = "Rotten Depths";
             }
@@ -89,7 +89,7 @@ public class AreaText : MonoBehaviour
             {
                 text.text = "Central Disposal Area";
             }
-            else if (GlobalControl.area == "SG_2S") // Kin
+            else if (GlobalControl.area == "SG_2S") 
             {
                 text.text = "Upper Disposal Area";
             }
@@ -133,7 +133,7 @@ public class AreaText : MonoBehaviour
             {
                 text.text = "Overpass";
             }
-            else if (GlobalControl.area == "SG_11S") // Kin
+            else if (GlobalControl.area == "SG_11S") 
             {
                 text.text = "Garden Heights";
             }
@@ -143,17 +143,13 @@ public class AreaText : MonoBehaviour
             }
 
             // Twilight Town
-            else if (GlobalControl.area == "TT_1") // Extra Battery
+            else if (GlobalControl.area == "TT_1") 
             {
                 text.text = "Outer Garden";
             }
-            else if (GlobalControl.area == "TT_2") // Repair Station
+            else if (GlobalControl.area == "TT_2") 
             {
                 text.text = "Central Plaza";
-            }
-            else if (GlobalControl.area == "TT_3") // Train Pass behind block, accesible via Dead End
-            {
-                text.text = "Secluded Path";
             }
             else if (GlobalControl.area == "TT_4")
             {
@@ -167,19 +163,23 @@ public class AreaText : MonoBehaviour
             {
                 text.text = "Dead End";
             }
-            else if (GlobalControl.area == "TT_6S") // Kin
+            else if (GlobalControl.area == "TT_6S")
             {
-                text.text = "Dark Alley";
+                text.text = "Secluded Area";
             }
             else if (GlobalControl.area == "TT_7")
             {
                 text.text = "Alley Way";
             }
+            else if (GlobalControl.area == "TT_7S")
+            {
+                text.text = "Canopy";
+            }
             else if (GlobalControl.area == "TT_8")
             {
                 text.text = "Azimuth Hall";
             }
-            else if (GlobalControl.area == "TT_9") // Extra battery in hard to reach place
+            else if (GlobalControl.area == "TT_9") 
             {
                 text.text = "Loft";
             }
@@ -191,7 +191,7 @@ public class AreaText : MonoBehaviour
             {
                 text.text = "Closed-Off Section";
             }
-            else if (GlobalControl.area == "TT_12") // Boss
+            else if (GlobalControl.area == "TT_12")
             {
                 text.text = "Machina Vault";
             }
@@ -203,7 +203,7 @@ public class AreaText : MonoBehaviour
             {
                 text.text = "Vacuum Pod";
             }
-            else if (GlobalControl.area == "TT_14S") // Kin
+            else if (GlobalControl.area == "TT_14S") 
             {
                 text.text = "Far Station";
             }
@@ -229,11 +229,11 @@ public class AreaText : MonoBehaviour
             {
                 text.text = "Hull";
             }
-            else if (GlobalControl.area == "MB_3S") // Extra
+            else if (GlobalControl.area == "MB_3S") 
             {
                 text.text = "Helm";
             }
-            else if (GlobalControl.area == "MB_3S2") // Kin
+            else if (GlobalControl.area == "MB_3S2") 
             {
                 text.text = "Stowaway";
             }
