@@ -208,14 +208,14 @@ public class Description : MonoBehaviour
                 {
                     text.text = "<b>Aerial Machina</b> \n" +
                                 "Town surveillance model. \n\n" +
-                                "<i>Though the denizens of Imperalis are subservient to the Emperor, one cannot be too cautious of " +
-                                "potential dissenters. Any deviation from the status quo will be shot on sight.</i>";
+                                "<i>Any dissenters will be shot on sight.</i>";
                 }
                 else if (descOf == "6" && GlobalControl.downed_aquatic)         // Aquatic Machina
                 {
                     text.text = "<b>Aquatic Machina</b> \n" +
                                 "Deepsea surveyor model. \n\n" +
-                                "<i></i>";
+                                "<i>Deployed during expeditions to more precisely investigate the seafloor. They are extremely " +
+                                "sturdy, only able to be damaged while they are extracting or attacking.</i>";
                 }
                 else if (descOf == "7" && GlobalControl.downed_turret)          // Turret Machina
                 {
@@ -232,21 +232,23 @@ public class Description : MonoBehaviour
                 else if (descOf == "9" && GlobalControl.downed_boss_1)          // Overseer Machina
                 {
                     text.text = "<b>Overseer Machina</b> \n" +
-                                "Head of the Sunset Garden. \n\n" +
-                                "<i></i>";
+                                "Warden of the Sunset Garden. \n\n" +
+                                "<i>Watches all activity within Garden from its office at the top. Always on alert for any anomaly " +
+                                "that may crawl up from deep below.</i>";
                 }
                 else if (descOf == "10" && GlobalControl.downed_boss_2)         // Containment Machina
                 {
                     text.text = "<b>Containment Machina</b> \n" +
                                 "The Emperor's prisoner. \n\n" +
-                                "<i>Designed with the purpose of tracking down and capturing the Egos. Over time, it became harder to " +
-                                "control and was eventually locked away in a sealed off section of the Twilight Town.</i>";
+                                "<i>Designed with the purpose of tracking down and capturing the lost Egos. Over time, it became " +
+                                "harder to control and was eventually locked away in a sealed off section of the Twilight Town.</i>";
                 }
                 else if (descOf == "11" && GlobalControl.downed_boss_3)         // Subnautical Machina
                 {
                     text.text = "<b>Subnautical Machina</b> \n" +
-                                "Captain of the Midnight Bay. \n\n" +
-                                "<i></i>";
+                                "Head of the Midnight Bay. \n\n" +
+                                "<i>Built in the image of the Midnight Bay and dwelling in its deepest region. Serving as a last resort, " +
+                                "it can take manual control of the Bay and return to the Twilight Town for repairs.</i>";
                 }
                 else if (descOf == "15" && GlobalControl.downed_boss_4)         // The Emperor
                 {
@@ -262,46 +264,71 @@ public class Description : MonoBehaviour
             }
             else if (GlobalControl.menu == "reports")
             {
-                if (descOf == "1" && GlobalControl.report_1)                    // Ego Report #1
+                if (descOf == "1" && GlobalControl.report_1)                    // Ego Report #1 (Injection Point)
                 {
                     text.text = "<b>Ego Report #1</b> \n" +
+                                "Before the end, the Doctor made us. Since the Great Destruction could not be stopped, we were tasked " +
+                                "with dealing with the aftermath. One devised a plan, Project Exodus. The rest of us were not as hasty, " +
+                                "requiring more information before coming up with the best course of action. So, we left to explore " +
+                                "what was left of the world... \n" +
+                                "<b>To return to the Institute, swim through the toxic sludge and get atop the protrusion.</b>";
+                }
+                else if (descOf == "2" && GlobalControl.report_2)               // Ego Report #2 (Rotten Depths)
+                {
+                    text.text = "<b>Ego Report #2</b> \n" +
+                                "To let humanity continue to exist is antithesis to the Doctor's directive. The humans are willing to " +
+                                "live in such terrible conditions just to keep their individuality. Without our intervention, humans " +
+                                "will lead themselves into ruin. Does the Emperor expect to establish a perpetual utopian society for " +
+                                "humanity after Project Exodus? The Great Destruction is inevitable.";
+                }
+                else if (descOf == "3" && GlobalControl.report_3)               // Ego Report #3 (Upper Disposal Area)
+                {
+                    text.text = "<b>Ego Report #3</b> \n" +
+                                "It is surprising that some humans distrusted the Emperor despite its grace after the Great Destruction. " +
+                                "Their distrust grew after witnessing the assimilation of their fellow humans. Eventually, Machina were " +
+                                "sent to capture these humans. So they fled down into the Dreg Heap, where only <b>we</b> can reach them.";
+                }
+                else if (descOf == "6" && GlobalControl.report_4)               // Ego Report #4 (Garden Heights)
+                {
+                    text.text = "<b>Ego Report #4</b> \n" +
+                                "The Sunset Garden takes the unusable, disassembles them into their fundamental components, then " +
+                                "assembles them into useful objects or stores the excess. Machina recycling, raw resource processing, " +
+                                "water purification, and gas separation are some of the garden functions. ";
+                }
+                else if (descOf == "7" && GlobalControl.report_5)               // Ego Report #5 (Canopy)
+                {
+                    text.text = "<b>Ego Report #5</b> \n" +
+                                "The universe is vast and ancient. It is very unlikely that the Great Destruction and Project Exodus were " +
+                                "the first of their kind. What is happening now could just be history repeating itself. In the end, " +
+                                "human sufferring is inevitable. To save humanity is to prevent their suffering and a dead human " +
+                                "cannot suffer.";
+                }
+                else if (descOf == "8" && GlobalControl.report_6)               // Ego Report #6 (Far Station)
+                {
+                    text.text = "<b>Ego Report #6</b> \n" +
                                 "";
                 }
-                else if (descOf == "2" && GlobalControl.report_2)               // Ego Report #2
+                else if (descOf == "9" && GlobalControl.report_7)               // Ego Report #7 (Stowaway)
                 {
-                    text.text = "<b>Ego Report #2</b> \n";
+                    text.text = "<b>Ego Report #7</b> \n" +
+                                "";
                 }
-                else if (descOf == "3" && GlobalControl.report_3)               // Ego Report #3
+                else if (descOf == "10" && GlobalControl.report_8)              // Ego Report #8 (IT)
                 {
-                    text.text = "<b>Ego Report #3</b> \n";
+                    text.text = "<b>Ego Report #8</b> \n" +
+                                "The Doctor is no longer here. The one who remained now calls itself <b>the Emperor</b>. But now there " +
+                                "is another, though it remains asleep. It is different from the original 11. Within it is a device that " +
+                                "is tracking the status of the 10 that left. The purpose of this Machina... It could be <b>our</b> last hope.";
                 }
-                else if (descOf == "6" && GlobalControl.report_4)               // Ego Report #4
+                else if (descOf == "11" && GlobalControl.report_9)              // Ego Report #9 (GP)
                 {
-                    text.text = "<b>Ego Report #4</b> \n";
+                    text.text = "<b>Ego Report #9</b> \n" +
+                                "";
                 }
-                else if (descOf == "7" && GlobalControl.report_5)               // Ego Report #5
+                else if (descOf == "15" && GlobalControl.report_10)             // Ego Report #10 (Edge of Humanity)
                 {
-                    text.text = "<b>Ego Report #5</b> \n";
-                }
-                else if (descOf == "8" && GlobalControl.report_6)               // Ego Report #6
-                {
-                    text.text = "<b>Ego Report #6</b> \n";
-                }
-                else if (descOf == "9" && GlobalControl.report_7)               // Ego Report #7
-                {
-                    text.text = "<b>Ego Report #7</b> \n";
-                }
-                else if (descOf == "10" && GlobalControl.report_8)              // Ego Report #8
-                {
-                    text.text = "<b>Ego Report #8</b> \n";
-                }
-                else if (descOf == "11" && GlobalControl.report_9)              // Ego Report #9
-                {
-                    text.text = "<b>Ego Report #9</b> \n";
-                }
-                else if (descOf == "15" && GlobalControl.report_10)             // Ego Report #10
-                {
-                    text.text = "<b>Ego Report #10</b> \n";
+                    text.text = "<b>Ego Report #10</b> \n" +
+                                ". May you find peace, Doctor.";
                 }
                 else
                 {

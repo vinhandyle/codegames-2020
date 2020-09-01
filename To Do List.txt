@@ -19,8 +19,8 @@
 	>Edit ending 1 (remove countdown)
 
 -Ideas
-	>First ego report : info on secret entrance to IT
 	>IT, same rooms, diff paths
 	>GP, one checkpoint -> one door, multi switch
 	>GP gravity switch
 	>Custom proj for bosses
+	>Two maps (area map + world map)
