@@ -1971,13 +1971,13 @@ MonoBehaviour:
   - 3.7
   y:
   - -1.82
-  - -1.82
+  - -1.495
   w:
   - 1.8
-  - 4.4
+  - 4.1
   h:
   - 1
-  - 1
+  - 2.3
 --- !u!212 &827673274
 SpriteRenderer:
   m_ObjectHideFlags: 0

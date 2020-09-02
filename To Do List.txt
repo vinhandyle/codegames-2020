@@ -24,3 +24,4 @@
 	>GP gravity switch
 	>Custom proj for bosses
 	>Two maps (area map + world map)
+	>Water increases gravity

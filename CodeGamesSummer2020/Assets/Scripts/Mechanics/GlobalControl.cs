@@ -76,6 +76,9 @@ public class GlobalControl : MonoBehaviour
     public static string pod_direction = "right";  // Direction of pod
     public static string pod_location = "main";    // Where is the pod
 
+    // Lift from Hell
+    public static string lift_direction = "up";    // Direction of the lift
+
     // World
     public static float pX;                        // Player x-coord before opening menu
     public static float pY;                        // Player y-coord before opening menu
@@ -144,6 +147,7 @@ public class GlobalControl : MonoBehaviour
     public static string state_MB_7 = "active";
     public static string state_MB_8 = "active";
     public static string state_MB_11 = "active";
+    public static string state_IT_4 = "active";
 
     // Destructibles
     public static bool block_starter = true;
@@ -167,6 +171,9 @@ public class GlobalControl : MonoBehaviour
     public static bool block_TT_14S = true;
 
     public static bool secret_MB_3 = true;
+
+    public static bool block_IT_4 = true;
+    public static bool block_IT_4_ = true;
 
     public static bool block_GP_1 = true;
 
@@ -425,7 +432,7 @@ public class GlobalControl : MonoBehaviour
 
         // Destructibles
         block_starter = true;
-        secret_unstable = true;
+        secret_unstable = true;        
 
         block_DH_4 = true;
         secret_DH_5 = true;
@@ -446,6 +453,9 @@ public class GlobalControl : MonoBehaviour
 
         secret_MB_3 = true;
 
+        block_IT_4 = true;
+        block_IT_4_ = true;
+
         block_GP_1 = true;
 
         // Switches
@@ -459,7 +469,7 @@ public class GlobalControl : MonoBehaviour
         state_MB_7 = "active";
         state_MB_8 = "active";
         state_MB_11 = "active";
-
+        state_IT_4 = "active";
 
         // Vac Pod
         pod_location = "main";

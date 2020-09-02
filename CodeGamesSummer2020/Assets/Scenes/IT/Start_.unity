@@ -852,7 +852,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.32, y: 0.32}
+  m_Size: {x: 0.5, y: 1}
   m_EdgeRadius: 0
 --- !u!212 &268453886
 SpriteRenderer:
@@ -2530,7 +2530,7 @@ PrefabInstance:
     - target: {fileID: 2648091145979299751, guid: 8e2490aaf52650942ba99f1212982d5c,
         type: 3}
       propertyPath: m_Name
-      value: Start_to_IT_X
+      value: Start_to_IT_9
       objectReference: {fileID: 0}
     - target: {fileID: 5189053524504397608, guid: 8e2490aaf52650942ba99f1212982d5c,
         type: 3}

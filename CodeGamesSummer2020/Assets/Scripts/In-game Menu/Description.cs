@@ -293,7 +293,8 @@ public class Description : MonoBehaviour
                     text.text = "<b>Ego Report #4</b> \n" +
                                 "The Sunset Garden takes the unusable, disassembles them into their fundamental components, then " +
                                 "assembles them into useful objects or stores the excess. Machina recycling, raw resource processing, " +
-                                "water purification, and gas separation are some of the garden functions. ";
+                                "water purification, and gas separation are some of the garden functions which is an integral part of " +
+                                "Project Exodus.";
                 }
                 else if (descOf == "7" && GlobalControl.report_5)               // Ego Report #5 (Canopy)
                 {
@@ -306,12 +307,19 @@ public class Description : MonoBehaviour
                 else if (descOf == "8" && GlobalControl.report_6)               // Ego Report #6 (Far Station)
                 {
                     text.text = "<b>Ego Report #6</b> \n" +
-                                "";
+                                "Unlike the Machina who can be worked until their breaking point, the Azimuth are much more fragile " +
+                                "and are too important. Their strength remains human as the amount of cybernetic implants is minimal. " +
+                                "The Machina do most of the heavy-lifting while the Azimuth take care of the more intricate work. The " +
+                                "town serves as a place for the Azimuth to recuperate. Though once their purpose has been fulfilled, " +
+                                "the Azimuth are taken away to the Grey Palace.";
                 }
                 else if (descOf == "9" && GlobalControl.report_7)               // Ego Report #7 (Stowaway)
                 {
                     text.text = "<b>Ego Report #7</b> \n" +
-                                "";
+                                "The Great Destruction destroyed almost all terrestrial infrastructure with the last one being a seed " +
+                                "bank in the far north. But beneath the oceans, which cover most of the planet's surface, is an " +
+                                "abundance of resources to be collected. Though much of marine life has been extinguish, the seafloor " +
+                                "is littered with treasure: oil reservoirs, mineral deposits, and sunken crafts.";
                 }
                 else if (descOf == "10" && GlobalControl.report_8)              // Ego Report #8 (IT)
                 {
@@ -323,12 +331,16 @@ public class Description : MonoBehaviour
                 else if (descOf == "11" && GlobalControl.report_9)              // Ego Report #9 (GP)
                 {
                     text.text = "<b>Ego Report #9</b> \n" +
-                                "";
+                                "The humans are gathered here. There are several nuclear reactors aboard the Ark. The master control panel " +
+                                "is at the summit. Only one stands in our way.";
                 }
                 else if (descOf == "15" && GlobalControl.report_10)             // Ego Report #10 (Edge of Humanity)
                 {
                     text.text = "<b>Ego Report #10</b> \n" +
-                                ". May you find peace, Doctor.";
+                                "Mind of man and body of steel. The Doctor wished to live forever. An ominous cloud loomed ahead. " +
+                                "For the sake of humanity, the dream was abandoned. Years upon years of restless work, he eventually " +
+                                "arrived before the edge. Now he rests here with the rest of humanity, awaiting the day when his body " +
+                                "becomes steel.";
                 }
                 else
                 {

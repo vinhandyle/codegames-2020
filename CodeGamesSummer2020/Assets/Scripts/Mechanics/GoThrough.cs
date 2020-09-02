@@ -129,8 +129,67 @@ public class GoThrough : MonoBehaviour
                 StartCoroutine(SceneSwitch("IT_1", "IT_1_to_IT_2"));
             }
 
-
             /*-----IT (Return)-----*/
+
+            //        IT_4 to IT_5
+            else if (opName == "IT_4_to_IT_5")
+            {
+                StartCoroutine(SceneSwitch("IT_5", "IT_5_to_IT_4"));
+            }
+            else if (opName == "IT_5_to_IT_4")
+            {
+                StartCoroutine(SceneSwitch("IT_4", "IT_4_to_IT_5"));
+            }
+
+            //        IT_4 to IT_6
+            else if (opName == "IT_4_to_IT_6")
+            {
+                StartCoroutine(SceneSwitch("IT_6", "IT_6_to_IT_4"));
+            }
+            else if (opName == "IT_6_to_IT_4")
+            {
+                StartCoroutine(SceneSwitch("IT_4", "IT_4_to_IT_6"));
+            }
+
+            //        IT_6 to IT_7
+            else if (opName == "IT_6_to_IT_7")
+            {
+                StartCoroutine(SceneSwitch("IT_7", "IT_7_to_IT_6"));
+            }
+            else if (opName == "IT_7_to_IT_6")
+            {
+                StartCoroutine(SceneSwitch("IT_6", "IT_6_to_IT_7"));
+            }
+
+            //        IT_6 to IT_9
+            else if (opName == "IT_6_to_IT_9")
+            {
+                StartCoroutine(SceneSwitch("IT_9", "IT_9_to_IT_6"));
+            }
+            else if (opName == "IT_9_to_IT_6")
+            {
+                StartCoroutine(SceneSwitch("IT_6", "IT_6_to_IT_9"));
+            }
+
+            //        IT_7 to IT_8
+            else if (opName == "IT_7_to_IT_8")
+            {
+                StartCoroutine(SceneSwitch("IT_8", "IT_8_to_IT_7"));
+            }
+            else if (opName == "IT_8_to_IT_7")
+            {
+                StartCoroutine(SceneSwitch("IT_7", "IT_7_to_IT_8"));
+            }
+
+            //        IT_8 to IT_9
+            else if (opName == "IT_8_to_IT_9")
+            {
+                StartCoroutine(SceneSwitch("IT_9", "IT_9_to_IT_8"));
+            }
+            else if (opName == "IT_9_to_IT_8")
+            {
+                StartCoroutine(SceneSwitch("IT_8", "IT_8_to_IT_9"));
+            }
 
             /*-----DH-----*/
 
@@ -398,7 +457,7 @@ public class GoThrough : MonoBehaviour
 
             /*-----TT-----*/
 
-            // TT_1 to TT_2
+            //          TT_1 to TT_2
             else if (opName == "TT_1_to_TT_2")
             {
                 StartCoroutine(SceneSwitch("TT_2", "TT_2_to_TT_1"));
@@ -408,7 +467,7 @@ public class GoThrough : MonoBehaviour
                 StartCoroutine(SceneSwitch("TT_1", "TT_1_to_TT_2"));
             }
 
-            // TT_2 to TT_11
+            //          TT_2 to TT_11
             else if (opName == "TT_2_to_TT_11")
             {
                 StartCoroutine(SceneSwitch("TT_11", "TT_11_to_TT_2"));
@@ -418,13 +477,13 @@ public class GoThrough : MonoBehaviour
                 StartCoroutine(SceneSwitch("TT_2", "TT_2_to_TT_11"));
             }
 
-            // TT_2 to TT_13
+            //          TT_2 to TT_13
             else if (opName == "TT_13_to_TT_2")
             {
                 StartCoroutine(SceneSwitch("TT_2", "TT_2_to_TT_13"));
             }            
 
-            // TT_4 to TT_5
+            //          TT_4 to TT_5
             else if (opName == "TT_4_to_TT_5")
             {
                 StartCoroutine(SceneSwitch("TT_5", "TT_5_to_TT_4"));
@@ -434,13 +493,13 @@ public class GoThrough : MonoBehaviour
                 StartCoroutine(SceneSwitch("TT_4", "TT_4_to_TT_5"));
             }
 
-            // TT_5 to TT_8
+            //          TT_5 to TT_8
             else if (opName == "TT_8_to_TT_5")
             {
                 StartCoroutine(SceneSwitch("TT_5", "TT_5_to_TT_8"));
             }
 
-            // TT_6 to TT_6S
+            //          TT_6 to TT_6S
             else if (opName == "TT_6_to_TT_6S")
             {
                 StartCoroutine(SceneSwitch("TT_6S", "TT_6S_to_TT_6"));
@@ -450,7 +509,7 @@ public class GoThrough : MonoBehaviour
                 StartCoroutine(SceneSwitch("TT_6", "TT_6_to_TT_6S"));
             }
 
-            // TT_6 to TT_7
+            //          TT_6 to TT_7
             else if (opName == "TT_6_to_TT_7")
             {
                 StartCoroutine(SceneSwitch("TT_7", "TT_7_to_TT_6"));
@@ -460,7 +519,7 @@ public class GoThrough : MonoBehaviour
                 StartCoroutine(SceneSwitch("TT_6", "TT_6_to_TT_7"));
             }
 
-            // TT_6S to TT_7S
+            //          TT_6S to TT_7S
             else if (opName == "TT_6S_to_TT_7S")
             {
                 StartCoroutine(SceneSwitch("TT_7S", "TT_7S_to_TT_6S"));
@@ -470,7 +529,7 @@ public class GoThrough : MonoBehaviour
                 StartCoroutine(SceneSwitch("TT_6S", "TT_6S_to_TT_7S"));
             }
 
-            // TT_7 to TT_7S
+            //          TT_7 to TT_7S
             else if (opName == "TT_7_to_TT_7S")
             {
                 StartCoroutine(SceneSwitch("TT_7S", "TT_7S_to_TT_7"));
@@ -480,7 +539,7 @@ public class GoThrough : MonoBehaviour
                 StartCoroutine(SceneSwitch("TT_7", "TT_7_to_TT_7S"));
             }
 
-            // TT_8 to TT_9
+            //          TT_8 to TT_9
             else if (opName == "TT_8_to_TT_9")
             {
                 StartCoroutine(SceneSwitch("TT_9", "TT_9_to_TT_8"));
@@ -490,13 +549,13 @@ public class GoThrough : MonoBehaviour
                 StartCoroutine(SceneSwitch("TT_8", "TT_8_to_TT_9"));
             }
 
-            // TT_9 to TT_10
+            //          TT_9 to TT_10
             else if (opName == "TT_9_to_TT_10")
             {
                 StartCoroutine(SceneSwitch("TT_10", "TT_10_to_TT_9"));
             }
 
-            // TT_10 to TT_11
+            //          TT_10 to TT_11
             else if (opName == "TT_10_to_TT_11")
             {
                 StartCoroutine(SceneSwitch("TT_11", "TT_11_to_TT_10"));
@@ -506,7 +565,7 @@ public class GoThrough : MonoBehaviour
                 StartCoroutine(SceneSwitch("TT_10", "TT_10_to_TT_11"));
             }
 
-            // TT_11 to TT_12
+            //          TT_11 to TT_12
             else if (opName == "TT_11_to_TT_12")
             {
                 StartCoroutine(SceneSwitch("TT_12", "TT_12_to_TT_11"));
@@ -516,7 +575,7 @@ public class GoThrough : MonoBehaviour
                 StartCoroutine(SceneSwitch("TT_11", "TT_11_to_TT_12"));
             }
 
-            // TT_15 to TT_16
+            //          TT_15 to TT_16
             else if (opName == "TT_15_to_TT_16")
             {
                 StartCoroutine(SceneSwitch("TT_16", "TT_16_to_TT_15"));
@@ -524,7 +583,7 @@ public class GoThrough : MonoBehaviour
 
             /*-----MB-----*/
 
-            // MB_1 to MB_2
+            //          MB_1 to MB_2
             else if (opName == "MB_1_to_MB_2")
             {
                 StartCoroutine(SceneSwitch("MB_2", "MB_2_to_MB_1"));
@@ -534,7 +593,7 @@ public class GoThrough : MonoBehaviour
                 StartCoroutine(SceneSwitch("MB_1", "MB_1_to_MB_2"));
             }
 
-            // MB_2 to MB_3
+            //          MB_2 to MB_3
             else if (opName == "MB_2_to_MB_3")
             {
                 StartCoroutine(SceneSwitch("MB_3", "MB_3_to_MB_2"));
@@ -544,7 +603,7 @@ public class GoThrough : MonoBehaviour
                 StartCoroutine(SceneSwitch("MB_2", "MB_2_to_MB_3"));
             }
 
-            // MB_3 to MB_3S
+            //          MB_3 to MB_3S
             else if (opName == "MB_3_to_MB_3S")
             {
                 StartCoroutine(SceneSwitch("MB_3S", "MB_3S_to_MB_3"));
@@ -554,7 +613,7 @@ public class GoThrough : MonoBehaviour
                 StartCoroutine(SceneSwitch("MB_3", "MB_3_to_MB_3S"));
             }
 
-            // MB_3 to MB_3S2
+            //          MB_3 to MB_3S2
             else if (opName == "MB_3_to_MB_3S2")
             {
                 StartCoroutine(SceneSwitch("MB_3S2", "MB_3S2_to_MB_3"));
@@ -564,7 +623,7 @@ public class GoThrough : MonoBehaviour
                 StartCoroutine(SceneSwitch("MB_3", "MB_3_to_MB_3S2"));
             }
 
-            // MB_3 to MB_9
+            //          MB_3 to MB_9
             else if (opName == "MB_3_to_MB_9")
             {
                 StartCoroutine(SceneSwitch("MB_9", "MB_9_to_MB_3"));
@@ -574,7 +633,7 @@ public class GoThrough : MonoBehaviour
                 StartCoroutine(SceneSwitch("MB_3", "MB_3_to_MB_9"));
             }
 
-            // MB_3 to MB_10
+            //          MB_3 to MB_10
             else if (opName == "MB_3_to_MB_10")
             {
                 StartCoroutine(SceneSwitch("MB_10", "MB_10_to_MB_3"));
@@ -584,7 +643,7 @@ public class GoThrough : MonoBehaviour
                 StartCoroutine(SceneSwitch("MB_3", "MB_3_to_MB_10"));
             }
 
-            // MB_4 to MB_5
+            //          MB_4 to MB_5
             else if (opName == "MB_4_to_MB_5")
             {
                 StartCoroutine(SceneSwitch("MB_5", "MB_5_to_MB_4"));
@@ -594,7 +653,7 @@ public class GoThrough : MonoBehaviour
                 StartCoroutine(SceneSwitch("MB_4", "MB_4_to_MB_5"));
             }
 
-            // MB_6 to MB_7
+            //          MB_6 to MB_7
             else if (opName == "MB_6_to_MB_7")
             {
                 StartCoroutine(SceneSwitch("MB_7", "MB_7_to_MB_6"));
@@ -604,7 +663,7 @@ public class GoThrough : MonoBehaviour
                 StartCoroutine(SceneSwitch("MB_6", "MB_6_to_MB_7"));
             }
 
-            // MB_8 to MB_9
+            //          MB_8 to MB_9
             else if (opName == "MB_8_to_MB_9")
             {
                 StartCoroutine(SceneSwitch("MB_9", "MB_9_to_MB_8"));
@@ -614,7 +673,7 @@ public class GoThrough : MonoBehaviour
                 StartCoroutine(SceneSwitch("MB_8", "MB_8_to_MB_9"));
             }
 
-            // MB_10 to MB_11
+            //          MB_10 to MB_11
             else if (opName == "MB_10_to_MB_11")
             {
                 StartCoroutine(SceneSwitch("MB_11", "MB_11_to_MB_10"));
@@ -630,7 +689,7 @@ public class GoThrough : MonoBehaviour
 
             /*-----Transition (IT-GP)-----*/
 
-            // IT_2 to GP_1
+            //          IT_2 to GP_1
             else if (opName == "IT_2_to_GP_1")
             {
                 StartCoroutine(SceneSwitch("GP_1", "GP_1_to_IT_2"));
@@ -642,7 +701,7 @@ public class GoThrough : MonoBehaviour
 
             /*-----Transition (SG-TT)-----*/
 
-            // SG_7 to TT_1
+            //          SG_7 to TT_1
             else if (opName == "SG_7_to_TT_1")
             {
                 StartCoroutine(SceneSwitch("TT_1", "TT_1_to_SG_7"));
@@ -654,7 +713,7 @@ public class GoThrough : MonoBehaviour
 
             /*-----Transition (TT-MB)-----*/
 
-            // TT_16 to MB_1
+            //          TT_16 to MB_1
             else if (opName == "TT_16_to_MB_1")
             {
                 StartCoroutine(SceneSwitch("MB_1", "MB_1_to_TT_16"));

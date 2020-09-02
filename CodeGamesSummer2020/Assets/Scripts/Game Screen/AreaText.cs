@@ -41,6 +41,34 @@ public class AreaText : MonoBehaviour
             {
                 text.text = "Service Arm";
             }
+            else if (GlobalControl.area == "IT_3")
+            {
+                text.text = "The Lift From Hell";
+            }
+            else if (GlobalControl.area == "IT_4")
+            {
+                text.text = "Security Breach";
+            }
+            else if (GlobalControl.area == "IT_5")
+            {
+                text.text = "Defense Line";
+            }
+            else if (GlobalControl.area == "IT_6")
+            {
+                text.text = "Research Center";
+            }
+            else if (GlobalControl.area == "IT_7")
+            {
+                text.text = "Lightning Hall";
+            }
+            else if (GlobalControl.area == "IT_8")
+            {
+                text.text = "Roundabout";
+            }
+            else if (GlobalControl.area == "IT_9")
+            {
+                text.text = "Convergence";
+            }
 
             // Dreg Heap
             else if (GlobalControl.area == "DH_1")

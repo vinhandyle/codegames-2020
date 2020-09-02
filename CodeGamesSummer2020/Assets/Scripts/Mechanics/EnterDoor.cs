@@ -27,7 +27,7 @@ public class EnterDoor : MonoBehaviour
         }
 
         locked = false;
-        if (gameObject.name == "Start_to_IT_X")
+        if (gameObject.name == "Start_to_IT_9")
         {
             if (GlobalControl.locked_1)
             {
@@ -132,12 +132,6 @@ public class EnterDoor : MonoBehaviour
 
             // In-Game Doors
 
-            // Birthplace to Origin
-            else if (doorName == "Start_to_IT_X")
-            {
-                StartCoroutine(SceneSwitch("IT_X", "IT_X_to_Start_"));
-            }
-
             // Palace Entrance to The Lift to Heaven
             else if (doorName == "GP_1_to_GP_2")
             {
@@ -227,7 +221,7 @@ public class EnterDoor : MonoBehaviour
                 StartCoroutine(SceneSwitch("TT_4", "TT_4_to_TT_7 (B)"));
             }
 
-            // 
+            // Breakout to Loft
             else if (doorName == "TT_10_to_TT_9")
             {
                 StartCoroutine(SceneSwitch("TT_9", "TT_9_to_TT_10"));
@@ -313,7 +307,27 @@ public class EnterDoor : MonoBehaviour
             // Mysterious Path to The Lift from Hell
             else if (doorName == "DH_7_to_IT_3")
             {
-                StartCoroutine(SceneSwitch("IT_3", "IT_3_to_X"));
+                StartCoroutine(SceneSwitch("IT_3", "IT_3_to_IT_X"));
+                GlobalControl.lift_direction = "up";
+                triggeredOnce = false;
+            }
+
+            // The Lift from Hell to Security Breach
+            else if (doorName == "IT_4_to_IT_3")
+            {
+                StartCoroutine(SceneSwitch("IT_3", "IT_3_to_IT_X"));
+                GlobalControl.lift_direction = "down";
+                triggeredOnce = false;
+            }
+
+            // Origin to Convergence
+            else if (doorName == "Start_to_IT_9")
+            {
+                StartCoroutine(SceneSwitch("IT_9", "IT_9_to_Start_"));
+            }
+            else if (doorName == "IT_9_to_Start")
+            {
+                StartCoroutine(SceneSwitch("Start_", "Start_to_IT_9"));
             }
 
             inRange = false;
@@ -325,7 +339,7 @@ public class EnterDoor : MonoBehaviour
         { // The Lift to Heaven
             StartCoroutine(waitThenExecute(2f, SceneSwitch("GP_0A", "GP_0A_to_GP_2")));
         }
-        if (doorName == "GP_0A_to_GP_2")
+        else if (doorName == "GP_0A_to_GP_2")
         { // Audience Chamber (First)
             if (GlobalControl.counter_1 == 3 || GlobalControl.counter_1 == 4)
             {
@@ -336,6 +350,13 @@ public class EnterDoor : MonoBehaviour
                 }
                 GlobalControl.energyCurr = 0;
             }
+        }
+        else if (doorName == "IT_3_to_IT_X" && !triggeredOnce)
+        { // The Lift to Heaven
+            if(GlobalControl.lift_direction == "up")
+                StartCoroutine(waitThenExecute(2f, SceneSwitch("IT_4", "IT_4_to_IT_3")));
+            else
+                StartCoroutine(waitThenExecute(2f, SceneSwitch("DH_7", "DH_7_to_IT_3")));
         }
     }
 

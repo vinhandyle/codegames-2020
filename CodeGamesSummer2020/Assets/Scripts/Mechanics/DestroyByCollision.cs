@@ -32,7 +32,7 @@ public class DestroyByCollision : MonoBehaviour
             {
                 GlobalControl.secret_unstable = false;
                 other.gameObject.SetActive(false);
-            }
+            }            
             else if (other.gameObject.name == "Block_DH_4")
             {
                 GlobalControl.block_DH_4 = false;
@@ -62,6 +62,11 @@ public class DestroyByCollision : MonoBehaviour
             else if (other.gameObject.name == "Secret_MB_3")
             {
                 GlobalControl.secret_MB_3 = false;
+                other.gameObject.SetActive(false);
+            }
+            else if (other.gameObject.name == "Block_IT_4")
+            {
+                GlobalControl.block_IT_4 = false;
                 other.gameObject.SetActive(false);
             }
         }

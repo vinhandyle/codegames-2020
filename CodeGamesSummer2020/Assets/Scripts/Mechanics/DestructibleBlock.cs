@@ -11,7 +11,7 @@ public class DestructibleBlock : MonoBehaviour
     {
         // Retain state on scene load
         if ((gameObject.name == "Block_Starter" && !GlobalControl.block_starter) ||
-            (gameObject.name == "Secret_Unstable" && !GlobalControl.secret_unstable) ||
+            (gameObject.name == "Secret_Unstable" && !GlobalControl.secret_unstable) ||           
             (gameObject.name == "Block_DH_4" && !GlobalControl.block_DH_4) ||
             (gameObject.name == "Block_DH_5" && GlobalControl.counter_1 < 6) ||
             (gameObject.name == "Block_DH_5S" && !GlobalControl.secret_DH_5) ||
@@ -29,7 +29,9 @@ public class DestructibleBlock : MonoBehaviour
             (gameObject.name == "Block_TT_11" && !GlobalControl.block_TT_11) ||
             (gameObject.name == "Block_TT_12" && !GlobalControl.block_TT_12) ||
             (gameObject.name == "Block_TT_14S" && !GlobalControl.block_TT_14S) ||
-            (gameObject.name == "Secret_MB_3" && !GlobalControl.secret_MB_3))
+            (gameObject.name == "Secret_MB_3" && !GlobalControl.secret_MB_3) ||
+            (gameObject.name == "Block_IT_4" && !GlobalControl.block_IT_4) ||
+            (gameObject.name == "Block_IT_4 (1)" && !GlobalControl.block_IT_4_))
         {
             gameObject.SetActive(false);
         }
@@ -42,7 +44,7 @@ public class DestructibleBlock : MonoBehaviour
         {
             gameObject.SetActive(false);
             GlobalControl.block_starter = false;
-        }
+        }        
         else if (gameObject.name == "Block_SG_11" && !GlobalControl.block_SG_11)
         {
             gameObject.SetActive(false);
@@ -68,6 +70,10 @@ public class DestructibleBlock : MonoBehaviour
         {
             gameObject.SetActive(false);
             GlobalControl.block_TT_12 = false;
+        }
+        else if (gameObject.name == "Block_IT_4 (1)" && !GlobalControl.block_IT_4_)
+        {
+            gameObject.SetActive(false);
         }
         else if (gameObject.name == "Block_GP_1" && GlobalControl.doubleUnlocked)
         {

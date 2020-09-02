@@ -256,7 +256,7 @@ MonoBehaviour:
   - 4.1
   w:
   - 1.6
-  - 13.5
+  - 11
   h:
   - 0.8
   - 0.8
@@ -5642,12 +5642,12 @@ PrefabInstance:
     - target: {fileID: 9125056893500410215, guid: 59361cdf87cff484ab19416deb22c5be,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.15
+      value: -0.94
       objectReference: {fileID: 0}
     - target: {fileID: 9125056893500410215, guid: 59361cdf87cff484ab19416deb22c5be,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.51
+      value: 3.41
       objectReference: {fileID: 0}
     - target: {fileID: 9125056893500410215, guid: 59361cdf87cff484ab19416deb22c5be,
         type: 3}
@@ -5751,6 +5751,7 @@ MonoBehaviour:
   defense: 0
   damage: 0
   hazard: 1
+  passive: 0
   animated: 0
   attachedTo: 
   sprites: []
@@ -5759,14 +5760,17 @@ MonoBehaviour:
   range: 0
   range_1: 0
   range_2: 0
+  range_3: 0
   speed: 0
   speed_1: 0
   refDifference: {x: 0, y: 0, z: 0}
   refDistance: 0
   refDirection: {x: 0, y: 0}
   time: 0
+  time_1: 0
   deAggroTime: 0
   hold_time: 0
+  hold_time_1: 0
   bulletSpeed: []
   baseUseTime: 0
   useTime: 0
@@ -5791,6 +5795,10 @@ MonoBehaviour:
   refState3d_6: 
   refState3e_6: 1
   refState3f_6: 0
+  refState3_7: under
+  refState3a_7: 0
+  refState3b_7: 
+  refState3c_7: 
 --- !u!61 &1392455152
 BoxCollider2D:
   m_ObjectHideFlags: 0

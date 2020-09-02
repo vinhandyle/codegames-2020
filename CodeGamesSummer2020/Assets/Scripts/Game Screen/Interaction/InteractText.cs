@@ -169,6 +169,42 @@ public class InteractText : MonoBehaviour
                         GlobalControl.scrapNum--;
                     }
 
+                    /*-----NPC dialogue-----*/
+
+                    // Azimuth
+                    if (type == "Azimuth_0")
+                    {
+                        text.text = "<i>Purpose fulfilled. Leave pending.</i>";
+                    }
+                    else if (type == "Azimuth_1")
+                    {
+                        text.text = "<i>Fatigue levels slowly dropping.</i>";
+                    }
+                    else if (type == "Azimuth_2")
+                    {
+                        text.text = "<i>Processing incoming reports.</i>";
+                    }
+                    else if (type == "Azimuth_3")
+                    {
+                        text.text = "<i>Updating task list.</i>";
+                    }
+                    else if (type == "Azimuth_4")
+                    {
+                        text.text = "<i>The area past here is dangerous. Avoid at all cost.</i>";
+                    }
+                    else if (type == "Azimuth_5")
+                    {
+                        text.text = "<i>Access Key no longer in possession...</i>";
+                    }
+                    else if (type == "Azimuth_6")
+                    {
+                        text.text = "<i>The pod will begin moving after receiving some ignition energy.</i>";
+                    }
+                    else if (type == "Azimuth_7")
+                    {
+                        text.text = "<i>The last trip has been made.</i>";
+                    }
+
                     // Group
 
                     /*-----Items that can be examined-----*/
@@ -246,49 +282,12 @@ public class InteractText : MonoBehaviour
 
                     /*-----NPC dialogue-----*/
 
-                    // Azimuth
-                    else if (type.Substring(0, 7) == "Azimuth")
-                    {
-                        if (type == "Azimuth_0")
-                        {
-                            text.text = "<i>Purpose fulfilled.</i>";
-                        }
-                        else if (type == "Azimuth_1")
-                        {
-                            text.text = "<i>Recreation is essential.</i>";
-                        }
-                        else if (type == "Azimuth_2")
-                        {
-                            text.text = "<i>Increased security above.</i>";
-                        }
-                        else if (type == "Azimuth_3")
-                        {
-                            text.text = "<i>Glory to Imperalis!</i>";
-                        }
-                        else if (type == "Azimuth_4")
-                        {
-                            text.text = "<i>There is no longer a need for the area ahead.</i>";
-                        }
-                        else if (type == "Azimuth_5")
-                        {
-                            text.text = "<i>Access Key no longer in possession...</i>";
-                        }
-                        else if (type == "Azimuth_6")
-                        {
-                            text.text = "<i>The pod will begin moving after receiving some ignition energy.</i>";
-                        }
-                        else if (type == "Azimuth_7")
-                        {
-                            text.text = "<i><b>It</b> has arrived.</i>";
-                        }
-                    }
-
                     // Errat
                     else if (GlobalControl.counter_1 != 5)
                     {
                         if (type == "Errat_0")
                         {
-                            text.text = "A Machina! What are you doing down here?";
+                            text.text = "How did a Machina get down here?";
                         }
                         else if (type == "Errat_1")
                         {
@@ -296,15 +295,15 @@ public class InteractText : MonoBehaviour
                         }
                         else if (type == "Errat_2")
                         {
-                            text.text = "The passageway here is blocked by rocks.";
+                            text.text = "The passageway here caved in.";
                         }
                         else if (type == "Errat_3")
                         {
-                            text.text = "We are the last humans. Please help us end this nightmare.";
+                            text.text = "We need to free the others. Those fools...";
                         }
                         else if (type == "Errat_4")
                         {
-                            text.text = "It's been so long since I've seen the sky...";
+                            text.text = "To \"save\" us, they want to take our freedom. <b>Never.</b>";
                         }
                         else if (type == "Errat_5")
                         {

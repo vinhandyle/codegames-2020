@@ -1860,12 +1860,12 @@ PrefabInstance:
     - target: {fileID: 9125056893500410215, guid: 59361cdf87cff484ab19416deb22c5be,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 3.55
+      value: -3.92
       objectReference: {fileID: 0}
     - target: {fileID: 9125056893500410215, guid: 59361cdf87cff484ab19416deb22c5be,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 3.87
+      value: -0.12
       objectReference: {fileID: 0}
     - target: {fileID: 9125056893500410215, guid: 59361cdf87cff484ab19416deb22c5be,
         type: 3}
@@ -3177,7 +3177,7 @@ MonoBehaviour:
   - -2.991
   w:
   - 1.6
-  - 12.7
+  - 13.5
   h:
   - 0.8
   - 1
@@ -7199,13 +7199,13 @@ MonoBehaviour:
   - -3.565
   y:
   - 0.42
-  - 1.095
+  - 0.78
   w:
   - 1.6
-  - 4.8
+  - 4.6
   h:
   - 0.8
-  - 3.7
+  - 2.3
 --- !u!212 &1415670256
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -9562,7 +9562,7 @@ MonoBehaviour:
   - 4.013
   w:
   - 1.6
-  - 12.8
+  - 10
   h:
   - 0.8
   - 0.8

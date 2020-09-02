@@ -223,8 +223,8 @@ public class Obstacles : MonoBehaviour
             }
             else if (gameObject.name.Substring(6, 2) == "_3")
             { // Tier 3: IT (2nd), Grey Palace
-                //healthMax = ;
-                //damage = ;
+                healthMax = 16;
+                damage = 3;
             }
         }
 
@@ -238,8 +238,8 @@ public class Obstacles : MonoBehaviour
             }
             else if (gameObject.name.Substring(7, 2) == "_2")
             { // Tier 2: Grey Palace
-                //healthMax = ;
-                //damage = ;
+                healthMax = 12;
+                damage = 5;
             }
         }
 
@@ -253,8 +253,8 @@ public class Obstacles : MonoBehaviour
             }
             else if (gameObject.name.Substring(6, 2) == "_2")
             { // Tier 2: Grey Palace
-                //healthMax = ;
-                //damage = ;
+                healthMax = 12;
+                damage = 3;
             }
         }
 
@@ -268,8 +268,8 @@ public class Obstacles : MonoBehaviour
             }
             else if (gameObject.name.Substring(7, 2) == "_2")
             { // Tier 2: Grey Palace
-                //healthMax = ;
-                //damage = ;
+                healthMax = 20;
+                damage = 4;
             }
         }
 
@@ -278,13 +278,13 @@ public class Obstacles : MonoBehaviour
         {
             if (gameObject.name.Substring(6, 2) == "_1")
             { // Tier 1: IT (2nd)
-                //healthMax = ;
-                //damage = ;
+                healthMax = 20;
+                damage = 3;
             }
             else if (gameObject.name.Substring(6, 2) == "_2")
             { // Tier 2: Grey Palace
-                //healthMax = ;
-                //damage =;
+                healthMax = 30;
+                damage = 5;
             }
         }
 
@@ -2829,6 +2829,7 @@ public class Obstacles : MonoBehaviour
         // Effects
         if (other.name == "Player" && gameObject.name.Substring(0, 5) == "Water")
         {
+            Debug.Log(0);
             if (Mathf.Abs(Player.rb2D.velocity.x) > 0.5f * Player.moveBy)
             {
                 Player.rb2D.velocity /= new Vector2(1.05f, 1f);
@@ -2843,7 +2844,7 @@ public class Obstacles : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D other)
     {
-
+        
     }
 
     void fireBullet(Vector2 direction, float rotation2, float speed)

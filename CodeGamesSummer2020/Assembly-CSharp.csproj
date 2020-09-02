@@ -102,6 +102,7 @@
     <Compile Include="Assets\Scripts\Mechanics\EnterDoor.cs" />
     <Compile Include="Assets\Scripts\Mechanics\GlobalControl.cs" />
     <Compile Include="Assets\Scripts\Mechanics\GoThrough.cs" />
+    <Compile Include="Assets\Scripts\Mechanics\Lift.cs" />
     <Compile Include="Assets\Scripts\Mechanics\ObjectPooler.cs" />
     <Compile Include="Assets\Scripts\Mechanics\Obstacles.cs" />
     <Compile Include="Assets\Scripts\Mechanics\Platform.cs" />

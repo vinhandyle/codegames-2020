@@ -390,7 +390,7 @@ MonoBehaviour:
   attachedTo: Azimuth_3
   x:
   - -2.292
-  - -2.26
+  - -2.32
   y:
   - 0.033
   - 0.05
@@ -1396,16 +1396,16 @@ MonoBehaviour:
   attachedTo: Azimuth_0
   x:
   - 3.933
-  - 3.933
+  - 3.908
   y:
   - -1.887
-  - -1.743
+  - -1.387
   w:
   - 1.9
   - 3
   h:
   - 1
-  - 1.5
+  - 3.1
 --- !u!212 &320556788
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1500,12 +1500,12 @@ PrefabInstance:
     - target: {fileID: 9125056893500410215, guid: 59361cdf87cff484ab19416deb22c5be,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.29
+      value: 3.52
       objectReference: {fileID: 0}
     - target: {fileID: 9125056893500410215, guid: 59361cdf87cff484ab19416deb22c5be,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 3.83
+      value: -2.17
       objectReference: {fileID: 0}
     - target: {fileID: 9125056893500410215, guid: 59361cdf87cff484ab19416deb22c5be,
         type: 3}
@@ -3025,13 +3025,13 @@ MonoBehaviour:
   - -0.276
   y:
   - 3.672
-  - 3.84
+  - 3.672
   w:
   - 1.9
-  - 6
+  - 9
   h:
   - 1
-  - 1.5
+  - 1
 --- !u!212 &675631383
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -7315,7 +7315,7 @@ PrefabInstance:
     - target: {fileID: 1997826788388483855, guid: d966efcdb7844874cb71a4395eb3bb5a,
         type: 3}
       propertyPath: m_SizeDelta.x
-      value: 160
+      value: 200
       objectReference: {fileID: 0}
     - target: {fileID: 1997826788388483855, guid: d966efcdb7844874cb71a4395eb3bb5a,
         type: 3}
@@ -8561,17 +8561,17 @@ PrefabInstance:
     - target: {fileID: 1997826788388483855, guid: d966efcdb7844874cb71a4395eb3bb5a,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -67.1
+      value: -46.2
       objectReference: {fileID: 0}
     - target: {fileID: 1997826788388483855, guid: d966efcdb7844874cb71a4395eb3bb5a,
         type: 3}
       propertyPath: m_SizeDelta.x
-      value: 100
+      value: 80
       objectReference: {fileID: 0}
     - target: {fileID: 1997826788388483855, guid: d966efcdb7844874cb71a4395eb3bb5a,
         type: 3}
       propertyPath: m_SizeDelta.y
-      value: 60
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 1997826788388483855, guid: d966efcdb7844874cb71a4395eb3bb5a,
         type: 3}
@@ -8792,13 +8792,13 @@ MonoBehaviour:
   - 3.111
   y:
   - -0.383
-  - -0.255
+  - -0.07
   w:
   - 1.9
   - 4.2
   h:
   - 1
-  - 1.5
+  - 2.3
 --- !u!212 &2024023841
 SpriteRenderer:
   m_ObjectHideFlags: 0
