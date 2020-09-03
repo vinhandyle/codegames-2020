@@ -31,7 +31,9 @@ public class DestructibleBlock : MonoBehaviour
             (gameObject.name == "Block_TT_14S" && !GlobalControl.block_TT_14S) ||
             (gameObject.name == "Secret_MB_3" && !GlobalControl.secret_MB_3) ||
             (gameObject.name == "Block_IT_4" && !GlobalControl.block_IT_4) ||
-            (gameObject.name == "Block_IT_4 (1)" && !GlobalControl.block_IT_4_))
+            (gameObject.name == "Block_IT_4 (1)" && !GlobalControl.block_IT_4_) ||
+            (gameObject.name == "Block_IT_6" && !GlobalControl.block_IT_6) ||
+            (gameObject.name == "Block_IT_9" && !GlobalControl.block_IT_9))
         {
             gameObject.SetActive(false);
         }
@@ -72,6 +74,14 @@ public class DestructibleBlock : MonoBehaviour
             GlobalControl.block_TT_12 = false;
         }
         else if (gameObject.name == "Block_IT_4 (1)" && !GlobalControl.block_IT_4_)
+        {
+            gameObject.SetActive(false);
+        }
+        else if (gameObject.name == "Block_IT_6" && !GlobalControl.block_IT_6)
+        {
+            gameObject.SetActive(false);
+        }
+        else if (gameObject.name == "Block_IT_9" && !GlobalControl.block_IT_9)
         {
             gameObject.SetActive(false);
         }

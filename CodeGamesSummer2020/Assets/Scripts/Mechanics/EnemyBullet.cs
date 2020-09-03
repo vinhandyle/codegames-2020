@@ -49,7 +49,7 @@ public class EnemyBullet : MonoBehaviour
             }
         }
         else if (GlobalControl.area.Substring(0, 2) == "MB")
-        {          
+        {
             if (GlobalControl.area == "MB_12")
             {
                 if (gameObject.name.Substring(0, 13) == "Crystal Frag ")
@@ -82,7 +82,7 @@ public class EnemyBullet : MonoBehaviour
             {
                 damage = 2;
             }
-        }
+        }       
     }
 
     // Update is called once per frame
@@ -228,7 +228,20 @@ public class EnemyBullet : MonoBehaviour
                     gameObject.SetActive(false);
                 }
             }
-
+            else if (GlobalControl.area.Substring(0, 2) == "MB" && GlobalControl.area != "MB_12")
+            {
+                if (gameObject.name.Substring(0, 14) == "Small E_Bullet")
+                {
+                    gameObject.SetActive(false);
+                }
+            }
+            else if (GlobalControl.area.Substring(0, 2) == "IT")
+            {
+                if (gameObject.name.Substring(0, 14) == "Small E_Bullet")
+                {
+                    gameObject.SetActive(false);
+                }
+            }
         }
 
         // On hit any terrain
@@ -239,16 +252,21 @@ public class EnemyBullet : MonoBehaviour
                 if (gameObject.name.Substring(0, 13) == "Tiny E_Bullet")
                 {
                     gameObject.SetActive(false);
-                }
-
-                if (GlobalControl.area.Substring(0, 2) == "MB" && GlobalControl.area != "MB_12")
+                }                
+            }
+            else if (GlobalControl.area.Substring(0, 2) == "MB" && GlobalControl.area != "MB_12")
+            {
+                if (gameObject.name.Substring(0, 14) == "Small E_Bullet")
                 {
-                    if (gameObject.name.Substring(0, 13) == "Small E_Bullet")
-                    {
-                        gameObject.SetActive(false);
-                    }
+                    gameObject.SetActive(false);
                 }
-
+            }
+            else if (GlobalControl.area.Substring(0, 2) == "IT")
+            {
+                if (gameObject.name.Substring(0, 14) == "Small E_Bullet")
+                {
+                    gameObject.SetActive(false);
+                }
             }
         }         
     }

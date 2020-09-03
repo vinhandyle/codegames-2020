@@ -90,7 +90,7 @@ public class GlobalControl : MonoBehaviour
     public static int update = 0;                  // Update stats when power-up obtained
     public static bool switched = false;           // Used to set position on scene switch
 
-    public static string area = "";                // Area name for scene change purposes
+    public static string area = "IT_4";                // Area name for scene change purposes
     public static string prevArea = "";            // Name of previous area
     public static string checkpoint = "";          // Area name of last repair station used
 
@@ -148,6 +148,8 @@ public class GlobalControl : MonoBehaviour
     public static string state_MB_8 = "active";
     public static string state_MB_11 = "active";
     public static string state_IT_4 = "active";
+    public static string state_IT_6 = "active";
+    public static string state_IT_9 = "active";
 
     // Destructibles
     public static bool block_starter = true;
@@ -174,6 +176,8 @@ public class GlobalControl : MonoBehaviour
 
     public static bool block_IT_4 = true;
     public static bool block_IT_4_ = true;
+    public static bool block_IT_6 = true;
+    public static bool block_IT_9 = true;
 
     public static bool block_GP_1 = true;
 
@@ -341,7 +345,7 @@ public class GlobalControl : MonoBehaviour
         if (reactor == "basic")
         {
             energyUse = 1;
-            damage = 50 + bossDowned;
+            damage = 1 + bossDowned;
         }
         else if (reactor == "imperial")
         {
@@ -455,6 +459,8 @@ public class GlobalControl : MonoBehaviour
 
         block_IT_4 = true;
         block_IT_4_ = true;
+        block_IT_6 = true;
+        block_IT_9 = true;
 
         block_GP_1 = true;
 
@@ -470,10 +476,15 @@ public class GlobalControl : MonoBehaviour
         state_MB_8 = "active";
         state_MB_11 = "active";
         state_IT_4 = "active";
+        state_IT_6 = "active";
+        state_IT_9 = "active";
 
         // Vac Pod
         pod_location = "main";
         pod_direction = "right";
+
+        // Lift
+        lift_direction = "up";
     }
 
     public static void respawnAll()

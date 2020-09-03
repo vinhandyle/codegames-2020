@@ -7,7 +7,7 @@ public class Scope : MonoBehaviour
     // Components
     public SpriteRenderer sprite;
     public Animator anim;
-
+    public List<Sprite> sprites;
     // Remember to freeze y coord for rigid bodies
     public string attachedTo;
     public static string sticky;
@@ -67,6 +67,31 @@ public class Scope : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (transform.parent.name.Substring(0, 6) == "Turret")
+        {
+            if (gameObject.name == "Detect_Player")
+            {
+                transform.rotation = Quaternion.Euler(0.0f, 0.0f, 0.0f);
+                transform.position = new Vector3(x, y);
+            }
+            else if (gameObject.name == "Detect_Player (1)")
+            {
+                if (Obstacles.refState2_4)
+                    sprite.sprite = sprites[0];
+                else
+                    sprite.sprite = sprites[1];
+            }
+            else if (gameObject.name == "Face_Player")
+            {
+                Vector3 difference = (Vector3)Player.rb2D.position - new Vector3(transform.position.x, transform.position.y, transform.position.z);
+                float distance = difference.magnitude;
+                Vector2 direction = difference / distance;
+                direction.Normalize();
+                transform.rotation = Quaternion.Euler(0.0f, 0.0f, Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg);
+                Obstacles.refState2a_4 = transform.localEulerAngles.z;
+            }
+        }       
+
         // Overseer Machina
         if (GlobalControl.area == "SG_12")
         {
@@ -324,6 +349,11 @@ public class Scope : MonoBehaviour
                 else if (gameObject.name == "Detect_Player" && transform.parent.name.Substring(0, 7) == "Aquatic")
                 {
                     Obstacles.refState2_3 = "in";
+                    signal = transform.parent.name;
+                }
+                if (gameObject.name == "Detect_Player (1)" && transform.parent.name.Substring(0, 6) == "Turret")
+                {
+                    Obstacles.refState2_4 = true;
                     signal = transform.parent.name;
                 }
                 else if (gameObject.name == "Detect_Player" && transform.parent.name == "Containment")
@@ -592,6 +622,11 @@ public class Scope : MonoBehaviour
                 else if (gameObject.name == "Detect_Player" && transform.parent.name.Substring(0, 7) == "Aquatic")
                 {
                     Obstacles.refState2_3 = "out";
+                    signal = transform.parent.name;
+                }
+                if (gameObject.name == "Detect_Player" && transform.parent.name.Substring(0, 6) == "Turret")
+                {
+                    Obstacles.refState2_4 = false;
                     signal = transform.parent.name;
                 }
                 else if (gameObject.name == "Detect_Player" && transform.parent.name == "Containment")

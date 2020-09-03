@@ -19,6 +19,7 @@ public class Obstacles : MonoBehaviour
     // Starting Position
     public float x;
     public float y;
+    public float deg;
 
     // Movement
     public float range;     // Range centered, equal sides
@@ -74,6 +75,14 @@ public class Obstacles : MonoBehaviour
     /* Aquatic */
     public static string refState2_3;           // Is player in range?
     public bool refState3_3 = false;            // Risen above water?
+
+    /* Turret */
+    public static bool refState2_4;             // Is player in sight?
+    public static float refState2a_4;           // Self-to-player angle
+    public Vector3 refState3_4;                 // Fixed shooting direction
+    public float refState3a_4;                  // Center angle
+    public float refState3b_4;                  // Pivot x
+    public float refState3c_4;                  // Pivot y
 
     /* Overseer */
     public static string refState_5;            // Scorched Earth attack phase
@@ -192,6 +201,18 @@ public class Obstacles : MonoBehaviour
         // Set starting position
         x = transform.position.x;
         y = transform.position.y;
+
+        // Set rotation pivot
+        deg = transform.rotation.z * Mathf.Rad2Deg;
+
+        if (gameObject.name.Substring(0, 6) == "Turret")
+        {            
+            deg = refState3a_4;
+            transform.rotation = Quaternion.Euler(0.0f, 0.0f, deg);
+        }
+
+        refState3b_4 = x - GetComponent<BoxCollider2D>().size.x * Mathf.Cos(deg * Mathf.Deg2Rad);
+        refState3c_4 = y - GetComponent<BoxCollider2D>().size.y * Mathf.Sin(deg * Mathf.Deg2Rad);
 
         // If asymmetrical range is not set, set symmetrical range
         if (range_1 + range_2 == 0)
@@ -1271,7 +1292,70 @@ public class Obstacles : MonoBehaviour
         /*-----Turret Machina-----*/
         else if (gameObject.name.Substring(0, 6) == "Turret")
         {
-            // Insert AI here
+            Vector3 difference;
+            float rotationZ;
+            //Debug.Log(transform.rotation.z * Mathf.Rad2Deg);
+
+
+            // Fixed shot
+            if (aiState == "preset")
+            {
+                GetComponent<SpriteRenderer>().sprite = sprites[1];
+                refState2_4 = true;
+
+                if (canShoot)
+                {
+                    difference = (refState3_4 - new Vector3(transform.position.x, transform.position.y, transform.position.z));
+                    rotationZ = Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg;
+                    transform.rotation = Quaternion.Euler(0.0f, 0.0f, rotationZ);
+
+                    float distance = difference.magnitude;
+                    Vector2 direction = difference / distance;
+                    direction.Normalize();
+                    fireBullet(direction, rotationZ, bulletSpeed[0]);
+                    StartCoroutine(cooldown());
+                }
+            }
+            // Target shot
+            else if (refState2_4)
+            {
+                GetComponent<SpriteRenderer>().sprite = sprites[1]; 
+
+                difference = (Vector3)Player.rb2D.position - new Vector3(transform.position.x, transform.position.y, transform.position.z);
+                rotationZ = Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg;
+                if (transform.localEulerAngles.z - refState2a_4 < 0)
+                    transform.RotateAround(new Vector3(refState3b_4, refState3c_4), new Vector3(0, 0, 1), speed);
+                else if (transform.localEulerAngles.z - refState2a_4 > 0)
+                    transform.RotateAround(new Vector3(refState3b_4, refState3c_4), new Vector3(0, 0, 1), -speed);
+                Debug.Log(transform.localEulerAngles.z + " " + refState2a_4);
+
+                if (canShoot)
+                {                   
+                    float distance = difference.magnitude;
+                    Vector2 direction = difference / distance;
+                    direction.Normalize();
+                    fireBullet(direction, rotationZ, bulletSpeed[0]);
+                    StartCoroutine(cooldown());
+                }
+            }
+            // Passive
+            else
+            {
+                GetComponent<SpriteRenderer>().sprite = sprites[0];
+
+                if (pathState == "forth")
+                {
+                    transform.RotateAround(new Vector3(refState3b_4, refState3c_4), new Vector3(0, 0, 1), speed);
+                    if (transform.rotation == Quaternion.Euler(0.0f, 0.0f, deg + range_1))
+                        pathState = "back";
+                }
+                else if (pathState == "back")
+                {
+                    transform.RotateAround(new Vector3(refState3b_4, refState3c_4), new Vector3(0, 0, 1), -speed);
+                    if (transform.rotation == Quaternion.Euler(0.0f, 0.0f, deg - range_2))
+                        pathState = "forth";
+                }               
+            }
         }
 
         /*----------Hazard AI----------*/
@@ -2853,7 +2937,7 @@ public class Obstacles : MonoBehaviour
         GameObject bullet = null;
 
         // Single bullet type
-        if (gameObject.name.Substring(0, 6) == "Aerial" || gameObject.name.Substring(0, 7) == "Aquatic" || gameObject.name == "Containment")
+        if (gameObject.name.Substring(0, 6) == "Aerial" || gameObject.name.Substring(0, 7) == "Aquatic" || gameObject.name.Substring(0, 6) == "Turret" || gameObject.name == "Containment")
         {
             bullet = EnemyObjectPooler.SharedInstance.GetPooledObject();
         }
@@ -2901,6 +2985,10 @@ public class Obstacles : MonoBehaviour
                 {
                     bullet.transform.position = new Vector3(transform.position.x + GetComponent<BoxCollider2D>().size.x * 2, transform.position.y, transform.position.z);
                 }
+            }
+            else if(gameObject.name.Substring(0, 6) == "Turret")
+            {
+                bullet.transform.position = new Vector3(transform.position.x + GetComponent<BoxCollider2D>().size.x / 2 * Mathf.Cos(rotation2 * Mathf.Deg2Rad), transform.position.y + GetComponent<BoxCollider2D>().size.y / 2 * Mathf.Sin(rotation2 * Mathf.Deg2Rad), transform.position.z + 1);
             }
             else if (gameObject.name == "Overseer")
             {

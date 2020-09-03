@@ -11,11 +11,9 @@
 -Kin Harvest
 	
 -Other
-	>Update in-game menu for lore	
 	>Revamp diagram with connecter with label
 	>More items to examine	
 	>Add diagrams to boss atks instead of long descs
-	>Change errat + azimuth dialogue (proj ex is not a secret)
 	>Edit ending 1 (remove countdown)
 
 -Ideas
@@ -24,4 +22,3 @@
 	>GP gravity switch
 	>Custom proj for bosses
 	>Two maps (area map + world map)
-	>Water increases gravity
