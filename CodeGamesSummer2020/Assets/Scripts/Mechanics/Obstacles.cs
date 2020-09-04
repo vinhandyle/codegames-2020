@@ -79,7 +79,6 @@ public class Obstacles : MonoBehaviour
     /* Turret */
     public static bool refState2_4;             // Is player in sight?
     public static float refState2a_4;           // Self-to-player angle
-    public Vector3 refState3_4;                 // Fixed shooting direction
     public float refState3a_4;                  // Center angle
     public float refState3b_4;                  // Pivot x
     public float refState3c_4;                  // Pivot y
@@ -211,7 +210,7 @@ public class Obstacles : MonoBehaviour
             transform.rotation = Quaternion.Euler(0.0f, 0.0f, deg);
         }
 
-        refState3b_4 = x - GetComponent<BoxCollider2D>().size.x * Mathf.Cos(deg * Mathf.Deg2Rad);
+        refState3b_4 = x - GetComponent<BoxCollider2D>().size.x * Mathf.Cos(deg * Mathf.Deg2Rad) / 2;
         refState3c_4 = y - GetComponent<BoxCollider2D>().size.y * Mathf.Sin(deg * Mathf.Deg2Rad);
 
         // If asymmetrical range is not set, set symmetrical range
@@ -1294,8 +1293,6 @@ public class Obstacles : MonoBehaviour
         {
             Vector3 difference;
             float rotationZ;
-            //Debug.Log(transform.rotation.z * Mathf.Rad2Deg);
-
 
             // Fixed shot
             if (aiState == "preset")
@@ -1305,14 +1302,9 @@ public class Obstacles : MonoBehaviour
 
                 if (canShoot)
                 {
-                    difference = (refState3_4 - new Vector3(transform.position.x, transform.position.y, transform.position.z));
-                    rotationZ = Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg;
-                    transform.rotation = Quaternion.Euler(0.0f, 0.0f, rotationZ);
+                    rotationZ = deg;
 
-                    float distance = difference.magnitude;
-                    Vector2 direction = difference / distance;
-                    direction.Normalize();
-                    fireBullet(direction, rotationZ, bulletSpeed[0]);
+                    fireBullet(new Vector2(Mathf.Cos(deg * Mathf.Deg2Rad), Mathf.Sin(deg * Mathf.Deg2Rad)), rotationZ, bulletSpeed[0]);
                     StartCoroutine(cooldown());
                 }
             }
@@ -1323,12 +1315,15 @@ public class Obstacles : MonoBehaviour
 
                 difference = (Vector3)Player.rb2D.position - new Vector3(transform.position.x, transform.position.y, transform.position.z);
                 rotationZ = Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg;
-                if (transform.localEulerAngles.z - refState2a_4 < 0)
-                    transform.RotateAround(new Vector3(refState3b_4, refState3c_4), new Vector3(0, 0, 1), speed);
-                else if (transform.localEulerAngles.z - refState2a_4 > 0)
-                    transform.RotateAround(new Vector3(refState3b_4, refState3c_4), new Vector3(0, 0, 1), -speed);
-                Debug.Log(transform.localEulerAngles.z + " " + refState2a_4);
 
+                if (aiState != "preset")
+                {
+                    if (transform.localEulerAngles.z > refState2a_4)
+                        transform.RotateAround(new Vector3(refState3b_4, refState3c_4), new Vector3(0, 0, 1), speed * 2);
+                    else if (transform.localEulerAngles.z < refState2a_4)
+                        transform.RotateAround(new Vector3(refState3b_4, refState3c_4), new Vector3(0, 0, 1), -speed * 2);
+                }
+                
                 if (canShoot)
                 {                   
                     float distance = difference.magnitude;
@@ -1342,17 +1337,24 @@ public class Obstacles : MonoBehaviour
             else
             {
                 GetComponent<SpriteRenderer>().sprite = sprites[0];
+                float localCenter = deg;
+
+                if (localCenter <= 0)
+                    localCenter = 360 + deg;
 
                 if (pathState == "forth")
                 {
+                    if (localCenter + range_1 > 360)
+                        localCenter -= 360;
+
                     transform.RotateAround(new Vector3(refState3b_4, refState3c_4), new Vector3(0, 0, 1), speed);
-                    if (transform.rotation == Quaternion.Euler(0.0f, 0.0f, deg + range_1))
+                    if (transform.localEulerAngles.z > localCenter + range_1 && ((transform.localEulerAngles.z + localCenter + range_1 > 360 || transform.localEulerAngles.z + localCenter + range_1 < 180) || (transform.localEulerAngles.z > 180 &&)))
                         pathState = "back";
                 }
                 else if (pathState == "back")
                 {
                     transform.RotateAround(new Vector3(refState3b_4, refState3c_4), new Vector3(0, 0, 1), -speed);
-                    if (transform.rotation == Quaternion.Euler(0.0f, 0.0f, deg - range_2))
+                    if (transform.localEulerAngles.z < localCenter - range_2)
                         pathState = "forth";
                 }               
             }
@@ -2988,7 +2990,7 @@ public class Obstacles : MonoBehaviour
             }
             else if(gameObject.name.Substring(0, 6) == "Turret")
             {
-                bullet.transform.position = new Vector3(transform.position.x + GetComponent<BoxCollider2D>().size.x / 2 * Mathf.Cos(rotation2 * Mathf.Deg2Rad), transform.position.y + GetComponent<BoxCollider2D>().size.y / 2 * Mathf.Sin(rotation2 * Mathf.Deg2Rad), transform.position.z + 1);
+                bullet.transform.position = new Vector3(transform.position.x + GetComponent<BoxCollider2D>().size.x * Mathf.Cos(rotation2 * Mathf.Deg2Rad) / 2, transform.position.y + GetComponent<BoxCollider2D>().size.y * Mathf.Sin(rotation2 * Mathf.Deg2Rad), transform.position.z + 1);
             }
             else if (gameObject.name == "Overseer")
             {

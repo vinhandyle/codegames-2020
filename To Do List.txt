@@ -3,10 +3,13 @@
 	>Player flashing even when no longer i-framing, test on Aquatic
 	>Scatter Shot proj rotates weird, quad 2-4
 
--Plan out Midnight Bay
+-Decor Midnight Bay
 	>add rain
 	>add oil storages
 	>Steering wheel
+
+-IT Return
+	>Add patrol 0-1, turret 0-3
 
 -Kin Harvest
 	

@@ -189,6 +189,8 @@ public class GlobalControl : MonoBehaviour
     public static bool patrol_1_0_2 = true;
 
     public static bool patrol_1_1_0 = true;        // Institute of Technology
+    public static bool patrol_3_1_0 = true;
+    public static bool turret_1_1_0 = true;
 
     public static bool errat_0 = true;             // Dreg Heap
     public static bool errat_1 = true;
@@ -261,7 +263,6 @@ public class GlobalControl : MonoBehaviour
     public static bool aquatic_1_4_4 = true;
     public static bool aquatic_1_4_5 = true;
     public static bool aquatic_1_4_6 = true;
-
 
     /*---------------------Wall of Text Ends---------------------*/
 

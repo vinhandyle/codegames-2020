@@ -19,6 +19,8 @@ public class Scope : MonoBehaviour
     // Independent movement
     public float x;
     public float y;
+    public float x1;
+    public float y1;
     public float speed;
     public float range;
     public float range_1;
@@ -34,6 +36,9 @@ public class Scope : MonoBehaviour
     public static bool leftWall = false;    // Is there any wall to the left?
     public static bool rightWall = false;   // Is there any wall to the right?
     public static string seePlayer = null;  // Can the player be seen?
+
+    // Turret
+    public bool preset;
 
     // Crusher
     public bool canCrush = false;
@@ -71,8 +76,8 @@ public class Scope : MonoBehaviour
         {
             if (gameObject.name == "Detect_Player")
             {
+                transform.position = new Vector3(x1, y1, transform.position.z);
                 transform.rotation = Quaternion.Euler(0.0f, 0.0f, 0.0f);
-                transform.position = new Vector3(x, y);
             }
             else if (gameObject.name == "Detect_Player (1)")
             {
@@ -90,7 +95,20 @@ public class Scope : MonoBehaviour
                 transform.rotation = Quaternion.Euler(0.0f, 0.0f, Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg);
                 Obstacles.refState2a_4 = transform.localEulerAngles.z;
             }
-        }       
+        }
+        else if (transform.parent.transform.parent.name.Substring(0, 6) == "Turret")
+        {
+            if (gameObject.name == "Base")
+            {
+                if (preset)
+                {
+                    Transform p = transform.parent.transform.parent;
+                    transform.rotation = p.rotation;
+
+                    transform.position = new Vector3(p.position.x - p.GetComponent<BoxCollider2D>().size.x * Mathf.Cos(p.localEulerAngles.z * Mathf.Deg2Rad) / 2, p.position.y - p.GetComponent<BoxCollider2D>().size.y * Mathf.Sin(p.localEulerAngles.z * Mathf.Deg2Rad), transform.position.z); ;
+                }
+            }
+        }
 
         // Overseer Machina
         if (GlobalControl.area == "SG_12")
