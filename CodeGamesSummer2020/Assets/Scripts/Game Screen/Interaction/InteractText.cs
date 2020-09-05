@@ -47,6 +47,24 @@ public class InteractText : MonoBehaviour
                 {
                     // Post-interaction
 
+                    // Lingering textbox on item pickup
+                    if (type == "ego" || type == "Starter" || type == "Geothermal" || type == "Map" || type == "Heartless" || type == "Key" ||
+                        type == "Lost" || type == "Unstable" || type.Substring(0, 7) == "Plating" || type.Substring(0, 5) == "Extra" ||
+                        type.Substring(0, 5) == "Scrap" || (type == "post-craft" && !triggerOnce))
+                    {
+                        triggerOnce = true;
+                        StartCoroutine(wait(2f));
+                    }
+                    else if (type == "trigger" || type == "pre-craft")
+                    {
+                        type = "";
+                        stickied = "";
+                        stickied2 = "";
+                        text.text = "";
+                        interacted = false;
+                        notif = false;
+                    }
+
                     // Specific
 
                     /*-----Items that can be picked up-----*/
@@ -316,25 +334,6 @@ public class InteractText : MonoBehaviour
                     {
                         text.text = "";
                     }
-
-                    // Lingering textbox on item pickup
-                    if (type == "ego" || type == "Starter" || type == "Geothermal" || type == "Map" || type == "Heartless" || type == "Key" ||
-                        type == "Lost" || type == "Unstable" || type.Substring(0, 7) == "Plating" || type.Substring(0, 5) == "Extra" || 
-                        type.Substring(0, 5) == "Scrap" || (type == "post-craft" && !triggerOnce))
-                    {
-                        triggerOnce = true;
-                        StartCoroutine(wait(2f));
-                    }
-                    else if (type == "trigger" || type == "pre-craft")
-                    {
-                        type = "";
-                        stickied = "";
-                        stickied2 = "";
-                        text.text = "";
-                        interacted = false;
-                        notif = false;
-                    }
-
                 }
                 else
                 {

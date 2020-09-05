@@ -321,7 +321,7 @@ public class Description : MonoBehaviour
                                 "abundance of resources to be collected. Though much of marine life has been extinguish, the seafloor " +
                                 "is littered with treasure: oil reservoirs, mineral deposits, and sunken crafts.";
                 }
-                else if (descOf == "10" && GlobalControl.report_8)              // Ego Report #8 (IT)
+                else if (descOf == "10" && GlobalControl.report_8)              // Ego Report #8 (Lightning Hall)
                 {
                     text.text = "<b>Ego Report #8</b> \n" +
                                 "The Doctor is no longer here. The one who remained now calls itself <b>the Emperor</b>. But now there " +

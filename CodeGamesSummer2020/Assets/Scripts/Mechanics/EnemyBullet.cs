@@ -82,7 +82,14 @@ public class EnemyBullet : MonoBehaviour
             {
                 damage = 2;
             }
-        }       
+        }
+        else if (GlobalControl.area.Substring(0, 2) == "IT")
+        {
+            if (gameObject.name.Substring(0, 14) == "Small E_Bullet")
+            {
+                damage = 3;
+            }
+        }
     }
 
     // Update is called once per frame

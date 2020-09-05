@@ -111,7 +111,6 @@ MonoBehaviour:
   once: 0
   once_1: 0
   reference: 
-  preset: 0
   canCrush: 0
 --- !u!1 &9156312645639887335
 GameObject:
@@ -255,7 +254,6 @@ MonoBehaviour:
   pathState: back
   refState3_1: 
   refState3_3: 0
-  refState3_4: {x: 0, y: 0, z: 0}
   refState3a_4: -90
   refState3b_4: 0
   refState3c_4: 0
@@ -411,7 +409,6 @@ MonoBehaviour:
   once: 0
   once_1: 0
   reference: 
-  preset: 0
   canCrush: 0
 --- !u!61 &9156312646007099094
 BoxCollider2D:
@@ -578,7 +575,6 @@ MonoBehaviour:
   once: 0
   once_1: 0
   reference: 
-  preset: 0
   canCrush: 0
 --- !u!1 &9156312646565658060
 GameObject:
@@ -721,5 +717,4 @@ MonoBehaviour:
   once: 0
   once_1: 0
   reference: 
-  preset: 0
   canCrush: 0

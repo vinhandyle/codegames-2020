@@ -9,7 +9,7 @@
 	>Steering wheel
 
 -IT Return
-	>Add patrol 0-1, turret 0-3
+	>Add patrol 0-1, turret 0-4
 
 -Kin Harvest
 	
@@ -18,10 +18,11 @@
 	>More items to examine	
 	>Add diagrams to boss atks instead of long descs
 	>Edit ending 1 (remove countdown)
+	>Revamp Emperor dialogue
 
 -Ideas
-	>IT, same rooms, diff paths
 	>GP, one checkpoint -> one door, multi switch
 	>GP gravity switch
 	>Custom proj for bosses
-	>Two maps (area map + world map)
+	>Two maps (area map + world map)	
+	>Substring errors -> check length beforehand

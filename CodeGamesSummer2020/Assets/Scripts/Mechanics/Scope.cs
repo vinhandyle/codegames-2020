@@ -37,9 +37,6 @@ public class Scope : MonoBehaviour
     public static bool rightWall = false;   // Is there any wall to the right?
     public static string seePlayer = null;  // Can the player be seen?
 
-    // Turret
-    public bool preset;
-
     // Crusher
     public bool canCrush = false;
     public static string signal;
@@ -100,13 +97,9 @@ public class Scope : MonoBehaviour
         {
             if (gameObject.name == "Base")
             {
-                if (preset)
-                {
-                    Transform p = transform.parent.transform.parent;
-                    transform.rotation = p.rotation;
-
-                    transform.position = new Vector3(p.position.x - p.GetComponent<BoxCollider2D>().size.x * Mathf.Cos(p.localEulerAngles.z * Mathf.Deg2Rad) / 2, p.position.y - p.GetComponent<BoxCollider2D>().size.y * Mathf.Sin(p.localEulerAngles.z * Mathf.Deg2Rad), transform.position.z); ;
-                }
+                Transform p = transform.parent.transform.parent;
+                transform.rotation = p.rotation;
+                transform.position = new Vector3(p.position.x - p.GetComponent<BoxCollider2D>().size.x * Mathf.Cos(p.localEulerAngles.z * Mathf.Deg2Rad) / 2, p.position.y - p.GetComponent<BoxCollider2D>().size.y * Mathf.Sin(p.localEulerAngles.z * Mathf.Deg2Rad), transform.position.z); ;
             }
         }
 

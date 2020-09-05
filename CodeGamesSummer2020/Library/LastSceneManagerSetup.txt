@@ -3,6 +3,10 @@ sceneSetups:
   isLoaded: 0
   isActive: 0
   isSubScene: 0
+- path: Assets/Scenes/MB/MB_3S2.unity
+  isLoaded: 0
+  isActive: 0
+  isSubScene: 0
 - path: Assets/Scenes/DH/DH_7.unity
   isLoaded: 0
   isActive: 0
@@ -20,6 +24,14 @@ sceneSetups:
   isActive: 0
   isSubScene: 0
 - path: Assets/Scenes/IT/IT_6.unity
+  isLoaded: 0
+  isActive: 0
+  isSubScene: 0
+- path: Assets/Scenes/IT/IT_7.unity
+  isLoaded: 0
+  isActive: 0
+  isSubScene: 0
+- path: Assets/Scenes/IT/IT_8.unity
   isLoaded: 1
   isActive: 1
   isSubScene: 0

@@ -36,6 +36,7 @@ public class Obstacles : MonoBehaviour
     // Time
     public int time;    // AI time
     public int time_1;
+    public float time_f;
     public int deAggroTime;
     public bool hold_time = false; // hold time
     public bool hold_time_1 = false;
@@ -57,7 +58,7 @@ public class Obstacles : MonoBehaviour
     // type: Obstacles to Scope (1), Scope to Obstacles (2), Obstacles to Obstacles (3)
     // variant: multiple of same type in same num, use a->z
     // num: Pursuit (1), Aerial (2), Aquatic (3), Turret (4), Overseer (5), Containment (6), Subnautical (7), Emperor (8)
-    // Add a "H" before num for hazard AI: Crusher (1),
+    // Add a "H" before num for hazard AI: Electrical Line (1),
     // e.g. refState2b_5
     public string aiState;
     public string path;
@@ -113,6 +114,10 @@ public class Obstacles : MonoBehaviour
     public bool refState3a_7;                   // Phase 2?
     public string refState3b_7;                 // Leap State
     public string refState3c_7;                 // Crystal Barrage State
+
+    /* Electrical Line */
+    public float refState3_1H;                  // Zap timer
+    public float refState3a_1H;                 // Zap timer delay
 
     // Start is called before the first frame update
     void Start()
@@ -204,8 +209,9 @@ public class Obstacles : MonoBehaviour
         // Set rotation pivot
         deg = transform.rotation.z * Mathf.Rad2Deg;
 
+        // Set center angle
         if (gameObject.name.Substring(0, 6) == "Turret")
-        {            
+        {
             deg = refState3a_4;
             transform.rotation = Quaternion.Euler(0.0f, 0.0f, deg);
         }
@@ -223,6 +229,10 @@ public class Obstacles : MonoBehaviour
         // Load gun
         currBullet = maxBullet;
         useTime = baseUseTime;
+
+        // Delay zap timer
+        if (gameObject.name.Substring(0, 8) == "Electric")
+            time_f = refState3a_1H;
 
         // Initialize enemy health and damage
 
@@ -1275,9 +1285,9 @@ public class Obstacles : MonoBehaviour
 
                         for (int i = 0; i < 3; i++)
                         {
-                            if (direction.x * direction.y >= 0)                            
-                                fireBullet(new Vector2(Mathf.Cos(Mathf.Acos(direction.x) + Mathf.PI / 6 * (i - 1)), Mathf.Sin(Mathf.Asin(direction.y) + Mathf.PI / 6 * (i - 1))), rotationZ + 30 * (i - 1), bulletSpeed[0]);                            
-                            else if(direction.x > direction.y)                           
+                            if (direction.x * direction.y >= 0)
+                                fireBullet(new Vector2(Mathf.Cos(Mathf.Acos(direction.x) + Mathf.PI / 6 * (i - 1)), Mathf.Sin(Mathf.Asin(direction.y) + Mathf.PI / 6 * (i - 1))), rotationZ + 30 * (i - 1), bulletSpeed[0]);
+                            else if (direction.x > direction.y)
                                 fireBullet(new Vector2(Mathf.Sqrt(1 - Mathf.Pow(Mathf.Sin(Mathf.Asin(direction.y) + Mathf.PI / 6 * (i - 1)), 2)), Mathf.Sin(Mathf.Asin(direction.y) + Mathf.PI / 6 * (i - 1))), rotationZ + 30 * (i - 1), bulletSpeed[0]);
                             else
                                 fireBullet(new Vector2(Mathf.Cos(Mathf.Acos(direction.x) + Mathf.PI / 6 * (i - 1)), Mathf.Sqrt(1 - Mathf.Pow(Mathf.Cos(Mathf.Acos(direction.x) + Mathf.PI / 6 * (i - 1)), 2))), rotationZ + 30 * (i - 1), bulletSpeed[0]);
@@ -1311,21 +1321,30 @@ public class Obstacles : MonoBehaviour
             // Target shot
             else if (refState2_4)
             {
-                GetComponent<SpriteRenderer>().sprite = sprites[1]; 
+                GetComponent<SpriteRenderer>().sprite = sprites[1];
 
                 difference = (Vector3)Player.rb2D.position - new Vector3(transform.position.x, transform.position.y, transform.position.z);
                 rotationZ = Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg;
 
                 if (aiState != "preset")
                 {
-                    if (transform.localEulerAngles.z > refState2a_4)
-                        transform.RotateAround(new Vector3(refState3b_4, refState3c_4), new Vector3(0, 0, 1), speed * 2);
-                    else if (transform.localEulerAngles.z < refState2a_4)
-                        transform.RotateAround(new Vector3(refState3b_4, refState3c_4), new Vector3(0, 0, 1), -speed * 2);
+                    // Calculate speed
+                    float rSpeed = refState2a_4 / 3 * speed;
+                    if (refState2a_4 > 180)
+                    {
+                        rSpeed = (360 - refState2a_4) / 3 * speed;
+                    }
+
+                    // Forward
+                    if (refState2a_4 < 180)
+                        transform.RotateAround(new Vector3(refState3b_4, refState3c_4), new Vector3(0, 0, 1), rSpeed);
+                    // Backward
+                    else if (refState2a_4 > 180)
+                        transform.RotateAround(new Vector3(refState3b_4, refState3c_4), new Vector3(0, 0, 1), -rSpeed);
                 }
-                
+
                 if (canShoot)
-                {                   
+                {
                     float distance = difference.magnitude;
                     Vector2 direction = difference / distance;
                     direction.Normalize();
@@ -1348,15 +1367,15 @@ public class Obstacles : MonoBehaviour
                         localCenter -= 360;
 
                     transform.RotateAround(new Vector3(refState3b_4, refState3c_4), new Vector3(0, 0, 1), speed);
-                    if (transform.localEulerAngles.z > localCenter + range_1 && ((transform.localEulerAngles.z + localCenter + range_1 > 360 || transform.localEulerAngles.z + localCenter + range_1 < 180) || (transform.localEulerAngles.z > 180 &&)))
+                    if (transform.localEulerAngles.z > localCenter + range_1 && (transform.localEulerAngles.z < 180 && localCenter + range_1 < 180 || transform.localEulerAngles.z > 180 && localCenter + range_1 > 180))
                         pathState = "back";
                 }
                 else if (pathState == "back")
                 {
                     transform.RotateAround(new Vector3(refState3b_4, refState3c_4), new Vector3(0, 0, 1), -speed);
-                    if (transform.localEulerAngles.z < localCenter - range_2)
+                    if (transform.localEulerAngles.z < localCenter - range_2 && (transform.localEulerAngles.z < 180 && localCenter + range_1 < 180 || transform.localEulerAngles.z > 180 && localCenter + range_1 > 180))
                         pathState = "forth";
-                }               
+                }
             }
         }
 
@@ -1386,6 +1405,40 @@ public class Obstacles : MonoBehaviour
                 {
                     aiState = "moveUp";
                 }
+            }
+        }
+
+        /*-----Electrical Line-----*/
+        else if (gameObject.name.Substring(0, 8) == "Electric")
+        {
+            // Active
+            if (aiState == "active")
+            {
+                damage = 5;
+                if (time_f <= 0)
+                {
+                    time_f = refState3_1H;
+                    aiState = "inactive";
+                    GetComponent<SpriteRenderer>().enabled = false;
+                    GetComponent<Animator>().enabled = false;
+                }
+                else
+                    time_f--;
+            }
+            // Inactive
+            else if(aiState == "inactive")
+            {
+                damage = 0;
+                if (time_f <= 0)
+                {
+                    time_f = 120;
+                    aiState = "active";
+                    GetComponent<SpriteRenderer>().enabled = true;
+                    GetComponent<Animator>().enabled = true;
+                    GetComponent<Animator>().Play("Electrical", -1, 0.0f);
+                }
+                else
+                    time_f--;
             }
         }
 
@@ -1984,7 +2037,7 @@ public class Obstacles : MonoBehaviour
                 {
                     aiState = "surface";
                 }
-                else if(!hold_time)
+                else if (!hold_time)
                 {
                     StartCoroutine(addSecond());
                 }
@@ -1999,7 +2052,7 @@ public class Obstacles : MonoBehaviour
                 {
                     aiState = "dive";
                 }
-                else if(!hold_time)
+                else if (!hold_time)
                 {
                     StartCoroutine(addSecond());
                 }
@@ -2009,7 +2062,7 @@ public class Obstacles : MonoBehaviour
             if (healthCurr < 100 && !refState3a_7)
             {
                 refState3a_7 = true;
-                if(aiState != "dive" || aiState != "surface" || aiState != "leap")
+                if (aiState != "dive" || aiState != "surface" || aiState != "leap")
                     aiState = "downpour";
             }
             else if (refState3a_7)
@@ -2020,10 +2073,10 @@ public class Obstacles : MonoBehaviour
 
                     float rand = Random.Range(0, 3);
 
-                    if(rand > 0  && (aiState != "dive" || aiState != "surface" || aiState != "leap"))
-                            aiState = "downpour";
+                    if (rand > 0 && (aiState != "dive" || aiState != "surface" || aiState != "leap"))
+                        aiState = "downpour";
                 }
-                else if(!hold_time_1)
+                else if (!hold_time_1)
                 {
                     StartCoroutine(addSecond_1());
                 }
@@ -2176,18 +2229,18 @@ public class Obstacles : MonoBehaviour
                     {
                         if (refState3a_7)
                         {
-                            if(direction.x * direction.y >= 0)
+                            if (direction.x * direction.y >= 0)
                                 fireBullet(new Vector2(Mathf.Cos(Mathf.Acos(direction.x) + Mathf.PI / 9 * (i - 2)), Mathf.Sin(Mathf.Asin(direction.y) + Mathf.PI / 9 * (i - 2))), rotationZ + 20 * (i - 2), bulletSpeed[0]);
-                            else if(direction.x > direction.y)
+                            else if (direction.x > direction.y)
                                 fireBullet(new Vector2(Mathf.Sqrt(1 - Mathf.Pow(Mathf.Sin(Mathf.Asin(direction.y) + Mathf.PI / 9 * (i - 2)), 2)), Mathf.Sin(Mathf.Asin(direction.y) + Mathf.PI / 9 * (i - 2))), rotationZ + 20 * (i - 2), bulletSpeed[0]);
                             else
                                 fireBullet(new Vector2(Mathf.Cos(Mathf.Acos(direction.x) + Mathf.PI / 9 * (i - 2)), Mathf.Sqrt(1 - Mathf.Pow(Mathf.Cos(Mathf.Acos(direction.x) + Mathf.PI / 9 * (i - 2)), 2))), rotationZ + 20 * (i - 2), bulletSpeed[0]);
                         }
                         else
                         {
-                            if(direction.x * direction.y >= 0)
+                            if (direction.x * direction.y >= 0)
                                 fireBullet(new Vector2(Mathf.Cos(Mathf.Acos(direction.x) + Mathf.PI / 6 * (i - 1)), Mathf.Sin(Mathf.Asin(direction.y) + Mathf.PI / 6 * (i - 1))), rotationZ + 30 * (i - 1), bulletSpeed[0]);
-                            else if(direction.x > direction.y)
+                            else if (direction.x > direction.y)
                                 fireBullet(new Vector2(Mathf.Sqrt(1 - Mathf.Pow(Mathf.Sin(Mathf.Asin(direction.y) + Mathf.PI / 6 * (i - 1)), 2)), Mathf.Sin(Mathf.Asin(direction.y) + Mathf.PI / 6 * (i - 1))), rotationZ + 30 * (i - 1), bulletSpeed[0]);
                             else
                                 fireBullet(new Vector2(Mathf.Cos(Mathf.Acos(direction.x) + Mathf.PI / 6 * (i - 1)), Mathf.Sqrt(1 - Mathf.Pow(Mathf.Cos(Mathf.Acos(direction.x) + Mathf.PI / 6 * (i - 1)), 2))), rotationZ + 30 * (i - 1), bulletSpeed[0]);
@@ -2248,7 +2301,7 @@ public class Obstacles : MonoBehaviour
                             refState3c_7 = "";
                             aiState = "rest";
                         }
-                    }                   
+                    }
                 }
 
                 // Phase 2 extended
@@ -2284,7 +2337,7 @@ public class Obstacles : MonoBehaviour
                             fireBullet(direction, rotationZ, bulletSpeed[0]);
                             refState3c_7 = "";
                             aiState = "rest";
-                        }                        
+                        }
                     }
                 }
             }
@@ -2311,13 +2364,13 @@ public class Obstacles : MonoBehaviour
             {
                 if (refState1b_7 == "" || refState1b_7 == null)
                 {
-                    if(healthCurr < 50)
+                    if (healthCurr < 50)
                         refState1b_7 = "storming";
                     else
                         refState1b_7 = "pouring";
                 }
                 else if (refState1b_7 == "finish")
-                    aiState = "rest";                
+                    aiState = "rest";
             }
         }
 
@@ -2415,10 +2468,19 @@ public class Obstacles : MonoBehaviour
                 {
                     GlobalControl.healthCurr = 0;
                 }
-                else
+                else if(damage > 0)
                 {
                     GlobalControl.healthCurr -= damage;
                     GlobalControl.immune = true;
+
+                    // Energy drain
+                    if (gameObject.name.Substring(0, 8) == "Electric")
+                    {
+                        if (GlobalControl.energyCurr > damage)
+                            GlobalControl.energyCurr -= damage;
+                        else
+                            GlobalControl.energyCurr = 0;
+                    }
                 }
 
                 // On hit effects
@@ -2670,10 +2732,19 @@ public class Obstacles : MonoBehaviour
                 {
                     GlobalControl.healthCurr = 0;
                 }
-                else
+                else if(damage > 0)
                 {
                     GlobalControl.healthCurr -= damage;
                     GlobalControl.immune = true;
+
+                    // Energy drain
+                    if (gameObject.name.Substring(0, 8) == "Electric")
+                    {
+                        if (GlobalControl.energyCurr > damage)
+                            GlobalControl.energyCurr -= damage;
+                        else
+                            GlobalControl.energyCurr = 0;
+                    }
                 }
 
                 // On hit effects
