@@ -126,7 +126,7 @@ public class Obstacles : MonoBehaviour
         if ((gameObject.name == "Patrol_1_0_0" && !GlobalControl.patrol_1_0_0) ||
             (gameObject.name == "Patrol_1_0_1" && !GlobalControl.patrol_1_0_1) ||
             (gameObject.name == "Patrol_1_0_2" && !GlobalControl.patrol_1_0_2) ||
-            (gameObject.name == "Patrol_1_1_0" && !GlobalControl.patrol_1_1_0) ||           
+            (gameObject.name == "Patrol_1_1_0" && !GlobalControl.patrol_1_1_0) ||
             (gameObject.name == "Patrol_1_2_0" && !GlobalControl.patrol_1_2_0) ||
             (gameObject.name == "Patrol_1_2_1" && !GlobalControl.patrol_1_2_1) ||
             (gameObject.name == "Patrol_1_2_2" && !GlobalControl.patrol_1_2_2) ||
@@ -162,9 +162,6 @@ public class Obstacles : MonoBehaviour
             (gameObject.name == "Patrol_2_4_11" && !GlobalControl.patrol_2_4_11) ||
             (gameObject.name == "Patrol_2_4_12" && !GlobalControl.patrol_2_4_12) ||
             (gameObject.name == "Patrol_2_4_13" && !GlobalControl.patrol_2_4_13) ||
-            (gameObject.name == "Patrol_3_1_0" && !GlobalControl.patrol_3_1_0) ||
-            (gameObject.name == "Patrol_3_1_1" && !GlobalControl.patrol_3_1_1) ||
-            (gameObject.name == "Patrol_3_1_2" && !GlobalControl.patrol_3_1_2) ||
             (gameObject.name == "Pursuit_1_2_0" && !GlobalControl.pursuit_1_2_0) ||
             (gameObject.name == "Pursuit_1_2_1" && !GlobalControl.pursuit_1_2_1) ||
             (gameObject.name == "Pursuit_1_2_2" && !GlobalControl.pursuit_1_2_2) ||
@@ -235,18 +232,7 @@ public class Obstacles : MonoBehaviour
 
         // Delay zap timer
         if (gameObject.name.Substring(0, 8) == "Electric")
-        {
-            if (aiState == "active")
-                time_f = 120;
-            else
-            {
-                if (refState3a_1H > 0)
-                    time_f = refState3_1H + refState3a_1H;
-                else
-                    time_f = refState3_1H;
-
-            }
-        }
+            time_f = refState3a_1H;
 
         // Initialize enemy health and damage
 
@@ -449,51 +435,9 @@ public class Obstacles : MonoBehaviour
             {
                 GlobalControl.patrol_1_0_2 = false;
             }
-
-            // Institute of Technology
-            else if (gameObject.name == "Patrol_1_1_0")
+            else if (gameObject.name == "Patrol_1_1_1")
             {
                 GlobalControl.patrol_1_1_0 = false;
-            }
-            else if (gameObject.name == "Patrol_3_1_0")
-            {
-                GlobalControl.patrol_3_1_0 = false;
-            }
-            else if (gameObject.name == "Patrol_3_1_1")
-            {
-                GlobalControl.patrol_3_1_0 = false;
-            }
-            else if (gameObject.name == "Patrol_3_1_2")
-            {
-                GlobalControl.patrol_3_1_0 = false;
-            }
-            else if (gameObject.name == "Turret_1_1_0")
-            {
-                GlobalControl.turret_1_1_0 = false;
-            }
-            else if (gameObject.name == "Turret_1_1_1")
-            {
-                GlobalControl.turret_1_1_1 = false;
-            }
-            else if (gameObject.name == "Turret_1_1_2")
-            {
-                GlobalControl.turret_1_1_2 = false;
-            }
-            else if (gameObject.name == "Turret_1_1_3")
-            {
-                GlobalControl.turret_1_1_3 = false;
-            }
-            else if (gameObject.name == "Turret_1_1_4")
-            {
-                GlobalControl.turret_1_1_4 = false;
-            }
-            else if (gameObject.name == "Turret_1_1_5")
-            {
-                GlobalControl.turret_1_1_5 = false;
-            }
-            else if (gameObject.name == "Turret_1_1_6")
-            {
-                GlobalControl.turret_1_1_6 = false;
             }
 
             // Dreg Heap
@@ -1429,7 +1373,7 @@ public class Obstacles : MonoBehaviour
                 else if (pathState == "back")
                 {
                     transform.RotateAround(new Vector3(refState3b_4, refState3c_4), new Vector3(0, 0, 1), -speed);
-                    if (transform.localEulerAngles.z < localCenter - range_2 && (transform.localEulerAngles.z < 180 && localCenter - range_1 < 180 || transform.localEulerAngles.z > 180 && localCenter - range_1 > 180))
+                    if (transform.localEulerAngles.z < localCenter - range_2 && (transform.localEulerAngles.z < 180 && localCenter + range_1 < 180 || transform.localEulerAngles.z > 180 && localCenter + range_1 > 180))
                         pathState = "forth";
                 }
             }
@@ -1471,13 +1415,12 @@ public class Obstacles : MonoBehaviour
             if (aiState == "active")
             {
                 damage = 5;
-                GetComponent<SpriteRenderer>().enabled = true;
-                GetComponent<Animator>().enabled = true;
-
                 if (time_f <= 0)
                 {
                     time_f = refState3_1H;
-                    aiState = "inactive";                    
+                    aiState = "inactive";
+                    GetComponent<SpriteRenderer>().enabled = false;
+                    GetComponent<Animator>().enabled = false;
                 }
                 else
                     time_f--;
@@ -1486,13 +1429,12 @@ public class Obstacles : MonoBehaviour
             else if(aiState == "inactive")
             {
                 damage = 0;
-                GetComponent<SpriteRenderer>().enabled = false;
-                GetComponent<Animator>().enabled = false;
-
                 if (time_f <= 0)
                 {
                     time_f = 120;
-                    aiState = "active";                    
+                    aiState = "active";
+                    GetComponent<SpriteRenderer>().enabled = true;
+                    GetComponent<Animator>().enabled = true;
                     GetComponent<Animator>().Play("Electrical", -1, 0.0f);
                 }
                 else

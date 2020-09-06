@@ -90,7 +90,7 @@ public class GlobalControl : MonoBehaviour
     public static int update = 0;                  // Update stats when power-up obtained
     public static bool switched = false;           // Used to set position on scene switch
 
-    public static string area = "GP_0A";                // Area name for scene change purposes
+    public static string area = "IT_4";                // Area name for scene change purposes
     public static string prevArea = "";            // Name of previous area
     public static string checkpoint = "";          // Area name of last repair station used
 
@@ -190,15 +190,7 @@ public class GlobalControl : MonoBehaviour
 
     public static bool patrol_1_1_0 = true;        // Institute of Technology
     public static bool patrol_3_1_0 = true;
-    public static bool patrol_3_1_1 = true;
-    public static bool patrol_3_1_2 = true;
     public static bool turret_1_1_0 = true;
-    public static bool turret_1_1_1 = true;
-    public static bool turret_1_1_2 = true;
-    public static bool turret_1_1_3 = true;
-    public static bool turret_1_1_4 = true;
-    public static bool turret_1_1_5 = true;
-    public static bool turret_1_1_6 = true;
 
     public static bool errat_0 = true;             // Dreg Heap
     public static bool errat_1 = true;
@@ -321,12 +313,6 @@ public class GlobalControl : MonoBehaviour
         else if (!immune)
         {
             immune_ = true;
-        }
-
-        // De-aggro
-        if (switched)
-        {
-            Obstacles.refState2_4 = false;
         }
 
         // Platinum Trophy
@@ -509,16 +495,6 @@ public class GlobalControl : MonoBehaviour
         patrol_1_0_2 = true;
 
         patrol_1_1_0 = true;
-        patrol_3_1_0 = true;
-        patrol_3_1_1 = true;
-        patrol_3_1_2 = true;
-        turret_1_1_0 = true;
-        turret_1_1_1 = true;
-        turret_1_1_2 = true;
-        turret_1_1_3 = true;
-        turret_1_1_4 = true;
-        turret_1_1_5 = true;
-        turret_1_1_6 = true;
 
         patrol_1_2_0 = true;
         patrol_1_2_1 = true;
@@ -654,7 +630,7 @@ public class GlobalControl : MonoBehaviour
         scrap_3 = true;
 
         // Enemy Catalog
-        //counter_1 = 1;
+        counter_1 = 1;
         downed_patrol = true;
         downed_pursuit = true;
         downed_aerial = true;
