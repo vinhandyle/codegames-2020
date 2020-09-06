@@ -23,8 +23,19 @@ public class InteractBar : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (attachedTo == "Emperor")
+        {
+            if (GlobalControl.counter_1 < 5)
+            {
+                sprite.enabled = true;
+                transform.localScale = new Vector3(w[GlobalControl.counter_1], h[GlobalControl.counter_1], 1f);
+                transform.position = new Vector3(x[GlobalControl.counter_1], y[GlobalControl.counter_1], transform.position.z);
+            }
+            else
+                sprite.enabled = false;
+        }
         // Turn on or off when in range of interactable object
-        if (attachedTo == PickUpItem.sticky ||
+        else if (attachedTo == PickUpItem.sticky ||
             attachedTo == Talk.sticky ||
             attachedTo == Examine.sticky ||
             attachedTo == TriggerSwitch.sticky ||
@@ -75,7 +86,7 @@ public class InteractBar : MonoBehaviour
                 transform.position = new Vector3(x[1], y[1], transform.position.z);
             }            
         }
-        else
+        else if(attachedTo != "Emperor")
         {
             transform.localScale = new Vector3(w[0], h[0], 1f);
             transform.position = new Vector3(x[0], y[0], transform.position.z);

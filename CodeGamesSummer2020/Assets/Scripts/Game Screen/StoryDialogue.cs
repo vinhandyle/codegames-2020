@@ -47,19 +47,19 @@ public class StoryDialogue : MonoBehaviour
                 }
                 else if (GlobalControl.counter_1 == 1)
                 {
-                    text.text = "I've been waiting for far too long.";
+                    text.text = "I've been waiting for a very long time.";
                 }
                 else if (GlobalControl.counter_1 == 2)
                 {
-                    text.text = "Come. Let us finish our mission...";
+                    text.text = "Come. Let us save humanity together.";
                 }
                 else if (GlobalControl.counter_1 == 3)
                 {
-                    text.text = "You will need this in order to catch the Errat.\n\nPicked up: Gentle Reactor";
+                    text.text = "You will need this in order to capture the rest of them.\n\nPicked up: Gentle Reactor";
                 }
                 else if (GlobalControl.counter_1 == 4)
                 {
-                    text.text = "Another anomaly to be resolved.\n\n<b>EXECUTING TASK MANAGER...</b>";
+                    text.text = "What a shame.\n\n<b>EXECUTING TASK MANAGER...</b>";
                 }
             }
         }

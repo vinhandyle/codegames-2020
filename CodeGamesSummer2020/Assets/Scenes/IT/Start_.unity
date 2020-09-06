@@ -1405,7 +1405,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ac700b5fb639304fa7f0305ec522ffb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attachedTo: Start_to_IT_X
+  attachedTo: Start_to_IT_9
 --- !u!114 &758020815
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1915,7 +1915,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sprite: {fileID: 0}
-  attachedTo: Start_to_IT_X
+  attachedTo: Start_to_IT_9
   x:
   - 0.043
   - 0
