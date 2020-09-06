@@ -325,9 +325,10 @@ public class EnterDoor : MonoBehaviour
             {
                 StartCoroutine(SceneSwitch("IT_9", "IT_9_to_Start_"));
             }
-            else if (doorName == "IT_9_to_Start")
+            else if (doorName == "IT_9_to_Start_")
             {
                 StartCoroutine(SceneSwitch("Start_", "Start_to_IT_9"));
+                GlobalControl.locked_1 = false;
             }
 
             inRange = false;

@@ -61,9 +61,6 @@ public class Player : MonoBehaviour
             dashing = false;
             canDash = true;
             GlobalControl.switched = false;
-
-            // Reset Turret aggro
-            Obstacles.refState2_4 = false;
         }
         else
         {

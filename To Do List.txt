@@ -9,7 +9,7 @@
 	>Steering wheel
 
 -IT Return
-	>Add patrol 0-1, turret 0-4
+	>Add Azimuth
 
 -Kin Harvest
 	
@@ -17,12 +17,11 @@
 	>Revamp diagram with connecter with label
 	>More items to examine	
 	>Add diagrams to boss atks instead of long descs
-	>Edit ending 1 (remove countdown)
-	>Revamp Emperor dialogue
+	>Edit ending 1 (add something after gaze, blast off?)
 
 -Ideas
-	>GP, one checkpoint -> one door, multi switch
-	>GP gravity switch
+	>GP, one checkpoint -> loops back from multiple spots like firelink
+		>pursuit + turret room (stealth)
 	>Custom proj for bosses
 	>Two maps (area map + world map)	
 	>Substring errors -> check length beforehand
