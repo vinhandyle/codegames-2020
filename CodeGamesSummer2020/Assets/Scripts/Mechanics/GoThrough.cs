@@ -685,6 +685,56 @@ public class GoThrough : MonoBehaviour
 
             /*-----GP-----*/
 
+            //          GP_1 to GP_3
+            else if (opName == "GP_1_to_GP_3")
+            {
+                StartCoroutine(SceneSwitch("GP_3", "GP_3_to_GP_1"));
+            }
+            else if (opName == "GP_3_to_GP_1")
+            {
+                StartCoroutine(SceneSwitch("GP_1", "GP_1_to_GP_3"));
+            }
+
+            //          GP_3 to GP_4
+            else if (opName == "GP_3_to_GP_4")
+            {
+                StartCoroutine(SceneSwitch("GP_4", "GP_4_to_GP_3"));
+            }
+            else if (opName == "GP_4_to_GP_3")
+            {
+                StartCoroutine(SceneSwitch("GP_3", "GP_3_to_GP_4"));
+            }
+
+            //          GP_4 to GP_5
+            else if (opName == "GP_4_to_GP_5")
+            {
+                StartCoroutine(SceneSwitch("GP_5", "GP_5_to_GP_4"));
+            }
+            else if (opName == "GP_5_to_GP_4")
+            {
+                StartCoroutine(SceneSwitch("GP_4", "GP_4_to_GP_5"));
+            }
+
+            //          GP_4 to GP_9
+            else if (opName == "GP_4_to_GP_9")
+            {
+                StartCoroutine(SceneSwitch("GP_9", "GP_9_to_GP_4"));
+            }
+            else if (opName == "GP_9_to_GP_4")
+            {
+                StartCoroutine(SceneSwitch("GP_4", "GP_4_to_GP_9"));
+            }
+
+            //          GP_4 to GP_10
+            else if (opName == "GP_4_to_GP_10")
+            {
+                StartCoroutine(SceneSwitch("GP_5", "GP_10_to_GP_4"));
+            }
+            else if (opName == "GP_10_to_GP_4")
+            {
+                StartCoroutine(SceneSwitch("GP_4", "GP_4_to_GP_10"));
+            }
+
             /*-----FS-----*/
 
             /*-----Transition (IT-GP)-----*/

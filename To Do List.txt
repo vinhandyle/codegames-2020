@@ -19,9 +19,18 @@
 	>Add diagrams to boss atks instead of long descs
 	>Edit ending 1 (add something after gaze, blast off?)
 
+-GP, one checkpoint -> loops back from multiple spots like firelink
+	>pursuit + turret room (stealth)
+	>electric speed jump		
+	>chasm
+	>heat + water + conveyor (shortcut switch)
+	>moving floor + walls (secret leading to harvest)
+	>switch in lobby upper, reveals platforms up
+	>2 ver of eots, background path and falling down (sawblades)
+	>crusher + electric
+	>plating in lobby
+
 -Ideas
-	>GP, one checkpoint -> loops back from multiple spots like firelink
-		>pursuit + turret room (stealth)
 	>Custom proj for bosses
 	>Two maps (area map + world map)	
-	>Substring errors -> check length beforehand
+	>Substring errors -> Add _ to everything until they are >8 long

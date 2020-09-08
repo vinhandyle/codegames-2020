@@ -319,6 +319,80 @@ public class AreaText : MonoBehaviour
             {
                 text.text = "The Lift to Heaven";
             }
+            else if (GlobalControl.area == "GP_3")
+            {
+                text.text = "Decontamination";
+            }
+            else if (GlobalControl.area == "GP_4")
+            {
+                text.text = "Grand Lobby";
+            }
+            else if (GlobalControl.area == "GP_5")
+            {
+                text.text = "Vertigone";
+            }
+            else if (GlobalControl.area == "GP_6")
+            {
+                text.text = "Isolation";
+            }
+            else if (GlobalControl.area == "GP_7")
+            {
+                text.text = "Shifting Tiles";
+            }
+            else if (GlobalControl.area == "GP_8")
+            {
+                text.text = "Alternating Current";
+            }
+            else if (GlobalControl.area == "GP_9")
+            {
+                text.text = "Flashstep";
+            }
+            else if (GlobalControl.area == "GP_10")
+            {
+                text.text = "Final Rest";
+            }
+            else if (GlobalControl.area == "GP_11")
+            {
+                text.text = "High Wind";
+            }
+            else if (GlobalControl.area == "GP_12")
+            {
+                text.text = "Eye of the Storm";
+            }
+            else if (GlobalControl.area == "GP_13")
+            {
+                text.text = "Typhoon";
+            }
+            else if (GlobalControl.area == "GP_14")
+            {
+                text.text = "Theaters of War";
+            }
+            else if (GlobalControl.area == "GP_15")
+            {
+                text.text = "Floating Clouds";
+            }
+            else if (GlobalControl.area == "GP_15S")
+            {
+                text.text = "Hidden Perch";
+            }
+            else if (GlobalControl.area == "GP_16")
+            {
+                text.text = "Heavy Surveillance";
+            }
+
+            // Frozen Sanctuary
+            else if (GlobalControl.area == "FS_1")
+            {
+                text.text = "Frigid Frontier";
+            }
+            else if (GlobalControl.area == "FS_2")
+            {
+                text.text = "Last Haven";
+            }
+            else if (GlobalControl.area == "FS_3")
+            {
+                text.text = "Edge of Humanity";
+            }
 
             // Not In-game
             else

@@ -654,7 +654,7 @@ public class GlobalControl : MonoBehaviour
         scrap_3 = true;
 
         // Enemy Catalog
-        //counter_1 = 1;
+        counter_1 = 1;
         downed_patrol = true;
         downed_pursuit = true;
         downed_aerial = true;
