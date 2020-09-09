@@ -118,6 +118,11 @@ public class EnterDoor : MonoBehaviour
                 gameObject.GetComponent<SpriteRenderer>().sprite = unlockedDoor;
             }
         }
+        else if (gameObject.name == "GP_4_to_GP_6")
+        {
+            locked = true;
+            gameObject.GetComponent<SpriteRenderer>().sprite = lockedDoor;
+        }
     }
 
     // Update is called once per frame
@@ -349,6 +354,12 @@ public class EnterDoor : MonoBehaviour
                 GlobalControl.locked_1 = false;
             }
 
+            // Isolation to Grand Lobby
+            else if (doorName == "GP_6_to_GP_4")
+            {
+                StartCoroutine(SceneSwitch("GP_4", "GP_4_to_GP_6"));
+            }
+
             // Grand Lobby to Frigid Frontier
             else if (doorName == "GP_4_to_FS_1")
             {
@@ -357,7 +368,7 @@ public class EnterDoor : MonoBehaviour
             else if (doorName == "FS_1_to_GP_4")
             {
                 StartCoroutine(SceneSwitch("GP_4", "GP_4_to_FS_1"));
-            }
+            }            
 
             inRange = false;
             GlobalControl.immune = false;

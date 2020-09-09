@@ -70,7 +70,7 @@ public class GlobalControl : MonoBehaviour
     // Toggle
     public static string reactor = "basic";        // Name of equipped reactor
     public static bool h2e = true;                 // True = HP to Energy, False = Energy to HP
-    public static int prog = 6;                    // Progession level for unlockAll: Start(0), Post-Start(1), Post-Dreg(2), Post-Garden(3), Post-Second(4), Post-Town(5), Post-Third(6), Post-Return(7), Post-End(8)
+    public static int prog = 7;                    // Progession level for unlockAll: Start(0), Post-Start(1), Post-Dreg(2), Post-Garden(3), Post-Second(4), Post-Town(5), Post-Third(6), Post-Return(7), Post-End(8)
 
     // Vacuum Pod
     public static string pod_direction = "right";  // Direction of pod
@@ -150,6 +150,7 @@ public class GlobalControl : MonoBehaviour
     public static string state_IT_4 = "active";
     public static string state_IT_6 = "active";
     public static string state_IT_9 = "active";
+    public static string state_GP_4 = "active";
 
     // Destructibles
     public static bool block_starter = true;
@@ -179,7 +180,7 @@ public class GlobalControl : MonoBehaviour
     public static bool block_IT_6 = true;
     public static bool block_IT_9 = true;
 
-    public static bool block_GP_1 = true;
+    public static bool block_GP_4 = true;
 
     // Enemy State
 
@@ -477,7 +478,7 @@ public class GlobalControl : MonoBehaviour
         block_IT_6 = true;
         block_IT_9 = true;
 
-        block_GP_1 = true;
+        block_GP_4 = true;
 
         // Switches
         state_SG_8 = "active";
@@ -493,6 +494,7 @@ public class GlobalControl : MonoBehaviour
         state_IT_4 = "active";
         state_IT_6 = "active";
         state_IT_9 = "active";
+        state_GP_4 = "active";
 
         // Vac Pod
         pod_location = "main";

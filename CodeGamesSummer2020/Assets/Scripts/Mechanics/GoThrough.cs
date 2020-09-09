@@ -728,14 +728,70 @@ public class GoThrough : MonoBehaviour
             //          GP_4 to GP_10
             else if (opName == "GP_4_to_GP_10")
             {
-                StartCoroutine(SceneSwitch("GP_5", "GP_10_to_GP_4"));
+                StartCoroutine(SceneSwitch("GP_10", "GP_10_to_GP_4"));
             }
             else if (opName == "GP_10_to_GP_4")
             {
                 StartCoroutine(SceneSwitch("GP_4", "GP_4_to_GP_10"));
             }
 
+            //          GP_5 to GP_6
+            else if (opName == "GP_5_to_GP_6")
+            {
+                StartCoroutine(SceneSwitch("GP_6", "GP_6_to_GP_5"));
+            }
+
+            //          GP_5 to GP_7
+            else if (opName == "GP_5_to_GP_7")
+            {
+                StartCoroutine(SceneSwitch("GP_7", "GP_7_to_GP_5"));
+            }
+            else if (opName == "GP_7_to_GP_5")
+            {
+                StartCoroutine(SceneSwitch("GP_5", "GP_5_to_GP_7"));
+            }
+
+            //          GP_5 to GP_9
+            else if (opName == "GP_5_to_GP_9")
+            {
+                StartCoroutine(SceneSwitch("GP_9", "GP_9_to_GP_5"));
+            }
+            else if (opName == "GP_9_to_GP_5")
+            {
+                StartCoroutine(SceneSwitch("GP_5", "GP_5_to_GP_9"));
+            }
+
+            //          GP_6 to GP_6
+            else if (opName == "GP_6_to_GP_6 (A)")
+            {
+                StartCoroutine(SceneSwitch("GP_6", "GP_6_to_GP_6 (B)"));
+            }
+            else if (opName == "GP_6_to_GP_6 (B)")
+            {
+                StartCoroutine(SceneSwitch("GP_6", "GP_6_to_GP_6 (A)"));
+            }
+
             /*-----FS-----*/
+
+            //          FS_1 to FS_2
+            else if (opName == "FS_1_to_FS_2")
+            {
+                StartCoroutine(SceneSwitch("FS_2", "FS_2_to_FS_1"));
+            }
+            else if (opName == "FS_2_to_FS_1")
+            {
+                StartCoroutine(SceneSwitch("FS_1", "FS_1_to_FS_2"));
+            }
+
+            //          FS_2 to FS_3
+            else if (opName == "FS_2_to_FS_3")
+            {
+                StartCoroutine(SceneSwitch("FS_3", "FS_3_to_FS_2"));
+            }
+            else if (opName == "FS_3_to_FS_2")
+            {
+                StartCoroutine(SceneSwitch("FS_2", "FS_2_to_FS_3"));
+            }
 
             /*-----Transition (IT-GP)-----*/
 

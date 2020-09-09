@@ -12,6 +12,8 @@
 	>Add Azimuth
 
 -Kin Harvest
+	>Hidden Perch
+	>Edge of Humanity
 	
 -Other
 	>Revamp diagram with connecter with label
@@ -22,13 +24,11 @@
 -GP, one checkpoint -> loops back from multiple spots like firelink
 	>pursuit + turret room (stealth)
 	>electric speed jump		
-	>chasm
-	>heat + water + conveyor (shortcut switch)
 	>moving floor + walls (secret leading to harvest)
-	>switch in lobby upper, reveals platforms up
 	>2 ver of eots, background path and falling down (sawblades)
 	>crusher + electric
-	>plating in lobby
+	>add aerial 0-
+-FS, decor
 
 -Ideas
 	>Custom proj for bosses
