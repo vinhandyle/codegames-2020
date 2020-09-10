@@ -68,8 +68,8 @@ sceneSetups:
   isActive: 0
   isSubScene: 0
 - path: Assets/Scenes/FS/FS_3.unity
-  isLoaded: 1
-  isActive: 1
+  isLoaded: 0
+  isActive: 0
   isSubScene: 0
 - path: Assets/Scenes/GP/GP_6.unity
   isLoaded: 0
@@ -82,6 +82,10 @@ sceneSetups:
 - path: Assets/Scenes/GP/GP_7.unity
   isLoaded: 0
   isActive: 0
+  isSubScene: 0
+- path: Assets/Scenes/GP/GP_8.unity
+  isLoaded: 1
+  isActive: 1
   isSubScene: 0
 - path: Assets/Scenes/GP/GP_2.unity
   isLoaded: 0

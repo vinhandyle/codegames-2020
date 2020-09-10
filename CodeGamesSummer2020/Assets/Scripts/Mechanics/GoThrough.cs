@@ -771,6 +771,26 @@ public class GoThrough : MonoBehaviour
                 StartCoroutine(SceneSwitch("GP_6", "GP_6_to_GP_6 (A)"));
             }
 
+            //          GP_7 to GP_8
+            else if (opName == "GP_7_to_GP_8")
+            {
+                StartCoroutine(SceneSwitch("GP_8", "GP_8_to_GP_7"));
+            }
+            else if (opName == "GP_8_to_GP_7")
+            {
+                StartCoroutine(SceneSwitch("GP_7", "GP_7_to_GP_8"));
+            }
+
+            //          GP_8 to GP_9
+            else if (opName == "GP_8_to_GP_9")
+            {
+                StartCoroutine(SceneSwitch("GP_9", "GP_9_to_GP_8"));
+            }
+            else if (opName == "GP_9_to_GP_8")
+            {
+                StartCoroutine(SceneSwitch("GP_8", "GP_8_to_GP_9"));
+            }
+
             /*-----FS-----*/
 
             //          FS_1 to FS_2
