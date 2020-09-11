@@ -19,7 +19,7 @@ public class DestroyByCollision : MonoBehaviour
     // When the bullet hits something
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Wall") || other.CompareTag("Floor") || other.CompareTag("Ceiling") || other.CompareTag("Enemy") || (other.name.Substring(0, 5) == "Errat" && GlobalControl.reactor == "imperial"))
+        if (other.CompareTag("Wall") || other.CompareTag("Floor") || other.CompareTag("Ceiling") || (other.CompareTag("Enemy") && !other.GetComponent<Obstacles>().hazard) || (other.name.Substring(0, 5) == "Errat" && GlobalControl.reactor == "imperial"))
         {
             // Destroy bullet
             if (gameObject.CompareTag("Player Bullet"))

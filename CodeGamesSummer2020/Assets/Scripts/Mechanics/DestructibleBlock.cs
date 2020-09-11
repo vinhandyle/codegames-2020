@@ -33,7 +33,8 @@ public class DestructibleBlock : MonoBehaviour
             (gameObject.name == "Block_IT_4 (1)" && !GlobalControl.block_IT_4_) ||
             (gameObject.name == "Block_IT_6" && !GlobalControl.block_IT_6) ||
             (gameObject.name == "Block_IT_9" && !GlobalControl.block_IT_9) ||
-            (gameObject.name == "Block_GP_4" && !GlobalControl.block_GP_4))
+            (gameObject.name == "Block_GP_4" && !GlobalControl.block_GP_4) ||
+            (gameObject.name == "Block_GP_10" && !GlobalControl.block_GP_10))
         {
             gameObject.SetActive(false);
         }
@@ -86,6 +87,10 @@ public class DestructibleBlock : MonoBehaviour
             gameObject.SetActive(false);
         }
         else if (gameObject.name == "Block_GP_4" && !GlobalControl.block_GP_4)
+        {
+            gameObject.SetActive(false);
+        }
+        else if (gameObject.name == "Block_GP_10" && !GlobalControl.block_GP_10)
         {
             gameObject.SetActive(false);
         }

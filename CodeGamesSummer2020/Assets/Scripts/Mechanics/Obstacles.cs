@@ -219,8 +219,11 @@ public class Obstacles : MonoBehaviour
             transform.rotation = Quaternion.Euler(0.0f, 0.0f, deg);
         }
 
-        refState3b_4 = x - GetComponent<BoxCollider2D>().size.x * Mathf.Cos(deg * Mathf.Deg2Rad) / 2;
-        refState3c_4 = y - GetComponent<BoxCollider2D>().size.y * Mathf.Sin(deg * Mathf.Deg2Rad);
+        if (gameObject.name.Substring(0, 6) != "Cutter")
+        {
+            refState3b_4 = x - GetComponent<BoxCollider2D>().size.x * Mathf.Cos(deg * Mathf.Deg2Rad) / 2;
+            refState3c_4 = y - GetComponent<BoxCollider2D>().size.y * Mathf.Sin(deg * Mathf.Deg2Rad);
+        }
 
         // If asymmetrical range is not set, set symmetrical range
         if (range_1 + range_2 == 0)
@@ -343,17 +346,25 @@ public class Obstacles : MonoBehaviour
 
         // Toxic Sludge
         else if (gameObject.name.Substring(0, 6) == "Sludge")
-        { // Dreg Heap
+        {
             damage = 2;
         }
+        // Super-heated Area
         else if (gameObject.name.Substring(0, 6) == "Molten")
         {
             damage = 5;
         }
+        // Cutter
+        else if (gameObject.name.Substring(0, 6) == "Cutter")
+        {
+            damage = 10;
+        }
+        // Charge Beam
         else if (gameObject.name.Substring(0, 7) == "OM_Beam")
         {
             damage = 8;
         }
+        // Downpour
         else if (gameObject.name.Substring(0, 4) == "Drop")
         {
             damage = 4;
@@ -1477,13 +1488,13 @@ public class Obstacles : MonoBehaviour
                 if (time_f <= 0)
                 {
                     time_f = refState3_1H;
-                    aiState = "inactive";                    
+                    aiState = "inactive";
                 }
                 else
                     time_f--;
             }
             // Inactive
-            else if(aiState == "inactive")
+            else if (aiState == "inactive")
             {
                 damage = 0;
                 GetComponent<SpriteRenderer>().enabled = false;
@@ -1492,12 +1503,18 @@ public class Obstacles : MonoBehaviour
                 if (time_f <= 0)
                 {
                     time_f = 120;
-                    aiState = "active";                    
+                    aiState = "active";
                     GetComponent<Animator>().Play("Electrical", -1, 0.0f);
                 }
                 else
                     time_f--;
             }
+        }
+
+        /*-----Cutter-----*/
+        else if (gameObject.name.Substring(0, 6) == "Cutter")
+        {
+            transform.Rotate(0, 0, 2f);
         }
 
         /*----------Boss AI----------*/
@@ -2655,6 +2672,10 @@ public class Obstacles : MonoBehaviour
                             }
                         }
                     }
+                }
+                else if (gameObject.name.Substring(0, 6) == "Cutter")
+                {
+                    // Add knockback here
                 }
                 else if (gameObject.name == "Overseer")
                 {

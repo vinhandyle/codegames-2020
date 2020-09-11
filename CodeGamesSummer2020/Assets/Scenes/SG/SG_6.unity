@@ -168,31 +168,64 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   healthMax: 0
   healthCurr: 0
+  defense: 0
   damage: 0
   hazard: 1
+  passive: 0
+  animated: 0
+  attachedTo: 
   sprites: []
   x: 0
   y: 0
+  deg: 0
   range: 0
   range_1: 0
   range_2: 0
+  range_3: 0
   speed: 0
+  speed_1: 0
+  refDifference: {x: 0, y: 0, z: 0}
+  refDistance: 0
+  refDirection: {x: 0, y: 0}
   time: 0
+  time_1: 0
+  time_f: 0
   deAggroTime: 0
   hold_time: 0
+  hold_time_1: 0
   bulletSpeed: []
   baseUseTime: 0
   useTime: 0
+  rechargeTime: 0
   maxBullet: 0
   currBullet: 0
   canShoot: 1
   randNum: 0
   hold_rand: 0
   aiState: down
+  path: 
+  pathState: 
   refState3_1: 
+  refState3_3: 0
+  refState3a_4: 0
+  refState3b_4: 0
+  refState3c_4: 0
   refState3_5: 
   refState3a_5: 
   refState3b_5: 
+  refState3_6: 
+  refState3a_6: 
+  refState3b_6: 
+  refState3c_6: 0
+  refState3d_6: 
+  refState3e_6: 1
+  refState3f_6: 0
+  refState3_7: under
+  refState3a_7: 0
+  refState3b_7: 
+  refState3c_7: 
+  refState3_1H: 0
+  refState3a_1H: 0
 --- !u!61 &11212066
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -937,31 +970,64 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   healthMax: 0
   healthCurr: 0
+  defense: 0
   damage: 0
   hazard: 1
+  passive: 0
+  animated: 0
+  attachedTo: 
   sprites: []
   x: 0
   y: 0
+  deg: 0
   range: 0
   range_1: 0
   range_2: 0
+  range_3: 0
   speed: 0
+  speed_1: 0
+  refDifference: {x: 0, y: 0, z: 0}
+  refDistance: 0
+  refDirection: {x: 0, y: 0}
   time: 0
+  time_1: 0
+  time_f: 0
   deAggroTime: 0
   hold_time: 0
+  hold_time_1: 0
   bulletSpeed: []
   baseUseTime: 0
   useTime: 0
+  rechargeTime: 0
   maxBullet: 0
   currBullet: 0
   canShoot: 1
   randNum: 0
   hold_rand: 0
   aiState: right
+  path: 
+  pathState: 
   refState3_1: 
+  refState3_3: 0
+  refState3a_4: 0
+  refState3b_4: 0
+  refState3c_4: 0
   refState3_5: 
   refState3a_5: 
   refState3b_5: 
+  refState3_6: 
+  refState3a_6: 
+  refState3b_6: 
+  refState3c_6: 0
+  refState3d_6: 
+  refState3e_6: 1
+  refState3f_6: 0
+  refState3_7: under
+  refState3a_7: 0
+  refState3b_7: 
+  refState3c_7: 
+  refState3_1H: 0
+  refState3a_1H: 0
 --- !u!61 &194179688
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1085,31 +1151,64 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   healthMax: 0
   healthCurr: 0
+  defense: 0
   damage: 0
   hazard: 1
+  passive: 0
+  animated: 0
+  attachedTo: 
   sprites: []
   x: 0
   y: 0
+  deg: 0
   range: 0
   range_1: 0
   range_2: 0
+  range_3: 0
   speed: 0
+  speed_1: 0
+  refDifference: {x: 0, y: 0, z: 0}
+  refDistance: 0
+  refDirection: {x: 0, y: 0}
   time: 0
+  time_1: 0
+  time_f: 0
   deAggroTime: 0
   hold_time: 0
+  hold_time_1: 0
   bulletSpeed: []
   baseUseTime: 0
   useTime: 0
+  rechargeTime: 0
   maxBullet: 0
   currBullet: 0
   canShoot: 1
   randNum: 0
   hold_rand: 0
   aiState: right
+  path: 
+  pathState: 
   refState3_1: 
+  refState3_3: 0
+  refState3a_4: 0
+  refState3b_4: 0
+  refState3c_4: 0
   refState3_5: 
   refState3a_5: 
   refState3b_5: 
+  refState3_6: 
+  refState3a_6: 
+  refState3b_6: 
+  refState3c_6: 0
+  refState3d_6: 
+  refState3e_6: 1
+  refState3f_6: 0
+  refState3_7: under
+  refState3a_7: 0
+  refState3b_7: 
+  refState3c_7: 
+  refState3_1H: 0
+  refState3a_1H: 0
 --- !u!61 &219202941
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1341,31 +1440,64 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   healthMax: 0
   healthCurr: 0
+  defense: 0
   damage: 0
   hazard: 1
+  passive: 0
+  animated: 0
+  attachedTo: 
   sprites: []
   x: 0
   y: 0
+  deg: 0
   range: 0
   range_1: 0
   range_2: 0
+  range_3: 0
   speed: 0
+  speed_1: 0
+  refDifference: {x: 0, y: 0, z: 0}
+  refDistance: 0
+  refDirection: {x: 0, y: 0}
   time: 0
+  time_1: 0
+  time_f: 0
   deAggroTime: 0
   hold_time: 0
+  hold_time_1: 0
   bulletSpeed: []
   baseUseTime: 0
   useTime: 0
+  rechargeTime: 0
   maxBullet: 0
   currBullet: 0
   canShoot: 1
   randNum: 0
   hold_rand: 0
   aiState: up
+  path: 
+  pathState: 
   refState3_1: 
+  refState3_3: 0
+  refState3a_4: 0
+  refState3b_4: 0
+  refState3c_4: 0
   refState3_5: 
   refState3a_5: 
   refState3b_5: 
+  refState3_6: 
+  refState3a_6: 
+  refState3b_6: 
+  refState3c_6: 0
+  refState3d_6: 
+  refState3e_6: 1
+  refState3f_6: 0
+  refState3_7: under
+  refState3a_7: 0
+  refState3b_7: 
+  refState3c_7: 
+  refState3_1H: 0
+  refState3a_1H: 0
 --- !u!61 &276913308
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2228,31 +2360,64 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   healthMax: 0
   healthCurr: 0
+  defense: 0
   damage: 0
   hazard: 1
+  passive: 0
+  animated: 0
+  attachedTo: 
   sprites: []
   x: 0
   y: 0
+  deg: 0
   range: 0
   range_1: 0
   range_2: 0
+  range_3: 0
   speed: 0
+  speed_1: 0
+  refDifference: {x: 0, y: 0, z: 0}
+  refDistance: 0
+  refDirection: {x: 0, y: 0}
   time: 0
+  time_1: 0
+  time_f: 0
   deAggroTime: 0
   hold_time: 0
+  hold_time_1: 0
   bulletSpeed: []
   baseUseTime: 0
   useTime: 0
+  rechargeTime: 0
   maxBullet: 0
   currBullet: 0
   canShoot: 1
   randNum: 0
   hold_rand: 0
   aiState: left
+  path: 
+  pathState: 
   refState3_1: 
+  refState3_3: 0
+  refState3a_4: 0
+  refState3b_4: 0
+  refState3c_4: 0
   refState3_5: 
   refState3a_5: 
   refState3b_5: 
+  refState3_6: 
+  refState3a_6: 
+  refState3b_6: 
+  refState3c_6: 0
+  refState3d_6: 
+  refState3e_6: 1
+  refState3f_6: 0
+  refState3_7: under
+  refState3a_7: 0
+  refState3b_7: 
+  refState3c_7: 
+  refState3_1H: 0
+  refState3a_1H: 0
 --- !u!61 &621951028
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -3751,31 +3916,64 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   healthMax: 0
   healthCurr: 0
+  defense: 0
   damage: 0
   hazard: 1
+  passive: 0
+  animated: 0
+  attachedTo: 
   sprites: []
   x: 0
   y: 0
+  deg: 0
   range: 0
   range_1: 0
   range_2: 0
+  range_3: 0
   speed: 0
+  speed_1: 0
+  refDifference: {x: 0, y: 0, z: 0}
+  refDistance: 0
+  refDirection: {x: 0, y: 0}
   time: 0
+  time_1: 0
+  time_f: 0
   deAggroTime: 0
   hold_time: 0
+  hold_time_1: 0
   bulletSpeed: []
   baseUseTime: 0
   useTime: 0
+  rechargeTime: 0
   maxBullet: 0
   currBullet: 0
   canShoot: 1
   randNum: 0
   hold_rand: 0
   aiState: left
+  path: 
+  pathState: 
   refState3_1: 
+  refState3_3: 0
+  refState3a_4: 0
+  refState3b_4: 0
+  refState3c_4: 0
   refState3_5: 
   refState3a_5: 
   refState3b_5: 
+  refState3_6: 
+  refState3a_6: 
+  refState3b_6: 
+  refState3c_6: 0
+  refState3d_6: 
+  refState3e_6: 1
+  refState3f_6: 0
+  refState3_7: under
+  refState3a_7: 0
+  refState3b_7: 
+  refState3c_7: 
+  refState3_1H: 0
+  refState3a_1H: 0
 --- !u!61 &1082842085
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -4182,31 +4380,64 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   healthMax: 0
   healthCurr: 0
+  defense: 0
   damage: 0
   hazard: 1
+  passive: 0
+  animated: 0
+  attachedTo: 
   sprites: []
   x: 0
   y: 0
+  deg: 0
   range: 0
   range_1: 0
   range_2: 0
+  range_3: 0
   speed: 0
+  speed_1: 0
+  refDifference: {x: 0, y: 0, z: 0}
+  refDistance: 0
+  refDirection: {x: 0, y: 0}
   time: 0
+  time_1: 0
+  time_f: 0
   deAggroTime: 0
   hold_time: 0
+  hold_time_1: 0
   bulletSpeed: []
   baseUseTime: 0
   useTime: 0
+  rechargeTime: 0
   maxBullet: 0
   currBullet: 0
   canShoot: 1
   randNum: 0
   hold_rand: 0
   aiState: left
+  path: 
+  pathState: 
   refState3_1: 
+  refState3_3: 0
+  refState3a_4: 0
+  refState3b_4: 0
+  refState3c_4: 0
   refState3_5: 
   refState3a_5: 
   refState3b_5: 
+  refState3_6: 
+  refState3a_6: 
+  refState3b_6: 
+  refState3c_6: 0
+  refState3d_6: 
+  refState3e_6: 1
+  refState3f_6: 0
+  refState3_7: under
+  refState3a_7: 0
+  refState3b_7: 
+  refState3c_7: 
+  refState3_1H: 0
+  refState3a_1H: 0
 --- !u!61 &1175243735
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -5325,31 +5556,64 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   healthMax: 0
   healthCurr: 0
+  defense: 0
   damage: 0
   hazard: 1
+  passive: 0
+  animated: 0
+  attachedTo: 
   sprites: []
   x: 0
   y: 0
+  deg: 0
   range: 0
   range_1: 0
   range_2: 0
+  range_3: 0
   speed: 0
+  speed_1: 0
+  refDifference: {x: 0, y: 0, z: 0}
+  refDistance: 0
+  refDirection: {x: 0, y: 0}
   time: 0
+  time_1: 0
+  time_f: 0
   deAggroTime: 0
   hold_time: 0
+  hold_time_1: 0
   bulletSpeed: []
   baseUseTime: 0
   useTime: 0
+  rechargeTime: 0
   maxBullet: 0
   currBullet: 0
   canShoot: 1
   randNum: 0
   hold_rand: 0
   aiState: 
+  path: 
+  pathState: 
   refState3_1: 
+  refState3_3: 0
+  refState3a_4: 0
+  refState3b_4: 0
+  refState3c_4: 0
   refState3_5: 
   refState3a_5: 
   refState3b_5: 
+  refState3_6: 
+  refState3a_6: 
+  refState3b_6: 
+  refState3c_6: 0
+  refState3d_6: 
+  refState3e_6: 1
+  refState3f_6: 0
+  refState3_7: under
+  refState3a_7: 0
+  refState3b_7: 
+  refState3c_7: 
+  refState3_1H: 0
+  refState3a_1H: 0
 --- !u!61 &1558012585
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -5473,31 +5737,64 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   healthMax: 0
   healthCurr: 0
+  defense: 0
   damage: 0
   hazard: 1
+  passive: 0
+  animated: 0
+  attachedTo: 
   sprites: []
   x: 0
   y: 0
+  deg: 0
   range: 0
   range_1: 0
   range_2: 0
+  range_3: 0
   speed: 0
+  speed_1: 0
+  refDifference: {x: 0, y: 0, z: 0}
+  refDistance: 0
+  refDirection: {x: 0, y: 0}
   time: 0
+  time_1: 0
+  time_f: 0
   deAggroTime: 0
   hold_time: 0
+  hold_time_1: 0
   bulletSpeed: []
   baseUseTime: 0
   useTime: 0
+  rechargeTime: 0
   maxBullet: 0
   currBullet: 0
   canShoot: 1
   randNum: 0
   hold_rand: 0
   aiState: down
+  path: 
+  pathState: 
   refState3_1: 
+  refState3_3: 0
+  refState3a_4: 0
+  refState3b_4: 0
+  refState3c_4: 0
   refState3_5: 
   refState3a_5: 
   refState3b_5: 
+  refState3_6: 
+  refState3a_6: 
+  refState3b_6: 
+  refState3c_6: 0
+  refState3d_6: 
+  refState3e_6: 1
+  refState3f_6: 0
+  refState3_7: under
+  refState3a_7: 0
+  refState3b_7: 
+  refState3c_7: 
+  refState3_1H: 0
+  refState3a_1H: 0
 --- !u!61 &1569167763
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -6078,31 +6375,64 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   healthMax: 0
   healthCurr: 0
+  defense: 0
   damage: 0
   hazard: 1
+  passive: 0
+  animated: 0
+  attachedTo: 
   sprites: []
   x: 0
   y: 0
+  deg: 0
   range: 0
   range_1: 0
   range_2: 0
+  range_3: 0
   speed: 0
+  speed_1: 0
+  refDifference: {x: 0, y: 0, z: 0}
+  refDistance: 0
+  refDirection: {x: 0, y: 0}
   time: 0
+  time_1: 0
+  time_f: 0
   deAggroTime: 0
   hold_time: 0
+  hold_time_1: 0
   bulletSpeed: []
   baseUseTime: 0
   useTime: 0
+  rechargeTime: 0
   maxBullet: 0
   currBullet: 0
   canShoot: 1
   randNum: 0
   hold_rand: 0
   aiState: right
+  path: 
+  pathState: 
   refState3_1: 
+  refState3_3: 0
+  refState3a_4: 0
+  refState3b_4: 0
+  refState3c_4: 0
   refState3_5: 
   refState3a_5: 
   refState3b_5: 
+  refState3_6: 
+  refState3a_6: 
+  refState3b_6: 
+  refState3c_6: 0
+  refState3d_6: 
+  refState3e_6: 1
+  refState3f_6: 0
+  refState3_7: under
+  refState3a_7: 0
+  refState3b_7: 
+  refState3c_7: 
+  refState3_1H: 0
+  refState3a_1H: 0
 --- !u!61 &1747146584
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -6976,31 +7306,64 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   healthMax: 0
   healthCurr: 0
+  defense: 0
   damage: 0
   hazard: 1
+  passive: 0
+  animated: 0
+  attachedTo: 
   sprites: []
   x: 0
   y: 0
+  deg: 0
   range: 0
   range_1: 0
   range_2: 0
+  range_3: 0
   speed: 0
+  speed_1: 0
+  refDifference: {x: 0, y: 0, z: 0}
+  refDistance: 0
+  refDirection: {x: 0, y: 0}
   time: 0
+  time_1: 0
+  time_f: 0
   deAggroTime: 0
   hold_time: 0
+  hold_time_1: 0
   bulletSpeed: []
   baseUseTime: 0
   useTime: 0
+  rechargeTime: 0
   maxBullet: 0
   currBullet: 0
   canShoot: 1
   randNum: 0
   hold_rand: 0
   aiState: left
+  path: 
+  pathState: 
   refState3_1: 
+  refState3_3: 0
+  refState3a_4: 0
+  refState3b_4: 0
+  refState3c_4: 0
   refState3_5: 
   refState3a_5: 
   refState3b_5: 
+  refState3_6: 
+  refState3a_6: 
+  refState3b_6: 
+  refState3c_6: 0
+  refState3d_6: 
+  refState3e_6: 1
+  refState3f_6: 0
+  refState3_7: under
+  refState3a_7: 0
+  refState3b_7: 
+  refState3c_7: 
+  refState3_1H: 0
+  refState3a_1H: 0
 --- !u!61 &1905348510
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -7124,31 +7487,64 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   healthMax: 0
   healthCurr: 0
+  defense: 0
   damage: 0
   hazard: 1
+  passive: 0
+  animated: 0
+  attachedTo: 
   sprites: []
   x: 0
   y: 0
+  deg: 0
   range: 0
   range_1: 0
   range_2: 0
+  range_3: 0
   speed: 0
+  speed_1: 0
+  refDifference: {x: 0, y: 0, z: 0}
+  refDistance: 0
+  refDirection: {x: 0, y: 0}
   time: 0
+  time_1: 0
+  time_f: 0
   deAggroTime: 0
   hold_time: 0
+  hold_time_1: 0
   bulletSpeed: []
   baseUseTime: 0
   useTime: 0
+  rechargeTime: 0
   maxBullet: 0
   currBullet: 0
   canShoot: 1
   randNum: 0
   hold_rand: 0
   aiState: right
+  path: 
+  pathState: 
   refState3_1: 
+  refState3_3: 0
+  refState3a_4: 0
+  refState3b_4: 0
+  refState3c_4: 0
   refState3_5: 
   refState3a_5: 
   refState3b_5: 
+  refState3_6: 
+  refState3a_6: 
+  refState3b_6: 
+  refState3c_6: 0
+  refState3d_6: 
+  refState3e_6: 1
+  refState3f_6: 0
+  refState3_7: under
+  refState3a_7: 0
+  refState3b_7: 
+  refState3c_7: 
+  refState3_1H: 0
+  refState3a_1H: 0
 --- !u!61 &1969357177
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -7272,31 +7668,64 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   healthMax: 0
   healthCurr: 0
+  defense: 0
   damage: 0
   hazard: 1
+  passive: 0
+  animated: 0
+  attachedTo: 
   sprites: []
   x: 0
   y: 0
+  deg: 0
   range: 0
   range_1: 0
   range_2: 0
+  range_3: 0
   speed: 0
+  speed_1: 0
+  refDifference: {x: 0, y: 0, z: 0}
+  refDistance: 0
+  refDirection: {x: 0, y: 0}
   time: 0
+  time_1: 0
+  time_f: 0
   deAggroTime: 0
   hold_time: 0
+  hold_time_1: 0
   bulletSpeed: []
   baseUseTime: 0
   useTime: 0
+  rechargeTime: 0
   maxBullet: 0
   currBullet: 0
   canShoot: 1
   randNum: 0
   hold_rand: 0
   aiState: down
+  path: 
+  pathState: 
   refState3_1: 
+  refState3_3: 0
+  refState3a_4: 0
+  refState3b_4: 0
+  refState3c_4: 0
   refState3_5: 
   refState3a_5: 
   refState3b_5: 
+  refState3_6: 
+  refState3a_6: 
+  refState3b_6: 
+  refState3c_6: 0
+  refState3d_6: 
+  refState3e_6: 1
+  refState3f_6: 0
+  refState3_7: under
+  refState3a_7: 0
+  refState3b_7: 
+  refState3c_7: 
+  refState3_1H: 0
+  refState3a_1H: 0
 --- !u!61 &1975237332
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -7936,6 +8365,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Size.x
       value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 3475791634364397379, guid: 6e33107823dd57f4bad1165d7f8ec25b,
+        type: 3}
+      propertyPath: m_DrawMode
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3475791634364397388, guid: 6e33107823dd57f4bad1165d7f8ec25b,
         type: 3}

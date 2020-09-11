@@ -130,6 +130,14 @@ public class TriggerSwitch : MonoBehaviour
             }
             state = GlobalControl.state_GP_4;
         }
+        else if (objName == "Switch_GP_10")
+        {
+            if (GlobalControl.state_GP_10 == "inactive")
+            {
+                gameObject.GetComponent<SpriteRenderer>().sprite = sprites[1];
+            }
+            state = GlobalControl.state_GP_10;
+        }
     }
 
     // Update is called once per frame
@@ -284,6 +292,16 @@ public class TriggerSwitch : MonoBehaviour
                     state = "inactive";
                     GlobalControl.state_GP_4 = state;
                     GlobalControl.block_GP_4 = false;
+                    gameObject.GetComponent<SpriteRenderer>().sprite = sprites[1];
+                }
+            }
+            else if (objName == "Switch_GP_10")
+            {
+                if (state == "active")
+                {
+                    state = "inactive";
+                    GlobalControl.state_GP_10 = state;
+                    GlobalControl.block_GP_10 = false;
                     gameObject.GetComponent<SpriteRenderer>().sprite = sprites[1];
                 }
             }

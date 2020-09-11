@@ -134,7 +134,7 @@ public class GlobalControl : MonoBehaviour
     public static bool locked_3 = true;            // DH_4_to_DH_6
     public static bool locked_4 = true;            // SG_10_to_SG_3
     public static bool locked_5 = true;            // MB_3_to_MB_12
-    public static bool locked_6 = true;            // MB_12_to_MB_3
+    public static bool locked_6 = true;            // GP_0A_to_GP_10
 
     // Switches
     public static string state_SG_8 = "active";
@@ -151,6 +151,7 @@ public class GlobalControl : MonoBehaviour
     public static string state_IT_6 = "active";
     public static string state_IT_9 = "active";
     public static string state_GP_4 = "active";
+    public static string state_GP_10 = "active";
 
     // Destructibles
     public static bool block_starter = true;
@@ -181,6 +182,7 @@ public class GlobalControl : MonoBehaviour
     public static bool block_IT_9 = true;
 
     public static bool block_GP_4 = true;
+    public static bool block_GP_10 = true;
 
     // Enemy State
 
@@ -421,6 +423,12 @@ public class GlobalControl : MonoBehaviour
                 StartCoroutine(SceneSwitch("MB_3", checkpoint));
             }
 
+            // GP - Final Rest
+            else if (checkpoint == "Checkpoint_6")
+            {
+                StartCoroutine(SceneSwitch("GP_10", checkpoint));
+            }
+
             // No checkpoints used
             else
             {
@@ -449,6 +457,9 @@ public class GlobalControl : MonoBehaviour
         locked_1 = true;
         locked_2 = false;
         locked_3 = true;
+        locked_4 = true;
+        locked_5 = true;
+        locked_6 = true;
 
         // Destructibles
         block_starter = true;
@@ -479,6 +490,7 @@ public class GlobalControl : MonoBehaviour
         block_IT_9 = true;
 
         block_GP_4 = true;
+        block_GP_10 = true;
 
         // Switches
         state_SG_8 = "active";
@@ -495,6 +507,7 @@ public class GlobalControl : MonoBehaviour
         state_IT_6 = "active";
         state_IT_9 = "active";
         state_GP_4 = "active";
+        state_GP_10 = "active";
 
         // Vac Pod
         pod_location = "main";
@@ -666,7 +679,7 @@ public class GlobalControl : MonoBehaviour
         downed_boss_1 = true;
         downed_boss_2 = true;
         downed_boss_3 = true;
-        downed_boss_4 = true;
+        //downed_boss_4 = true;
 
         // Reports
         data = 100;

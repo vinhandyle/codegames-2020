@@ -105,6 +105,19 @@ public class EnterDoor : MonoBehaviour
                 gameObject.GetComponent<SpriteRenderer>().sprite = unlockedDoor;
             }
         }
+        else if (gameObject.name == "GP_0A_to_GP_10")
+        {
+            if (GlobalControl.locked_6)
+            {
+                locked = true;
+                gameObject.GetComponent<SpriteRenderer>().sprite = lockedDoor;
+            }
+            else
+            {
+                locked = false;
+                gameObject.GetComponent<SpriteRenderer>().sprite = unlockedDoor;
+            }
+        }
         else if (gameObject.name == "GP_4_to_FS_1")
         {
             if (GlobalControl.data < 70)
@@ -123,6 +136,19 @@ public class EnterDoor : MonoBehaviour
             locked = true;
             gameObject.GetComponent<SpriteRenderer>().sprite = lockedDoor;
         }
+        else if (gameObject.name == "GP_0B_to_GP_0A")
+        {
+            if (!GlobalControl.downed_boss_4)
+            {
+                locked = true;
+                gameObject.GetComponent<SpriteRenderer>().sprite = lockedDoor;
+            }
+            else
+            {
+                locked = false;
+                gameObject.GetComponent<SpriteRenderer>().sprite = unlockedDoor;
+            }
+        }
     }
 
     // Update is called once per frame
@@ -135,6 +161,11 @@ public class EnterDoor : MonoBehaviour
             gameObject.GetComponent<SpriteRenderer>().sprite = unlockedDoor;
         }
         else if (gameObject.name == "GP_4_to_FS_1" && GlobalControl.data >= 70)
+        {
+            locked = false;
+            gameObject.GetComponent<SpriteRenderer>().sprite = unlockedDoor;
+        }
+        else if (gameObject.name == "GP_0B_to_GP_0A" && GlobalControl.downed_boss_4)
         {
             locked = false;
             gameObject.GetComponent<SpriteRenderer>().sprite = unlockedDoor;
@@ -298,7 +329,6 @@ public class EnterDoor : MonoBehaviour
             else if (doorName == "MB_3_to_MB_5")
             {
                 StartCoroutine(SceneSwitch("MB_5", "MB_5_to_MB_3"));
-                GlobalControl.block_TT_6 = false;
             }
             else if (doorName == "MB_5_to_MB_3")
             {
@@ -309,7 +339,6 @@ public class EnterDoor : MonoBehaviour
             else if (doorName == "MB_3_to_MB_6")
             {
                 StartCoroutine(SceneSwitch("MB_6", "MB_6_to_MB_3"));
-                GlobalControl.block_TT_6 = false;
             }
             else if (doorName == "MB_6_to_MB_3")
             {
@@ -320,7 +349,6 @@ public class EnterDoor : MonoBehaviour
             else if (doorName == "MB_3_to_MB_12")
             {
                 StartCoroutine(SceneSwitch("MB_12", "MB_12_to_MB_3"));
-                GlobalControl.block_TT_6 = false;
             }
             else if (doorName == "MB_12_to_MB_3")
             {
@@ -368,7 +396,28 @@ public class EnterDoor : MonoBehaviour
             else if (doorName == "FS_1_to_GP_4")
             {
                 StartCoroutine(SceneSwitch("GP_4", "GP_4_to_FS_1"));
-            }            
+            }
+
+            // Final Rest to Audience Chamber
+            else if (doorName == "GP_10_to_GP_0A")
+            {
+                StartCoroutine(SceneSwitch("GP_0A", "GP_0A_to_GP_10"));
+                GlobalControl.locked_6 = false;
+            }
+            else if (doorName == "GP_0A_to_GP_10")
+            {
+                StartCoroutine(SceneSwitch("GP_10", "GP_10_to_GP_0A"));
+            }
+
+            // Audience Chamber to The Summit
+            else if (doorName == "GP_0A_to_GP_0B")
+            {
+                StartCoroutine(SceneSwitch("GP_0B", "GP_0B_to_GP_0A"));
+            }
+            else if (doorName == "GP_0B_to_GP_0A")
+            {
+                StartCoroutine(SceneSwitch("GP_0A", "GP_0A_to_GP_0B"));
+            }
 
             inRange = false;
             GlobalControl.immune = false;

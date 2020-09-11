@@ -121,6 +121,7 @@ public class SpecialTerrain : MonoBehaviour
             }
         }
 
+        // Moving Platform
         if (discrete)
         {
             if (moving)

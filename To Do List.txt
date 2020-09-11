@@ -2,6 +2,7 @@
 	>Multiple pursuits will not aggro if landing in sight, will aggro after direction change
 	>Player flashing even when no longer i-framing, test on Aquatic
 	>Scatter Shot proj rotates weird, quad 2-4
+	>Can't double jump on scene switch (falling)
 
 -Decor Midnight Bay
 	>add rain
@@ -25,12 +26,13 @@
 	>pursuit + turret room (stealth)
 	>electric speed jump		
 	>moving floor + walls (secret leading to harvest)
-	>2 ver of eots, background path and falling down (sawblades)
-	>crusher + electric
+	>2 ver of eots, falling down -> all inverse plat, side -> one plat
 	>add aerial 0-
+	>add energy sources to lower
 -FS, decor
 
 -Ideas
 	>Custom proj for bosses
 	>Two maps (area map + world map)	
 	>Substring errors -> Add _ to everything until they are >8 long
+	>Kill switch, used if player is stuck due to a bug X

@@ -9,6 +9,9 @@ public class Player : MonoBehaviour
     public SpriteRenderer sprite;
     public List<Sprite> sprites;
 
+    private float time;
+    private bool hold_time = false;
+
     public static float moveBy = 2f; // Horizontal velocity
     private float jumpHeight = 5f; // Jump velocity
 
@@ -83,6 +86,25 @@ public class Player : MonoBehaviour
 
             // Set default sprite
             sprite.sprite = sprites[0];
+        }
+
+        /*-----Self-Destruct-----*/
+        if (Input.GetMouseButton(1))
+        {
+            if (!hold_time)
+            {
+                StartCoroutine(addSecond());
+            }
+        }
+        else
+        {
+            time = 0;
+        }
+
+        if (time >= 3)
+        {
+            GlobalControl.healthCurr = 0;
+            time = 0;
         }
 
         /*-----Heartless Generator-----*/
@@ -516,6 +538,15 @@ public class Player : MonoBehaviour
         yield return new WaitForSeconds(1.5f);
 
         canDash = true;
+    }
+
+    // Add second to self-D timer
+    IEnumerator addSecond()
+    {
+        hold_time = true;
+        yield return new WaitForSeconds(1);
+        time++;
+        hold_time = false;
     }
 }
 
