@@ -18,14 +18,15 @@ public class GlobalControl : MonoBehaviour
     public static int energyUse;                   // amount of energy used per shot
 
     // Health
-    public static int healthMax = 10;              // max health level
+    public static int healthMax = 90;              // max health level
     public static int healthCurr = healthMax;      // current health level
 
     // Other Stats
     public static int damage;                      // player bullet damage
     public static int data;                        // Percent data collected
     public static bool immune;                     // Immune to damage (after taking damage)
-    public static bool immune_ = false;                    // Immune update once per time
+    public static bool immune_ = false;            // Immune update once per time
+    private float time_i;                          // Timer to check immunity bug
 
     // Unlock 
     public static bool batteryUnlocked = false;    // Battery
@@ -78,6 +79,9 @@ public class GlobalControl : MonoBehaviour
 
     // Lift from Hell
     public static string lift_direction = "up";    // Direction of the lift
+
+    // Eye of the Storm
+    public static bool calm = false;
 
     // World
     public static float pX;                        // Player x-coord before opening menu
@@ -278,6 +282,7 @@ public class GlobalControl : MonoBehaviour
     /*---------------------Wall of Text Ends---------------------*/
 
     public static GlobalControl Instance;
+    private float t = 0;
 
     private void Awake()
     {
@@ -314,7 +319,6 @@ public class GlobalControl : MonoBehaviour
             energyMax = 10 + extraNum * 10;
             energyCurr = energyMax;
         }
-
         // I-Frames
         if (immune && immune_)
         {
@@ -325,6 +329,15 @@ public class GlobalControl : MonoBehaviour
         {
             immune_ = true;
         }
+
+        if (!immune_)
+        {
+            time_i++;
+            if (time_i > 200)
+                immune = false;
+        }
+        else
+            time_i = 0;
 
         // De-aggro
         if (switched)
@@ -715,5 +728,11 @@ public class GlobalControl : MonoBehaviour
     {
         yield return new WaitForSeconds(time);
         immune = false;
+    }
+
+    IEnumerator check_fps()
+    {
+        yield return new WaitForSeconds(1f);
+        Debug.Log(t);
     }
 }

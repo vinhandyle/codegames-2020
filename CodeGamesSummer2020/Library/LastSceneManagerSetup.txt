@@ -96,6 +96,18 @@ sceneSetups:
   isActive: 0
   isSubScene: 0
 - path: Assets/Scenes/GP/GP_11.unity
+  isLoaded: 0
+  isActive: 0
+  isSubScene: 0
+- path: Assets/Scenes/GP/GP_12.unity
+  isLoaded: 0
+  isActive: 0
+  isSubScene: 0
+- path: Assets/Scenes/GP/GP_13.unity
+  isLoaded: 0
+  isActive: 0
+  isSubScene: 0
+- path: Assets/Scenes/GP/GP_14.unity
   isLoaded: 1
   isActive: 1
   isSubScene: 0

@@ -107,6 +107,29 @@ public class SpecialTerrain : MonoBehaviour
                 sprite.sprite = sprites[1];
             }
         }
+        else if (gameObject.name == "True")
+        {
+            if (GlobalControl.calm)
+            {
+                gameObject.SetActive(true);
+            }
+            else
+            {
+                gameObject.SetActive(false);
+            }
+        }
+        else if (gameObject.name == "False")
+        {
+            if (!GlobalControl.calm)
+            {
+                gameObject.SetActive(true);
+            }
+            else
+            {
+                gameObject.SetActive(false);
+            }
+
+        }
         else if (GlobalControl.area == "MB_12")
         {
             if (GlobalControl.downed_boss_3)
@@ -173,6 +196,100 @@ public class SpecialTerrain : MonoBehaviour
                             transform.position += new Vector3(0, -speed);
                             if (playerOn)
                                 Player.rb2D.position += new Vector2(0, -speed);
+                        }
+                    }
+                }
+                else if (type == "box-clock")
+                {
+                    if (state == "left")
+                    {
+                        if (transform.position.x > x - range_1)
+                        {
+                            transform.position += new Vector3(-speed, 0);
+                        }
+                        else
+                        {
+                            state = "up";
+                        }
+                    }
+                    else if (state == "right")
+                    {
+                        if (transform.position.x < x + range_1)
+                        {
+                            transform.position += new Vector3(speed, 0);
+                        }
+                        else
+                        {
+                            state = "down";
+                        }
+                    }
+                    else if (state == "down")
+                    {
+                        if (transform.position.y > y - range_2)
+                        {
+                            transform.position += new Vector3(0, -speed);
+                        }
+                        else
+                        {
+                            state = "left";
+                        }
+                    }
+                    else if (state == "up")
+                    {
+                        if (transform.position.y < y + range_2)
+                        {
+                            transform.position += new Vector3(0, speed);
+                        }
+                        else
+                        {
+                            state = "right";
+                        }
+                    }
+                }
+                else if (type == "box-counter")
+                {
+                    if (state == "left")
+                    {
+                        if (transform.position.x > x - range_1)
+                        {
+                            transform.position += new Vector3(-speed, 0);
+                        }
+                        else
+                        {
+                            state = "down";
+                        }
+                    }
+                    else if (state == "right")
+                    {
+                        if (transform.position.x < x + range_1)
+                        {
+                            transform.position += new Vector3(speed, 0);
+                        }
+                        else
+                        {
+                            state = "up";
+                        }
+                    }
+                    else if (state == "down")
+                    {
+                        if (transform.position.y > y - range_2)
+                        {
+                            transform.position += new Vector3(0, -speed);
+                        }
+                        else
+                        {
+                            state = "right";
+                        }
+                    }
+                    else if (state == "up")
+                    {
+                        if (transform.position.y < y + range_2)
+                        {
+                            transform.position += new Vector3(0, speed);
+                        }
+                        else
+                        {
+                            state = "left";
                         }
                     }
                 }                

@@ -26,6 +26,7 @@ public class Player : MonoBehaviour
     public static bool dashing = false; // Prevents moving while dashing
     public static bool walled = false; // Player cannot dash when against a wall
     public static bool floored = false; // Player is on floor or wall
+    public static bool cut = false; // Player is in cutter
     private bool tooLong = false; // Whether a key is held too long to dash on release
     public static string direction; // Player direction used for dashing
 
@@ -200,7 +201,7 @@ public class Player : MonoBehaviour
             rb2D.gravityScale = 1f;
 
         // Moves player left
-        if (Input.GetKey("a") && !dashing && canLeft)
+        if (Input.GetKey("a") && !dashing && !cut && canLeft)
         {
             direction = "left";
             rb2D.velocity = new Vector2(-moveBy, rb2D.velocity.y);
@@ -215,7 +216,7 @@ public class Player : MonoBehaviour
         }
 
         // Moves player right
-        if (Input.GetKey("d") && !dashing && canRight)
+        if (Input.GetKey("d") && !dashing && !cut && canRight)
         {
             direction = "right";
             rb2D.velocity = new Vector2(moveBy, rb2D.velocity.y);

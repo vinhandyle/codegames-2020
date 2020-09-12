@@ -118,6 +118,7 @@ public class Obstacles : MonoBehaviour
     /* Electrical Line */
     public float refState3_1H;                  // Zap timer
     public float refState3a_1H;                 // Zap timer delay
+    public float refState3b_1H;                 // Zap timer accel
 
     // Start is called before the first frame update
     void Start()
@@ -236,7 +237,7 @@ public class Obstacles : MonoBehaviour
         currBullet = maxBullet;
         useTime = baseUseTime;
 
-        // Delay zap timer
+        // Delay or accel zap timer
         if (gameObject.name.Substring(0, 8) == "Electric")
         {
             if (aiState == "active")
@@ -245,6 +246,8 @@ public class Obstacles : MonoBehaviour
             {
                 if (refState3a_1H > 0)
                     time_f = refState3_1H + refState3a_1H;
+                else if (refState3b_1H > 0)
+                    time_f = refState3_1H - refState3b_1H;
                 else
                     time_f = refState3_1H;
 
@@ -1515,6 +1518,208 @@ public class Obstacles : MonoBehaviour
         else if (gameObject.name.Substring(0, 6) == "Cutter")
         {
             transform.Rotate(0, 0, 2f);
+
+            // Determine pathing
+            if (path != "")
+            {
+                if (path.Substring(0, 4) == "line")
+                {
+                    if (path == "line_h")
+                    {
+                        if (pathState == "left")
+                        {
+                            if (transform.position.x > x - range_1)
+                            {
+                                transform.position += new Vector3(-speed, 0);
+                            }
+                            else
+                            {
+                                pathState = "right";
+                            }
+                        }
+                        else if (pathState == "right")
+                        {
+                            if (transform.position.x < x + range_2)
+                            {
+                                transform.position += new Vector3(speed, 0);
+                            }
+                            else
+                            {
+                                pathState = "left";
+                            }
+                        }
+                    }
+                    else if (path == "line_v")
+                    {
+                        if (pathState == "down")
+                        {
+                            if (transform.position.y > y - range_1)
+                            {
+                                transform.position += new Vector3(0, -speed);
+                            }
+                            else
+                            {
+                                pathState = "up";
+                            }
+                        }
+                        else if (pathState == "up")
+                        {
+                            if (transform.position.y < y + range_2)
+                            {
+                                transform.position += new Vector3(0, speed);
+                            }
+                            else
+                            {
+                                pathState = "down";
+                            }
+                        }
+                    }
+                    else if (path == "line_d")
+                    {
+                        if (pathState == "left-down")
+                        {
+                            if (transform.position.x > x - range_1)
+                            {
+                                transform.position += new Vector3(-speed, -speed_1);
+                            }
+                            else
+                            {
+                                pathState = "right-up";
+                            }
+                        }
+                        else if (pathState == "right-up")
+                        {
+                            if (transform.position.x < x + range_2)
+                            {
+                                transform.position += new Vector3(speed, speed_1);
+                            }
+                            else
+                            {
+                                pathState = "left-down";
+                            }
+                        }
+                        else if (pathState == "left-up")
+                        {
+                            if (transform.position.x > x - range_1)
+                            {
+                                transform.position += new Vector3(-speed, speed_1);
+                            }
+                            else
+                            {
+                                pathState = "right-down";
+                            }
+                        }
+                        else if (pathState == "right-down")
+                        {
+                            if (transform.position.x < x + range_2)
+                            {
+                                transform.position += new Vector3(speed, -speed_1);
+                            }
+                            else
+                            {
+                                pathState = "left-up";
+                            }
+                        }
+                    }
+                }
+                else if (path.Substring(0, 3) == "box")
+                { // Start from box center and spiral into intended path
+                    if (path == "box-clock")
+                    {
+                        if (pathState == "left")
+                        {
+                            if (transform.position.x > x - range_1)
+                            {
+                                transform.position += new Vector3(-speed, 0);
+                            }
+                            else
+                            {
+                                pathState = "up";
+                            }
+                        }
+                        else if (pathState == "right")
+                        {
+                            if (transform.position.x < x + range_1)
+                            {
+                                transform.position += new Vector3(speed, 0);
+                            }
+                            else
+                            {
+                                pathState = "down";
+                            }
+                        }
+                        else if (pathState == "down")
+                        {
+                            if (transform.position.y > y - range_2)
+                            {
+                                transform.position += new Vector3(0, -speed);
+                            }
+                            else
+                            {
+                                pathState = "left";
+                            }
+                        }
+                        else if (pathState == "up")
+                        {
+                            if (transform.position.y < y + range_2)
+                            {
+                                transform.position += new Vector3(0, speed);
+                            }
+                            else
+                            {
+                                pathState = "right";
+                            }
+                        }
+                    }
+                    else if (path == "box-counter")
+                    {
+                        if (pathState == "left")
+                        {
+                            if (transform.position.x > x - range_1)
+                            {
+                                transform.position += new Vector3(-speed, 0);
+                            }
+                            else
+                            {
+                                pathState = "down";
+                            }
+                        }
+                        else if (pathState == "right")
+                        {
+                            if (transform.position.x < x + range_1)
+                            {
+                                transform.position += new Vector3(speed, 0);
+                            }
+                            else
+                            {
+                                pathState = "up";
+                            }
+                        }
+                        else if (pathState == "down")
+                        {
+                            if (transform.position.y > y - range_2)
+                            {
+                                transform.position += new Vector3(0, -speed);
+                            }
+                            else
+                            {
+                                pathState = "right";
+                            }
+                        }
+                        else if (pathState == "up")
+                        {
+                            if (transform.position.y < y + range_2)
+                            {
+                                transform.position += new Vector3(0, speed);
+                            }
+                            else
+                            {
+                                pathState = "left";
+                            }
+                        }
+                    }
+                }
+            }            
         }
 
         /*----------Boss AI----------*/
@@ -2509,7 +2714,7 @@ public class Obstacles : MonoBehaviour
                         StartCoroutine(dmgFlash(0.05f));
                     }
                 }                
-                Debug.Log(healthCurr + " HP remaining!");                
+                Debug.Log(healthCurr + " HP remaining!");
 
                 // Other effects
                 if (gameObject.name.Substring(0, 7) == "Pursuit")
@@ -2526,6 +2731,10 @@ public class Obstacles : MonoBehaviour
                     }
                     time = 0;
                 }
+                else if (gameObject.name.Substring(0, 6) == "Turret")
+                {
+                    refState2_4 = true;
+                }
             }
             else if (gameObject.name.Substring(0, 5) == "Errat" && GlobalControl.reactor == "imperial")
             {
@@ -2534,263 +2743,284 @@ public class Obstacles : MonoBehaviour
         }
 
         // On hit player -> damage + knockback
-        else if (other.name == "Player" && !GlobalControl.immune && !passive)
+        else if (other.name == "Player" && !passive)
         {
-            if (!(gameObject.name.Substring(0, 6) == "Turret" || gameObject.name.Substring(0, 5) == "Errat"))
+            if (gameObject.name.Substring(0, 6) == "Cutter")
             {
-                // Damage calculation
-                if (GlobalControl.reactor == "unstable")
-                {
-                    GlobalControl.healthCurr = 0;
-                }
-                else if(damage > 0)
-                {
-                    GlobalControl.healthCurr -= damage;
-                    GlobalControl.immune = true;
+                Player.cut = true;
 
-                    // Energy drain
-                    if (gameObject.name.Substring(0, 8) == "Electric")
-                    {
-                        if (GlobalControl.energyCurr > damage)
-                            GlobalControl.energyCurr -= damage;
-                        else
-                            GlobalControl.energyCurr = 0;
-                    }
+                if (Player.rb2D.position.x + Player.rb2D.GetComponent<CircleCollider2D>().radius < transform.position.x - GetComponent<CircleCollider2D>().radius * transform.lossyScale.x * Mathf.Sqrt(2) / 2)
+                {
+                    Player.rb2D.velocity = new Vector2(-2f, Player.rb2D.velocity.y);
                 }
+                else if (Player.rb2D.position.x - Player.rb2D.GetComponent<CircleCollider2D>().radius > transform.position.x + GetComponent<CircleCollider2D>().radius * transform.lossyScale.x * Mathf.Sqrt(2) / 2)
+                {
+                    Player.rb2D.velocity = new Vector2(2f, Player.rb2D.velocity.y);
+                }
+                else if (Player.rb2D.position.y + Player.rb2D.GetComponent<CircleCollider2D>().radius < transform.position.y - GetComponent<CircleCollider2D>().radius * transform.lossyScale.y * Mathf.Sqrt(2) / 2)
+                {
+                    Player.rb2D.velocity = new Vector2(Player.rb2D.velocity.x, -2f);
+                }
+                else if (Player.rb2D.position.y - Player.rb2D.GetComponent<CircleCollider2D>().radius > transform.position.y + GetComponent<CircleCollider2D>().radius * transform.lossyScale.y * Mathf.Sqrt(2) / 2)
+                {
+                    Player.rb2D.velocity = new Vector2(Player.rb2D.velocity.x, 2f);
+                }
+            }
 
-                // On hit effects
-                if (gameObject.name.Substring(0, 6) == "Patrol")
+            if (!GlobalControl.immune)
+            {
+                if (!(gameObject.name.Substring(0, 6) == "Turret" || gameObject.name.Substring(0, 5) == "Errat"))
                 {
-                    if (Player.rb2D.position.x > transform.position.x - GetComponent<BoxCollider2D>().size.x / 3 && Player.rb2D.position.x < transform.position.x + GetComponent<BoxCollider2D>().size.x / 3)
+                    // Damage calculation
+                    if (GlobalControl.reactor == "unstable")
                     {
-                        Player.rb2D.velocity = new Vector2(Player.rb2D.velocity.x, 2f);
+                        GlobalControl.healthCurr = 0;
                     }
-                    else
+                    else if (damage > 0)
                     {
-                        if (transform.position.x > Player.rb2D.position.x)
+                        GlobalControl.healthCurr -= damage;
+                        GlobalControl.immune = true;
+
+                        // Energy drain
+                        if (gameObject.name.Substring(0, 8) == "Electric")
                         {
-                            Player.rb2D.velocity += new Vector2(-3f, 2f);
-                        }
-                        else if (transform.position.x < Player.rb2D.position.x)
-                        {
-                            Player.rb2D.velocity += new Vector2(3f, 2f);
-                        }
-                    }
-                }
-                else if (gameObject.name.Substring(0, 7) == "Pursuit")
-                {
-                    if (Player.rb2D.position.x > transform.position.x - GetComponent<BoxCollider2D>().size.x / 3 && Player.rb2D.position.x < transform.position.x + GetComponent<BoxCollider2D>().size.x / 3)
-                    {
-                        Player.rb2D.velocity = new Vector2(Player.rb2D.velocity.x, 3f);
-                    }
-                    else
-                    {
-                        if (transform.position.x > Player.rb2D.position.x)
-                        {
-                            Player.rb2D.velocity += new Vector2(-2f, 3f);
-                        }
-                        else if (transform.position.x < Player.rb2D.position.x)
-                        {
-                            Player.rb2D.velocity += new Vector2(2f, 3f);
+                            if (GlobalControl.energyCurr > damage)
+                                GlobalControl.energyCurr -= damage;
+                            else
+                                GlobalControl.energyCurr = 0;
                         }
                     }
-                }
-                else if (gameObject.name.Substring(0, 6) == "Aerial")
-                {
-                    if (Player.rb2D.position.x > transform.position.x - GetComponent<BoxCollider2D>().size.x / 3 && Player.rb2D.position.x < transform.position.x + GetComponent<BoxCollider2D>().size.x / 3)
+
+                    // On hit effects
+                    if (gameObject.name.Substring(0, 6) == "Patrol")
                     {
-                        if (Player.rb2D.position.y - Player.rb2D.GetComponent<CircleCollider2D>().radius > transform.position.y)
+                        if (Player.rb2D.position.x > transform.position.x - GetComponent<BoxCollider2D>().size.x / 3 && Player.rb2D.position.x < transform.position.x + GetComponent<BoxCollider2D>().size.x / 3)
                         {
                             Player.rb2D.velocity = new Vector2(Player.rb2D.velocity.x, 2f);
                         }
                         else
                         {
-                            Player.rb2D.velocity = new Vector2(Player.rb2D.velocity.x, -1f);
-                        }
-                    }
-                    else
-                    {
-                        if (transform.position.x > Player.rb2D.position.x)
-                        {
-                            if (Player.rb2D.position.y - Player.rb2D.GetComponent<CircleCollider2D>().radius > transform.position.y)
+                            if (transform.position.x > Player.rb2D.position.x)
                             {
-                                Player.rb2D.velocity = new Vector2(-3f, 2f);
+                                Player.rb2D.velocity += new Vector2(-3f, 2f);
                             }
-                            else
+                            else if (transform.position.x < Player.rb2D.position.x)
                             {
-                                Player.rb2D.velocity = new Vector2(-3f, -1f);
-                            }
-                        }
-                        else if (transform.position.x < Player.rb2D.position.x)
-                        {
-                            if (Player.rb2D.position.y - Player.rb2D.GetComponent<CircleCollider2D>().radius > transform.position.y)
-                            {
-                                Player.rb2D.velocity = new Vector2(3f, 2f);
-                            }
-                            else
-                            {
-                                Player.rb2D.velocity = new Vector2(3f, -1f);
+                                Player.rb2D.velocity += new Vector2(3f, 2f);
                             }
                         }
                     }
-                }
-                else if (gameObject.name.Substring(0, 7) == "Aquatic")
-                {
-                    if (Player.rb2D.position.x > transform.position.x - GetComponent<BoxCollider2D>().size.x / 3 && Player.rb2D.position.x < transform.position.x + GetComponent<BoxCollider2D>().size.x / 3)
+                    else if (gameObject.name.Substring(0, 7) == "Pursuit")
                     {
-                        if (Player.rb2D.position.y - Player.rb2D.GetComponent<CircleCollider2D>().radius > transform.position.y)
+                        if (Player.rb2D.position.x > transform.position.x - GetComponent<BoxCollider2D>().size.x / 3 && Player.rb2D.position.x < transform.position.x + GetComponent<BoxCollider2D>().size.x / 3)
                         {
-                            Player.rb2D.velocity = new Vector2(Player.rb2D.velocity.x, 2f);
+                            Player.rb2D.velocity = new Vector2(Player.rb2D.velocity.x, 3f);
                         }
                         else
                         {
-                            Player.rb2D.velocity = new Vector2(Player.rb2D.velocity.x, -1f);
-                        }
-                    }
-                    else
-                    {
-                        if (transform.position.x > Player.rb2D.position.x)
-                        {
-                            if (Player.rb2D.position.y - Player.rb2D.GetComponent<CircleCollider2D>().radius > transform.position.y)
+                            if (transform.position.x > Player.rb2D.position.x)
                             {
-                                Player.rb2D.velocity = new Vector2(-3f, 2f);
+                                Player.rb2D.velocity += new Vector2(-2f, 3f);
                             }
-                            else
+                            else if (transform.position.x < Player.rb2D.position.x)
                             {
-                                Player.rb2D.velocity = new Vector2(-3f, -1f);
-                            }
-                        }
-                        else if (transform.position.x < Player.rb2D.position.x)
-                        {
-                            if (Player.rb2D.position.y - Player.rb2D.GetComponent<CircleCollider2D>().radius > transform.position.y)
-                            {
-                                Player.rb2D.velocity = new Vector2(3f, 2f);
-                            }
-                            else
-                            {
-                                Player.rb2D.velocity = new Vector2(3f, -1f);
+                                Player.rb2D.velocity += new Vector2(2f, 3f);
                             }
                         }
                     }
-                }
-                else if (gameObject.name.Substring(0, 6) == "Cutter")
-                {
-                    // Add knockback here
-                }
-                else if (gameObject.name == "Overseer")
-                {
-                    Player.rb2D.velocity = new Vector2(-5f, 0f);
-                }
-                else if (gameObject.name == "Containment")
-                {
-                    if (Player.rb2D.position.x == transform.position.x)
+                    else if (gameObject.name.Substring(0, 6) == "Aerial")
                     {
-                        if (Player.rb2D.position.y - Player.rb2D.GetComponent<CircleCollider2D>().radius > transform.position.y + GetComponent<BoxCollider2D>().size.y / 2)
+                        if (Player.rb2D.position.x > transform.position.x - GetComponent<BoxCollider2D>().size.x / 3 && Player.rb2D.position.x < transform.position.x + GetComponent<BoxCollider2D>().size.x / 3)
                         {
-                            Player.rb2D.velocity = new Vector2(Player.rb2D.velocity.x, 2f);
-                        }
-                        else if (Player.rb2D.position.y + Player.rb2D.GetComponent<CircleCollider2D>().radius < transform.position.y - GetComponent<BoxCollider2D>().size.y / 2)
-                        {
-                            Player.rb2D.velocity = new Vector2(Player.rb2D.velocity.x, -2f);
+                            if (Player.rb2D.position.y - Player.rb2D.GetComponent<CircleCollider2D>().radius > transform.position.y)
+                            {
+                                Player.rb2D.velocity = new Vector2(Player.rb2D.velocity.x, 2f);
+                            }
+                            else
+                            {
+                                Player.rb2D.velocity = new Vector2(Player.rb2D.velocity.x, -1f);
+                            }
                         }
                         else
                         {
-                            float rand = Random.Range(0, 2);
-                            if (rand > 0)
+                            if (transform.position.x > Player.rb2D.position.x)
+                            {
+                                if (Player.rb2D.position.y - Player.rb2D.GetComponent<CircleCollider2D>().radius > transform.position.y)
+                                {
+                                    Player.rb2D.velocity = new Vector2(-3f, 2f);
+                                }
+                                else
+                                {
+                                    Player.rb2D.velocity = new Vector2(-3f, -1f);
+                                }
+                            }
+                            else if (transform.position.x < Player.rb2D.position.x)
+                            {
+                                if (Player.rb2D.position.y - Player.rb2D.GetComponent<CircleCollider2D>().radius > transform.position.y)
+                                {
+                                    Player.rb2D.velocity = new Vector2(3f, 2f);
+                                }
+                                else
+                                {
+                                    Player.rb2D.velocity = new Vector2(3f, -1f);
+                                }
+                            }
+                        }
+                    }
+                    else if (gameObject.name.Substring(0, 7) == "Aquatic")
+                    {
+                        if (Player.rb2D.position.x > transform.position.x - GetComponent<BoxCollider2D>().size.x / 3 && Player.rb2D.position.x < transform.position.x + GetComponent<BoxCollider2D>().size.x / 3)
+                        {
+                            if (Player.rb2D.position.y - Player.rb2D.GetComponent<CircleCollider2D>().radius > transform.position.y)
+                            {
+                                Player.rb2D.velocity = new Vector2(Player.rb2D.velocity.x, 2f);
+                            }
+                            else
+                            {
+                                Player.rb2D.velocity = new Vector2(Player.rb2D.velocity.x, -1f);
+                            }
+                        }
+                        else
+                        {
+                            if (transform.position.x > Player.rb2D.position.x)
+                            {
+                                if (Player.rb2D.position.y - Player.rb2D.GetComponent<CircleCollider2D>().radius > transform.position.y)
+                                {
+                                    Player.rb2D.velocity = new Vector2(-3f, 2f);
+                                }
+                                else
+                                {
+                                    Player.rb2D.velocity = new Vector2(-3f, -1f);
+                                }
+                            }
+                            else if (transform.position.x < Player.rb2D.position.x)
+                            {
+                                if (Player.rb2D.position.y - Player.rb2D.GetComponent<CircleCollider2D>().radius > transform.position.y)
+                                {
+                                    Player.rb2D.velocity = new Vector2(3f, 2f);
+                                }
+                                else
+                                {
+                                    Player.rb2D.velocity = new Vector2(3f, -1f);
+                                }
+                            }
+                        }
+                    }
+                    else if (gameObject.name == "Overseer")
+                    {
+                        Player.rb2D.velocity = new Vector2(-5f, 0f);
+                    }
+                    else if (gameObject.name == "Containment")
+                    {
+                        if (Player.rb2D.position.x == transform.position.x)
+                        {
+                            if (Player.rb2D.position.y - Player.rb2D.GetComponent<CircleCollider2D>().radius > transform.position.y + GetComponent<BoxCollider2D>().size.y / 2)
+                            {
+                                Player.rb2D.velocity = new Vector2(Player.rb2D.velocity.x, 2f);
+                            }
+                            else if (Player.rb2D.position.y + Player.rb2D.GetComponent<CircleCollider2D>().radius < transform.position.y - GetComponent<BoxCollider2D>().size.y / 2)
                             {
                                 Player.rb2D.velocity = new Vector2(Player.rb2D.velocity.x, -2f);
                             }
                             else
                             {
-                                Player.rb2D.velocity = new Vector2(Player.rb2D.velocity.x, 2f);
-                            }
-                        }
-                    }
-                    else
-                    {
-                        if (transform.position.x > Player.rb2D.position.x)
-                        {
-                            if (Player.rb2D.position.y - Player.rb2D.GetComponent<CircleCollider2D>().radius > transform.position.y + GetComponent<BoxCollider2D>().size.y / 2)
-                            {
-                                Player.rb2D.velocity = new Vector2(-5f, 2f);
-                            }
-                            else if (Player.rb2D.position.y + Player.rb2D.GetComponent<CircleCollider2D>().radius < transform.position.y - GetComponent<BoxCollider2D>().size.y / 2)
-                            {
-                                Player.rb2D.velocity = new Vector2(-5f, -2f);
-                            }
-                            else
-                            {
                                 float rand = Random.Range(0, 2);
                                 if (rand > 0)
+                                {
+                                    Player.rb2D.velocity = new Vector2(Player.rb2D.velocity.x, -2f);
+                                }
+                                else
+                                {
+                                    Player.rb2D.velocity = new Vector2(Player.rb2D.velocity.x, 2f);
+                                }
+                            }
+                        }
+                        else
+                        {
+                            if (transform.position.x > Player.rb2D.position.x)
+                            {
+                                if (Player.rb2D.position.y - Player.rb2D.GetComponent<CircleCollider2D>().radius > transform.position.y + GetComponent<BoxCollider2D>().size.y / 2)
+                                {
+                                    Player.rb2D.velocity = new Vector2(-5f, 2f);
+                                }
+                                else if (Player.rb2D.position.y + Player.rb2D.GetComponent<CircleCollider2D>().radius < transform.position.y - GetComponent<BoxCollider2D>().size.y / 2)
                                 {
                                     Player.rb2D.velocity = new Vector2(-5f, -2f);
                                 }
                                 else
                                 {
-                                    Player.rb2D.velocity = new Vector2(-5f, 2f);
+                                    float rand = Random.Range(0, 2);
+                                    if (rand > 0)
+                                    {
+                                        Player.rb2D.velocity = new Vector2(-5f, -2f);
+                                    }
+                                    else
+                                    {
+                                        Player.rb2D.velocity = new Vector2(-5f, 2f);
+                                    }
                                 }
                             }
-                        }
-                        else if (transform.position.x < Player.rb2D.position.x)
-                        {
-                            if (Player.rb2D.position.y - Player.rb2D.GetComponent<CircleCollider2D>().radius > transform.position.y + GetComponent<BoxCollider2D>().size.y / 2)
+                            else if (transform.position.x < Player.rb2D.position.x)
                             {
-                                Player.rb2D.velocity = new Vector2(5f, 2f);
-                            }
-                            else if (Player.rb2D.position.y + Player.rb2D.GetComponent<CircleCollider2D>().radius < transform.position.y - GetComponent<BoxCollider2D>().size.y / 2)
-                            {
-                                Player.rb2D.velocity = new Vector2(5f, -2f);
-                            }
-                            else
-                            {
-                                float rand = Random.Range(0, 2);
-                                if (rand > 0)
+                                if (Player.rb2D.position.y - Player.rb2D.GetComponent<CircleCollider2D>().radius > transform.position.y + GetComponent<BoxCollider2D>().size.y / 2)
+                                {
+                                    Player.rb2D.velocity = new Vector2(5f, 2f);
+                                }
+                                else if (Player.rb2D.position.y + Player.rb2D.GetComponent<CircleCollider2D>().radius < transform.position.y - GetComponent<BoxCollider2D>().size.y / 2)
                                 {
                                     Player.rb2D.velocity = new Vector2(5f, -2f);
                                 }
                                 else
                                 {
-                                    Player.rb2D.velocity = new Vector2(5f, 2f);
+                                    float rand = Random.Range(0, 2);
+                                    if (rand > 0)
+                                    {
+                                        Player.rb2D.velocity = new Vector2(5f, -2f);
+                                    }
+                                    else
+                                    {
+                                        Player.rb2D.velocity = new Vector2(5f, 2f);
+                                    }
                                 }
                             }
                         }
                     }
-                }
-                else if (gameObject.name == "Subnautical")
-                {
-                    if (Player.rb2D.position.x > transform.position.x - GetComponent<BoxCollider2D>().size.x / 3 && Player.rb2D.position.x < transform.position.x + GetComponent<BoxCollider2D>().size.x / 3)
+                    else if (gameObject.name == "Subnautical")
                     {
-                        if (Player.rb2D.position.y - Player.rb2D.GetComponent<CircleCollider2D>().radius > transform.position.y)
+                        if (Player.rb2D.position.x > transform.position.x - GetComponent<BoxCollider2D>().size.x / 3 && Player.rb2D.position.x < transform.position.x + GetComponent<BoxCollider2D>().size.x / 3)
                         {
-                            Player.rb2D.velocity = new Vector2(Player.rb2D.velocity.x, 2f);
+                            if (Player.rb2D.position.y - Player.rb2D.GetComponent<CircleCollider2D>().radius > transform.position.y)
+                            {
+                                Player.rb2D.velocity = new Vector2(Player.rb2D.velocity.x, 2f);
+                            }
+                            else
+                            {
+                                Player.rb2D.velocity = new Vector2(Player.rb2D.velocity.x, -1f);
+                            }
                         }
                         else
                         {
-                            Player.rb2D.velocity = new Vector2(Player.rb2D.velocity.x, -1f);
-                        }
-                    }
-                    else
-                    {
-                        if (transform.position.x > Player.rb2D.position.x)
-                        {
-                            if (Player.rb2D.position.y - Player.rb2D.GetComponent<CircleCollider2D>().radius > transform.position.y)
+                            if (transform.position.x > Player.rb2D.position.x)
                             {
-                                Player.rb2D.velocity = new Vector2(-3f, 2f);
+                                if (Player.rb2D.position.y - Player.rb2D.GetComponent<CircleCollider2D>().radius > transform.position.y)
+                                {
+                                    Player.rb2D.velocity = new Vector2(-3f, 2f);
+                                }
+                                else
+                                {
+                                    Player.rb2D.velocity = new Vector2(-3f, -1f);
+                                }
                             }
-                            else
+                            else if (transform.position.x < Player.rb2D.position.x)
                             {
-                                Player.rb2D.velocity = new Vector2(-3f, -1f);
-                            }
-                        }
-                        else if (transform.position.x < Player.rb2D.position.x)
-                        {
-                            if (Player.rb2D.position.y - Player.rb2D.GetComponent<CircleCollider2D>().radius > transform.position.y)
-                            {
-                                Player.rb2D.velocity = new Vector2(3f, 2f);
-                            }
-                            else
-                            {
-                                Player.rb2D.velocity = new Vector2(3f, -1f);
+                                if (Player.rb2D.position.y - Player.rb2D.GetComponent<CircleCollider2D>().radius > transform.position.y)
+                                {
+                                    Player.rb2D.velocity = new Vector2(3f, 2f);
+                                }
+                                else
+                                {
+                                    Player.rb2D.velocity = new Vector2(3f, -1f);
+                                }
                             }
                         }
                     }
@@ -2802,259 +3032,282 @@ public class Obstacles : MonoBehaviour
     private void OnTriggerStay2D(Collider2D other)
     {
         // On hit player -> damage + knockback
-        if (other.name == "Player" && !GlobalControl.immune && !passive)
+        if (other.name == "Player" && !passive)
         {
-            if (!(gameObject.name.Substring(0, 6) == "Turret" || gameObject.name.Substring(0, 5) == "Errat"))
+            if (gameObject.name.Substring(0, 6) == "Cutter")
             {
-                // Damage calculation
-                if (GlobalControl.reactor == "unstable")
+                if (Player.rb2D.position.x + Player.rb2D.GetComponent<CircleCollider2D>().radius < transform.position.x - GetComponent<CircleCollider2D>().radius * transform.lossyScale.x * Mathf.Sqrt(2) / 2)
                 {
-                    GlobalControl.healthCurr = 0;
+                    Player.rb2D.velocity = new Vector2(-2f, Player.rb2D.velocity.y);
                 }
-                else if(damage > 0)
+                else if (Player.rb2D.position.x - Player.rb2D.GetComponent<CircleCollider2D>().radius > transform.position.x + GetComponent<CircleCollider2D>().radius * transform.lossyScale.x * Mathf.Sqrt(2) / 2)
                 {
-                    GlobalControl.healthCurr -= damage;
-                    GlobalControl.immune = true;
+                    Player.rb2D.velocity = new Vector2(2f, Player.rb2D.velocity.y);
+                }
+                else if (Player.rb2D.position.y + Player.rb2D.GetComponent<CircleCollider2D>().radius < transform.position.y - GetComponent<CircleCollider2D>().radius * transform.lossyScale.y * Mathf.Sqrt(2) / 2)
+                {
+                    Player.rb2D.velocity = new Vector2(Player.rb2D.velocity.x, -2f);
+                }
+                else if (Player.rb2D.position.y - Player.rb2D.GetComponent<CircleCollider2D>().radius > transform.position.y + GetComponent<CircleCollider2D>().radius * transform.lossyScale.y * Mathf.Sqrt(2) / 2)
+                {
+                    Player.rb2D.velocity = new Vector2(Player.rb2D.velocity.x, 2f);
+                }
+            }
 
-                    // Energy drain
-                    if (gameObject.name.Substring(0, 8) == "Electric")
+            if (!GlobalControl.immune)
+            {
+                if (!(gameObject.name.Substring(0, 6) == "Turret" || gameObject.name.Substring(0, 5) == "Errat"))
+                {
+                    // Damage calculation
+                    if (GlobalControl.reactor == "unstable")
                     {
-                        if (GlobalControl.energyCurr > damage)
-                            GlobalControl.energyCurr -= damage;
-                        else
-                            GlobalControl.energyCurr = 0;
+                        GlobalControl.healthCurr = 0;
                     }
-                }
+                    else if (damage > 0)
+                    {
+                        GlobalControl.healthCurr -= damage;
+                        GlobalControl.immune = true;
 
-                // On hit effects
-                if (gameObject.name.Substring(0, 6) == "Patrol")
-                {
-                    if (Player.rb2D.position.x > transform.position.x - GetComponent<BoxCollider2D>().size.x / 3 && Player.rb2D.position.x < transform.position.x + GetComponent<BoxCollider2D>().size.x / 3)
-                    {
-                        Player.rb2D.velocity = new Vector2(Player.rb2D.velocity.x, 2f);
-                    }
-                    else
-                    {
-                        if (transform.position.x > Player.rb2D.position.x)
+                        // Energy drain
+                        if (gameObject.name.Substring(0, 8) == "Electric")
                         {
-                            Player.rb2D.velocity += new Vector2(-3f, 2f);
-                        }
-                        else if (transform.position.x < Player.rb2D.position.x)
-                        {
-                            Player.rb2D.velocity += new Vector2(3f, 2f);
+                            if (GlobalControl.energyCurr > damage)
+                                GlobalControl.energyCurr -= damage;
+                            else
+                                GlobalControl.energyCurr = 0;
                         }
                     }
-                }
-                else if (gameObject.name.Substring(0, 7) == "Pursuit")
-                {
-                    if (Player.rb2D.position.x > transform.position.x - GetComponent<BoxCollider2D>().size.x / 3 && Player.rb2D.position.x < transform.position.x + GetComponent<BoxCollider2D>().size.x / 3)
+
+                    // On hit effects
+                    if (gameObject.name.Substring(0, 6) == "Patrol")
                     {
-                        Player.rb2D.velocity = new Vector2(Player.rb2D.velocity.x, 3f);
-                    }
-                    else
-                    {
-                        if (transform.position.x > Player.rb2D.position.x)
-                        {
-                            Player.rb2D.velocity += new Vector2(-2f, 3f);
-                        }
-                        else if (transform.position.x < Player.rb2D.position.x)
-                        {
-                            Player.rb2D.velocity += new Vector2(2f, 3f);
-                        }
-                    }
-                }
-                else if (gameObject.name.Substring(0, 6) == "Aerial")
-                {
-                    if (Player.rb2D.position.x > transform.position.x - GetComponent<BoxCollider2D>().size.x / 3 && Player.rb2D.position.x < transform.position.x + GetComponent<BoxCollider2D>().size.x / 3)
-                    {
-                        if (Player.rb2D.position.y - Player.rb2D.GetComponent<CircleCollider2D>().radius > transform.position.y)
+                        if (Player.rb2D.position.x > transform.position.x - GetComponent<BoxCollider2D>().size.x / 3 && Player.rb2D.position.x < transform.position.x + GetComponent<BoxCollider2D>().size.x / 3)
                         {
                             Player.rb2D.velocity = new Vector2(Player.rb2D.velocity.x, 2f);
                         }
                         else
                         {
-                            Player.rb2D.velocity = new Vector2(Player.rb2D.velocity.x, -1f);
-                        }
-                    }
-                    else
-                    {
-                        if (transform.position.x > Player.rb2D.position.x)
-                        {
-                            if (Player.rb2D.position.y - Player.rb2D.GetComponent<CircleCollider2D>().radius > transform.position.y)
+                            if (transform.position.x > Player.rb2D.position.x)
                             {
-                                Player.rb2D.velocity = new Vector2(-3f, 2f);
+                                Player.rb2D.velocity += new Vector2(-3f, 2f);
                             }
-                            else
+                            else if (transform.position.x < Player.rb2D.position.x)
                             {
-                                Player.rb2D.velocity = new Vector2(-3f, -1f);
-                            }
-                        }
-                        else if (transform.position.x < Player.rb2D.position.x)
-                        {
-                            if (Player.rb2D.position.y - Player.rb2D.GetComponent<CircleCollider2D>().radius > transform.position.y)
-                            {
-                                Player.rb2D.velocity = new Vector2(3f, 2f);
-                            }
-                            else
-                            {
-                                Player.rb2D.velocity = new Vector2(3f, -1f);
+                                Player.rb2D.velocity += new Vector2(3f, 2f);
                             }
                         }
                     }
-                }
-                else if (gameObject.name.Substring(0, 7) == "Aquatic")
-                {
-                    if (Player.rb2D.position.x > transform.position.x - GetComponent<BoxCollider2D>().size.x / 3 && Player.rb2D.position.x < transform.position.x + GetComponent<BoxCollider2D>().size.x / 3)
+                    else if (gameObject.name.Substring(0, 7) == "Pursuit")
                     {
-                        if (Player.rb2D.position.y - Player.rb2D.GetComponent<CircleCollider2D>().radius > transform.position.y)
+                        if (Player.rb2D.position.x > transform.position.x - GetComponent<BoxCollider2D>().size.x / 3 && Player.rb2D.position.x < transform.position.x + GetComponent<BoxCollider2D>().size.x / 3)
                         {
-                            Player.rb2D.velocity = new Vector2(Player.rb2D.velocity.x, 2f);
+                            Player.rb2D.velocity = new Vector2(Player.rb2D.velocity.x, 3f);
                         }
                         else
                         {
-                            Player.rb2D.velocity = new Vector2(Player.rb2D.velocity.x, -1f);
-                        }
-                    }
-                    else
-                    {
-                        if (transform.position.x > Player.rb2D.position.x)
-                        {
-                            if (Player.rb2D.position.y - Player.rb2D.GetComponent<CircleCollider2D>().radius > transform.position.y)
+                            if (transform.position.x > Player.rb2D.position.x)
                             {
-                                Player.rb2D.velocity = new Vector2(-3f, 2f);
+                                Player.rb2D.velocity += new Vector2(-2f, 3f);
                             }
-                            else
+                            else if (transform.position.x < Player.rb2D.position.x)
                             {
-                                Player.rb2D.velocity = new Vector2(-3f, -1f);
-                            }
-                        }
-                        else if (transform.position.x < Player.rb2D.position.x)
-                        {
-                            if (Player.rb2D.position.y - Player.rb2D.GetComponent<CircleCollider2D>().radius > transform.position.y)
-                            {
-                                Player.rb2D.velocity = new Vector2(3f, 2f);
-                            }
-                            else
-                            {
-                                Player.rb2D.velocity = new Vector2(3f, -1f);
+                                Player.rb2D.velocity += new Vector2(2f, 3f);
                             }
                         }
                     }
-                }
-                else if (gameObject.name == "Overseer")
-                {
-                    Player.rb2D.velocity = new Vector2(-5f, 0f);
-                }
-                else if (gameObject.name == "Containment")
-                {
-                    if (Player.rb2D.position.x == transform.position.x)
+                    else if (gameObject.name.Substring(0, 6) == "Aerial")
                     {
-                        if (Player.rb2D.position.y - Player.rb2D.GetComponent<CircleCollider2D>().radius > transform.position.y + GetComponent<BoxCollider2D>().size.y / 2)
+                        if (Player.rb2D.position.x > transform.position.x - GetComponent<BoxCollider2D>().size.x / 3 && Player.rb2D.position.x < transform.position.x + GetComponent<BoxCollider2D>().size.x / 3)
                         {
-                            Player.rb2D.velocity = new Vector2(Player.rb2D.velocity.x, 2f);
-                        }
-                        else if (Player.rb2D.position.y + Player.rb2D.GetComponent<CircleCollider2D>().radius < transform.position.y - GetComponent<BoxCollider2D>().size.y / 2)
-                        {
-                            Player.rb2D.velocity = new Vector2(Player.rb2D.velocity.x, -2f);
+                            if (Player.rb2D.position.y - Player.rb2D.GetComponent<CircleCollider2D>().radius > transform.position.y)
+                            {
+                                Player.rb2D.velocity = new Vector2(Player.rb2D.velocity.x, 2f);
+                            }
+                            else
+                            {
+                                Player.rb2D.velocity = new Vector2(Player.rb2D.velocity.x, -1f);
+                            }
                         }
                         else
                         {
-                            float rand = Random.Range(0, 2);
-                            if (rand > 0)
+                            if (transform.position.x > Player.rb2D.position.x)
+                            {
+                                if (Player.rb2D.position.y - Player.rb2D.GetComponent<CircleCollider2D>().radius > transform.position.y)
+                                {
+                                    Player.rb2D.velocity = new Vector2(-3f, 2f);
+                                }
+                                else
+                                {
+                                    Player.rb2D.velocity = new Vector2(-3f, -1f);
+                                }
+                            }
+                            else if (transform.position.x < Player.rb2D.position.x)
+                            {
+                                if (Player.rb2D.position.y - Player.rb2D.GetComponent<CircleCollider2D>().radius > transform.position.y)
+                                {
+                                    Player.rb2D.velocity = new Vector2(3f, 2f);
+                                }
+                                else
+                                {
+                                    Player.rb2D.velocity = new Vector2(3f, -1f);
+                                }
+                            }
+                        }
+                    }
+                    else if (gameObject.name.Substring(0, 7) == "Aquatic")
+                    {
+                        if (Player.rb2D.position.x > transform.position.x - GetComponent<BoxCollider2D>().size.x / 3 && Player.rb2D.position.x < transform.position.x + GetComponent<BoxCollider2D>().size.x / 3)
+                        {
+                            if (Player.rb2D.position.y - Player.rb2D.GetComponent<CircleCollider2D>().radius > transform.position.y)
+                            {
+                                Player.rb2D.velocity = new Vector2(Player.rb2D.velocity.x, 2f);
+                            }
+                            else
+                            {
+                                Player.rb2D.velocity = new Vector2(Player.rb2D.velocity.x, -1f);
+                            }
+                        }
+                        else
+                        {
+                            if (transform.position.x > Player.rb2D.position.x)
+                            {
+                                if (Player.rb2D.position.y - Player.rb2D.GetComponent<CircleCollider2D>().radius > transform.position.y)
+                                {
+                                    Player.rb2D.velocity = new Vector2(-3f, 2f);
+                                }
+                                else
+                                {
+                                    Player.rb2D.velocity = new Vector2(-3f, -1f);
+                                }
+                            }
+                            else if (transform.position.x < Player.rb2D.position.x)
+                            {
+                                if (Player.rb2D.position.y - Player.rb2D.GetComponent<CircleCollider2D>().radius > transform.position.y)
+                                {
+                                    Player.rb2D.velocity = new Vector2(3f, 2f);
+                                }
+                                else
+                                {
+                                    Player.rb2D.velocity = new Vector2(3f, -1f);
+                                }
+                            }
+                        }
+                    }
+                    else if (gameObject.name == "Overseer")
+                    {
+                        Player.rb2D.velocity = new Vector2(-5f, 0f);
+                    }
+                    else if (gameObject.name == "Containment")
+                    {
+                        if (Player.rb2D.position.x == transform.position.x)
+                        {
+                            if (Player.rb2D.position.y - Player.rb2D.GetComponent<CircleCollider2D>().radius > transform.position.y + GetComponent<BoxCollider2D>().size.y / 2)
+                            {
+                                Player.rb2D.velocity = new Vector2(Player.rb2D.velocity.x, 2f);
+                            }
+                            else if (Player.rb2D.position.y + Player.rb2D.GetComponent<CircleCollider2D>().radius < transform.position.y - GetComponent<BoxCollider2D>().size.y / 2)
                             {
                                 Player.rb2D.velocity = new Vector2(Player.rb2D.velocity.x, -2f);
                             }
                             else
                             {
-                                Player.rb2D.velocity = new Vector2(Player.rb2D.velocity.x, 2f);
-                            }
-                        }
-                    }
-                    else
-                    {
-                        if (transform.position.x > Player.rb2D.position.x)
-                        {
-                            if (Player.rb2D.position.y - Player.rb2D.GetComponent<CircleCollider2D>().radius > transform.position.y + GetComponent<BoxCollider2D>().size.y / 2)
-                            {
-                                Player.rb2D.velocity = new Vector2(-5f, 2f);
-                            }
-                            else if (Player.rb2D.position.y + Player.rb2D.GetComponent<CircleCollider2D>().radius < transform.position.y - GetComponent<BoxCollider2D>().size.y / 2)
-                            {
-                                Player.rb2D.velocity = new Vector2(-5f, -2f);
-                            }
-                            else
-                            {
                                 float rand = Random.Range(0, 2);
                                 if (rand > 0)
+                                {
+                                    Player.rb2D.velocity = new Vector2(Player.rb2D.velocity.x, -2f);
+                                }
+                                else
+                                {
+                                    Player.rb2D.velocity = new Vector2(Player.rb2D.velocity.x, 2f);
+                                }
+                            }
+                        }
+                        else
+                        {
+                            if (transform.position.x > Player.rb2D.position.x)
+                            {
+                                if (Player.rb2D.position.y - Player.rb2D.GetComponent<CircleCollider2D>().radius > transform.position.y + GetComponent<BoxCollider2D>().size.y / 2)
+                                {
+                                    Player.rb2D.velocity = new Vector2(-5f, 2f);
+                                }
+                                else if (Player.rb2D.position.y + Player.rb2D.GetComponent<CircleCollider2D>().radius < transform.position.y - GetComponent<BoxCollider2D>().size.y / 2)
                                 {
                                     Player.rb2D.velocity = new Vector2(-5f, -2f);
                                 }
                                 else
                                 {
-                                    Player.rb2D.velocity = new Vector2(-5f, 2f);
+                                    float rand = Random.Range(0, 2);
+                                    if (rand > 0)
+                                    {
+                                        Player.rb2D.velocity = new Vector2(-5f, -2f);
+                                    }
+                                    else
+                                    {
+                                        Player.rb2D.velocity = new Vector2(-5f, 2f);
+                                    }
                                 }
                             }
-                        }
-                        else if (transform.position.x < Player.rb2D.position.x)
-                        {
-                            if (Player.rb2D.position.y - Player.rb2D.GetComponent<CircleCollider2D>().radius > transform.position.y + GetComponent<BoxCollider2D>().size.y / 2)
+                            else if (transform.position.x < Player.rb2D.position.x)
                             {
-                                Player.rb2D.velocity = new Vector2(5f, 2f);
-                            }
-                            else if (Player.rb2D.position.y + Player.rb2D.GetComponent<CircleCollider2D>().radius < transform.position.y - GetComponent<BoxCollider2D>().size.y / 2)
-                            {
-                                Player.rb2D.velocity = new Vector2(5f, -2f);
-                            }
-                            else
-                            {
-                                float rand = Random.Range(0, 2);
-                                if (rand > 0)
+                                if (Player.rb2D.position.y - Player.rb2D.GetComponent<CircleCollider2D>().radius > transform.position.y + GetComponent<BoxCollider2D>().size.y / 2)
+                                {
+                                    Player.rb2D.velocity = new Vector2(5f, 2f);
+                                }
+                                else if (Player.rb2D.position.y + Player.rb2D.GetComponent<CircleCollider2D>().radius < transform.position.y - GetComponent<BoxCollider2D>().size.y / 2)
                                 {
                                     Player.rb2D.velocity = new Vector2(5f, -2f);
                                 }
                                 else
                                 {
-                                    Player.rb2D.velocity = new Vector2(5f, 2f);
+                                    float rand = Random.Range(0, 2);
+                                    if (rand > 0)
+                                    {
+                                        Player.rb2D.velocity = new Vector2(5f, -2f);
+                                    }
+                                    else
+                                    {
+                                        Player.rb2D.velocity = new Vector2(5f, 2f);
+                                    }
                                 }
                             }
                         }
                     }
-                }
-                else if (gameObject.name == "Subnautical")
-                {
-                    if (Player.rb2D.position.x > transform.position.x - GetComponent<BoxCollider2D>().size.x / 3 && Player.rb2D.position.x < transform.position.x + GetComponent<BoxCollider2D>().size.x / 3)
+                    else if (gameObject.name == "Subnautical")
                     {
-                        if (Player.rb2D.position.y - Player.rb2D.GetComponent<CircleCollider2D>().radius > transform.position.y)
+                        if (Player.rb2D.position.x > transform.position.x - GetComponent<BoxCollider2D>().size.x / 3 && Player.rb2D.position.x < transform.position.x + GetComponent<BoxCollider2D>().size.x / 3)
                         {
-                            Player.rb2D.velocity = new Vector2(Player.rb2D.velocity.x, 2f);
+                            if (Player.rb2D.position.y - Player.rb2D.GetComponent<CircleCollider2D>().radius > transform.position.y)
+                            {
+                                Player.rb2D.velocity = new Vector2(Player.rb2D.velocity.x, 2f);
+                            }
+                            else
+                            {
+                                Player.rb2D.velocity = new Vector2(Player.rb2D.velocity.x, -1f);
+                            }
                         }
                         else
                         {
-                            Player.rb2D.velocity = new Vector2(Player.rb2D.velocity.x, -1f);
-                        }
-                    }
-                    else
-                    {
-                        if (transform.position.x > Player.rb2D.position.x)
-                        {
-                            if (Player.rb2D.position.y - Player.rb2D.GetComponent<CircleCollider2D>().radius > transform.position.y)
+                            if (transform.position.x > Player.rb2D.position.x)
                             {
-                                Player.rb2D.velocity = new Vector2(-3f, 2f);
+                                if (Player.rb2D.position.y - Player.rb2D.GetComponent<CircleCollider2D>().radius > transform.position.y)
+                                {
+                                    Player.rb2D.velocity = new Vector2(-3f, 2f);
+                                }
+                                else
+                                {
+                                    Player.rb2D.velocity = new Vector2(-3f, -1f);
+                                }
                             }
-                            else
+                            else if (transform.position.x < Player.rb2D.position.x)
                             {
-                                Player.rb2D.velocity = new Vector2(-3f, -1f);
-                            }
-                        }
-                        else if (transform.position.x < Player.rb2D.position.x)
-                        {
-                            if (Player.rb2D.position.y - Player.rb2D.GetComponent<CircleCollider2D>().radius > transform.position.y)
-                            {
-                                Player.rb2D.velocity = new Vector2(3f, 2f);
-                            }
-                            else
-                            {
-                                Player.rb2D.velocity = new Vector2(3f, -1f);
+                                if (Player.rb2D.position.y - Player.rb2D.GetComponent<CircleCollider2D>().radius > transform.position.y)
+                                {
+                                    Player.rb2D.velocity = new Vector2(3f, 2f);
+                                }
+                                else
+                                {
+                                    Player.rb2D.velocity = new Vector2(3f, -1f);
+                                }
                             }
                         }
                     }
@@ -3065,7 +3318,6 @@ public class Obstacles : MonoBehaviour
         // Effects
         if (other.name == "Player" && gameObject.name.Substring(0, 5) == "Water")
         {
-            Debug.Log(0);
             if (Mathf.Abs(Player.rb2D.velocity.x) > 0.5f * Player.moveBy)
             {
                 Player.rb2D.velocity /= new Vector2(1.05f, 1f);
@@ -3080,7 +3332,11 @@ public class Obstacles : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D other)
     {
-        
+        if (other.name == "Player" && !passive)
+        {
+            if (gameObject.name.Substring(0, 6) == "Cutter")
+                Player.cut = false;
+        }
     }
 
     void fireBullet(Vector2 direction, float rotation2, float speed)

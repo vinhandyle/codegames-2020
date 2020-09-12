@@ -795,6 +795,7 @@ public class GoThrough : MonoBehaviour
             else if (opName == "GP_9_to_GP_12")
             {
                 StartCoroutine(SceneSwitch("GP_12", "GP_12_to_GP_9"));
+                GlobalControl.calm = false;
             }
             else if (opName == "GP_12_to_GP_9")
             {
@@ -825,6 +826,7 @@ public class GoThrough : MonoBehaviour
             else if (opName == "GP_11_to_GP_12")
             {
                 StartCoroutine(SceneSwitch("GP_12", "GP_12_to_GP_11"));
+                GlobalControl.calm = true;
             }
             else if (opName == "GP_12_to_GP_11")
             {
@@ -834,31 +836,33 @@ public class GoThrough : MonoBehaviour
             //          GP_12 to GP_13
             else if (opName == "GP_12_to_GP_13")
             {
-                StartCoroutine(SceneSwitch("GP_13", "GP_12_to_GP_13"));
+                StartCoroutine(SceneSwitch("GP_13", "GP_13_to_GP_12"));
             }
             else if (opName == "GP_13_to_GP_12")
             {
-                StartCoroutine(SceneSwitch("GP_12", "GP_13_to_GP_12"));
+                StartCoroutine(SceneSwitch("GP_12", "GP_12_to_GP_13"));
+                GlobalControl.calm = true;
             }
 
             //          GP_12 to GP_15
             else if (opName == "GP_12_to_GP_15")
             {
-                StartCoroutine(SceneSwitch("GP_15", "GP_12_to_GP_15"));
+                StartCoroutine(SceneSwitch("GP_15", "GP_15_to_GP_12"));
             }
             else if (opName == "GP_15_to_GP_12")
             {
-                StartCoroutine(SceneSwitch("GP_12", "GP_15_to_GP_12"));
+                StartCoroutine(SceneSwitch("GP_12", "GP_12_to_GP_15"));
+                GlobalControl.calm = false;
             }
 
             //          GP_13 to GP_14
             else if (opName == "GP_13_to_GP_14")
             {
-                StartCoroutine(SceneSwitch("GP_14", "GP_13_to_GP_14"));
+                StartCoroutine(SceneSwitch("GP_14", "GP_14_to_GP_13"));
             }
             else if (opName == "GP_14_to_GP_13")
             {
-                StartCoroutine(SceneSwitch("GP_13", "GP_14_to_GP_13"));
+                StartCoroutine(SceneSwitch("GP_13", "GP_13_to_GP_14"));
             }
 
             //          GP_14 to GP_15
@@ -874,7 +878,7 @@ public class GoThrough : MonoBehaviour
             //          GP_15 to GP_15S
             else if (opName == "GP_15_to_GP_15S")
             {
-                StartCoroutine(SceneSwitch("GP_15S", "GP_15_to_GP_15S"));
+                StartCoroutine(SceneSwitch("GP_15S", "GP_15S_to_GP_15"));
             }
             else if (opName == "GP_15S_to_GP_15")
             {
@@ -884,7 +888,7 @@ public class GoThrough : MonoBehaviour
             //          GP_15 to GP_16
             else if (opName == "GP_15_to_GP_16")
             {
-                StartCoroutine(SceneSwitch("GP_16", "GP_15_to_GP_16"));
+                StartCoroutine(SceneSwitch("GP_16", "GP_16_to_GP_15"));
             }
             else if (opName == "GP_16_to_GP_15")
             {

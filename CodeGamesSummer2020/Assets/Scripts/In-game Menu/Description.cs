@@ -187,8 +187,8 @@ public class Description : MonoBehaviour
                 {
                     text.text = "<b>Self-Destruct Button</b> \n" +
                                 "Respawn at last checkpoint. Hold [right-click] for 3 seconds to activate.\n\n" +
-                                "<i>Though most would want to be immortal, there are times when one would rather not. Would one want " +
-                                "to continue living if they were buried underground or drifting endlessly through the void?</i>";
+                                "<i>Immortality is something humans have sought to obtain for all of history. But if one were to be " +
+                                "stuck somewhere for eternity, it would be nice to have an off switch.</i>";
                 }
                 else
                 {
