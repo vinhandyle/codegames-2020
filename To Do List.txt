@@ -1,6 +1,5 @@
 -Bugs
 	>Multiple pursuits will not aggro if landing in sight, will aggro after direction change
-	>Player flashing even when no longer i-framing, test on Aquatic X
 	>Scatter Shot proj rotates weird, quad 2-4
 	>Can't double jump on scene switch (falling)
 
@@ -21,13 +20,12 @@
 	>More items to examine	
 	>Add diagrams to boss atks instead of long descs
 	>Edit ending 1 (add something after gaze, blast off?)
+	>Test sludge immunity
 
 -GP, one checkpoint -> loops back from multiple spots like firelink
-	>pursuit + turret room (stealth)
-	>electric speed jump X		
+	>pursuit + turret room (stealth)	
 	>moving floor + walls (secret leading to harvest)
-	>2 ver of eots, falling down -> all inverse plat, side -> one plat X
-	>add aerial 0-
+	>add patrol 0- , aerial 0-2, aquatic 0-1
 	>add energy sources to lower
 -FS, decor
 
@@ -35,4 +33,3 @@
 	>Custom proj for bosses
 	>Two maps (area map + world map)	
 	>Substring errors -> Add _ to everything until they are >8 long
-	>turret hostile on hit X

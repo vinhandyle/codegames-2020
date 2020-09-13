@@ -94,7 +94,7 @@ public class GlobalControl : MonoBehaviour
     public static int update = 0;                  // Update stats when power-up obtained
     public static bool switched = false;           // Used to set position on scene switch
 
-    public static string area = "GP_0A";                // Area name for scene change purposes
+    public static string area = "GP_14";                // Area name for scene change purposes
     public static string prevArea = "";            // Name of previous area
     public static string checkpoint = "";          // Area name of last repair station used
 

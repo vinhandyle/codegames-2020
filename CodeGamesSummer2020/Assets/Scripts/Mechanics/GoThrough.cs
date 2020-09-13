@@ -44,7 +44,7 @@ public class GoThrough : MonoBehaviour
             else if (direction == "left")
             { // players starts to the right of the opening
                 Player.x = gameObject.transform.position.x + 0.5f;
-                if (gameObject.name == "SG_9_to_SG_3" || gameObject.name == "GP_9_to_GP_4" || gameObject.name == "GP_4_to_GP_10")
+                if (gameObject.name == "SG_9_to_SG_3" || gameObject.name == "GP_9_to_GP_4" || gameObject.name == "GP_4_to_GP_10" || gameObject.name == "GP_16_to_GP_10")
                 {
                     Player.y = gameObject.transform.position.y - gameObject.GetComponent<BoxCollider2D>().size.y / 2;
                 }
@@ -57,7 +57,7 @@ public class GoThrough : MonoBehaviour
             else if (direction == "right")
             { // player starts to the left of the opening
                 Player.x = gameObject.transform.position.x - 0.5f;
-                if (gameObject.name == "SG_3_to_SG_9" || gameObject.name == "MB_2_to_MB_3" || gameObject.name == "GP_4_to_GP_9" || gameObject.name == "GP_10_to_GP_4")
+                if (gameObject.name == "SG_3_to_SG_9" || gameObject.name == "MB_2_to_MB_3" || gameObject.name == "GP_4_to_GP_9" || gameObject.name == "GP_10_to_GP_4" || gameObject.name == "GP_10_to_GP_16")
                 {
                     Player.y = gameObject.transform.position.y - gameObject.GetComponent<BoxCollider2D>().size.y / 2;
                 }

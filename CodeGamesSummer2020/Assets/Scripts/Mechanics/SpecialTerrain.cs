@@ -325,18 +325,18 @@ public class SpecialTerrain : MonoBehaviour
                 if (playerOn)
                     Player.rb2D.position += new Vector2(0, speed);
 
-                if (transform.position.x > 5 + box.size.y / 2)
+                if (transform.position.y > 5 + box.size.y / 2)
                 {
                     transform.position = new Vector3(transform.position.x, -6 - box.size.y / 2);
                 }
             }
-            else if (state == "Down")
+            else if (state == "down")
             {
                 transform.position += new Vector3(0, -speed);
                 if (playerOn)
                     Player.rb2D.position += new Vector2(0, -speed);
 
-                if (transform.position.x < -6 - box.size.y / 2)
+                if (transform.position.y < -6 - box.size.y / 2)
                 {
                     transform.position = new Vector3(transform.position.x, 5 + box.size.x / 2);
                 }

@@ -1241,9 +1241,11 @@ public class Obstacles : MonoBehaviour
                 else
                 {
                     aiState = "";
-                    defense = 100;
                 }
             }
+
+            if (aiState == "" || aiState == null)
+                defense = 100;
 
             // Wander
             if (aiState != "attack")
@@ -2769,7 +2771,7 @@ public class Obstacles : MonoBehaviour
 
             if (!GlobalControl.immune)
             {
-                if (!(gameObject.name.Substring(0, 6) == "Turret" || gameObject.name.Substring(0, 5) == "Errat"))
+                if (!(gameObject.name.Substring(0, 6) == "Turret" || gameObject.name.Substring(0, 5) == "Errat" || (gameObject.name.Substring(0, 6) == "Sludge" && GlobalControl.doubleUnlocked)))
                 {
                     // Damage calculation
                     if (GlobalControl.reactor == "unstable")
@@ -3345,9 +3347,16 @@ public class Obstacles : MonoBehaviour
         GameObject bullet = null;
 
         // Single bullet type
-        if (gameObject.name.Substring(0, 6) == "Aerial" || gameObject.name.Substring(0, 7) == "Aquatic" || gameObject.name.Substring(0, 6) == "Turret" || gameObject.name == "Containment")
+        if (gameObject.name.Substring(0, 6) == "Aerial" || gameObject.name.Substring(0, 6) == "Turret" || gameObject.name == "Containment")
         {
             bullet = EnemyObjectPooler.SharedInstance.GetPooledObject();
+        }
+        else if (gameObject.name.Substring(0, 7) == "Aquatic")
+        {
+            if (GlobalControl.area == "GP_14")
+                bullet = EnemyObjectPooler2.SharedInstance.GetPooledObject();
+            else
+                bullet = EnemyObjectPooler.SharedInstance.GetPooledObject();
         }
 
         // Overseer

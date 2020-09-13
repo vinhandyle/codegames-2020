@@ -2310,7 +2310,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pooledObjects: []
-  objectToPool: {fileID: 146330153113669660, guid: 5ca652329e9fd484684e97123072be93,
+  objectToPool: {fileID: 8269257394596928446, guid: bbc51f28e607604428dfc0f02734348d,
     type: 3}
   amountToPool: 10
 --- !u!1 &770274250
