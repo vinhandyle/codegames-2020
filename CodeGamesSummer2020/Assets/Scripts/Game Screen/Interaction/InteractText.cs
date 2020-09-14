@@ -303,27 +303,27 @@ public class InteractText : MonoBehaviour
                     // Errat
                     else if (GlobalControl.counter_1 != 5)
                     {
-                        if (type == "Errat_0")
+                        if (type == "Errat_0_")
                         {
                             text.text = "How did a Machina get down here?";
                         }
-                        else if (type == "Errat_1")
+                        else if (type == "Errat_1_")
                         {
                             text.text = "There's a crack in this part of the wall.";
                         }
-                        else if (type == "Errat_2")
+                        else if (type == "Errat_2_")
                         {
                             text.text = "The passageway here caved in.";
                         }
-                        else if (type == "Errat_3")
+                        else if (type == "Errat_3_")
                         {
                             text.text = "We need to free the others. Those fools...";
                         }
-                        else if (type == "Errat_4")
+                        else if (type == "Errat_4_")
                         {
                             text.text = "To \"save\" us, they want to take our freedom. <b>Never.</b>";
                         }
-                        else if (type == "Errat_5")
+                        else if (type == "Errat_5_")
                         {
                             text.text = "You do not want to fall down there.";
                         }

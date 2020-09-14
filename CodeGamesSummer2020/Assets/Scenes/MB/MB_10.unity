@@ -634,6 +634,7 @@ MonoBehaviour:
   width: 0
   height: 0
   side: 
+  special: 0
 --- !u!61 &280608249
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1363,6 +1364,7 @@ MonoBehaviour:
   width: 0
   height: 0
   side: 
+  special: 0
 --- !u!61 &632030053
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1569,6 +1571,7 @@ MonoBehaviour:
   width: 0
   height: 0
   side: 
+  special: 0
 --- !u!61 &642795111
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1920,6 +1923,7 @@ MonoBehaviour:
   width: 0
   height: 0
   side: 
+  special: 0
 --- !u!61 &648502440
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2681,6 +2685,7 @@ MonoBehaviour:
   width: 0
   height: 0
   side: 
+  special: 0
 --- !u!61 &963527916
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2990,6 +2995,7 @@ MonoBehaviour:
   width: 0
   height: 0
   side: 
+  special: 0
 --- !u!61 &1005247930
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -3474,6 +3480,7 @@ MonoBehaviour:
   width: 0
   height: 0
   side: 
+  special: 0
 --- !u!61 &1218970187
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -3634,6 +3641,7 @@ MonoBehaviour:
   width: 0
   height: 0
   side: 
+  special: 0
 --- !u!61 &1252210904
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -4527,6 +4535,7 @@ MonoBehaviour:
   width: 0
   height: 0
   side: left
+  special: 0
 --- !u!61 &1648249707
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -4616,7 +4625,7 @@ GameObject:
   - component: {fileID: 1708273444}
   - component: {fileID: 1708273443}
   m_Layer: 0
-  m_Name: Water_
+  m_Name: Water___
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4685,6 +4694,7 @@ MonoBehaviour:
   sprites: []
   x: 0
   y: 0
+  deg: 0
   range: 0
   range_1: 0
   range_2: 0
@@ -4695,8 +4705,11 @@ MonoBehaviour:
   refDistance: 0
   refDirection: {x: 0, y: 0}
   time: 0
+  time_1: 0
+  time_f: 0
   deAggroTime: 0
   hold_time: 0
+  hold_time_1: 0
   bulletSpeed: []
   baseUseTime: 0
   useTime: 0
@@ -4711,6 +4724,9 @@ MonoBehaviour:
   pathState: 
   refState3_1: 
   refState3_3: 0
+  refState3a_4: 0
+  refState3b_4: 0
+  refState3c_4: 0
   refState3_5: 
   refState3a_5: 
   refState3b_5: 
@@ -4721,6 +4737,13 @@ MonoBehaviour:
   refState3d_6: 
   refState3e_6: 1
   refState3f_6: 0
+  refState3_7: under
+  refState3a_7: 0
+  refState3b_7: 
+  refState3c_7: 
+  refState3_1H: 0
+  refState3a_1H: 0
+  refState3b_1H: 0
 --- !u!212 &1708273445
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -5042,6 +5065,7 @@ MonoBehaviour:
   width: 0
   height: 0
   side: 
+  special: 0
 --- !u!61 &1856717725
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -5410,6 +5434,7 @@ MonoBehaviour:
   width: 0
   height: 0
   side: 
+  special: 0
 --- !u!61 &1933379423
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -5535,6 +5560,7 @@ MonoBehaviour:
   width: 0
   height: 0
   side: 
+  special: 0
 --- !u!61 &2050699878
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -5660,6 +5686,7 @@ MonoBehaviour:
   width: 0
   height: 0
   side: 
+  special: 0
 --- !u!61 &2052441582
 BoxCollider2D:
   m_ObjectHideFlags: 0

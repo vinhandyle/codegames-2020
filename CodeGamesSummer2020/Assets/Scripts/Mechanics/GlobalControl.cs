@@ -94,7 +94,7 @@ public class GlobalControl : MonoBehaviour
     public static int update = 0;                  // Update stats when power-up obtained
     public static bool switched = false;           // Used to set position on scene switch
 
-    public static string area = "GP_14";                // Area name for scene change purposes
+    public static string area = "GP_0B";                // Area name for scene change purposes
     public static string prevArea = "";            // Name of previous area
     public static string checkpoint = "";          // Area name of last repair station used
 
@@ -278,6 +278,18 @@ public class GlobalControl : MonoBehaviour
     public static bool aquatic_1_4_4 = true;
     public static bool aquatic_1_4_5 = true;
     public static bool aquatic_1_4_6 = true;
+
+    public static bool patrol_3_5_0 = true;         // Grey Palace
+    public static bool patrol_3_5_1 = true;
+    public static bool patrol_3_5_2 = true;
+    public static bool pursuit_2_5_0 = true;
+    public static bool aerial_2_5_0 = true;
+    public static bool aerial_2_5_1 = true;
+    public static bool aerial_2_5_2 = true;
+    public static bool aquatic_2_5_0 = true;
+    public static bool aquatic_2_5_1 = true;
+    public static bool turret_2_5_0 = true;
+    public static bool turret_2_5_1 = true;
 
     /*---------------------Wall of Text Ends---------------------*/
 
@@ -612,6 +624,18 @@ public class GlobalControl : MonoBehaviour
         aquatic_1_4_4 = true;
         aquatic_1_4_5 = true;
         aquatic_1_4_6 = true;
+
+        patrol_3_5_0 = true;
+        patrol_3_5_1 = true;
+        patrol_3_5_2 = true;
+        pursuit_2_5_0 = true;
+        aerial_2_5_0 = true;
+        aerial_2_5_1 = true;
+        aerial_2_5_2 = true;
+        aquatic_2_5_0 = true;
+        aquatic_2_5_1 = true;
+        turret_2_5_0 = true;
+        turret_2_5_1 = true;
     }
 
     public static void unlockAll()

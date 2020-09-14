@@ -872,6 +872,7 @@ MonoBehaviour:
   sprites: []
   x: 0
   y: 0
+  deg: 0
   range: 0
   range_1: 0
   range_2: 0
@@ -883,6 +884,7 @@ MonoBehaviour:
   refDirection: {x: 0, y: 0}
   time: 0
   time_1: 0
+  time_f: 0
   deAggroTime: 0
   hold_time: 0
   hold_time_1: 0
@@ -900,6 +902,9 @@ MonoBehaviour:
   pathState: 
   refState3_1: 
   refState3_3: 0
+  refState3a_4: 0
+  refState3b_4: 0
+  refState3c_4: 0
   refState3_5: 
   refState3a_5: 
   refState3b_5: 
@@ -914,6 +919,9 @@ MonoBehaviour:
   refState3a_7: 0
   refState3b_7: 
   refState3c_7: 
+  refState3_1H: 0
+  refState3a_1H: 0
+  refState3b_1H: 0
 --- !u!61 &112854850
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2463,7 +2471,7 @@ PrefabInstance:
     - target: {fileID: 7023429504469418512, guid: 7cd0fdc0a420a4945a573debfc00a437,
         type: 3}
       propertyPath: m_Name
-      value: Errat_3
+      value: Errat_3_
       objectReference: {fileID: 0}
     - target: {fileID: 7023429504469418516, guid: 7cd0fdc0a420a4945a573debfc00a437,
         type: 3}
@@ -3060,7 +3068,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sprite: {fileID: 0}
-  attachedTo: Errat_1
+  attachedTo: Errat_1_
   x:
   - 0.74
   - 0.74
@@ -3168,7 +3176,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sprite: {fileID: 0}
-  attachedTo: Errat_4
+  attachedTo: Errat_4_
   x:
   - -1.06
   - -1.08
@@ -4731,7 +4739,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ac700b5fb639304fa7f0305ec522ffb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attachedTo: Errat_1
+  attachedTo: Errat_1_
 --- !u!114 &931431447
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4783,7 +4791,7 @@ PrefabInstance:
     - target: {fileID: 7023429504469418512, guid: 7cd0fdc0a420a4945a573debfc00a437,
         type: 3}
       propertyPath: m_Name
-      value: Errat_4
+      value: Errat_4_
       objectReference: {fileID: 0}
     - target: {fileID: 7023429504469418516, guid: 7cd0fdc0a420a4945a573debfc00a437,
         type: 3}
@@ -5751,7 +5759,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ac700b5fb639304fa7f0305ec522ffb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attachedTo: Errat_3
+  attachedTo: Errat_3_
 --- !u!114 &1153769277
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5843,7 +5851,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ac700b5fb639304fa7f0305ec522ffb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attachedTo: Errat_4
+  attachedTo: Errat_4_
 --- !u!114 &1158642897
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6603,7 +6611,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ac700b5fb639304fa7f0305ec522ffb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attachedTo: Errat_2
+  attachedTo: Errat_2_
 --- !u!114 &1315807079
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6773,7 +6781,7 @@ GameObject:
   - component: {fileID: 1361417596}
   - component: {fileID: 1361417595}
   m_Layer: 0
-  m_Name: Sludge_
+  m_Name: Sludge__
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6816,6 +6824,7 @@ MonoBehaviour:
   sprites: []
   x: 0
   y: 0
+  deg: 0
   range: 0
   range_1: 0
   range_2: 0
@@ -6827,6 +6836,7 @@ MonoBehaviour:
   refDirection: {x: 0, y: 0}
   time: 0
   time_1: 0
+  time_f: 0
   deAggroTime: 0
   hold_time: 0
   hold_time_1: 0
@@ -6844,6 +6854,9 @@ MonoBehaviour:
   pathState: 
   refState3_1: 
   refState3_3: 0
+  refState3a_4: 0
+  refState3b_4: 0
+  refState3c_4: 0
   refState3_5: 
   refState3a_5: 
   refState3b_5: 
@@ -6858,6 +6871,9 @@ MonoBehaviour:
   refState3a_7: 0
   refState3b_7: 
   refState3c_7: 
+  refState3_1H: 0
+  refState3a_1H: 0
+  refState3b_1H: 0
 --- !u!61 &1361417596
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -7193,7 +7209,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sprite: {fileID: 0}
-  attachedTo: Errat_3
+  attachedTo: Errat_3_
   x:
   - -3.565
   - -3.565
@@ -7266,7 +7282,7 @@ PrefabInstance:
     - target: {fileID: 7023429504469418512, guid: 7cd0fdc0a420a4945a573debfc00a437,
         type: 3}
       propertyPath: m_Name
-      value: Errat_2
+      value: Errat_2_
       objectReference: {fileID: 0}
     - target: {fileID: 7023429504469418516, guid: 7cd0fdc0a420a4945a573debfc00a437,
         type: 3}
@@ -8207,7 +8223,7 @@ PrefabInstance:
     - target: {fileID: 7023429504469418512, guid: 7cd0fdc0a420a4945a573debfc00a437,
         type: 3}
       propertyPath: m_Name
-      value: Errat_1
+      value: Errat_1_
       objectReference: {fileID: 0}
     - target: {fileID: 7023429504469418516, guid: 7cd0fdc0a420a4945a573debfc00a437,
         type: 3}
@@ -9553,7 +9569,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sprite: {fileID: 0}
-  attachedTo: Errat_2
+  attachedTo: Errat_2_
   x:
   - -1.789
   - -1.84

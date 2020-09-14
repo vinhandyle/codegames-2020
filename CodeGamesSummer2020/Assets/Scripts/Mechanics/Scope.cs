@@ -10,7 +10,6 @@ public class Scope : MonoBehaviour
     public List<Sprite> sprites;
     // Remember to freeze y coord for rigid bodies
     public string attachedTo;
-    public static string sticky;
 
     // Timer
     public int time;
@@ -32,10 +31,13 @@ public class Scope : MonoBehaviour
 
     // Pursuit
     public string reference;                // Scope->Obstacles
-    public static bool seeWall = false;     // Is there a wall in the way?
-    public static bool leftWall = false;    // Is there any wall to the left?
-    public static bool rightWall = false;   // Is there any wall to the right?
+    public static bool seeWall;             // Is there a wall in the way?
+    public static bool leftWall;            // Is there any wall to the left?
+    public static bool rightWall;           // Is there any wall to the right?
     public static string seePlayer = null;  // Can the player be seen?
+
+    // Turret
+    public static string inRange;
 
     // Crusher
     public bool canCrush = false;
@@ -44,7 +46,6 @@ public class Scope : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        sticky = attachedTo;
 
         // Save starting position and set ranges
         x = transform.position.x;
@@ -78,7 +79,7 @@ public class Scope : MonoBehaviour
             }
             else if (gameObject.name == "Detect_Player (1)")
             {
-                if (Obstacles.refState2_4)
+                if (Obstacles.refState2_4 && inRange == transform.parent.name)
                     sprite.sprite = sprites[0];
                 else
                     sprite.sprite = sprites[1];
@@ -362,7 +363,11 @@ public class Scope : MonoBehaviour
                     Obstacles.refState2_3 = "in";
                     signal = transform.parent.name;
                 }
-                if (gameObject.name == "Detect_Player (1)" && transform.parent.name.Substring(0, 6) == "Turret")
+                else if (gameObject.name == "Detect_Player" && transform.parent.name.Substring(0, 6) == "Turret")
+                {
+                    inRange = transform.parent.name;
+                }
+                else if (gameObject.name == "Detect_Player (1)" && transform.parent.name.Substring(0, 6) == "Turret" && inRange == transform.parent.name)
                 {
                     Obstacles.refState2_4 = true;
                     signal = transform.parent.name;
@@ -442,7 +447,7 @@ public class Scope : MonoBehaviour
             {
                 seeWall = true;
                 // Pursuit Interaction
-                if (sticky.Substring(0, 7) == "Pursuit")
+                if (attachedTo.Substring(0, 7) == "Pursuit")
                 {
                     // Walls block vision
                     if (gameObject.name == "Detect_Player")
@@ -524,11 +529,10 @@ public class Scope : MonoBehaviour
                     }
                 }
             }
-
             // No walls detected
             else if (!seeWall)
             {
-                if (sticky.Substring(0, 7) == "Pursuit")
+                if (attachedTo.Substring(0, 7) == "Pursuit")
                 {
                     if ((Obstacles.refState_1 == "passive_left" && Player.rb2D.position.x > gameObject.transform.parent.position.x) ||
                         (Obstacles.refState_1 == "passive_right" && Player.rb2D.position.x < gameObject.transform.parent.position.x))
@@ -604,7 +608,7 @@ public class Scope : MonoBehaviour
             if (other.CompareTag("Floor") && GlobalControl.area != "TT_12")
             {
                 // Pursuit Interaction
-                if (sticky.Substring(0, 7) == "Pursuit")
+                if (attachedTo.Substring(0, 7) == "Pursuit")
                 {
                     // Logic for following player when floor ends
                     // If left or right colliders leaves floor collider, stop
@@ -618,7 +622,7 @@ public class Scope : MonoBehaviour
             else if (gameObject.name == "Detect_Player" && other.CompareTag("Wall") && !(other.gameObject.transform.parent.name == "Left Side" || other.gameObject.transform.parent.name == "Right Side"))
             {
                 // Update to see if there are still any walls blocking vision
-                if (sticky.Substring(0, 7) == "Pursuit")
+                if (attachedTo.Substring(0, 7) == "Pursuit")
                 {
                     seeWall = false;
                 }
@@ -637,6 +641,7 @@ public class Scope : MonoBehaviour
                 }
                 if (gameObject.name == "Detect_Player" && transform.parent.name.Substring(0, 6) == "Turret")
                 {
+                    inRange = "";
                     Obstacles.refState2_4 = false;
                     signal = transform.parent.name;
                 }

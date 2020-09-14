@@ -1805,7 +1805,7 @@ PrefabInstance:
     - target: {fileID: 5805896390018659407, guid: 596406a5e79c4824e9df581419f0e307,
         type: 3}
       propertyPath: m_Name
-      value: Sludge_
+      value: Sludge__
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 596406a5e79c4824e9df581419f0e307, type: 3}
@@ -3938,6 +3938,19 @@ MonoBehaviour:
   box: {fileID: 0}
   sprite: {fileID: 0}
   sprites: []
+  moving: 0
+  discrete: 0
+  type: 
+  state: 
+  playerOn: 0
+  x: 0
+  y: 0
+  pX: 0
+  pY: 0
+  speed: 0
+  range: 0
+  range_1: 0
+  range_2: 0
 --- !u!1 &1705894864
 GameObject:
   m_ObjectHideFlags: 0

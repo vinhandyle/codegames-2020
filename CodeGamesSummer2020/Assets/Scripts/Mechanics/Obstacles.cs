@@ -166,6 +166,9 @@ public class Obstacles : MonoBehaviour
             (gameObject.name == "Patrol_3_1_0" && !GlobalControl.patrol_3_1_0) ||
             (gameObject.name == "Patrol_3_1_1" && !GlobalControl.patrol_3_1_1) ||
             (gameObject.name == "Patrol_3_1_2" && !GlobalControl.patrol_3_1_2) ||
+            (gameObject.name == "Patrol_3_5_0" && !GlobalControl.patrol_3_5_0) ||
+            (gameObject.name == "Patrol_3_5_1" && !GlobalControl.patrol_3_5_1) ||
+            (gameObject.name == "Patrol_3_5_2" && !GlobalControl.patrol_3_5_2) ||
             (gameObject.name == "Pursuit_1_2_0" && !GlobalControl.pursuit_1_2_0) ||
             (gameObject.name == "Pursuit_1_2_1" && !GlobalControl.pursuit_1_2_1) ||
             (gameObject.name == "Pursuit_1_2_2" && !GlobalControl.pursuit_1_2_2) ||
@@ -175,6 +178,7 @@ public class Obstacles : MonoBehaviour
             (gameObject.name == "Pursuit_1_2_6" && !GlobalControl.pursuit_1_2_6) ||
             (gameObject.name == "Pursuit_1_2_7" && !GlobalControl.pursuit_1_2_7) ||
             (gameObject.name == "Pursuit_1_2_8" && !GlobalControl.pursuit_1_2_8) ||
+            (gameObject.name == "Pursuit_2_5_0" && !GlobalControl.pursuit_2_5_0) ||
             (gameObject.name == "Aerial_1_3_0" && !GlobalControl.aerial_1_3_0) ||
             (gameObject.name == "Aerial_1_3_1" && !GlobalControl.aerial_1_3_1) ||
             (gameObject.name == "Aerial_1_3_2" && !GlobalControl.aerial_1_3_2) ||
@@ -185,6 +189,9 @@ public class Obstacles : MonoBehaviour
             (gameObject.name == "Aerial_1_3_7" && !GlobalControl.aerial_1_3_7) ||
             (gameObject.name == "Aerial_1_3_8" && !GlobalControl.aerial_1_3_8) ||
             (gameObject.name == "Aerial_1_3_9" && !GlobalControl.aerial_1_3_9) ||
+            (gameObject.name == "Aerial_2_5_0" && !GlobalControl.aerial_2_5_0) ||
+            (gameObject.name == "Aerial_2_5_1" && !GlobalControl.aerial_2_5_1) ||
+            (gameObject.name == "Aerial_2_5_2" && !GlobalControl.aerial_2_5_2) ||
             (gameObject.name == "Aerial_1_3_10" && !GlobalControl.aerial_1_3_10) ||
             (gameObject.name == "Aquatic_1_4_0" && !GlobalControl.aquatic_1_4_0) ||
             (gameObject.name == "Aquatic_1_4_1" && !GlobalControl.aquatic_1_4_1) ||
@@ -193,12 +200,23 @@ public class Obstacles : MonoBehaviour
             (gameObject.name == "Aquatic_1_4_4" && !GlobalControl.aquatic_1_4_4) ||
             (gameObject.name == "Aquatic_1_4_5" && !GlobalControl.aquatic_1_4_5) ||
             (gameObject.name == "Aquatic_1_4_6" && !GlobalControl.aquatic_1_4_6) ||
-            (gameObject.name == "Errat_0" && !GlobalControl.errat_0) ||
-            (gameObject.name == "Errat_1" && !GlobalControl.errat_1) ||
-            (gameObject.name == "Errat_2" && !GlobalControl.errat_2) ||
-            (gameObject.name == "Errat_3" && !GlobalControl.errat_3) ||
-            (gameObject.name == "Errat_4" && !GlobalControl.errat_4) ||
-            (gameObject.name == "Errat_5" && !GlobalControl.errat_5) ||
+            (gameObject.name == "Aquatic_2_5_0" && !GlobalControl.aquatic_2_5_0) ||
+            (gameObject.name == "Aquatic_2_5_1" && !GlobalControl.aquatic_2_5_1) ||
+            (gameObject.name == "Turret_1_1_0" && GlobalControl.turret_1_1_0) ||
+            (gameObject.name == "Turret_1_1_1" && GlobalControl.turret_1_1_1) ||
+            (gameObject.name == "Turret_1_1_2" && GlobalControl.turret_1_1_2) ||
+            (gameObject.name == "Turret_1_1_3" && GlobalControl.turret_1_1_3) ||
+            (gameObject.name == "Turret_1_1_4" && GlobalControl.turret_1_1_4) ||
+            (gameObject.name == "Turret_1_1_5" && GlobalControl.turret_1_1_5) ||
+            (gameObject.name == "Turret_1_1_6" && GlobalControl.turret_1_1_6) ||
+            (gameObject.name == "Turret_2_5_0" && GlobalControl.turret_2_5_0) ||
+            (gameObject.name == "Turret_2_5_1" && GlobalControl.turret_2_5_1) ||
+            (gameObject.name == "Errat_0_" && !GlobalControl.errat_0) ||
+            (gameObject.name == "Errat_1_" && !GlobalControl.errat_1) ||
+            (gameObject.name == "Errat_2_" && !GlobalControl.errat_2) ||
+            (gameObject.name == "Errat_3_" && !GlobalControl.errat_3) ||
+            (gameObject.name == "Errat_4_" && !GlobalControl.errat_4) ||
+            (gameObject.name == "Errat_5_" && !GlobalControl.errat_5) ||
             (gameObject.name == "Overseer" && GlobalControl.downed_boss_1) ||
             (gameObject.name == "Containment" && GlobalControl.downed_boss_2) ||
             (gameObject.name == "Subnautical" && GlobalControl.downed_boss_3))
@@ -513,27 +531,27 @@ public class Obstacles : MonoBehaviour
             // Dreg Heap
             else if (gameObject.name.Substring(0, 5) == "Errat")
             {
-                if (gameObject.name == "Errat_0")
+                if (gameObject.name == "Errat_0_")
                 {
                     GlobalControl.errat_0 = false;
                 }
-                else if (gameObject.name == "Errat_1")
+                else if (gameObject.name == "Errat_1_")
                 {
                     GlobalControl.errat_1 = false;
                 }
-                else if (gameObject.name == "Errat_2")
+                else if (gameObject.name == "Errat_2_")
                 {
                     GlobalControl.errat_2 = false;
                 }
-                else if (gameObject.name == "Errat_3")
+                else if (gameObject.name == "Errat_3_")
                 {
                     GlobalControl.errat_3 = false;
                 }
-                else if (gameObject.name == "Errat_4")
+                else if (gameObject.name == "Errat_4_")
                 {
                     GlobalControl.errat_4 = false;
                 }
-                else if (gameObject.name == "Errat_5")
+                else if (gameObject.name == "Errat_5_")
                 {
                     GlobalControl.errat_5 = false;
                 }
@@ -804,6 +822,52 @@ public class Obstacles : MonoBehaviour
             else if (gameObject.name == "Subnautical")
             {
                 GlobalControl.downed_boss_3 = true;
+            }
+
+            // Grey Palace
+            else if (gameObject.name == "Patrol_3_5_0")
+            {
+                GlobalControl.patrol_3_5_0 = false;
+            }
+            else if (gameObject.name == "Patrol_3_5_1")
+            {
+                GlobalControl.patrol_3_5_1 = false;
+            }
+            else if (gameObject.name == "Patrol_3_5_2")
+            {
+                GlobalControl.patrol_3_5_2 = false;
+            }
+            else if (gameObject.name == "Pursuit_2_5_0")
+            {
+                GlobalControl.pursuit_2_5_0 = false;
+            }
+            else if (gameObject.name == "Aerial_2_5_0")
+            {
+                GlobalControl.aerial_2_5_0 = false;
+            }
+            else if (gameObject.name == "Aerial_2_5_1")
+            {
+                GlobalControl.aerial_2_5_1 = false;
+            }
+            else if (gameObject.name == "Aerial_2_5_2")
+            {
+                GlobalControl.aerial_2_5_2 = false;
+            }
+            else if (gameObject.name == "Aquatic_2_5_0")
+            {
+                GlobalControl.aquatic_2_5_0 = false;
+            }
+            else if (gameObject.name == "Aquatic_2_5_1")
+            {
+                GlobalControl.aquatic_2_5_1 = false;
+            }
+            else if (gameObject.name == "Turret_2_5_0")
+            {
+                GlobalControl.turret_2_5_0 = false;
+            }
+            else if (gameObject.name == "Turret_2_5_1")
+            {
+                GlobalControl.turret_2_5_1 = false;
             }
         }
 
@@ -1391,7 +1455,7 @@ public class Obstacles : MonoBehaviour
                 }
             }
             // Target shot
-            else if (refState2_4)
+            else if (refState2_4 && Scope.inRange == gameObject.name)
             {
                 GetComponent<SpriteRenderer>().sprite = sprites[1];
 
@@ -1721,7 +1785,7 @@ public class Obstacles : MonoBehaviour
                         }
                     }
                 }
-            }            
+            }
         }
 
         /*----------Boss AI----------*/
@@ -2656,6 +2720,12 @@ public class Obstacles : MonoBehaviour
             }
         }
 
+        /*-----The Emperor-----*/
+        else if (gameObject.name == "Emperor")
+        {
+
+        }
+
         // Set reference state
         if (gameObject.name.Substring(0, 7) == "Pursuit")
         {
@@ -3058,7 +3128,7 @@ public class Obstacles : MonoBehaviour
 
             if (!GlobalControl.immune)
             {
-                if (!(gameObject.name.Substring(0, 6) == "Turret" || gameObject.name.Substring(0, 5) == "Errat"))
+                if (!(gameObject.name.Substring(0, 6) == "Turret" || gameObject.name.Substring(0, 5) == "Errat" || (gameObject.name.Substring(0, 6) == "Sludge" && GlobalControl.doubleUnlocked)))
                 {
                     // Damage calculation
                     if (GlobalControl.reactor == "unstable")

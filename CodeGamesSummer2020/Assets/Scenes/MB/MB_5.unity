@@ -380,6 +380,7 @@ MonoBehaviour:
   width: 0
   height: 0
   side: 
+  special: 0
 --- !u!61 &144145206
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1070,6 +1071,7 @@ MonoBehaviour:
   width: 0
   height: 0
   side: 
+  special: 0
 --- !u!61 &290871076
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1195,6 +1197,7 @@ MonoBehaviour:
   width: 0
   height: 0
   side: 
+  special: 0
 --- !u!61 &320394621
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1432,6 +1435,7 @@ MonoBehaviour:
   width: 0
   height: 0
   side: 
+  special: 0
 --- !u!61 &339785621
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2248,7 +2252,7 @@ GameObject:
   - component: {fileID: 824931365}
   - component: {fileID: 824931366}
   m_Layer: 0
-  m_Name: Water_
+  m_Name: Water___
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2341,6 +2345,7 @@ MonoBehaviour:
   sprites: []
   x: 0
   y: 0
+  deg: 0
   range: 0
   range_1: 0
   range_2: 0
@@ -2351,8 +2356,11 @@ MonoBehaviour:
   refDistance: 0
   refDirection: {x: 0, y: 0}
   time: 0
+  time_1: 0
+  time_f: 0
   deAggroTime: 0
   hold_time: 0
+  hold_time_1: 0
   bulletSpeed: []
   baseUseTime: 0
   useTime: 0
@@ -2367,6 +2375,9 @@ MonoBehaviour:
   pathState: 
   refState3_1: 
   refState3_3: 0
+  refState3a_4: 0
+  refState3b_4: 0
+  refState3c_4: 0
   refState3_5: 
   refState3a_5: 
   refState3b_5: 
@@ -2377,6 +2388,13 @@ MonoBehaviour:
   refState3d_6: 
   refState3e_6: 1
   refState3f_6: 0
+  refState3_7: under
+  refState3a_7: 0
+  refState3b_7: 
+  refState3c_7: 
+  refState3_1H: 0
+  refState3a_1H: 0
+  refState3b_1H: 0
 --- !u!61 &824931366
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2866,6 +2884,7 @@ MonoBehaviour:
   width: 0
   height: 0
   side: 
+  special: 0
 --- !u!61 &1058619912
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2991,6 +3010,7 @@ MonoBehaviour:
   width: 0
   height: 0
   side: 
+  special: 0
 --- !u!61 &1080785251
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -3808,6 +3828,7 @@ MonoBehaviour:
   width: 0
   height: 0
   side: 
+  special: 0
 --- !u!61 &1300594402
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -3933,6 +3954,7 @@ MonoBehaviour:
   width: 0
   height: 0
   side: 
+  special: 0
 --- !u!61 &1357628959
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -4339,6 +4361,7 @@ MonoBehaviour:
   width: 0
   height: 0
   side: 
+  special: 0
 --- !u!61 &1470268891
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -5118,6 +5141,7 @@ MonoBehaviour:
   width: 0
   height: 0
   side: 
+  special: 0
 --- !u!61 &1830453534
 BoxCollider2D:
   m_ObjectHideFlags: 0

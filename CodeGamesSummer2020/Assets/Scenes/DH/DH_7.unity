@@ -846,7 +846,7 @@ PrefabInstance:
     - target: {fileID: 5805896390018659407, guid: 596406a5e79c4824e9df581419f0e307,
         type: 3}
       propertyPath: m_Name
-      value: Sludge_
+      value: Sludge__
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 596406a5e79c4824e9df581419f0e307, type: 3}

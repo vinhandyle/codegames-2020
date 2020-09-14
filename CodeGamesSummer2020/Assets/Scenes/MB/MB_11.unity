@@ -365,7 +365,7 @@ GameObject:
   - component: {fileID: 141483004}
   - component: {fileID: 141483003}
   m_Layer: 0
-  m_Name: Water_
+  m_Name: Water___
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -434,6 +434,7 @@ MonoBehaviour:
   sprites: []
   x: 0
   y: 0
+  deg: 0
   range: 0
   range_1: 0
   range_2: 0
@@ -444,8 +445,11 @@ MonoBehaviour:
   refDistance: 0
   refDirection: {x: 0, y: 0}
   time: 0
+  time_1: 0
+  time_f: 0
   deAggroTime: 0
   hold_time: 0
+  hold_time_1: 0
   bulletSpeed: []
   baseUseTime: 0
   useTime: 0
@@ -460,6 +464,9 @@ MonoBehaviour:
   pathState: 
   refState3_1: 
   refState3_3: 0
+  refState3a_4: 0
+  refState3b_4: 0
+  refState3c_4: 0
   refState3_5: 
   refState3a_5: 
   refState3b_5: 
@@ -474,6 +481,9 @@ MonoBehaviour:
   refState3a_7: 0
   refState3b_7: 
   refState3c_7: 
+  refState3_1H: 0
+  refState3a_1H: 0
+  refState3b_1H: 0
 --- !u!212 &141483005
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -756,6 +766,7 @@ MonoBehaviour:
   width: 0
   height: 0
   side: 
+  special: 0
 --- !u!61 &200498602
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1017,6 +1028,7 @@ MonoBehaviour:
   width: 0
   height: 0
   side: 
+  special: 0
 --- !u!61 &304009075
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1428,6 +1440,7 @@ MonoBehaviour:
   width: 0
   height: 0
   side: left
+  special: 0
 --- !u!61 &444977501
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1909,6 +1922,19 @@ MonoBehaviour:
   sprites:
   - {fileID: 4385501425044414559, guid: c6f681c3cec8abd45a55c1dfa6cc8eea, type: 3}
   - {fileID: 21300000, guid: f9640daffc9985f409f7060966def692, type: 3}
+  moving: 0
+  discrete: 0
+  type: 
+  state: 
+  playerOn: 0
+  x: 0
+  y: 0
+  pX: 0
+  pY: 0
+  speed: 0
+  range: 0
+  range_1: 0
+  range_2: 0
 --- !u!212 &649451488
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2795,6 +2821,7 @@ MonoBehaviour:
   width: 0
   height: 0
   side: 
+  special: 0
 --- !u!61 &888063740
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2920,6 +2947,7 @@ MonoBehaviour:
   width: 0
   height: 0
   side: 
+  special: 0
 --- !u!61 &908203494
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -3663,6 +3691,7 @@ MonoBehaviour:
   width: 0
   height: 0
   side: 
+  special: 0
 --- !u!61 &1270445187
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -3956,6 +3985,7 @@ MonoBehaviour:
   width: 0
   height: 0
   side: 
+  special: 0
 --- !u!61 &1382798006
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -4224,6 +4254,7 @@ MonoBehaviour:
   width: 0
   height: 0
   side: 
+  special: 0
 --- !u!61 &1488075986
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -4430,6 +4461,7 @@ MonoBehaviour:
   width: 0
   height: 0
   side: 
+  special: 0
 --- !u!61 &1534522478
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -4663,6 +4695,7 @@ MonoBehaviour:
   width: 0
   height: 0
   side: 
+  special: 0
 --- !u!61 &1582417479
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -4918,6 +4951,7 @@ MonoBehaviour:
   width: 0
   height: 0
   side: 
+  special: 0
 --- !u!61 &1627154196
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -5791,6 +5825,7 @@ MonoBehaviour:
   width: 0
   height: 0
   side: 
+  special: 0
 --- !u!61 &1992182361
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -6323,6 +6358,7 @@ MonoBehaviour:
   width: 0
   height: 0
   side: 
+  special: 0
 --- !u!61 &2143460118
 BoxCollider2D:
   m_ObjectHideFlags: 0

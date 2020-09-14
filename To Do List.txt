@@ -12,24 +12,19 @@
 	>Add Azimuth
 
 -Kin Harvest
-	>Hidden Perch
 	>Edge of Humanity
 	
 -Other
 	>Revamp diagram with connecter with label
 	>More items to examine	
-	>Add diagrams to boss atks instead of long descs
+	>Add diagrams to boss atks instead of long descs + structure overhaul (do during map)
 	>Edit ending 1 (add something after gaze, blast off?)
 	>Test sludge immunity
 
--GP, one checkpoint -> loops back from multiple spots like firelink
-	>pursuit + turret room (stealth)	
-	>moving floor + walls (secret leading to harvest)
-	>add patrol 0- , aerial 0-2, aquatic 0-1
-	>add energy sources to lower
+-GP, one checkpoint -> loops back from multiple spots like firelink	
+	>Emperor
 -FS, decor
 
 -Ideas
 	>Custom proj for bosses
 	>Two maps (area map + world map)	
-	>Substring errors -> Add _ to everything until they are >8 long
