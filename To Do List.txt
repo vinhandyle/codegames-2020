@@ -19,11 +19,12 @@
 	>More items to examine	
 	>Add diagrams to boss atks instead of long descs + structure overhaul (do during map)
 	>Edit ending 1 (add something after gaze, blast off?)
-	>Test sludge immunity
+	>Retest Containment (able to berserk after using reg atk) and Subnautical (able to atk)
 
--GP, one checkpoint -> loops back from multiple spots like firelink	
-	>Emperor
--FS, decor
+-GP: add Azimuth
+-FS: add Nadir + decor
+
+-Emperor
 
 -Ideas
 	>Custom proj for bosses

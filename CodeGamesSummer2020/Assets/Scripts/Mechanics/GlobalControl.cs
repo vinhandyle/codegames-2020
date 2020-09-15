@@ -388,7 +388,7 @@ public class GlobalControl : MonoBehaviour
         if (reactor == "basic")
         {
             energyUse = 1;
-            damage = 1 + bossDowned;
+            damage = 100 + bossDowned;
         }
         else if (reactor == "imperial")
         {

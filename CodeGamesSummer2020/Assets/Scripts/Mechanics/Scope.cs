@@ -70,39 +70,42 @@ public class Scope : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (transform.parent.name.Substring(0, 6) == "Turret")
+        if (gameObject.name.Substring(0, 5) != "Death")
         {
-            if (gameObject.name == "Detect_Player")
+            if (transform.parent.name.Substring(0, 6) == "Turret")
             {
-                transform.position = new Vector3(x1, y1, transform.position.z);
-                transform.rotation = Quaternion.Euler(0.0f, 0.0f, 0.0f);
+                if (gameObject.name == "Detect_Player")
+                {
+                    transform.position = new Vector3(x1, y1, transform.position.z);
+                    transform.rotation = Quaternion.Euler(0.0f, 0.0f, 0.0f);
+                }
+                else if (gameObject.name == "Detect_Player (1)")
+                {
+                    if (Obstacles.refState2_4 && inRange == transform.parent.name)
+                        sprite.sprite = sprites[0];
+                    else
+                        sprite.sprite = sprites[1];
+                }
+                else if (gameObject.name == "Face_Player")
+                {
+                    Vector3 difference = (Vector3)Player.rb2D.position - new Vector3(transform.position.x, transform.position.y, transform.position.z);
+                    float distance = difference.magnitude;
+                    Vector2 direction = difference / distance;
+                    direction.Normalize();
+                    transform.rotation = Quaternion.Euler(0.0f, 0.0f, Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg);
+                    Obstacles.refState2a_4 = transform.localEulerAngles.z;
+                }
             }
-            else if (gameObject.name == "Detect_Player (1)")
+            else if (transform.parent.transform.parent.name.Substring(0, 6) == "Turret")
             {
-                if (Obstacles.refState2_4 && inRange == transform.parent.name)
-                    sprite.sprite = sprites[0];
-                else
-                    sprite.sprite = sprites[1];
+                if (gameObject.name == "Base")
+                {
+                    Transform p = transform.parent.transform.parent;
+                    transform.rotation = p.rotation;
+                    transform.position = new Vector3(p.position.x - p.GetComponent<BoxCollider2D>().size.x * Mathf.Cos(p.localEulerAngles.z * Mathf.Deg2Rad) / 2, p.position.y - p.GetComponent<BoxCollider2D>().size.y * Mathf.Sin(p.localEulerAngles.z * Mathf.Deg2Rad), transform.position.z); ;
+                }
             }
-            else if (gameObject.name == "Face_Player")
-            {
-                Vector3 difference = (Vector3)Player.rb2D.position - new Vector3(transform.position.x, transform.position.y, transform.position.z);
-                float distance = difference.magnitude;
-                Vector2 direction = difference / distance;
-                direction.Normalize();
-                transform.rotation = Quaternion.Euler(0.0f, 0.0f, Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg);
-                Obstacles.refState2a_4 = transform.localEulerAngles.z;
-            }
-        }
-        else if (transform.parent.transform.parent.name.Substring(0, 6) == "Turret")
-        {
-            if (gameObject.name == "Base")
-            {
-                Transform p = transform.parent.transform.parent;
-                transform.rotation = p.rotation;
-                transform.position = new Vector3(p.position.x - p.GetComponent<BoxCollider2D>().size.x * Mathf.Cos(p.localEulerAngles.z * Mathf.Deg2Rad) / 2, p.position.y - p.GetComponent<BoxCollider2D>().size.y * Mathf.Sin(p.localEulerAngles.z * Mathf.Deg2Rad), transform.position.z); ;
-            }
-        }
+        }        
 
         // Overseer Machina
         if (GlobalControl.area == "SG_12")
@@ -268,13 +271,13 @@ public class Scope : MonoBehaviour
             }
         }
         // Containment Machina
-        if (GlobalControl.area == "TT_12")
+        else if (GlobalControl.area == "TT_12")
         {
             if (gameObject.name == "Sparkle")
             {
                 if (Obstacles.refState_6 == "warning")
                 {
-                    sprite.enabled =  true;
+                    sprite.enabled = true;
                     anim.enabled = true;
                 }
                 else
@@ -298,7 +301,7 @@ public class Scope : MonoBehaviour
             }
         }
         // Subnautical Machina
-        if (GlobalControl.area == "MB_12")
+        else if (GlobalControl.area == "MB_12")
         {
             if (gameObject.name == "Rain")
             {
@@ -311,7 +314,7 @@ public class Scope : MonoBehaviour
                         transform.position = new Vector3(0, y);
                         Obstacles.refState1b_7 = "finish";
                     }
-                    else if(!hold_time)
+                    else if (!hold_time)
                         StartCoroutine(addSecond());
                     else
                     {
@@ -344,6 +347,40 @@ public class Scope : MonoBehaviour
 
             if (GlobalControl.downed_boss_3)
                 gameObject.SetActive(false);
+        }
+        // Emperor
+        else if (GlobalControl.area == "GP_0B")
+        {
+            // Rotate shields
+            if(gameObject.name == "Shields")
+                transform.Rotate(0, 0, speed);
+
+            // Spawn shields
+            if ((gameObject.name == "Shield" && Obstacles.refState_8 > 0) ||
+                (gameObject.name == "Shield (1)" && Obstacles.refState_8 > 1) ||
+                (gameObject.name == "Shield (2)" && Obstacles.refState_8 > 2) ||
+                (gameObject.name == "Shield (3)" && Obstacles.refState_8 > 3))
+            {
+                GetComponent<BoxCollider2D>().enabled = true;
+                sprite.enabled = true;
+            }
+            else if(gameObject.name.Substring(0, 5) != "Death")
+            {
+                if (transform.parent.name == "Shields")
+                {
+                    GetComponent<BoxCollider2D>().enabled = false;
+                    sprite.enabled = false;
+                }                
+            }
+
+            // Death Zone Lifespan
+            if (gameObject.name.Substring(0, 5) == "Death")
+            {
+                if (time >= 2)
+                    gameObject.SetActive(false);
+                else if(!hold_time)
+                    StartCoroutine(addSecond());
+            }
         }
     }
 
@@ -441,6 +478,15 @@ public class Scope : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D other)
     {
+        if (other.name == "Player" && !GlobalControl.immune)
+        {
+            if (gameObject.name.Substring(0, 5) == "Death")
+            {
+                GlobalControl.healthCurr -= 4;
+                GlobalControl.immune = true;
+            }
+        }
+
         if (gameObject.transform.parent.name == attachedTo)
         {
             if (other.CompareTag("Wall") && !(other.gameObject.transform.parent.name == "Left Side" || other.gameObject.transform.parent.name == "Right Side"))

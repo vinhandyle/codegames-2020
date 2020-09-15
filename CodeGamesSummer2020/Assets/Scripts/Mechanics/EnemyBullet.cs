@@ -40,8 +40,24 @@ public class EnemyBullet : MonoBehaviour
                 damage = 2;
             }
         }
+        else if (GlobalControl.area == "GP_0B")
+        {
+            if (gameObject.name.Substring(0, 18) == "Small E_Bullet (1)")
+            {
+                damage = 1;
+            }
+            else if (gameObject.name.Substring(0, 18) == "Small E_Bullet (2)")
+            {
+                damage = 2;
+                poolNum = 3;
+            }
+            else if (gameObject.name.Substring(0, 14) == "Small E_Bullet")
+            {
+                damage = 6;
+            }
+        }
 
-        if (GlobalControl.area.Substring(0, 2) == "TT")
+        else if (GlobalControl.area.Substring(0, 2) == "TT")
         {
             if (gameObject.name.Substring(0, 13) == "Tiny E_Bullet")
             {
@@ -153,8 +169,20 @@ public class EnemyBullet : MonoBehaviour
                     fireBullet(frag[0], new Vector2(Mathf.Cos((2 * i + 1) * Mathf.PI / 4), Mathf.Sin((2 * i + 1) * Mathf.PI / 4)), 45 * (2 * i + 1), 5f);
                 }
             }
-            // Crystal Barrage (second and fourth)
-            if (gameObject.name.Substring(0, 8) == "Snowball" && GlobalControl.area == "MB_12") { /* Nothing here */ }
+
+            // Draining Shot
+            else if (gameObject.name.Substring(0, 18) == "Small E_Bullet (1)")
+            {
+                if (GlobalControl.energyCurr - 5 < 0)
+                    GlobalControl.energyCurr = 0;
+                else
+                    GlobalControl.energyCurr -= 5;
+            }
+            else if (gameObject.name.Substring(0, 18) == "Small E_Bullet (2)")
+            {
+                position = transform.position;
+                fireBullet(frag[0], new Vector2(0, 0), 0, 0);
+            }
 
             // Normal bullets
             else
@@ -235,7 +263,7 @@ public class EnemyBullet : MonoBehaviour
                     }
                 }
             }
-            // Torpedo / Scatter
+            // Torpedo or Scatter
             else if (gameObject.name.Substring(0, 14) == "Small E_Bullet" && GlobalControl.area == "MB_12")
             {
                 gameObject.SetActive(false);
@@ -248,6 +276,14 @@ public class EnemyBullet : MonoBehaviour
                 {
                     gameObject.SetActive(false);
                 }
+                else if (gameObject.name.Substring(0, 14) == "Small E_Bullet")
+                {
+                    position = transform.position;
+                    gameObject.SetActive(false);
+
+                    if (gameObject.name.Substring(0, 18) == "Small E_Bullet (2)")
+                        fireBullet(frag[0], new Vector2(0, 0), 0, 0);
+                }
             }
             else if (GlobalControl.area.Substring(0, 2) == "MB" && GlobalControl.area != "MB_12")
             {
@@ -256,11 +292,11 @@ public class EnemyBullet : MonoBehaviour
                     gameObject.SetActive(false);
                 }
             }
-            else if (GlobalControl.area.Substring(0, 2) == "IT" || GlobalControl.area.Substring(0, 2) == "GP")
+            else if (GlobalControl.area.Substring(0, 2) == "IT")
             {
                 if (gameObject.name.Substring(0, 14) == "Small E_Bullet")
                 {
-                    gameObject.SetActive(false);
+                    gameObject.SetActive(false);                   
                 }
             }
         }
@@ -273,7 +309,15 @@ public class EnemyBullet : MonoBehaviour
                 if (gameObject.name.Substring(0, 13) == "Tiny E_Bullet")
                 {
                     gameObject.SetActive(false);
-                }                
+                }
+                else if (gameObject.name.Substring(0, 14) == "Small E_Bullet")
+                {
+                    position = transform.position;
+                    gameObject.SetActive(false);
+
+                    if (gameObject.name.Substring(0, 18) == "Small E_Bullet (2)")
+                        fireBullet(frag[0], new Vector2(0, 0), 0, 0);
+                }
             }
             else if (GlobalControl.area.Substring(0, 2) == "MB" && GlobalControl.area != "MB_12")
             {

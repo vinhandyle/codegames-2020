@@ -115,6 +115,10 @@ public class Obstacles : MonoBehaviour
     public string refState3b_7;                 // Leap State
     public string refState3c_7;                 // Crystal Barrage State
 
+    /* Emperor */
+    public static int refState_8 = 0;           // Number of shields
+    public static int refState1a_8;               // Which pool to use for bullet
+
     /* Electrical Line */
     public float refState3_1H;                  // Zap timer
     public float refState3a_1H;                 // Zap timer delay
@@ -219,7 +223,8 @@ public class Obstacles : MonoBehaviour
             (gameObject.name == "Errat_5_" && !GlobalControl.errat_5) ||
             (gameObject.name == "Overseer" && GlobalControl.downed_boss_1) ||
             (gameObject.name == "Containment" && GlobalControl.downed_boss_2) ||
-            (gameObject.name == "Subnautical" && GlobalControl.downed_boss_3))
+            (gameObject.name == "Subnautical" && GlobalControl.downed_boss_3) ||
+            (gameObject.name == "Emperor_" && GlobalControl.downed_boss_4))
         {
             gameObject.SetActive(false);
         }
@@ -238,7 +243,7 @@ public class Obstacles : MonoBehaviour
             transform.rotation = Quaternion.Euler(0.0f, 0.0f, deg);
         }
 
-        if (gameObject.name.Substring(0, 6) != "Cutter")
+        if (gameObject.name.Substring(0, 6) != "Cutter" && gameObject.name != "Containment" && gameObject.name != "Emperor_")
         {
             refState3b_4 = x - GetComponent<BoxCollider2D>().size.x * Mathf.Cos(deg * Mathf.Deg2Rad) / 2;
             refState3c_4 = y - GetComponent<BoxCollider2D>().size.y * Mathf.Sin(deg * Mathf.Deg2Rad);
@@ -407,6 +412,11 @@ public class Obstacles : MonoBehaviour
         {
             healthMax = 200;
             damage = 4;
+        }
+        else if (gameObject.name == "Emperor_")
+        {
+            healthMax = 500;
+            damage = 10;
         }
 
         // Hazards immune to damage
@@ -2096,7 +2106,7 @@ public class Obstacles : MonoBehaviour
                     {
                         if (refState3a_6 == "follow")
                         {
-                            StartCoroutine(delayRand(0f, 1, 3));
+                            StartCoroutine(delayRand(0f, 1, 4));
                         }
                         else if (refState3a_6 == "berserk")
                         {
@@ -2104,7 +2114,7 @@ public class Obstacles : MonoBehaviour
                         }
                         else
                         {
-                            StartCoroutine(delayRand(1f, 1, 3));
+                            StartCoroutine(delayRand(1f, 1, 4));
                         }
                     }
                     else
@@ -2515,19 +2525,9 @@ public class Obstacles : MonoBehaviour
                 refState_7 = false;
                 refState1b_7 = "";
 
-                if (refState3_7 == "under")
+                if (!hold_rand)
                 {
-                    if (!hold_rand)
-                    {
-                        StartCoroutine(delayRand(2f, 1, 2));
-                    }
-                }
-                else if (refState3_7 == "above")
-                {
-                    if (!hold_rand)
-                    {
-                        StartCoroutine(delayRand(2f, 1, 2));
-                    }
+                    StartCoroutine(delayRand(2f, 1, 2));
                 }
 
                 if (randNum == 1)
@@ -2721,9 +2721,46 @@ public class Obstacles : MonoBehaviour
         }
 
         /*-----The Emperor-----*/
-        else if (gameObject.name == "Emperor")
+        else if (gameObject.name == "Emperor_")
         {
+            // Health Shields
+            if (healthCurr <= 100)
+                refState_8 = 4;
+            else if (healthCurr <= 200)
+                refState_8 = 3;
+            else if (healthCurr <= 300)
+                refState_8 = 2;
+            else if (healthCurr <= 400)
+                refState_8 = 1;
 
+            // Cannon Fire
+            if (aiState == "cannon")
+            {
+                Vector3 difference = (Vector3)Player.rb2D.position - transform.position;
+                float rotationZ = Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg;
+
+                if (refState1a_8 == 0)
+                    refState1a_8 = 3;//Random.Range(1, 4);
+
+                if (canShoot && currBullet > 0)
+                {
+                    float distance = difference.magnitude;
+                    Vector2 direction = difference / distance;
+                    direction.Normalize();
+                    fireBullet(direction, rotationZ, bulletSpeed[0]);
+                    currBullet--;
+                    StartCoroutine(cooldown());
+                }
+                else if (currBullet <= 0)
+                {
+                    aiState = "rest";
+                    refState1a_8 = 0;
+                }
+            }
+
+            // Summon
+
+            // Gale
         }
 
         // Set reference state
@@ -3388,7 +3425,7 @@ public class Obstacles : MonoBehaviour
         }
 
         // Effects
-        if (other.name == "Player" && gameObject.name.Substring(0, 5) == "Water")
+        if (other.name == "Player" && (gameObject.name.Substring(0, 5) == "Water" || gameObject.name.Substring(0, 6) == "Sludge"))
         {
             if (Mathf.Abs(Player.rb2D.velocity.x) > 0.5f * Player.moveBy)
             {
@@ -3430,7 +3467,7 @@ public class Obstacles : MonoBehaviour
         }
 
         // Overseer
-        if (gameObject.name == "Overseer")
+        else if (gameObject.name == "Overseer")
         {
             if (refState3b_5 == "pool_1")
             {
@@ -3441,6 +3478,7 @@ public class Obstacles : MonoBehaviour
                 bullet = EnemyObjectPooler2.SharedInstance.GetPooledObject();
             }
         }
+        // Subnautical
         else if (gameObject.name == "Subnautical")
         {
             if (aiState == "scatter" || aiState == "torpedo")
@@ -3455,6 +3493,16 @@ public class Obstacles : MonoBehaviour
             {
                 bullet = EnemyObjectPooler4.SharedInstance.GetPooledObject();
             }
+        }
+        // Emperor
+        else if (gameObject.name == "Emperor_")
+        {
+            if(refState1a_8 == 1)
+                bullet = EnemyObjectPooler.SharedInstance.GetPooledObject();
+            else if(refState1a_8 == 2)
+                bullet = EnemyObjectPooler2.SharedInstance.GetPooledObject();
+            else if(refState1a_8 == 3)
+                bullet = EnemyObjectPooler3.SharedInstance.GetPooledObject();
         }
 
         if (bullet != null)

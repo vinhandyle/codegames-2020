@@ -28,7 +28,7 @@ public class DirectiveText : MonoBehaviour
                 if (GlobalControl.doubleUnlocked)
                 {
                     text.text = "<b>Intrusion-Proof:</b> 100%";
-                    text.color = new Color(255, 170, 0);
+                    text.color = new Color(0, 255, 0);
                 }
                 else
                 {
@@ -48,14 +48,17 @@ public class DirectiveText : MonoBehaviour
                     if (GlobalControl.data < 50)
                     {
                         text.text += "Save Humanity";
+                        text.color = new Color(0, 255, 0);
                     }
                     else if (GlobalControl.data < 100)
                     {
                         text.text += "...Humanity";
+                        text.color = new Color(120, 120, 0);
                     }
                     else
                     {
                         text.text += "Eradicate Humanity";
+                        text.color = new Color(255, 0, 0);
                     }
                 }
             }            
