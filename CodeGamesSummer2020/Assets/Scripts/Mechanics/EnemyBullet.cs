@@ -55,6 +55,10 @@ public class EnemyBullet : MonoBehaviour
             {
                 damage = 6;
             }
+            else if (gameObject.name.Substring(0, 13) == "Tiny E_Bullet")
+            {
+                damage = 3;
+            }
         }
 
         else if (GlobalControl.area.Substring(0, 2) == "TT")
@@ -169,6 +173,8 @@ public class EnemyBullet : MonoBehaviour
                     fireBullet(frag[0], new Vector2(Mathf.Cos((2 * i + 1) * Mathf.PI / 4), Mathf.Sin((2 * i + 1) * Mathf.PI / 4)), 45 * (2 * i + 1), 5f);
                 }
             }
+            // Crystal Barrage (second and fourth)	
+            else if (gameObject.name.Substring(0, 8) == "Snowball" && GlobalControl.area == "MB_12") { /* Nothing here */ }
 
             // Draining Shot
             else if (gameObject.name.Substring(0, 18) == "Small E_Bullet (1)")

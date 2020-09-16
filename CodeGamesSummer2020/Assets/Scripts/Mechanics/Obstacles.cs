@@ -117,12 +117,26 @@ public class Obstacles : MonoBehaviour
 
     /* Emperor */
     public static int refState_8 = 0;           // Number of shields
-    public static int refState1a_8;               // Which pool to use for bullet
+    public static int refState1a_8;             // Which pool to use for bullet
+    public static string refState1b_8 = "";     // Gale stage
+    public static string refState1c_8 = "";     // Judgement stage
+    public static int refState1d_8;             // Summon stage
 
     /* Electrical Line */
     public float refState3_1H;                  // Zap timer
     public float refState3a_1H;                 // Zap timer delay
     public float refState3b_1H;                 // Zap timer accel
+
+    /* Gust */
+    public bool refState3_2H;                   // Gust spin direction
+
+    /* Sentry */
+    public static bool refState_3H;             // Sentry is at min range?
+    public static bool refState1a_3H;           // Summon threshhold met?
+    public static int refState1b_3H;            // Sentries active
+    public static bool refState1c_3H;           // Sentry 1 active?
+    public static bool refState1d_3H;           // Sentry 2 active?
+    public bool refState3_3H;                   // Sentry was called in?
 
     // Start is called before the first frame update
     void Start()
@@ -243,7 +257,7 @@ public class Obstacles : MonoBehaviour
             transform.rotation = Quaternion.Euler(0.0f, 0.0f, deg);
         }
 
-        if (gameObject.name.Substring(0, 6) != "Cutter" && gameObject.name != "Containment" && gameObject.name != "Emperor_")
+        if (gameObject.name.Substring(0, 6) != "Cutter" && gameObject.name.Substring(0, 4) != "Gust" && gameObject.name != "Containment" && gameObject.name != "Emperor_")
         {
             refState3b_4 = x - GetComponent<BoxCollider2D>().size.x * Mathf.Cos(deg * Mathf.Deg2Rad) / 2;
             refState3c_4 = y - GetComponent<BoxCollider2D>().size.y * Mathf.Sin(deg * Mathf.Deg2Rad);
@@ -361,6 +375,12 @@ public class Obstacles : MonoBehaviour
             }
         }
 
+        // Sentry
+        else if (gameObject.name.Substring(0, 6) == "Sentry")
+        {
+            healthMax = 40;
+        }
+
         // Errat
         else if (gameObject.name.Substring(0, 5) == "Errat")
         { // Dreg Heap
@@ -395,7 +415,16 @@ public class Obstacles : MonoBehaviour
         {
             damage = 4;
         }
-
+        // Overheat
+        else if (gameObject.name.Substring(0, 5) == "Blaze")
+        {
+            damage = 10;
+        }
+        // Gale
+        else if (gameObject.name.Substring(0, 4) == "Gust")
+        {
+            damage = 8;
+        }
 
         /*---------------Bosses----------------*/
         else if (gameObject.name == "Overseer")
@@ -432,7 +461,8 @@ public class Obstacles : MonoBehaviour
         // On kill
         if (healthCurr <= 0 && !hazard)
         { // Set enemy inactive when hp = 0
-            gameObject.SetActive(false);
+            if(gameObject.name.Substring(0, 6) != "Sentry")
+                gameObject.SetActive(false);
 
             // Add type to catalog on kill
             if (gameObject.name.Substring(0, 6) == "Patrol")
@@ -454,6 +484,17 @@ public class Obstacles : MonoBehaviour
             else if (gameObject.name.Substring(0, 6) == "Turret")
             {
                 GlobalControl.downed_turret = true;
+            }
+            else if (gameObject.name.Substring(0, 6) == "Sentry")
+            {
+                aiState = "inactive";
+                refState1b_3H--;
+                healthCurr = healthMax;
+                refState3_3H = false;
+                if (gameObject.name == "Sentry__")
+                    refState1c_3H = false;
+                else if (gameObject.name == "Sentry__ (1)")
+                    refState1d_3H = false;
             }
             else if (gameObject.name.Substring(0, 6) == "Errat")
             {
@@ -1525,6 +1566,116 @@ public class Obstacles : MonoBehaviour
             }
         }
 
+        /*-----Sentry-----*/
+        else if (gameObject.name.Substring(0, 6) == "Sentry")
+        {
+            if (aiState == "inactive")
+            {
+                transform.position = new Vector3(0, 20, transform.position.z);
+
+                // Summon conditions
+                if (refState1a_3H)
+                {
+                    if (refState1b_3H == 0)
+                    {
+                        if (gameObject.name == "Sentry__")
+                        {
+                            aiState = "active";
+                            refState1b_3H++;
+                            refState1a_3H = false;
+                        }
+                    }
+                    else if (refState1b_3H == 1)
+                    {
+                        if (gameObject.name == "Sentry__")
+                        {
+                            aiState = "active";
+                            refState1b_3H++;
+                            refState1a_3H = false;
+                        }
+                        else if (gameObject.name == "Sentry__ (1)" && refState1c_3H)
+                        {
+                            aiState = "active";
+                            refState1b_3H++;
+                            refState1a_3H = false;
+                        }
+                    }
+                    else
+                    {
+                        if (gameObject.name == "Sentry__")
+                        {
+                            aiState = "active";
+                            refState1b_3H++;
+                            refState1a_3H = false;
+                        }
+                        else if (gameObject.name == "Sentry__ (1)" && refState1c_3H)
+                        {
+                            aiState = "active";
+                            refState1b_3H++;
+                            refState1a_3H = false;
+                        }
+                        else if (gameObject.name == "Sentry__ (2)" && refState1c_3H && refState1d_3H)
+                        {
+                            aiState = "active";
+                            refState1b_3H++;
+                            refState1a_3H = false;
+                        }
+                    }
+                }
+            }
+            else if (aiState == "active")
+            {
+                if (!refState3_3H)
+                {
+                    refState3_3H = true;
+                    transform.position = new Vector3(0f, 6f, transform.position.z);
+                    if (gameObject.name == "Sentry__")
+                        refState1c_3H = true;
+                    else if (gameObject.name == "Sentry__ (1)")
+                        refState1d_3H = true;
+                }
+
+                Vector3 difference = (Vector3)Player.rb2D.position - new Vector3(transform.position.x - GetComponent<BoxCollider2D>().size.x / 2, transform.position.y, transform.position.z);
+                float rotationZ = Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg;
+                float distance = difference.magnitude;
+                Vector2 direction = difference / distance;
+                direction.Normalize();
+
+                // Rotate around Player
+                if (refState_3H && ((gameObject.name == "Sentry__" && Scope.in_1) || (gameObject.name == "Sentry__ (1)" && Scope.in_2) || (gameObject.name == "Sentry__ (2)" && Scope.in_3)))
+                {
+                    if(randNum > 0)
+                        transform.RotateAround(Player.rb2D.position, new Vector3(0, 0, 1), speed_1);
+                    else
+                        transform.RotateAround(Player.rb2D.position, new Vector3(0, 0, 1), -speed_1);
+                }
+                // Follow Player
+                else
+                {
+                    randNum = Random.Range(0, 2);
+                    transform.position += new Vector3(direction.x * speed, direction.y * speed);
+                    transform.rotation = Quaternion.Euler(0.0f, 0.0f, Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg);
+                }
+
+                // Shoot x bullets at y rate then recharge for z seconds
+                if (canShoot && currBullet > 0)
+                {
+                    fireBullet(direction, rotationZ, bulletSpeed[0]);
+                    currBullet--;
+                    StartCoroutine(cooldown());
+                }
+                else if (currBullet == 0 && !hold_time)
+                {
+                    StartCoroutine(addSecond());
+                    if (time >= rechargeTime)
+                    {
+                        currBullet = maxBullet;
+                        time = 0;
+                    }
+                }
+            }
+        }
+
         /*----------Hazard AI----------*/
 
         /*-----Crusher-----*/
@@ -1796,6 +1947,15 @@ public class Obstacles : MonoBehaviour
                     }
                 }
             }
+        }
+
+        /*-----Gust-----*/
+        else if (gameObject.name.Substring(0, 4) == "Gust")
+        {
+            if (refState3_2H)
+                transform.Rotate(0, 0, 1.5f);
+            else
+                transform.Rotate(0, 0, -1.5f);
         }
 
         /*----------Boss AI----------*/
@@ -2733,14 +2893,90 @@ public class Obstacles : MonoBehaviour
             else if (healthCurr <= 400)
                 refState_8 = 1;
 
+            // Summon Sentry
+            if ((healthCurr <= 450 && refState1d_8 == 0) || (healthCurr <= 400 && refState1d_8 == 1) || (healthCurr <= 350 && refState1d_8 == 2) || (healthCurr <= 300 && refState1d_8 == 3) || (healthCurr <= 250 && refState1d_8 == 4) || (healthCurr <= 200 && refState1d_8 == 5) || (healthCurr <= 150 && refState1d_8 == 6) || (healthCurr <= 100 && refState1d_8 == 7) || (healthCurr <= 50 && refState1d_8 == 8))
+            {
+                refState1d_8++;
+                refState1a_3H = true;
+            }
+
+            // Rest
+            if (aiState == "rest")
+            {
+                // Reset stuff
+                refState1a_8 = 0;
+                refState1b_8 = "";
+                refState1c_8 = "";
+                currBullet = maxBullet;
+                useTime = baseUseTime;
+
+                if (!hold_rand)
+                {
+                    if (refState_8 > 2)
+                        StartCoroutine(delayRand(1.5f, 1, 10));
+                    else if (refState_8 > 0)
+                        StartCoroutine(delayRand(1.5f, 1, 4));
+                    else
+                        StartCoroutine(delayRand(1.5f, 1, 1));
+                }
+
+                if (refState_8 > 2)
+                {
+                    if (randNum < 8)
+                    {
+                        aiState = "cannon";
+                        hold_rand = false;
+                    }
+                    else if (randNum < 9)
+                    {
+                        aiState = "gale";
+                        hold_rand = false;
+                    }
+                    else
+                    {
+                        aiState = "doom";
+                        hold_rand = false;
+                    }
+                }
+                else if (refState_8 > 0)
+                {
+                    if (randNum < 4)
+                    {
+                        aiState = "cannon";
+                        hold_rand = false;
+                    }
+                    else
+                    {
+                        aiState = "gale";
+                        hold_rand = false;
+                    }
+                }
+                else
+                {
+                    if (randNum == 1)
+                    {
+                        aiState = "cannon";
+                        hold_rand = false;
+                    }
+                }
+
+                randNum = 0;
+            }
+
             // Cannon Fire
-            if (aiState == "cannon")
+            else if (aiState == "cannon")
             {
                 Vector3 difference = (Vector3)Player.rb2D.position - transform.position;
                 float rotationZ = Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg;
 
                 if (refState1a_8 == 0)
-                    refState1a_8 = 3;//Random.Range(1, 4);
+                    refState1a_8 = Random.Range(1, 4);
+
+                // Change fire rate
+                if (refState1a_8 == 2)
+                    useTime = baseUseTime / 1.5f;
+                else if (refState1a_8 == 3)
+                    useTime = baseUseTime / 0.75f;
 
                 if (canShoot && currBullet > 0)
                 {
@@ -2754,13 +2990,26 @@ public class Obstacles : MonoBehaviour
                 else if (currBullet <= 0)
                 {
                     aiState = "rest";
-                    refState1a_8 = 0;
                 }
             }
 
-            // Summon
-
             // Gale
+            else if (aiState == "gale")
+            {
+                if (refState1b_8 == "")
+                    refState1b_8 = "blowing";
+                else if (refState1b_8 == "finish")
+                    aiState = "rest";
+            }
+
+            // Judgement
+            else if (aiState == "doom")
+            {
+                if (refState1c_8 == "")
+                    refState1c_8 = "warning";
+                else if (refState1c_8 == "finish")
+                    aiState = "rest";
+            }
         }
 
         // Set reference state
@@ -2823,7 +3072,6 @@ public class Obstacles : MonoBehaviour
                         StartCoroutine(dmgFlash(0.05f));
                     }
                 }                
-                Debug.Log(healthCurr + " HP remaining!");
 
                 // Other effects
                 if (gameObject.name.Substring(0, 7) == "Pursuit")
@@ -3458,6 +3706,10 @@ public class Obstacles : MonoBehaviour
         {
             bullet = EnemyObjectPooler.SharedInstance.GetPooledObject();
         }
+        else if (gameObject.name.Substring(0, 6) == "Sentry")
+        {
+            bullet = EnemyObjectPooler5.SharedInstance.GetPooledObject();
+        }
         else if (gameObject.name.Substring(0, 7) == "Aquatic")
         {
             if (GlobalControl.area == "GP_14")
@@ -3497,11 +3749,11 @@ public class Obstacles : MonoBehaviour
         // Emperor
         else if (gameObject.name == "Emperor_")
         {
-            if(refState1a_8 == 1)
+            if (refState1a_8 == 1)
                 bullet = EnemyObjectPooler.SharedInstance.GetPooledObject();
-            else if(refState1a_8 == 2)
+            else if (refState1a_8 == 2)
                 bullet = EnemyObjectPooler2.SharedInstance.GetPooledObject();
-            else if(refState1a_8 == 3)
+            else if (refState1a_8 == 3)
                 bullet = EnemyObjectPooler3.SharedInstance.GetPooledObject();
         }
 
