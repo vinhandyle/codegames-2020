@@ -8,24 +8,15 @@
 	>add oil storages
 	>Steering wheel
 
--IT Return
-	>Add Azimuth
-
--Kin Harvest
-	>Edge of Humanity
+-IT Return + GP
+	>Add Azimuth and decor (maybe)
 	
 -Other
 	>Revamp diagram with connecter with label
 	>More items to examine	
-	>Add diagrams to boss atks instead of long descs + structure overhaul (do during map)
-	>Edit ending 1 (add something after gaze, blast off?)
+	>Boss structure revamp + add atk img
 	>Retest Containment (able to berserk after using reg atk) and Subnautical (able to atk)
-
--GP: add Azimuth
--FS: add Nadir + decor
-
--Emperor
 
 -Ideas
 	>Custom proj for bosses
-	>Two maps (area map + world map)	
+	>Two maps (area map + world map)

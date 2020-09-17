@@ -132,18 +132,30 @@ sceneSetups:
   isActive: 0
   isSubScene: 0
 - path: Assets/Scenes/GP/GP_0B.unity
-  isLoaded: 1
-  isActive: 1
+  isLoaded: 0
+  isActive: 0
   isSubScene: 0
 - path: Assets/Scenes/Ending_1.unity
   isLoaded: 0
   isActive: 0
+  isSubScene: 0
+- path: Assets/Scenes/Ending_2.unity
+  isLoaded: 0
+  isActive: 0
+  isSubScene: 0
+- path: Assets/Scenes/Ending_3.unity
+  isLoaded: 1
+  isActive: 1
   isSubScene: 0
 - path: Assets/Scenes/SG/SG_1.unity
   isLoaded: 0
   isActive: 0
   isSubScene: 0
 - path: Assets/Scenes/DH/DH_8.unity
+  isLoaded: 0
+  isActive: 0
+  isSubScene: 0
+- path: Assets/Scenes/Main Menu.unity
   isLoaded: 0
   isActive: 0
   isSubScene: 0

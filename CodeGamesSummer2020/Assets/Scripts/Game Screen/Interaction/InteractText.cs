@@ -49,7 +49,7 @@ public class InteractText : MonoBehaviour
 
                     // Lingering textbox on item pickup
                     if (type == "ego" || type == "Starter" || type == "Geothermal" || type == "Map" || type == "Heartless" || type == "Key" ||
-                        type == "Lost" || type == "Unstable" || type.Substring(0, 7) == "Plating" || type.Substring(0, 5) == "Extra" ||
+                        type == "Lost" || type == "Unstable" || type.Substring(0, 4) == "Plat" || type.Substring(0, 5) == "Extra" ||
                         type.Substring(0, 5) == "Scrap" || (type == "post-craft" && !triggerOnce))
                     {
                         triggerOnce = true;
@@ -165,6 +165,10 @@ public class InteractText : MonoBehaviour
                             GlobalControl.report_10 = true;
                         }
                     }
+                    else if (type == "master")
+                    {
+                        text.text = "";
+                    }
 
                     /*-----Crafting-----*/
                     else if (type == "post-craft" && !triggerOnce)
@@ -190,7 +194,7 @@ public class InteractText : MonoBehaviour
                     /*-----NPC dialogue-----*/
 
                     // Azimuth
-                    if (type == "Azimuth_0")
+                    else if (type == "Azimuth_0")
                     {
                         text.text = "<i>Purpose fulfilled. Leave pending.</i>";
                     }
@@ -374,6 +378,10 @@ public class InteractText : MonoBehaviour
                     else if (type == "pre-craft")
                     {
                         text.text = "Insert Hyper Scrap";
+                    }
+                    else if (type == "master")
+                    {
+                        text.text = "Take Control";
                     }
                     else if (type == "misc")
                     {

@@ -570,7 +570,13 @@ public class Scope : MonoBehaviour
             }
 
             if (GlobalControl.downed_boss_4)
+            {
+                if (gameObject.name == "Doom__")
+                {
+                    transform.position = new Vector3(0, 20f);
+                }
                 gameObject.SetActive(false);
+            }
         }
     }
 

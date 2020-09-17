@@ -89,17 +89,19 @@ public class GlobalControl : MonoBehaviour
 
     public static int humansLeft = 6;              // How many humans left to capture (6: May-October)
     public static int bossDowned = 0;              // How many bosses have been defeated
+    public static string fate;                     // Ending 2 or 3
     public static bool canContinue = false;        // Continue from Main Menu?
 
     public static int update = 0;                  // Update stats when power-up obtained
     public static bool switched = false;           // Used to set position on scene switch
 
-    public static string area = "GP_0B";                // Area name for scene change purposes
+    public static string area = "";                // Area name for scene change purposes
     public static string prevArea = "";            // Name of previous area
     public static string checkpoint = "";          // Area name of last repair station used
 
     // Dialogue
     public static int counter_1 = 0;               // Counter for First dialogue
+    public static bool masterControl;              // Using Master Control
 
     // Enemy Catalog
     public static bool downed_patrol = false;
@@ -313,6 +315,7 @@ public class GlobalControl : MonoBehaviour
     void Start()
     {
         unlockAll();
+        StartCoroutine(setAreaName());
     }
 
     // Update is called once per frame
@@ -366,17 +369,40 @@ public class GlobalControl : MonoBehaviour
         // Endings
         if (humansLeft == 0)
         { // Save Humanity
-            humansLeft--;
+            humansLeft = 6;
             StartCoroutine(SceneSwitch("Ending_1", ""));
+        }
+        else if (fate == "free")
+        {
+            fate = "";
+            StartCoroutine(SceneSwitch("Ending_2", ""));
+        }
+        else if (fate == "kill")
+        {
+            fate = "";
+            StartCoroutine(SceneSwitch("Ending_3", ""));
         }
 
         // Return to Main Menu
-        if (area == "Ending_1" && !triggerOnce)
+        if (area.Substring(0, 3) == "End" && !triggerOnce)
         {
             triggerOnce = true;
             canContinue = false;
-            StartCoroutine(delayedSwitch(8.5f, SceneSwitch("Main Menu", "")));
-            ending_1 = true;
+            if (area == "Ending_1")
+            {
+                ending_1 = true;
+                StartCoroutine(delayedSwitch(4.5f, SceneSwitch("Main Menu", "")));
+            }
+            else if (area == "Ending_2")
+            {
+                ending_2 = true;
+                //StartCoroutine(delayedSwitch(8.5f, SceneSwitch("Main Menu", "")));
+            }
+            else if (area == "Ending_3")
+            {
+                ending_3 = true;
+                StartCoroutine(delayedSwitch(3.5f, SceneSwitch("Main Menu", "")));
+            }
         }
 
         if (area == "Main Menu")
@@ -716,7 +742,7 @@ public class GlobalControl : MonoBehaviour
         downed_boss_1 = true;
         downed_boss_2 = true;
         downed_boss_3 = true;
-        //downed_boss_4 = true;
+        downed_boss_4 = true;
 
         // Reports
         data = 100;
@@ -758,5 +784,11 @@ public class GlobalControl : MonoBehaviour
     {
         yield return new WaitForSeconds(1f);
         Debug.Log(t);
+    }
+
+    IEnumerator setAreaName()
+    {
+        area = SceneManager.GetActiveScene().name;
+        yield return null;
     }
 }

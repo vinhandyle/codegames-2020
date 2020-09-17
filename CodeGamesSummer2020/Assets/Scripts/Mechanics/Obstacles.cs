@@ -137,6 +137,7 @@ public class Obstacles : MonoBehaviour
     public static bool refState1c_3H;           // Sentry 1 active?
     public static bool refState1d_3H;           // Sentry 2 active?
     public bool refState3_3H;                   // Sentry was called in?
+    public string refState3a_3H;                // Rotation direction
 
     // Start is called before the first frame update
     void Start()
@@ -3071,7 +3072,7 @@ public class Obstacles : MonoBehaviour
                         // Damage indication
                         StartCoroutine(dmgFlash(0.05f));
                     }
-                }                
+                }
 
                 // Other effects
                 if (gameObject.name.Substring(0, 7) == "Pursuit")
@@ -3382,6 +3383,21 @@ public class Obstacles : MonoBehaviour
                         }
                     }
                 }
+            }
+        }
+
+        // On touch with outer box
+        else if (other.transform.parent != null)
+        {
+            if (other.transform.parent.name == "Top Ceiling" || other.transform.parent.name == "Bottom Floor" || other.transform.parent.name == "Left Side" || other.transform.parent.name == "Right Side")
+            {
+                if (gameObject.name.Substring(0, 6) == "Sentry")
+                {
+                    if (randNum > 0)
+                        randNum = 0;
+                    else
+                        randNum = 1;
+                }                
             }
         }
     }

@@ -28,6 +28,14 @@ public class StoryDialogue : MonoBehaviour
         {
             text = GameObject.Find("NextText").GetComponent<Text>();
         }
+        else if (type == "free")
+        {
+            text = GameObject.Find("FreeText").GetComponent<Text>();
+        }
+        else if (type == "kill")
+        {
+            text = GameObject.Find("KillText").GetComponent<Text>();
+        }
     }
 
     // Update is called once per frame
@@ -83,6 +91,13 @@ public class StoryDialogue : MonoBehaviour
                 {
                     text.text = "";
                 }
+            }
+            else if (GlobalControl.area == "GP_0B")
+            {
+                if (type == "free" && GlobalControl.masterControl)
+                    text.text = "Shut Down the Ark";
+                else if (type == "kill" && GlobalControl.masterControl && GlobalControl.data == 100)
+                    text.text = "Blow Up the Ark";
             }
         }
     }

@@ -8,6 +8,7 @@ public class MainMenuImg : MonoBehaviour
     private Image img;
     public List<Sprite> sprites;
     public bool animated;
+    public bool once;
 
     // Start is called before the first frame update
     void Start()
@@ -51,12 +52,20 @@ public class MainMenuImg : MonoBehaviour
         }
 
         // Endings
-        if (Time.time >= 3.35f && GlobalControl.area != "Ending_1")
-         {
-             if (gameObject.name == "Countdown")
-             {
+        if (Time.time >= 2.5f && GlobalControl.area == "Ending_1")
+        {
+            if (gameObject.name == "Gaze Above" || gameObject.name == "Star")
                 img.color = new Color(1f, 1f, 1f, 0f);
-             }
-         }      
+            else if (gameObject.name == "Blast Off" && !once)
+            {
+                once = true;
+                GetComponent<Animator>().Play("Blast Off", -1, 0.0f);
+            }
+        }
+        else if (Time.time > 1.8f && GlobalControl.area == "Ending_3")
+        {
+            if(gameObject.name == "Exploding")
+                img.color = new Color(1f, 1f, 1f, 0f);
+        }
     }
 }

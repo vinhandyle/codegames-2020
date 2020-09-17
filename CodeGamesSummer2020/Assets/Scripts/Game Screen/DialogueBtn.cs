@@ -26,12 +26,23 @@ public class DialogueBtn : MonoBehaviour
             if (GlobalControl.area == "GP_0A")
             {
                 if (GlobalControl.counter_1 < 2 && gameObject.name == "Next")
-                {                   
-                    img.color = new Color(1f, 1f, 1f, 1f);                   
+                {
+                    img.color = new Color(1f, 1f, 1f, 1f);
                 }
                 else if (GlobalControl.counter_1 == 2 && gameObject.name != "Next")
-                {                    
-                    img.color = new Color(1f, 1f, 1f, 1f);                    
+                {
+                    img.color = new Color(1f, 1f, 1f, 1f);
+                }
+                else
+                {
+                    img.color = new Color(1f, 1f, 1f, 0f);
+                }
+            }
+            else if (GlobalControl.area == "GP_0B")
+            {
+                if (GlobalControl.masterControl && !(gameObject.name == "Kill" && GlobalControl.data < 100))
+                {
+                    img.color = new Color(1f, 1f, 1f, 1f);
                 }
                 else
                 {

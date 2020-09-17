@@ -5,6 +5,7 @@ using UnityEngine;
 public class Examine : MonoBehaviour
 {
     public bool harvestable;
+    public bool master;
     public string objName = "";
 
     public static bool inRange = false;
@@ -34,6 +35,14 @@ public class Examine : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (master)
+        {
+            if (GlobalControl.downed_boss_4)
+                GetComponent<BoxCollider2D>().enabled = true;
+            else
+                GetComponent<BoxCollider2D>().enabled = false;
+        }
+
         if (inRange && Input.GetKeyDown("w") && !InteractText.interacted && sticky == objName)
         {
             InteractText.interacted = true;
@@ -43,6 +52,10 @@ public class Examine : MonoBehaviour
                 InteractText.type = "ego";
                 gameObject.SetActive(false);
                 InteractText.notif = true;
+            }
+            else if (master)
+            {
+                GlobalControl.masterControl = true;
             }
             else
             {
@@ -58,7 +71,12 @@ public class Examine : MonoBehaviour
             inRange = true;
             sticky = objName;
             if (!InteractText.interacted)
-                InteractText.type = "misc";
+            {
+                if(master)
+                    InteractText.type = "master";
+                else
+                    InteractText.type = "misc";
+            }
         }
     }
 
@@ -74,6 +92,9 @@ public class Examine : MonoBehaviour
                 InteractText.interacted = false;
                 InteractText.type = "";
             }
+
+            if (master)
+                GlobalControl.masterControl = false;
 
             if (!InteractText.interacted)
                 InteractText.type = "";

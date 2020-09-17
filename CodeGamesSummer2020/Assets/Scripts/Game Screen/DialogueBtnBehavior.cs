@@ -41,5 +41,10 @@ public class DialogueBtnBehavior : MonoBehaviour
                 GlobalControl.counter_1 = 4;
             }
         }
+        else if (GlobalControl.masterControl)
+        {
+            if(!(type == "kill" && GlobalControl.data < 100))
+                GlobalControl.fate = type;
+        }
     }
 }
