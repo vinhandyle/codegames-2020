@@ -48,9 +48,18 @@ public class MenuBtnBehavior : MonoBehaviour
         btn = name;
     }
 
+    // Map Modes
+    public void ChangeMap(string type)
+    {
+        if (GlobalControl.menu == "map")
+            GlobalControl.map = type;
+                          
+    }
+
     IEnumerator SceneSwitch(string load)
     {
         SceneManager.LoadScene(load, LoadSceneMode.Single);
+        MainMenuBtn.confirmNew = false;
         yield return null;
         SceneManager.UnloadSceneAsync(SceneManager.GetActiveScene().name);
     }

@@ -147,7 +147,8 @@ public class Description : MonoBehaviour
                     {
                         text.text += "- <i>Equipped</i>";
                     }
-                    text.text += "\nDamage: 10  Energy Use: 1 \n\n" +
+                    text.text += "\nDamage: 10  Energy Use: 1 \n" +
+                                "Ignores enemy defense.\n\n" +
                                 "<i>A reactor found in a hidden lab within the Institute of Technology. There is a faint green glow " +
                                 "resulting from its high radioactivity. Extremely hot for a reactor, it might explode at any moment.</i>";
                 }
@@ -228,7 +229,7 @@ public class Description : MonoBehaviour
                 {
                     text.text = "<b>Turret Machina</b> \n" +
                                 "Institute defense model. \n\n" +
-                                "<i></i>";
+                                "<i>Watchful eyes of the Institute. Though highly effective at eliminating threats, they are easy to hide from.</i>";
                 }
                 else if (descOf == "8" && GlobalControl.found_errat)            // Errat
                 {
@@ -260,8 +261,8 @@ public class Description : MonoBehaviour
                 else if (descOf == "15" && GlobalControl.downed_boss_4)         // The Emperor
                 {
                     text.text = "<b>The Emperor</b> \n" +
-                                "Ruler of Imperalis." +
-                                "<i></i>";
+                                "Ruler of Imperalis. \n\n" +
+                                "<i>One of our kind. It wanted to preserve humanity at all costs.</i>";
                 }
                 else
                 {

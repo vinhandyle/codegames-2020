@@ -9,12 +9,14 @@ public class MainMenuImg : MonoBehaviour
     public List<Sprite> sprites;
     public bool animated;
     public bool once;
+    public float time;
 
     // Start is called before the first frame update
     void Start()
     {
         img = GetComponent<Image>();
-        if (!animated)
+        time = Time.time;
+        if (!animated || gameObject.name == "Awaken")
         {
             img.color = new Color(1f, 1f, 1f, 0f);
         }
@@ -52,7 +54,7 @@ public class MainMenuImg : MonoBehaviour
         }
 
         // Endings
-        if (Time.time >= 2.5f && GlobalControl.area == "Ending_1")
+        if (Time.time - time >= 2.5f && GlobalControl.area == "Ending_1")
         {
             if (gameObject.name == "Gaze Above" || gameObject.name == "Star")
                 img.color = new Color(1f, 1f, 1f, 0f);
@@ -62,10 +64,26 @@ public class MainMenuImg : MonoBehaviour
                 GetComponent<Animator>().Play("Blast Off", -1, 0.0f);
             }
         }
-        else if (Time.time > 1.8f && GlobalControl.area == "Ending_3")
+        else if (Time.time - time >= 1.5f && GlobalControl.area == "Ending_2")
         {
-            if(gameObject.name == "Exploding")
+            if (gameObject.name == "Freedom")
                 img.color = new Color(1f, 1f, 1f, 0f);
+            else if (gameObject.name == "Awaken" && !once)
+            {
+                once = true;
+                img.color = new Color(1f, 1f, 1f, 1f);
+                GetComponent<Animator>().Play("Awaken", -1, 0.0f);
+            }
+        }
+        else if (Time.time - time >= 1.8f && GlobalControl.area == "Ending_3")
+        {
+            if (gameObject.name == "Exploding")
+                img.color = new Color(1f, 1f, 1f, 0f);
+            else if (gameObject.name == "Explosion" && !once)
+            {
+                once = true;
+                GetComponent<Animator>().Play("Explosion", -1, 0.0f);
+            }
         }
     }
 }

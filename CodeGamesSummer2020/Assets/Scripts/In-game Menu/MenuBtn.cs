@@ -80,6 +80,12 @@ public class MenuBtn : MonoBehaviour
                 }
             }
 
+            // Map
+            else if (GlobalControl.menu == "map" && (gameObject.name == "World" || gameObject.name == "Local"))
+            {
+                img.color = new Color(1f, 1f, 1f, 1f);
+            }
+
             // Enemies
             else if (GlobalControl.menu == "enemies" &&
                 ((gameObject.name == "Btn_1" && GlobalControl.downed_patrol) ||

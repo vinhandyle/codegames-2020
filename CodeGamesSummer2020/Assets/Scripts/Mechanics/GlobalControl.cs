@@ -6,141 +6,148 @@ using UnityEngine.SceneManagement;
 public class GlobalControl : MonoBehaviour 
 {
     // Endings
-    public static bool ending_1 = false;           // Save Humanity
-    public static bool ending_2 = false;           // Return to the Past
-    public static bool ending_3 = false;           // End the Cycle
-    public static bool complete = false;           // Get all endings
-    public static bool triggerOnce = false;
+    public static bool ending_1;                    // Save Humanity
+    public static bool ending_2;                    // Return to the Past
+    public static bool ending_3;                    // End the Cycle
+    public static bool complete;                    // Get all endings
+    public static bool triggerOnce;
 
     // Energy
-    public static int energyMax = 10;              // max energy level
-    public static int energyCurr = energyMax;      // current energy level
-    public static int energyUse;                   // amount of energy used per shot
+    public static int energyMax = 10;               // max energy level
+    public static int energyCurr = energyMax;       // current energy level
+    public static int energyUse;                    // amount of energy used per shot
 
     // Health
-    public static int healthMax = 90;              // max health level
-    public static int healthCurr = healthMax;      // current health level
+    public static int healthMax = 10;               // max health level
+    public static int healthCurr = healthMax;       // current health level
 
     // Other Stats
-    public static int damage;                      // player bullet damage
-    public static int data;                        // Percent data collected
-    public static bool immune;                     // Immune to damage (after taking damage)
-    public static bool immune_ = false;            // Immune update once per time
-    private float time_i;                          // Timer to check immunity bug
+    public static int damage;                       // player bullet damage
+    public static int data;                         // Percent data collected
+    public static bool immune;                      // Immune to damage (after taking damage)
+    public static bool immune_;                     // Immune update once per time
+    private float time_i;                           // Timer to check immunity bug
 
     // Unlock 
-    public static bool batteryUnlocked = false;    // Battery
-    public static bool solarUnlocked = false;      // Solar Panel
-    public static bool geoUnlocked = false;        // Geothermal Extractor
+    public static bool batteryUnlocked;             // Battery
+    public static bool solarUnlocked;               // Solar Panel
+    public static bool geoUnlocked;                 // Geothermal Extractor
 
-    public static bool gunUnlocked = false;        // Energy Cannon
-    public static bool mapUnlocked = false;        // Navigational Module
-    public static bool heartlessUnlocked = false;  // Heartless Generator
-    public static bool keyUnlocked = false;        // Access Key
+    public static bool gunUnlocked;                 // Energy Cannon
+    public static bool mapUnlocked;                 // Navigational Module
+    public static bool heartlessUnlocked;           // Heartless Generator
+    public static bool keyUnlocked;                 // Access Key
 
-    public static bool dashUnlocked = false;       // Booster Rocket
-    public static bool clingUnlocked = false;      // Climbing Claws
-    public static bool doubleUnlocked = false;     // Booster Rocket MK2
+    public static bool dashUnlocked;                // Booster Rocket
+    public static bool clingUnlocked;               // Climbing Claws
+    public static bool doubleUnlocked;              // Booster Rocket MK2
 
-    public static bool basicUnlocked = true;       // Basic Reactor
-    public static bool imperialUnlocked = false;   // Strange Reactor
-    public static bool familiarUnlocked = false;   // Lost Reactor
-    public static bool unstableUnlocked = false;   // Unstable Reactor
+    public static bool basicUnlocked = true;        // Basic Reactor
+    public static bool imperialUnlocked;            // Strange Reactor
+    public static bool familiarUnlocked;            // Lost Reactor
+    public static bool unstableUnlocked;            // Unstable Reactor
 
-    public static bool scrapFound = false;         // Hyper Scrap
-    public static bool extraFound = false;         // Extra Battery
-    public static bool plateFound = false;         // Special Plating
+    public static bool scrapFound;                  // Hyper Scrap
+    public static bool extraFound;                  // Extra Battery
+    public static bool plateFound;                  // Special Plating
 
-    public static bool extra_1 = false;            // Extra battery pick-ups
-    public static bool extra_2 = false;
-    public static bool extra_3 = false;
+    public static bool extra_1;                     // Extra battery pick-ups
+    public static bool extra_2;
+    public static bool extra_3;
 
-    public static bool plating_1 = false;          // Special Plating pick-ups
-    public static bool plating_2 = false;
+    public static bool plating_1;                   // Special Plating pick-ups
+    public static bool plating_2;
 
-    public static bool scrap_1 = false;            // Hyper Scrap pick-ups
-    public static bool scrap_2 = false;
-    public static bool scrap_3 = false;
+    public static bool scrap_1;                     // Hyper Scrap pick-ups
+    public static bool scrap_2;
+    public static bool scrap_3;
 
     // Inventory Numbers
-    public static string menu = "help";            // Which menu the player was in
-    public static int plateNum = 0;                // Number of special plating obtained
-    public static int extraNum = 0;                // Number of extra batteries obtained
-    public static int scrapNum = 0;                // Number of hyper scraps in possession
+    public static string menu = "help";             // Which menu the player was in
+    public static string map = "local";             // Map mode
+    public static int plateNum = 0;                 // Number of special plating obtained
+    public static int extraNum = 0;                 // Number of extra batteries obtained
+    public static int scrapNum = 0;                 // Number of hyper scraps in possession
 
     // Toggle
-    public static string reactor = "basic";        // Name of equipped reactor
-    public static bool h2e = true;                 // True = HP to Energy, False = Energy to HP
-    public static int prog = 7;                    // Progession level for unlockAll: Start(0), Post-Start(1), Post-Dreg(2), Post-Garden(3), Post-Second(4), Post-Town(5), Post-Third(6), Post-Return(7), Post-End(8)
+    public static string reactor = "basic";         // Name of equipped reactor
+    public static bool h2e = true;                  // True = HP to Energy, False = Energy to HP
+    public static int prog = 8;                     // Progession level for unlockAll: Start(0), Post-Start(1), Post-Dreg(2), Post-Garden(3), Post-Second(4), Post-Town(5), Post-Third(6), Post-Return(7), Post-End(8)
 
     // Vacuum Pod
-    public static string pod_direction = "right";  // Direction of pod
-    public static string pod_location = "main";    // Where is the pod
+    public static string pod_direction = "right";   // Direction of pod
+    public static string pod_location = "main";     // Where is the pod
 
     // Lift from Hell
-    public static string lift_direction = "up";    // Direction of the lift
+    public static string lift_direction = "up";     // Direction of the lift
 
     // Eye of the Storm
-    public static bool calm = false;
+    public static bool calm;
 
     // World
-    public static float pX;                        // Player x-coord before opening menu
-    public static float pY;                        // Player y-coord before opening menu
+    public static float pX;                         // Player x-coord before opening menu
+    public static float pY;                         // Player y-coord before opening menu
 
-    public static int humansLeft = 6;              // How many humans left to capture (6: May-October)
-    public static int bossDowned = 0;              // How many bosses have been defeated
-    public static string fate;                     // Ending 2 or 3
-    public static bool canContinue = false;        // Continue from Main Menu?
+    public static int humansLeft = 6;               // How many humans left to capture (6: May-October)
+    public static int bossDowned = 0;               // How many bosses have been defeated
+    public static string fate;                      // Ending 2 or 3
+    public static bool canContinue;                 // Continue from Main Menu?
 
-    public static int update = 0;                  // Update stats when power-up obtained
-    public static bool switched = false;           // Used to set position on scene switch
+    public static int update = 0;                   // Update stats when power-up obtained
+    public static bool switched;                    // Used to set position on scene switch
 
-    public static string area = "";                // Area name for scene change purposes
-    public static string prevArea = "";            // Name of previous area
-    public static string checkpoint = "";          // Area name of last repair station used
+    public static string area = "";                 // Area name for scene change purposes
+    public static string prevArea = "";             // Name of previous area
+    public static string checkpoint = "";           // Area name of last repair station used
+
+    public static bool sg;                          // World map update
+    public static bool tt;
+    public static bool mb;
+    public static bool it;
+    public static bool gp;
 
     // Dialogue
-    public static int counter_1 = 0;               // Counter for First dialogue
-    public static bool masterControl;              // Using Master Control
+    public static int counter_1 = 0;                // Counter for First dialogue
+    public static bool masterControl;               // Using Master Control
 
     // Enemy Catalog
-    public static bool downed_patrol = false;
-    public static bool downed_pursuit = false;
-    public static bool downed_aerial = false;
-    public static bool downed_aquatic = false;
-    public static bool downed_turret = false;
+    public static bool downed_patrol;
+    public static bool downed_pursuit;
+    public static bool downed_aerial;
+    public static bool downed_aquatic;
+    public static bool downed_turret;
 
-    public static bool found_errat = false;
+    public static bool found_errat;
 
-    public static bool downed_boss_1 = false;
-    public static bool downed_boss_2 = false;
-    public static bool downed_boss_3 = false;
-    public static bool downed_boss_4 = false;
+    public static bool downed_boss_1;
+    public static bool downed_boss_2;
+    public static bool downed_boss_3;
+    public static bool downed_boss_4;
 
     // Reports
-    public static bool report_1 = false;
-    public static bool report_2 = false;
-    public static bool report_3 = false;
-    public static bool report_4 = false;
-    public static bool report_5 = false;
-    public static bool report_6 = false;
-    public static bool report_7 = false;
-    public static bool report_8 = false;
-    public static bool report_9 = false;
-    public static bool report_10 = false;
+    public static bool report_1;
+    public static bool report_2;
+    public static bool report_3;
+    public static bool report_4;
+    public static bool report_5;
+    public static bool report_6;
+    public static bool report_7;
+    public static bool report_8;
+    public static bool report_9;
+    public static bool report_10;
 
 
     /*---------------------Wall of Text Starts---------------------*/
 
     // Doors
-    public static string nextDoor = "";            // The door on the other side, from which the player will exit from
+    public static string nextDoor = "";             // The door on the other side, from which the player will exit from
 
-    public static bool locked_1 = true;            // Birthplace-Start Door
-    public static bool locked_2 = false;           // The Lift to Heaven Door
-    public static bool locked_3 = true;            // DH_4_to_DH_6
-    public static bool locked_4 = true;            // SG_10_to_SG_3
-    public static bool locked_5 = true;            // MB_3_to_MB_12
-    public static bool locked_6 = true;            // GP_0A_to_GP_10
+    public static bool locked_1 = true;             // Birthplace-Start Door
+    public static bool locked_2;                    // The Lift to Heaven Door
+    public static bool locked_3 = true;             // DH_4_to_DH_6
+    public static bool locked_4 = true;             // SG_10_to_SG_3
+    public static bool locked_5 = true;             // MB_3_to_MB_12
+    public static bool locked_6 = true;             // GP_0A_to_GP_10
 
     // Switches
     public static string state_SG_8 = "active";
@@ -396,12 +403,12 @@ public class GlobalControl : MonoBehaviour
             else if (area == "Ending_2")
             {
                 ending_2 = true;
-                //StartCoroutine(delayedSwitch(8.5f, SceneSwitch("Main Menu", "")));
+                StartCoroutine(delayedSwitch(4f, SceneSwitch("Main Menu", "")));
             }
             else if (area == "Ending_3")
             {
                 ending_3 = true;
-                StartCoroutine(delayedSwitch(3.5f, SceneSwitch("Main Menu", "")));
+                StartCoroutine(delayedSwitch(2.6f, SceneSwitch("Main Menu", "")));
             }
         }
 
@@ -485,7 +492,7 @@ public class GlobalControl : MonoBehaviour
             {
                 if (counter_1 > 0)
                 {
-                    //StartCoroutine(SceneSwitch("DH_2", "Checkpoint_2"));
+                    StartCoroutine(SceneSwitch("DH_2", "Checkpoint_2"));
                 }
                 else
                 {
@@ -500,6 +507,100 @@ public class GlobalControl : MonoBehaviour
             // Respawn all enemies
             respawnAll();
         }
+    }
+
+    public static void resetPlayer()
+    {
+        // Ending Flag
+        triggerOnce = false;
+
+        // Player Stats
+        healthMax = 10;
+        energyMax = 10;
+        healthCurr = healthMax;
+        energyCurr = energyMax;
+        data = 0;
+
+        // Inventory
+        batteryUnlocked = false;
+        solarUnlocked = false;
+        geoUnlocked = false;
+        heartlessUnlocked = false;
+        mapUnlocked = false;
+        dashUnlocked = false;
+        clingUnlocked = false;
+        doubleUnlocked = false;
+        keyUnlocked = false;
+        gunUnlocked = false;
+        imperialUnlocked = false;
+        familiarUnlocked = false;
+        unstableUnlocked = false;
+
+        plateFound = false;
+        plating_1 = false;
+        plating_2 = false;
+        plateNum = 0;
+
+        extraFound = false;
+        extra_1 = false;
+        extra_2 = false;
+        extra_3 = false;
+        extraNum = 0;
+
+        scrapFound = false;
+        scrap_1 = false;
+        scrap_2 = false;
+        scrap_3 = false;
+        scrapNum = 0;
+
+        // Map
+        sg = false;
+        tt = false;
+        mb = false;
+        it = false;
+        gp = false;
+
+        // Enemy Logs
+        downed_patrol = false;
+        downed_pursuit = false;
+        downed_aerial = false;
+        downed_aquatic = false;
+        downed_boss_1 = false;
+        downed_boss_2 = false;
+        downed_boss_3 = false;
+        downed_boss_4 = false;
+        found_errat = false;
+       
+        // Ego Reports
+        report_1 = false;
+        report_2 = false;
+        report_3 = false;
+        report_4 = false;
+        report_5 = false;
+        report_6 = false;
+        report_7 = false;
+        report_8 = false;
+        report_9 = false;
+        report_10 = false;
+
+        // Reset non-respawning enemies
+        errat_0 = true;
+        errat_1 = true;
+        errat_2 = true;
+        errat_3 = true;
+        errat_4 = true;
+        errat_5 = true;
+
+        bossDowned = 0;
+
+        // Default Settings
+        h2e = true;
+        menu = "inventory";
+        map = "local";
+        reactor = "basic";
+        prevArea = "";
+        checkpoint = "";
+        counter_1 = 0;
     }
 
     public static void resetObjects()
@@ -665,12 +766,7 @@ public class GlobalControl : MonoBehaviour
     }
 
     public static void unlockAll()
-    {
-        // Endings
-        ending_1 = true;
-        ending_2 = true;
-        ending_3 = true;
-
+    {       
         if (prog > 0)
         { // Post-Start
             batteryUnlocked = true;
@@ -678,39 +774,117 @@ public class GlobalControl : MonoBehaviour
             gunUnlocked = true;
             unstableUnlocked = true;
 
+            downed_patrol = true;
+            counter_1 = 4;
+
             if (prog > 1)
             { // Post-Dreg
                 heartlessUnlocked = true;
                 mapUnlocked = true;
                 familiarUnlocked = true;
 
+                report_1 = true;
+                data = 10;
+
                 if (prog > 2)
                 { // Post-Garden
                     dashUnlocked = true;
                     geoUnlocked = true;
+                    sg = true;
+
+                    downed_boss_1 = true;
+                    scrapFound = true;
+                    scrap_1 = true;
                     bossDowned = 1;
-                    extraNum = 1;
+
+                    downed_pursuit = true;
+
+                    plateFound = true;
+                    extraFound = true;
+                    plating_1 = true;
+                    extra_1 = true;
                     plateNum = 1;
+                    extraNum = 1;
+                    healthMax = 30;
+                    energyMax = 20;
 
                     if (prog > 3)
                     { // Post-Second
                         clingUnlocked = true;
+
+                        downed_boss_2 = true;
+                        downed_boss_3 = true;
+                        scrap_2 = true;
                         bossDowned = 2;
+
+                        extra_2 = true;
                         extraNum = 2;
+                        energyMax = 30;
+
+                        report_4 = true;
+                        report_7 = true;
+                        data = 30;
 
                         if (prog > 4)
                         { // Post-Town
                             keyUnlocked = true;
+                            tt = true;
+
+                            downed_aerial = true;
+
+                            report_5 = true;
+                            data = 40;
 
                             if (prog > 5)
                             { // Post-Third
                                 doubleUnlocked = true;
+                                mb = true;
+
+                                scrap_3 = true;
                                 bossDowned = 3;
+
+                                downed_aquatic = true;
+
+                                extra_3 = true;
                                 extraNum = 3;
+                                energyMax = 40;
+
+                                report_2 = true;
+                                report_3 = true;
+                                report_6 = true;
+                                data = 70;
 
                                 if (prog > 6)
                                 { // Post-Return
+                                    it = true;
+
+                                    downed_turret = true;
+
+                                    plating_2 = true;
                                     plateNum = 2;
+                                    healthMax = 50;
+
+                                    report_8 = true;
+                                    data = 80;
+
+                                    if (prog > 7)
+                                    { // Post-End
+                                        gp = true;
+
+                                        downed_boss_4 = true;
+
+                                        report_9 = true;
+                                        report_10 = true;
+                                        data = 100;
+
+                                        // Alternate Timeline
+                                        found_errat = true;
+
+                                        // Endings
+                                        ending_1 = true;
+                                        ending_2 = true;
+                                        ending_3 = true;
+                                    }
                                 }
                             }
                         }
@@ -718,52 +892,20 @@ public class GlobalControl : MonoBehaviour
                 }
             }
         }
-        // Inventory
-        plateFound = true;
-        extraFound = true;         
-        scrapFound = true;
-        plating_1 = true;
-        plating_2 = true;
-        extra_1 = true;
-        extra_2 = true;
-        extra_3 = true;
-        scrap_1 = true;
-        scrap_2 = true;
-        scrap_3 = true;
-
-        // Enemy Catalog
-        counter_1 = 1;
-        downed_patrol = true;
-        downed_pursuit = true;
-        downed_aerial = true;
-        downed_aquatic = true;
-        downed_turret = true;
-        found_errat = true;
-        downed_boss_1 = true;
-        downed_boss_2 = true;
-        downed_boss_3 = true;
-        downed_boss_4 = true;
-
-        // Reports
-        data = 100;
-        report_1 = true;
-        report_2 = true;
-        report_3 = true;
-        report_4 = true;
-        report_5 = true;
-        report_6 = true;
-        report_7 = true;
-        report_8 = true;
-        report_9 = true;
-        report_10 = true;
     }
 
     IEnumerator SceneSwitch(string load, string checkpoint)
     {
+        string prev = area;
         nextDoor = checkpoint;
         area = load;
 
         SceneManager.LoadScene(load, LoadSceneMode.Single);
+        if (prev.Substring(0, 3) == "End")
+        {
+            MainMenuBtn.confirmNew = false;
+            Cursor.visible = true;
+        }
         yield return null;
         SceneManager.UnloadSceneAsync(SceneManager.GetActiveScene().name);
     }

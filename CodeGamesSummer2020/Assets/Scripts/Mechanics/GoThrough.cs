@@ -923,6 +923,9 @@ public class GoThrough : MonoBehaviour
             else if (opName == "IT_2_to_GP_1")
             {
                 StartCoroutine(SceneSwitch("GP_1", "GP_1_to_IT_2"));
+
+                if (GlobalControl.doubleUnlocked)
+                    GlobalControl.gp = true;
             }
             else if (opName == "GP_1_to_IT_2")
             {
@@ -935,6 +938,7 @@ public class GoThrough : MonoBehaviour
             else if (opName == "SG_7_to_TT_1")
             {
                 StartCoroutine(SceneSwitch("TT_1", "TT_1_to_SG_7"));
+                GlobalControl.tt = true;
             }
             else if (opName == "TT_1_to_SG_7")
             {
@@ -947,6 +951,7 @@ public class GoThrough : MonoBehaviour
             else if (opName == "TT_16_to_MB_1")
             {
                 StartCoroutine(SceneSwitch("MB_1", "MB_1_to_TT_16"));
+                GlobalControl.mb = true;
             }
             else if (opName == "MB_1_to_TT_16")
             {

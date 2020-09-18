@@ -16,6 +16,7 @@
 	>More items to examine	
 	>Boss structure revamp + add atk img
 	>Retest Containment (able to berserk after using reg atk) and Subnautical (able to atk)
+	>Trophy imgs
 
 -Ideas
 	>Custom proj for bosses

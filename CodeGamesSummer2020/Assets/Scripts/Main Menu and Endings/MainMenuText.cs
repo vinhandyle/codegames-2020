@@ -73,7 +73,7 @@ public class MainMenuText : MonoBehaviour
                 {
                     text.text = "<b>Endless</b> \n" +
                                 "Get all endings. \n" +
-                                "<i>All paths lead back here.</i>";
+                                "<i>The beginning and the end.</i>";
                 }
                 else if (type == "trophy2" && GlobalControl.ending_1)
                 {
@@ -103,7 +103,7 @@ public class MainMenuText : MonoBehaviour
         {
             if (type == "title")
             {
-                text.text = "Game Name"; // Change to real title
+                text.text = "Salvation"; 
             }
             else if (type == "credit")
             {
@@ -126,7 +126,7 @@ public class MainMenuText : MonoBehaviour
         {
             if (type == "title")
             {
-                text.text = "Game Name"; // Change to real title
+                text.text = "Salvation"; 
             }
             else if (type == "credit")
             {

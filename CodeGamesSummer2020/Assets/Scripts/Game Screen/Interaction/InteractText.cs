@@ -30,7 +30,7 @@ public class InteractText : MonoBehaviour
             text.text = "";
         }
         else
-        { 
+        {
             if (attachedTo == stickied || attachedTo == stickied2 ||
                 attachedTo == EnterDoor.sticky || 
                 attachedTo == PickUpItem.sticky ||

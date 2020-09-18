@@ -208,6 +208,7 @@ public class EnterDoor : MonoBehaviour
             else if (doorName == "DH_8_to_SG_1")
             {
                 StartCoroutine(SceneSwitch("SG_1", "SG_1_to_DH_8"));
+                GlobalControl.sg = true;
             }
             else if (doorName == "SG_1_to_DH_8")
             {
@@ -359,6 +360,7 @@ public class EnterDoor : MonoBehaviour
             else if (doorName == "DH_7_to_IT_3")
             {
                 StartCoroutine(SceneSwitch("IT_3", "IT_3_to_IT_X"));
+                GlobalControl.it = true;
                 GlobalControl.lift_direction = "up";
                 triggeredOnce = false;
             }
@@ -436,8 +438,8 @@ public class EnterDoor : MonoBehaviour
                 if (GlobalControl.counter_1 == 4)
                 {
                     GlobalControl.healthCurr = 1;
+                    GlobalControl.energyCurr = 0;
                 }
-                GlobalControl.energyCurr = 0;
             }
         }
         else if (doorName == "IT_3_to_IT_X" && !triggeredOnce)

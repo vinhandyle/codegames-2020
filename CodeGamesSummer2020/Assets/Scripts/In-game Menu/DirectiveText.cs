@@ -40,7 +40,8 @@ public class DirectiveText : MonoBehaviour
             {
                 if (GlobalControl.counter_1 == 5)
                 {
-                    text.text = "<b>Errats Left: " + GlobalControl.humansLeft;
+                    text.text = "<b>Errats Left:</b> " + GlobalControl.humansLeft;
+                    text.color = new Color(255, 255, 255);
                 }
                 else
                 {

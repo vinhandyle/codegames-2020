@@ -173,6 +173,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprites: []
   animated: 0
+  once: 0
 --- !u!114 &215956691
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -192,7 +193,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: 511d815a87c17534398949f979f4cba9, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -974,6 +975,7 @@ MonoBehaviour:
   - {fileID: 8151659171521005120, guid: 865c415f055e6f44d939b58c0e68d7ca, type: 3}
   - {fileID: -9028339919136122654, guid: 865c415f055e6f44d939b58c0e68d7ca, type: 3}
   animated: 0
+  once: 0
 --- !u!114 &633450769
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1409,6 +1411,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprites: []
   animated: 0
+  once: 0
 --- !u!114 &832598766
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1428,7 +1431,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: c3d67bbb1c982d24d8fd95f62da62ce8, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1498,6 +1501,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprites: []
   animated: 0
+  once: 0
 --- !u!114 &844925463
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1517,7 +1521,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: 61f36f268b42b454b899da107585fe91, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1914,6 +1918,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprites: []
   animated: 0
+  once: 0
 --- !u!114 &1227704936
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1933,7 +1938,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: 6e811278c1496cc4ea63b20d72bd05b4, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
