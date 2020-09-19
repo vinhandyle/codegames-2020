@@ -226,6 +226,10 @@ MonoBehaviour:
   refState3c_7: 
   refState3_1H: 0
   refState3a_1H: 0
+  refState3b_1H: 0
+  refState3_2H: 0
+  refState3_3H: 0
+  refState3a_3H: 
 --- !u!61 &11212066
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1028,6 +1032,10 @@ MonoBehaviour:
   refState3c_7: 
   refState3_1H: 0
   refState3a_1H: 0
+  refState3b_1H: 0
+  refState3_2H: 0
+  refState3_3H: 0
+  refState3a_3H: 
 --- !u!61 &194179688
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1209,6 +1217,10 @@ MonoBehaviour:
   refState3c_7: 
   refState3_1H: 0
   refState3a_1H: 0
+  refState3b_1H: 0
+  refState3_2H: 0
+  refState3_3H: 0
+  refState3a_3H: 
 --- !u!61 &219202941
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1498,6 +1510,10 @@ MonoBehaviour:
   refState3c_7: 
   refState3_1H: 0
   refState3a_1H: 0
+  refState3b_1H: 0
+  refState3_2H: 0
+  refState3_3H: 0
+  refState3a_3H: 
 --- !u!61 &276913308
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2418,6 +2434,10 @@ MonoBehaviour:
   refState3c_7: 
   refState3_1H: 0
   refState3a_1H: 0
+  refState3b_1H: 0
+  refState3_2H: 0
+  refState3_3H: 0
+  refState3a_3H: 
 --- !u!61 &621951028
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -3974,6 +3994,10 @@ MonoBehaviour:
   refState3c_7: 
   refState3_1H: 0
   refState3a_1H: 0
+  refState3b_1H: 0
+  refState3_2H: 0
+  refState3_3H: 0
+  refState3a_3H: 
 --- !u!61 &1082842085
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -4438,6 +4462,10 @@ MonoBehaviour:
   refState3c_7: 
   refState3_1H: 0
   refState3a_1H: 0
+  refState3b_1H: 0
+  refState3_2H: 0
+  refState3_3H: 0
+  refState3a_3H: 
 --- !u!61 &1175243735
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -5522,7 +5550,7 @@ GameObject:
   - component: {fileID: 1558012585}
   - component: {fileID: 1558012584}
   m_Layer: 9
-  m_Name: Molten_
+  m_Name: Molten__
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5614,6 +5642,10 @@ MonoBehaviour:
   refState3c_7: 
   refState3_1H: 0
   refState3a_1H: 0
+  refState3b_1H: 0
+  refState3_2H: 0
+  refState3_3H: 0
+  refState3a_3H: 
 --- !u!61 &1558012585
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -5795,6 +5827,10 @@ MonoBehaviour:
   refState3c_7: 
   refState3_1H: 0
   refState3a_1H: 0
+  refState3b_1H: 0
+  refState3_2H: 0
+  refState3_3H: 0
+  refState3a_3H: 
 --- !u!61 &1569167763
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -6433,6 +6469,10 @@ MonoBehaviour:
   refState3c_7: 
   refState3_1H: 0
   refState3a_1H: 0
+  refState3b_1H: 0
+  refState3_2H: 0
+  refState3_3H: 0
+  refState3a_3H: 
 --- !u!61 &1747146584
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -7364,6 +7404,10 @@ MonoBehaviour:
   refState3c_7: 
   refState3_1H: 0
   refState3a_1H: 0
+  refState3b_1H: 0
+  refState3_2H: 0
+  refState3_3H: 0
+  refState3a_3H: 
 --- !u!61 &1905348510
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -7545,6 +7589,10 @@ MonoBehaviour:
   refState3c_7: 
   refState3_1H: 0
   refState3a_1H: 0
+  refState3b_1H: 0
+  refState3_2H: 0
+  refState3_3H: 0
+  refState3a_3H: 
 --- !u!61 &1969357177
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -7726,6 +7774,10 @@ MonoBehaviour:
   refState3c_7: 
   refState3_1H: 0
   refState3a_1H: 0
+  refState3b_1H: 0
+  refState3_2H: 0
+  refState3_3H: 0
+  refState3a_3H: 
 --- !u!61 &1975237332
 BoxCollider2D:
   m_ObjectHideFlags: 0

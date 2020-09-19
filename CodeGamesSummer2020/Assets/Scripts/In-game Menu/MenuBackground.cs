@@ -8,7 +8,8 @@ public class MenuBackground : MonoBehaviour
 {
     Image img;
 
-    public static bool inMenu = false;
+    public static bool inMenu;
+    public static bool station;
 
     // Start is called before the first frame update
     void Start()
@@ -28,12 +29,43 @@ public class MenuBackground : MonoBehaviour
             {
                 Cursor.visible = false;
                 inMenu = false;
-                StartCoroutine(SceneSwitch(GlobalControl.prevArea));
+                VacPod.inMotion = false;
+                VacPod.once = false;
+                if (GlobalControl.prevArea == "GP_2")
+                {
+                    StartCoroutine(SceneSwitch("GP_0A", "GP_0A_to_GP_2"));
+                }
+                else if (GlobalControl.prevArea == "IT_3")
+                {
+                    if(GlobalControl.lift_direction == "down")
+                        StartCoroutine(SceneSwitch("DH_7", "DH_7_to_IT_3"));
+                    else if(GlobalControl.lift_direction == "up")
+                        StartCoroutine(SceneSwitch("IT_4", "IT_4_to_IT_3"));
+                }
+                else
+                    StartCoroutine(SceneSwitch(GlobalControl.prevArea));
             }
             else
             {
                 Cursor.visible = true;
                 inMenu = true;
+
+                if (GlobalControl.area == "TT_14" && VacPod.inMotion)
+                {
+                    if (GlobalControl.pod_location == "main" && GlobalControl.pod_direction == "left")
+                    {
+                        GlobalControl.pod_location = "far";
+                        GlobalControl.pod_direction = "right";
+                    }
+                    else if (GlobalControl.pod_location == "main" && GlobalControl.pod_direction == "right")
+                    {
+                        GlobalControl.pod_location = "seaside";
+                        GlobalControl.pod_direction = "left";
+                    }
+                    else if (GlobalControl.pod_location == "far" || GlobalControl.pod_location == "seaside")
+                        GlobalControl.pod_location = "main";
+                }
+
                 StartCoroutine(SceneSwitch("In-Game Menu"));
                 if (RepairStation.inRange)
                 {
@@ -71,6 +103,16 @@ public class MenuBackground : MonoBehaviour
             GlobalControl.switched = true;
         }
 
+        yield return null;
+        SceneManager.UnloadSceneAsync(SceneManager.GetActiveScene().name);
+    }
+
+    IEnumerator SceneSwitch(string load, string nextDoor)
+    {
+        GlobalControl.nextDoor = nextDoor;
+        GlobalControl.area = load;
+
+        SceneManager.LoadScene(load, LoadSceneMode.Single);
         yield return null;
         SceneManager.UnloadSceneAsync(SceneManager.GetActiveScene().name);
     }

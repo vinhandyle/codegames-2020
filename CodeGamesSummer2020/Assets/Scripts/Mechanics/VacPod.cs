@@ -27,6 +27,7 @@ public class VacPod : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
         if (speed < 0.01f)
         {
             speed = Random.Range(0.05f, 0.1f);

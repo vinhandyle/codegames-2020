@@ -18,6 +18,8 @@ public class Map : MonoBehaviour
     public List<Sprite> world;
 
     // Local maps, all areas are loaded in
+    // SG: 1-12 (14 unique- 9 & 9S share)
+    // TT: 1-12 & 16 (10 unique- 6 & 6S, 7 & 7S, 8 & 9, 10 & 11 share), 13-15 (3 unique, 14 shares with other 3)
     public List<Sprite> sg;
     public List<Sprite> tt;
     public List<Sprite> mb;
@@ -84,7 +86,34 @@ public class Map : MonoBehaviour
                 }
                 else
                 {
-
+                    if (GlobalControl.prevArea == "SG_1")
+                        img.sprite = sg[0];
+                    else if (GlobalControl.prevArea == "SG_2")
+                        img.sprite = sg[1];
+                    else if (GlobalControl.prevArea == "SG_2S")
+                        img.sprite = sg[2];
+                    else if (GlobalControl.prevArea == "SG_3")
+                        img.sprite = sg[3];
+                    else if (GlobalControl.prevArea == "SG_4")
+                        img.sprite = sg[4];
+                    else if (GlobalControl.prevArea == "SG_5")
+                        img.sprite = sg[5];
+                    else if (GlobalControl.prevArea == "SG_6")
+                        img.sprite = sg[6];
+                    else if (GlobalControl.prevArea == "SG_7")
+                        img.sprite = sg[7];
+                    else if (GlobalControl.prevArea == "SG_8")
+                        img.sprite = sg[8];
+                    else if (GlobalControl.prevArea == "SG_9" || GlobalControl.prevArea == "SG_9S")
+                        img.sprite = sg[9];
+                    else if (GlobalControl.prevArea == "SG_10")
+                        img.sprite = sg[10];
+                    else if (GlobalControl.prevArea == "SG_11")
+                        img.sprite = sg[11];
+                    else if (GlobalControl.prevArea == "SG_11S")
+                        img.sprite = sg[12];
+                    else if (GlobalControl.prevArea == "SG_12")
+                        img.sprite = sg[13];
                 }
             }
             else if (GlobalControl.prevArea.Substring(0, 2) == "TT")
@@ -102,7 +131,32 @@ public class Map : MonoBehaviour
                 }
                 else
                 {
-
+                    if (GlobalControl.prevArea == "TT_1")
+                        img.sprite = tt[0];
+                    else if (GlobalControl.prevArea == "TT_2")
+                        img.sprite = tt[1];
+                    else if (GlobalControl.prevArea == "TT_4")
+                        img.sprite = tt[2];
+                    else if (GlobalControl.prevArea == "TT_5")
+                        img.sprite = tt[3];
+                    else if (GlobalControl.prevArea == "TT_6" || GlobalControl.prevArea == "TT_6S")
+                        img.sprite = tt[4];
+                    else if (GlobalControl.prevArea == "TT_7" || GlobalControl.prevArea == "TT_7S")
+                        img.sprite = tt[5];
+                    else if (GlobalControl.prevArea == "TT_8" || GlobalControl.prevArea == "TT_9")
+                        img.sprite = tt[6];
+                    else if (GlobalControl.prevArea == "TT_10" || GlobalControl.prevArea == "TT_11")
+                        img.sprite = tt[7];
+                    else if (GlobalControl.prevArea == "TT_12")
+                        img.sprite = tt[8];
+                    else if (GlobalControl.prevArea == "TT_13" || (GlobalControl.prevArea == "TT_14" && GlobalControl.pod_location == "main"))
+                        img.sprite = tt[9];
+                    else if (GlobalControl.prevArea == "TT_14S" || (GlobalControl.prevArea == "TT_14" && GlobalControl.pod_location == "far"))
+                        img.sprite = tt[10];
+                    else if (GlobalControl.prevArea == "TT_15" || (GlobalControl.prevArea == "TT_14" && GlobalControl.pod_location == "seaside"))
+                        img.sprite = tt[11];
+                    else if (GlobalControl.prevArea == "TT_16")
+                        img.sprite = tt[12];
                 }
             }
             else if (GlobalControl.prevArea.Substring(0, 2) == "MB")

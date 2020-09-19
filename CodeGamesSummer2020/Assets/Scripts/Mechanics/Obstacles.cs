@@ -80,6 +80,7 @@ public class Obstacles : MonoBehaviour
     /* Turret */
     public static bool refState2_4;             // Is player in sight?
     public static float refState2a_4;           // Self-to-player angle
+    public static bool refState2b_4;           // Preset?
     public float refState3a_4;                  // Center angle
     public float refState3b_4;                  // Pivot x
     public float refState3c_4;                  // Pivot y
@@ -221,15 +222,15 @@ public class Obstacles : MonoBehaviour
             (gameObject.name == "Aquatic_1_4_6" && !GlobalControl.aquatic_1_4_6) ||
             (gameObject.name == "Aquatic_2_5_0" && !GlobalControl.aquatic_2_5_0) ||
             (gameObject.name == "Aquatic_2_5_1" && !GlobalControl.aquatic_2_5_1) ||
-            (gameObject.name == "Turret_1_1_0" && GlobalControl.turret_1_1_0) ||
-            (gameObject.name == "Turret_1_1_1" && GlobalControl.turret_1_1_1) ||
-            (gameObject.name == "Turret_1_1_2" && GlobalControl.turret_1_1_2) ||
-            (gameObject.name == "Turret_1_1_3" && GlobalControl.turret_1_1_3) ||
-            (gameObject.name == "Turret_1_1_4" && GlobalControl.turret_1_1_4) ||
-            (gameObject.name == "Turret_1_1_5" && GlobalControl.turret_1_1_5) ||
-            (gameObject.name == "Turret_1_1_6" && GlobalControl.turret_1_1_6) ||
-            (gameObject.name == "Turret_2_5_0" && GlobalControl.turret_2_5_0) ||
-            (gameObject.name == "Turret_2_5_1" && GlobalControl.turret_2_5_1) ||
+            (gameObject.name == "Turret_1_1_0" && !GlobalControl.turret_1_1_0) ||
+            (gameObject.name == "Turret_1_1_1" && !GlobalControl.turret_1_1_1) ||
+            (gameObject.name == "Turret_1_1_2" && !GlobalControl.turret_1_1_2) ||
+            (gameObject.name == "Turret_1_1_3" && !GlobalControl.turret_1_1_3) ||
+            (gameObject.name == "Turret_1_1_4" && !GlobalControl.turret_1_1_4) ||
+            (gameObject.name == "Turret_1_1_5" && !GlobalControl.turret_1_1_5) ||
+            (gameObject.name == "Turret_1_1_6" && !GlobalControl.turret_1_1_6) ||
+            (gameObject.name == "Turret_2_5_0" && !GlobalControl.turret_2_5_0) ||
+            (gameObject.name == "Turret_2_5_1" && !GlobalControl.turret_2_5_1) ||
             (gameObject.name == "Errat_0_" && !GlobalControl.errat_0) ||
             (gameObject.name == "Errat_1_" && !GlobalControl.errat_1) ||
             (gameObject.name == "Errat_2_" && !GlobalControl.errat_2) ||
@@ -1497,6 +1498,7 @@ public class Obstacles : MonoBehaviour
             {
                 GetComponent<SpriteRenderer>().sprite = sprites[1];
                 refState2_4 = true;
+                refState2b_4 = true;
 
                 if (canShoot)
                 {

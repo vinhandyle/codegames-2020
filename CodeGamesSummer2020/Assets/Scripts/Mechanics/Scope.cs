@@ -102,7 +102,7 @@ public class Scope : MonoBehaviour
                 }
                 else if (gameObject.name == "Detect_Player (1)")
                 {
-                    if (Obstacles.refState2_4 && inRange == transform.parent.name)
+                    if (Obstacles.refState2_4 && (inRange == transform.parent.name || Obstacles.refState2b_4))
                         sprite.sprite = sprites[0];
                     else
                         sprite.sprite = sprites[1];
@@ -119,7 +119,7 @@ public class Scope : MonoBehaviour
             }
             else if (transform.parent.transform.parent.name.Substring(0, 6) == "Turret")
             {
-                if (gameObject.name == "Base")
+                if (gameObject.name.Substring(0, 4) == "Base")
                 {
                     Transform p = transform.parent.transform.parent;
                     transform.rotation = p.rotation;
@@ -981,7 +981,9 @@ public class Scope : MonoBehaviour
             {
                 if (gameObject.name.Substring(0, 6) == "Crush_")
                 {
-                    if (other.name.Substring(0, 7) != "Crusher" && (other.CompareTag("Floor") || other.CompareTag("Ceiling")))
+                    if (other.name.Length < 7)
+                        canCrush = false;
+                    else if (other.name.Substring(0, 7) != "Crusher" && (other.CompareTag("Floor") || other.CompareTag("Ceiling")))
                     {
                         canCrush = false;
                     }

@@ -367,13 +367,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 0}
   anim: {fileID: 0}
+  sprites: []
   attachedTo: 
+  time: 0
+  hold_time: 0
   x: 0
   y: 0
+  x1: 0
+  y1: 0
   speed: 0
   range: 0
   range_1: 0
   range_2: 0
+  once: 0
+  once_1: 0
   reference: 
   canCrush: 0
 --- !u!212 &131550471
@@ -1399,24 +1406,31 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   healthMax: 0
   healthCurr: 0
+  defense: 0
   damage: 0
   hazard: 0
+  passive: 0
   animated: 0
   attachedTo: 
   sprites: []
   x: 0
   y: 0
+  deg: 0
   range: 0
   range_1: 0
   range_2: 0
+  range_3: 0
   speed: 0.01
   speed_1: 0
   refDifference: {x: 0, y: 0, z: 0}
   refDistance: 0
   refDirection: {x: 0, y: 0}
   time: 0
+  time_1: 0
+  time_f: 0
   deAggroTime: 0
   hold_time: 0
+  hold_time_1: 0
   bulletSpeed:
   - 7.5
   - 4
@@ -1432,6 +1446,10 @@ MonoBehaviour:
   path: 
   pathState: 
   refState3_1: 
+  refState3_3: 0
+  refState3a_4: 0
+  refState3b_4: 0
+  refState3c_4: 0
   refState3_5: 
   refState3a_5: 
   refState3b_5: 
@@ -1442,6 +1460,16 @@ MonoBehaviour:
   refState3d_6: 
   refState3e_6: 1
   refState3f_6: 0
+  refState3_7: under
+  refState3a_7: 0
+  refState3b_7: 
+  refState3c_7: 
+  refState3_1H: 0
+  refState3a_1H: 0
+  refState3b_1H: 0
+  refState3_2H: 0
+  refState3_3H: 0
+  refState3a_3H: 
 --- !u!114 &409310573
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1600,13 +1628,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 0}
   anim: {fileID: 0}
+  sprites: []
   attachedTo: 
+  time: 0
+  hold_time: 0
   x: 0
   y: 0
+  x1: 0
+  y1: 0
   speed: 0.05
   range: 0
   range_1: 10
   range_2: 0
+  once: 0
+  once_1: 0
   reference: 
   canCrush: 0
 --- !u!114 &459614259
@@ -1623,24 +1658,31 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   healthMax: 0
   healthCurr: 0
+  defense: 0
   damage: 0
   hazard: 1
+  passive: 0
   animated: 0
   attachedTo: 
   sprites: []
   x: 0
   y: 0
+  deg: 0
   range: 0
   range_1: 0
   range_2: 0
+  range_3: 0
   speed: 0
   speed_1: 0
   refDifference: {x: 0, y: 0, z: 0}
   refDistance: 0
   refDirection: {x: 0, y: 0}
   time: 0
+  time_1: 0
+  time_f: 0
   deAggroTime: 0
   hold_time: 0
+  hold_time_1: 0
   bulletSpeed: []
   baseUseTime: 0
   useTime: 0
@@ -1654,6 +1696,10 @@ MonoBehaviour:
   path: 
   pathState: 
   refState3_1: 
+  refState3_3: 0
+  refState3a_4: 0
+  refState3b_4: 0
+  refState3c_4: 0
   refState3_5: 
   refState3a_5: 
   refState3b_5: 
@@ -1664,6 +1710,16 @@ MonoBehaviour:
   refState3d_6: 
   refState3e_6: 1
   refState3f_6: 0
+  refState3_7: under
+  refState3a_7: 0
+  refState3b_7: 
+  refState3c_7: 
+  refState3_1H: 0
+  refState3a_1H: 0
+  refState3b_1H: 0
+  refState3_2H: 0
+  refState3_3H: 0
+  refState3a_3H: 
 --- !u!95 &459614260
 Animator:
   serializedVersion: 3
@@ -4260,7 +4316,7 @@ GameObject:
   - component: {fileID: 982347541}
   - component: {fileID: 982347540}
   m_Layer: 9
-  m_Name: Molten_
+  m_Name: Molten__
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4294,13 +4350,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 0}
   anim: {fileID: 0}
+  sprites: []
   attachedTo: 
+  time: 0
+  hold_time: 0
   x: 0
   y: 0
+  x1: 0
+  y1: 0
   speed: 0.015
   range: 0
   range_1: 1
   range_2: 0
+  once: 0
+  once_1: 0
   reference: 
   canCrush: 0
 --- !u!114 &982347541
@@ -4317,24 +4380,31 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   healthMax: 0
   healthCurr: 0
+  defense: 0
   damage: 0
   hazard: 1
+  passive: 0
   animated: 0
   attachedTo: 
   sprites: []
   x: 0
   y: 0
+  deg: 0
   range: 0
   range_1: 0
   range_2: 0
+  range_3: 0
   speed: 0
   speed_1: 0
   refDifference: {x: 0, y: 0, z: 0}
   refDistance: 0
   refDirection: {x: 0, y: 0}
   time: 0
+  time_1: 0
+  time_f: 0
   deAggroTime: 0
   hold_time: 0
+  hold_time_1: 0
   bulletSpeed: []
   baseUseTime: 0
   useTime: 0
@@ -4348,6 +4418,10 @@ MonoBehaviour:
   path: 
   pathState: 
   refState3_1: 
+  refState3_3: 0
+  refState3a_4: 0
+  refState3b_4: 0
+  refState3c_4: 0
   refState3_5: 
   refState3a_5: 
   refState3b_5: 
@@ -4358,6 +4432,16 @@ MonoBehaviour:
   refState3d_6: 
   refState3e_6: 1
   refState3f_6: 0
+  refState3_7: under
+  refState3a_7: 0
+  refState3b_7: 
+  refState3c_7: 
+  refState3_1H: 0
+  refState3a_1H: 0
+  refState3b_1H: 0
+  refState3_2H: 0
+  refState3_3H: 0
+  refState3a_3H: 
 --- !u!61 &982347542
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -4591,13 +4675,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 0}
   anim: {fileID: 0}
+  sprites: []
   attachedTo: 
+  time: 0
+  hold_time: 0
   x: 0
   y: 0
+  x1: 0
+  y1: 0
   speed: 0.05
   range: 0
   range_1: 10
   range_2: 0
+  once: 0
+  once_1: 0
   reference: 
   canCrush: 0
 --- !u!61 &1017675544
@@ -4691,24 +4782,31 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   healthMax: 0
   healthCurr: 0
+  defense: 0
   damage: 0
   hazard: 1
+  passive: 0
   animated: 0
   attachedTo: 
   sprites: []
   x: 0
   y: 0
+  deg: 0
   range: 0
   range_1: 0
   range_2: 0
+  range_3: 0
   speed: 0
   speed_1: 0
   refDifference: {x: 0, y: 0, z: 0}
   refDistance: 0
   refDirection: {x: 0, y: 0}
   time: 0
+  time_1: 0
+  time_f: 0
   deAggroTime: 0
   hold_time: 0
+  hold_time_1: 0
   bulletSpeed: []
   baseUseTime: 0
   useTime: 0
@@ -4722,6 +4820,10 @@ MonoBehaviour:
   path: 
   pathState: 
   refState3_1: 
+  refState3_3: 0
+  refState3a_4: 0
+  refState3b_4: 0
+  refState3c_4: 0
   refState3_5: 
   refState3a_5: 
   refState3b_5: 
@@ -4732,6 +4834,16 @@ MonoBehaviour:
   refState3d_6: 
   refState3e_6: 1
   refState3f_6: 0
+  refState3_7: under
+  refState3a_7: 0
+  refState3b_7: 
+  refState3c_7: 
+  refState3_1H: 0
+  refState3a_1H: 0
+  refState3b_1H: 0
+  refState3_2H: 0
+  refState3_3H: 0
+  refState3a_3H: 
 --- !u!95 &1017675547
 Animator:
   serializedVersion: 3
@@ -4925,13 +5037,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 0}
   anim: {fileID: 0}
+  sprites: []
   attachedTo: 
+  time: 0
+  hold_time: 0
   x: 0
   y: 0
+  x1: 0
+  y1: 0
   speed: 0
   range: 0
   range_1: 0
   range_2: 0
+  once: 0
+  once_1: 0
   reference: 
   canCrush: 0
 --- !u!212 &1026030168
@@ -5710,13 +5829,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 0}
   anim: {fileID: 0}
+  sprites: []
   attachedTo: 
+  time: 0
+  hold_time: 0
   x: 0
   y: 0
+  x1: 0
+  y1: 0
   speed: 0
   range: 0
   range_1: 0
   range_2: 0
+  once: 0
+  once_1: 0
   reference: 
   canCrush: 0
 --- !u!212 &1207153324
