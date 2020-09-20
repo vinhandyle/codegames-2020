@@ -6,8 +6,9 @@ public class EnergySource : MonoBehaviour
 {
     // Note that player must be set to Never Sleep in order for energy to increment while staionary
 
-    public static float regenTime = 1.5f; // Time between energy increments
+    public static float regenTime = 1f; // Time between energy increments
     private bool canRegen = true; // Whether current energy can be incremented on a given frame
+    public int regenAmt;
 
     // Start is called before the first frame update
     void Start()
@@ -35,7 +36,15 @@ public class EnergySource : MonoBehaviour
     {
         if (gameObject.CompareTag("Solar") && GlobalControl.solarUnlocked)
         {
-            GlobalControl.energyCurr++;
+            if (regenAmt > 0)
+            {
+                if (GlobalControl.energyCurr + regenAmt > GlobalControl.energyMax)
+                    GlobalControl.energyCurr = GlobalControl.energyMax;
+                else
+                    GlobalControl.energyCurr += regenAmt;
+            }
+            else
+                GlobalControl.energyCurr++;
 
         }
         else if (gameObject.CompareTag("Geothermal") && GlobalControl.geoUnlocked)

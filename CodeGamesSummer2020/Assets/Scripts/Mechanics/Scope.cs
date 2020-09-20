@@ -132,7 +132,7 @@ public class Scope : MonoBehaviour
         if (GlobalControl.area == "SG_12")
         {
             // Scorched Earth
-            if (gameObject.name == "Molten_")
+            if (gameObject.name == "Molten__")
             {
                 // Move obj up or down
                 if (Obstacles.refState_5 == "warning" && !once)
@@ -324,7 +324,7 @@ public class Scope : MonoBehaviour
         // Subnautical Machina
         else if (GlobalControl.area == "MB_12")
         {
-            if (gameObject.name == "Rain")
+            if (gameObject.name == "Rain__")
             {
                 if ((Obstacles.refState1b_7 == "pouring") || (Obstacles.refState1b_7 == "storming"))
                 {

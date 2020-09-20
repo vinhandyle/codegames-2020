@@ -39,7 +39,7 @@ public class Description : MonoBehaviour
                 else if (descOf == "2" && GlobalControl.solarUnlocked)          // Solar Panel description
                 {
                     text.text = "<b>Solar Panel</b> \n" +
-                                "Generates 1 energy per second while under sunlight.\n\n" +
+                                "Generates 1-4 energy per second while under sunlight.\n\n" +
                                 "<i>A simple module of photo-voltaic cells that can be mounted above the main body. Though a lot of " +
                                 "dust has settled on its surface, the module has not sustained any serious damage.</i>";
                 }

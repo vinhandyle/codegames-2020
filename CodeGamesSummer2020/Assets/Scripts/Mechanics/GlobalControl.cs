@@ -14,12 +14,12 @@ public class GlobalControl : MonoBehaviour
 
     // Energy
     public static int energyMax = 10;               // max energy level
-    public static int energyCurr = energyMax;       // current energy level
+    public static int energyCurr;                   // current energy level
     public static int energyUse;                    // amount of energy used per shot
 
     // Health
     public static int healthMax = 10;               // max health level
-    public static int healthCurr = healthMax;       // current health level
+    public static int healthCurr;                   // current health level
 
     // Other Stats
     public static int damage;                       // player bullet damage
@@ -72,7 +72,7 @@ public class GlobalControl : MonoBehaviour
     // Toggle
     public static string reactor = "basic";         // Name of equipped reactor
     public static bool h2e = true;                  // True = HP to Energy, False = Energy to HP
-    public static int prog = 8;                     // Progession level for unlockAll: Start(0), Post-Start(1), Post-Dreg(2), Post-Garden(3), Post-Second(4), Post-Town(5), Post-Third(6), Post-Return(7), Post-End(8)
+    public static int prog = 3;                     // Progession level for unlockAll: Start(0), Post-Start(1), Post-Dreg(2), Post-Garden(3), Post-Second(4), Post-Town(5), Post-Third(6), Post-Return(7), Post-End(8)
 
     // Vacuum Pod
     public static string pod_direction = "right";   // Direction of pod
@@ -323,6 +323,10 @@ public class GlobalControl : MonoBehaviour
     {
         unlockAll();
         StartCoroutine(setAreaName());
+
+        // Set player stats
+        healthCurr = healthMax;
+        energyCurr = energyMax;
     }
 
     // Update is called once per frame
@@ -421,7 +425,7 @@ public class GlobalControl : MonoBehaviour
         if (reactor == "basic")
         {
             energyUse = 1;
-            damage = 50 + bossDowned;
+            damage = 1 + bossDowned;
         }
         else if (reactor == "imperial")
         {
@@ -775,13 +779,14 @@ public class GlobalControl : MonoBehaviour
             unstableUnlocked = true;
 
             downed_patrol = true;
-            counter_1 = 4;
 
             if (prog > 1)
             { // Post-Dreg
                 heartlessUnlocked = true;
                 mapUnlocked = true;
                 familiarUnlocked = true;
+
+                counter_1 = 1;
 
                 report_1 = true;
                 data = 10;
@@ -798,6 +803,7 @@ public class GlobalControl : MonoBehaviour
                     bossDowned = 1;
 
                     downed_pursuit = true;
+                    counter_1 = 6;
 
                     plateFound = true;
                     extraFound = true;

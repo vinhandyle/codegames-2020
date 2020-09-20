@@ -3016,6 +3016,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70ac1b2cab3230946a5b9e82796450e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  regenAmt: 3
 --- !u!61 &1064820063
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -3170,6 +3171,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   harvestable: 1
+  master: 0
   objName: 
 --- !u!61 &1156185540
 BoxCollider2D:
@@ -4634,6 +4636,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70ac1b2cab3230946a5b9e82796450e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  regenAmt: 3
 --- !u!61 &1844735567
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -5013,6 +5016,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70ac1b2cab3230946a5b9e82796450e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  regenAmt: 3
 --- !u!61 &2086997458
 BoxCollider2D:
   m_ObjectHideFlags: 0

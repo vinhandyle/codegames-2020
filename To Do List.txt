@@ -1,21 +1,9 @@
 -Bugs
 	>Multiple pursuits will not aggro if landing in sight, will aggro after direction change
 	>Scatter Shot proj rotates weird, quad 2-4
-	>Double jump flag resets on scene switch = fall in switch, cant double jump on load
-
--Decor Midnight Bay
-	>add rain
-	>add oil storages
-	>Steering wheel
-
--IT Return + GP
-	>Add Azimuth and decor (maybe)
 	
 -Other
 	>Revamp diagram with connecter with label
 	>More items to examine	
 	>Boss structure revamp + add atk img
-	>Retest Containment (able to berserk after using reg atk) and Subnautical (able to atk)
-
--Ideas
-	>Custom proj for bosses
+	>Rebalance boss

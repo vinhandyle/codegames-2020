@@ -699,6 +699,19 @@ MonoBehaviour:
   box: {fileID: 0}
   sprite: {fileID: 0}
   sprites: []
+  moving: 0
+  discrete: 0
+  type: 
+  state: 
+  playerOn: 0
+  x: 0
+  y: 0
+  pX: 0
+  pY: 0
+  speed: 0
+  range: 0
+  range_1: 0
+  range_2: 0
 --- !u!1 &428921689
 GameObject:
   m_ObjectHideFlags: 0
@@ -2437,6 +2450,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   harvestable: 0
+  master: 0
   objName: 
 --- !u!61 &1212975045
 BoxCollider2D:
@@ -3413,6 +3427,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70ac1b2cab3230946a5b9e82796450e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  regenAmt: 3
 --- !u!61 &1664704262
 BoxCollider2D:
   m_ObjectHideFlags: 0

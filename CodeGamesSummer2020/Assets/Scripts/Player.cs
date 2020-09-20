@@ -116,7 +116,7 @@ public class Player : MonoBehaviour
         if (Input.GetKeyDown("s") && GlobalControl.heartlessUnlocked)
         {
             // 1 HP to 3 Energy
-            if (GlobalControl.h2e && GlobalControl.energyCurr < GlobalControl.energyMax)
+            if (GlobalControl.h2e && GlobalControl.energyCurr < GlobalControl.energyMax && GlobalControl.healthCurr > 1)
             {
                 GlobalControl.healthCurr--;
                 if (GlobalControl.energyCurr <= GlobalControl.energyMax - 3)
@@ -130,7 +130,7 @@ public class Player : MonoBehaviour
             }
 
             // 5 energy to 1 HP
-            else if (!GlobalControl.h2e && GlobalControl.healthCurr < GlobalControl.healthMax)
+            else if (!GlobalControl.h2e && GlobalControl.healthCurr < GlobalControl.healthMax && GlobalControl.energyCurr >= 5)
             {
                 GlobalControl.energyCurr -= 5;
                 GlobalControl.healthCurr++;
@@ -400,7 +400,7 @@ public class Player : MonoBehaviour
             }
         }
 
-        if (collision.collider.CompareTag("Wall"))
+        if (collision.collider.CompareTag("Wall") && collision.collider.transform.position.y + collision.collider.GetComponent<BoxCollider2D>().size.y / 2 * collision.collider.transform.parent.lossyScale.y > rb2D.position.y - rb2D.GetComponent<CircleCollider2D>().radius)
         {
             walled = true;
             dashing = false;
@@ -460,8 +460,8 @@ public class Player : MonoBehaviour
             }
         }
 
-        if (collision.collider.CompareTag("Wall"))
-        {
+        if (collision.collider.CompareTag("Wall") && collision.collider.transform.position.y + collision.collider.GetComponent<BoxCollider2D>().size.y / 2 * collision.collider.transform.parent.lossyScale.y > rb2D.position.y - rb2D.GetComponent<CircleCollider2D>().radius)
+        {            
             walled = true;
             // If player is not on a wall, player is still mid air (player y-coord > wall y-coord + wall height / 2)
             if (rb2D.position.y >= collision.collider.gameObject.transform.position.y + collision.collider.GetComponent<BoxCollider2D>().size.y / 2)

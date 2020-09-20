@@ -54,6 +54,10 @@ public class Obstacles : MonoBehaviour
     public float randNum;
     public bool hold_rand = false;
 
+    // Boss Health Indicator
+    public static int hp_Max;
+    public static int hp_Curr; 
+
     // States -> refState,type,variant(if applicable)_num
     // type: Obstacles to Scope (1), Scope to Obstacles (2), Obstacles to Obstacles (3)
     // variant: multiple of same type in same num, use a->z
@@ -105,11 +109,13 @@ public class Obstacles : MonoBehaviour
     public int refState3c_6 = 0;                // Berserk Crash #
     public string refState3d_6;                 // Berserk Stage
     public bool refState3e_6 = true;            // Berserk Indicator
-    public bool refState3f_6 = false;           // Blinked?
+    public bool refState3f_6;                   // Blinked?
+    public bool refState3g_6;                   // Already used explosion during berserk crash
+    public bool refState3h_6;                   // Prevent multiple timer_1 incs
 
     /* Subnautical */
     public static bool refState_7;              // Torpedo active?
-    public static float refState1a_7 = 0.01f;   // Torpedo speed
+    public static float refState1a_7 = 0.004f;   // Torpedo speed
     public static string refState1b_7;          // Downpouring?
     public string refState3_7 = "under";        // Above or below water?
     public bool refState3a_7;                   // Phase 2?
@@ -259,7 +265,7 @@ public class Obstacles : MonoBehaviour
             transform.rotation = Quaternion.Euler(0.0f, 0.0f, deg);
         }
 
-        if (gameObject.name.Substring(0, 6) != "Cutter" && gameObject.name.Substring(0, 4) != "Gust" && gameObject.name != "Containment" && gameObject.name != "Emperor_")
+        if (gameObject.name.Substring(0, 6) != "Cutter" && gameObject.name.Substring(0, 4) != "Gust" && gameObject.name.Substring(0, 7) != "Droplet" && gameObject.name != "Emperor_")
         {
             refState3b_4 = x - GetComponent<BoxCollider2D>().size.x * Mathf.Cos(deg * Mathf.Deg2Rad) / 2;
             refState3c_4 = y - GetComponent<BoxCollider2D>().size.y * Mathf.Sin(deg * Mathf.Deg2Rad);
@@ -433,21 +439,25 @@ public class Obstacles : MonoBehaviour
         {
             healthMax = 50;
             damage = 2;
+            hp_Max = healthMax;
         }
         else if (gameObject.name == "Containment")
         {
             healthMax = 180;
             damage = 5;
+            hp_Max = healthMax;
         }
         else if (gameObject.name == "Subnautical")
         {
             healthMax = 200;
             damage = 4;
+            hp_Max = healthMax;
         }
         else if (gameObject.name == "Emperor_")
         {
             healthMax = 500;
             damage = 10;
+            hp_Max = healthMax;
         }
 
         // Hazards immune to damage
@@ -2085,7 +2095,7 @@ public class Obstacles : MonoBehaviour
                     fireBullet(direction, rotationZ, bulletSpeed[0]);
                     currBullet--;
                     StartCoroutine(cooldown());
-                    useTime *= 0.85f;
+                    useTime *= 0.9f;
                 }
                 else if (currBullet <= 0)
                 {
@@ -2141,22 +2151,22 @@ public class Obstacles : MonoBehaviour
         else if (gameObject.name == "Containment")
         {
             // Keep from straying outside outer box
-            if (transform.position.x < -3.87f)
+            if (transform.position.x < -3.95f)
             {
-                transform.position = new Vector3(-3.87f, transform.position.y);
+                transform.position = new Vector3(-3.95f, transform.position.y);
             }
             else if (transform.position.x > 3.96f)
             {
                 transform.position = new Vector3(3.96f, transform.position.y);
             }
 
-            if (transform.position.y < -2.73f)
+            if (transform.position.y < -2.75f)
             {
-                transform.position = new Vector3(transform.position.x, -2.73f);
+                transform.position = new Vector3(transform.position.x, -2.75f);
             }
-            else if (transform.position.y > 3.9f)
+            else if (transform.position.y > 4.1f)
             {
-                transform.position = new Vector3(transform.position.x, 3.9f);
+                transform.position = new Vector3(transform.position.x, 4.1f);
             }
 
             // "Collision" with outer box
@@ -2198,6 +2208,7 @@ public class Obstacles : MonoBehaviour
                 refState3_6 = "phase 2";
                 refState3d_6 = "stage 1";
                 aiState = "berserk";
+                time = 0;
             }
 
             // Follow Player
@@ -2498,12 +2509,28 @@ public class Obstacles : MonoBehaviour
                         {
                             if (refState3c_6 < 3)
                             {
-                                for (int i = 0; i < 8; i++)
+                                if (!refState3g_6)
                                 {
-                                    fireBullet(new Vector2(Mathf.Cos(i * Mathf.PI / 4), Mathf.Sin(i * Mathf.PI / 4)), 45 * i, 5f);
+                                    for (int i = 0; i < 8; i++)
+                                    {
+                                        fireBullet(new Vector2(Mathf.Cos(i * Mathf.PI / 4), Mathf.Sin(i * Mathf.PI / 4)), 45 * i, 5f);
+                                    }
+                                    refState3g_6 = true;
+                                }                                
+
+                                if (time_1 > 0 && refState3g_6)
+                                {
+                                    time_1 = 0;
+                                    refState3c_6++;
+                                    refState3d_6 = "stage 1";
+                                    refState3g_6 = false;
+                                    refState3h_6 = false;
                                 }
-                                refState3c_6++;
-                                refState3d_6 = "stage 1";
+                                else if(!refState3h_6)
+                                {
+                                    refState3h_6 = true;
+                                    StartCoroutine(addSecond_1());
+                                }
                             }
                         }
                     }
@@ -2690,7 +2717,7 @@ public class Obstacles : MonoBehaviour
 
                 if (!hold_rand)
                 {
-                    StartCoroutine(delayRand(2f, 1, 2));
+                    StartCoroutine(delayRand(4f, 1, 2));
                 }
 
                 if (randNum == 1)
@@ -3020,6 +3047,10 @@ public class Obstacles : MonoBehaviour
         {
             refState_1 = aiState;
         }
+
+        // Update hp indicator
+        if (gameObject.name == "Overseer" || gameObject.name == "Containment" || gameObject.name == "Subnautical" || gameObject.name == "Emperor_")
+            hp_Curr = healthCurr;
     }
 
     private void OnCollisionStay2D(Collision2D collision)

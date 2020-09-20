@@ -22,7 +22,7 @@ public class MenuBackground : MonoBehaviour
     void Update()
     {
         // Open and close menu
-        if (Input.GetKeyDown(KeyCode.Tab))
+        if (Input.GetKeyDown(KeyCode.Tab) && !(GlobalControl.area == "GP_0A" && GlobalControl.counter_1 < 5))
         {
             MenuBtnBehavior.btn = "";
             if (inMenu)

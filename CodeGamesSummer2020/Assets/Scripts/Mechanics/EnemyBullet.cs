@@ -310,7 +310,7 @@ public class EnemyBullet : MonoBehaviour
         // On hit any terrain
         else if (other.CompareTag("Floor") || other.CompareTag("Ceiling") || other.CompareTag("Wall"))
         {
-            if (GlobalControl.area.Substring(0, 2) == "TT" || GlobalControl.area.Substring(0, 2) == "GP")
+            if ((GlobalControl.area.Substring(0, 2) == "TT" && GlobalControl.area != "TT_12") || GlobalControl.area.Substring(0, 2) == "GP")
             {
                 if (gameObject.name.Substring(0, 13) == "Tiny E_Bullet")
                 {
