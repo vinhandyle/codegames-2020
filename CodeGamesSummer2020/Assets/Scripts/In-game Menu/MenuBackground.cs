@@ -50,6 +50,9 @@ public class MenuBackground : MonoBehaviour
                 Cursor.visible = true;
                 inMenu = true;
 
+                if (!GlobalControl.intro)
+                    GlobalControl.intro = true;
+
                 if (GlobalControl.area == "TT_14" && VacPod.inMotion)
                 {
                     if (GlobalControl.pod_location == "main" && GlobalControl.pod_direction == "left")

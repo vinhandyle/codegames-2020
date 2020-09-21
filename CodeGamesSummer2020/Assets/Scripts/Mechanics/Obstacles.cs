@@ -386,7 +386,7 @@ public class Obstacles : MonoBehaviour
         // Sentry
         else if (gameObject.name.Substring(0, 6) == "Sentry")
         {
-            healthMax = 40;
+            healthMax = 20;
         }
 
         // Errat

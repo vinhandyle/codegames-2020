@@ -4,6 +4,5 @@
 	
 -Other
 	>Revamp diagram with connecter with label
-	>More items to examine	
 	>Boss structure revamp + add atk img
-	>Rebalance boss
+	>Rebalance Emperor if needed

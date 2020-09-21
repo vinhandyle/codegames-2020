@@ -71,7 +71,7 @@ public class MainMenuText : MonoBehaviour
             {
                 if (type == "trophy1" && GlobalControl.complete)
                 {
-                    text.text = "<b>Endless</b> \n" +
+                    text.text = "<b>Alpha and Omega</b> \n" +
                                 "Get all endings. \n" +
                                 "<i>The beginning and the end.</i>";
                 }

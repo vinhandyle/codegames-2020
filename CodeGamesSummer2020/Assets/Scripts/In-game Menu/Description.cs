@@ -39,7 +39,7 @@ public class Description : MonoBehaviour
                 else if (descOf == "2" && GlobalControl.solarUnlocked)          // Solar Panel description
                 {
                     text.text = "<b>Solar Panel</b> \n" +
-                                "Generates 1-4 energy per second while under sunlight.\n\n" +
+                                "Generates 1-3 energy per second while under sunlight.\n\n" +
                                 "<i>A simple module of photo-voltaic cells that can be mounted above the main body. Though a lot of " +
                                 "dust has settled on its surface, the module has not sustained any serious damage.</i>";
                 }
@@ -106,7 +106,7 @@ public class Description : MonoBehaviour
                     {
                         text.text += "- <i>Equipped</i>";
                     }
-                    text.text += "\nDamage: " + (1 + GlobalControl.scrapNum) + "  Energy Use: 1 \n\n" +
+                    text.text += "\nDamage: " + (1 + GlobalControl.bossDowned) + "  Energy Use: 1 \n\n" +
                                  "<i>The standard model for reactors. It serves two distinct functions: to power the Machina and to " +
                                  "create fuel for their cannon. Each function is independent of one another, preventing Machina from " +
                                  "ceasing operation when there isn't enough energy to operate their cannon. </i>";

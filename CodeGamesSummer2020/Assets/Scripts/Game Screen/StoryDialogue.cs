@@ -8,11 +8,20 @@ public class StoryDialogue : MonoBehaviour
     private Text text;
 
     public string type;
+    public bool t;
 
     // Start is called before the first frame update
     void Start()
     {
-        if (type == "dialogue")
+        if (type == "intro")
+        {
+            if(t)
+                text = GameObject.Find("Intro").GetComponent<Text>();
+
+            if (GlobalControl.intro)
+                gameObject.SetActive(false);
+        }
+        else if (type == "dialogue")
         {
             text = GameObject.Find("Dialogue").GetComponent<Text>();
         }

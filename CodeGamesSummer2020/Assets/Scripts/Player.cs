@@ -67,6 +67,9 @@ public class Player : MonoBehaviour
             InteractText.interacted = false;
             InteractText.notif = false;
             GlobalControl.switched = false;
+
+            if (!GlobalControl.intro)
+                GlobalControl.intro = true;
         }
         else
         {
