@@ -3692,6 +3692,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: kill
+  t: 0
 --- !u!114 &472173663
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11503,6 +11504,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: free
+  t: 0
 --- !u!114 &1583966011
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -79,19 +79,19 @@ public class MainMenuText : MonoBehaviour
                 {
                     text.text = "<b>Save Humanity</b> \n" +
                                 "Capture the remaining humans. \n" +
-                                "<i>To infinity and beyond!</i>";
+                                "<i>Into the void.</i>";
                 }
                 else if (type == "trophy3" && GlobalControl.ending_2)
                 {
                     text.text = "<b>Return to the Past</b> \n" +
                                 "Free the remaining humans. \n" +
-                                "<i>Reject modernity. Embrace tradition.</i>";
+                                "<i>Give me liberty or give me death.</i>";
                 }
                 else if (type == "trophy4" && GlobalControl.ending_3)
                 {
                     text.text = "<b>End the Cycle</b> \n" +
                                 "Kill the remaining humans. \n" +
-                                "<i>No humans. No masters.</i>";
+                                "<i>Nothingness. Now and forever.</i>";
                 }
             }
             else

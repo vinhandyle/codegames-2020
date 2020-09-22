@@ -36,7 +36,8 @@ public class MenuBtnBehavior : MonoBehaviour
             else
             {
                 MenuBackground.inMenu = false;
-                GlobalControl.canContinue = true;                
+                GlobalControl.canContinue = true;
+                GlobalControl.save();
                 StartCoroutine(SceneSwitch("Main Menu"));
             }
         }

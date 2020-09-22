@@ -3,6 +3,5 @@
 	>Scatter Shot proj rotates weird, quad 2-4
 	
 -Other
-	>Revamp diagram with connecter with label
-	>Boss structure revamp + add atk img
-	>Rebalance Emperor if needed
+	>Add save instruction in controls
+	>Add "saving" text to canvas (main menu + repair stations)

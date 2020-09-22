@@ -114,7 +114,7 @@ public class EnemyBullet : MonoBehaviour
         {
             if (gameObject.name.Substring(0, 13) == "Tiny E_Bullet")
             {
-                damage = 3;
+                damage = 2;
             }
             else if (gameObject.name.Substring(0, 14) == "Small E_Bullet")
             {

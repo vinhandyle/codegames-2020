@@ -524,7 +524,7 @@ public class Obstacles : MonoBehaviour
             {
                 GlobalControl.downed_boss_3 = true;
             }
-            else if (gameObject.name == "Emperor")
+            else if (gameObject.name == "Emperor_")
             {
                 GlobalControl.downed_boss_4 = true;
             }
@@ -619,6 +619,7 @@ public class Obstacles : MonoBehaviour
                     GlobalControl.errat_5 = false;
                 }
                 GlobalControl.humansLeft--;
+                GlobalControl.found_errat = true;
             }
 
             // Sunset Garden
@@ -3035,7 +3036,7 @@ public class Obstacles : MonoBehaviour
             // Judgement
             else if (aiState == "doom")
             {
-                if (refState1c_8 == "")
+                if (refState1c_8 == "" || refState1c_8 == null)
                     refState1c_8 = "warning";
                 else if (refState1c_8 == "finish")
                     aiState = "rest";

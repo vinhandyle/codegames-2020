@@ -79,6 +79,13 @@ public class Scope : MonoBehaviour
         // Get Components
         sprite = GetComponent<SpriteRenderer>();
         anim = GetComponent<Animator>();
+
+        // Set Judgement
+        if (gameObject.name == "Doom__")
+        {
+            GetComponent<BoxCollider2D>().enabled = false;
+            sprite.enabled = false;
+        }
     }
 
     private void OnEnable()
@@ -506,7 +513,7 @@ public class Scope : MonoBehaviour
             // Judgement
             if (gameObject.name == "Doom__")
             {
-                if (Obstacles.refState1c_8 == "")
+                if (Obstacles.refState1c_8 == "" || Obstacles.refState1c_8 == null)
                 {
                     GetComponent<BoxCollider2D>().enabled = false;
                     sprite.enabled = false;

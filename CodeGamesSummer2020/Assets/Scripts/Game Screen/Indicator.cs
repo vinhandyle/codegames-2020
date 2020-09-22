@@ -127,6 +127,8 @@ public class Indicator : MonoBehaviour
         {
             if (GlobalControl.heartlessUnlocked)
             {
+                img.color = new Color(1f, 1f, 1f, 1f);
+
                 if (GlobalControl.h2e)
                 {
                     transform.position = new Vector2(166.55f, 458.3991f);

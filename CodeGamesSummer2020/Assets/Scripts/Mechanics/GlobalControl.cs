@@ -1,5 +1,8 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.IO;
+using System.Runtime.Serialization.Formatters.Binary;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -14,12 +17,12 @@ public class GlobalControl : MonoBehaviour
 
     // Energy
     public static int energyMax = 10;               // max energy level
-    public static int energyCurr;                   // current energy level
+    public static int energyCurr = energyMax;       // current energy level
     public static int energyUse;                    // amount of energy used per shot
 
     // Health
     public static int healthMax = 10;               // max health level
-    public static int healthCurr;                   // current health level
+    public static int healthCurr = healthMax;       // current health level
 
     // Other Stats
     public static int damage;                       // player bullet damage
@@ -73,7 +76,7 @@ public class GlobalControl : MonoBehaviour
     public static string reactor = "basic";         // Name of equipped reactor
     public static bool intro;                       // Intro Box
     public static bool h2e = true;                  // True = HP to Energy, False = Energy to HP
-    public static int prog = 8;                     // Progession level for unlockAll: Start(0), Post-Start(1), Post-Dreg(2), Post-Garden(3), Post-Second(4), Post-Town(5), Post-Third(6), Post-Return(7), Post-End(8)
+    public static int prog = 0;                     // Progession level for unlockAll: Start(0), Post-Start(1), Post-Dreg(2), Post-Garden(3), Post-Second(4), Post-Town(5), Post-Third(6), Post-Return(7), Post-End(8)
 
     // Vacuum Pod
     public static string pod_direction = "right";   // Direction of pod
@@ -309,12 +312,12 @@ public class GlobalControl : MonoBehaviour
     private void Awake()
     {
         if (Instance == null)
-        { // Make one global instance
+        { // Create a global object on game open
             DontDestroyOnLoad(gameObject);
             Instance = this;
         }
         else if (Instance != this)
-        { // Ensure there is only one instance
+        { // Ensure there is only one global object
             Destroy(gameObject);
         }
     }
@@ -322,12 +325,11 @@ public class GlobalControl : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        unlockAll();
-        StartCoroutine(setAreaName());
+        //unlockAll();
+        load();
 
-        // Set player stats
-        healthCurr = healthMax;
-        energyCurr = energyMax;
+        StartCoroutine(setAreaName());
+        Application.targetFrameRate = 120;
     }
 
     // Update is called once per frame
@@ -400,6 +402,7 @@ public class GlobalControl : MonoBehaviour
         {
             triggerOnce = true;
             canContinue = false;
+            save();
             if (area == "Ending_1")
             {
                 ending_1 = true;
@@ -443,6 +446,9 @@ public class GlobalControl : MonoBehaviour
             energyUse = 1;
             damage = 10;
         }
+
+        if (counter_1 == 5)
+            reactor = "imperial";
 
         // Respawning
         if (healthCurr <= 0)
@@ -514,6 +520,7 @@ public class GlobalControl : MonoBehaviour
         }
     }
 
+    // Used on new game
     public static void resetPlayer()
     {
         // Ending Flag
@@ -675,6 +682,7 @@ public class GlobalControl : MonoBehaviour
         lift_direction = "up";
     }
 
+    // Used on death, interacting with a repair station, or new game
     public static void respawnAll()
     {
         patrol_1_0_0 = true;
@@ -771,6 +779,7 @@ public class GlobalControl : MonoBehaviour
         turret_2_5_1 = true;
     }
 
+    // Used for debugging
     public static void unlockAll()
     {       
         if (prog > 0)
@@ -902,6 +911,306 @@ public class GlobalControl : MonoBehaviour
         }
     }
 
+    // Save game data
+    public static void save()
+    {
+        BinaryFormatter bf = new BinaryFormatter();
+        FileStream file = File.Create(Application.persistentDataPath + "/playerInfo.dat");
+
+        PlayerData pData = new PlayerData();
+
+        // Store global variables
+        pData.ending_1 = ending_1;
+        pData.ending_2 = ending_2;
+        pData.ending_3 = ending_3;
+        pData.complete = complete;
+        pData.triggerOnce = triggerOnce;
+
+        pData.energyMax = energyMax;
+        pData.energyCurr = energyCurr;
+        pData.energyUse = energyUse;
+
+        pData.healthMax = healthMax;
+        pData.healthCurr = healthCurr;
+
+        pData.damage = damage;
+        pData.data = data;
+
+        pData.batteryUnlocked = batteryUnlocked;
+        pData.solarUnlocked = solarUnlocked;
+        pData.geoUnlocked = geoUnlocked;
+
+        pData.gunUnlocked = gunUnlocked;
+        pData.mapUnlocked = mapUnlocked;
+        pData.heartlessUnlocked = heartlessUnlocked;
+        pData.keyUnlocked = keyUnlocked;
+
+        pData.dashUnlocked = dashUnlocked;
+        pData.clingUnlocked = clingUnlocked;
+        pData.doubleUnlocked = doubleUnlocked;
+
+        pData.imperialUnlocked = imperialUnlocked;
+        pData.familiarUnlocked = familiarUnlocked;
+        pData.unstableUnlocked = unstableUnlocked;
+
+        pData.scrapFound = scrapFound;
+        pData.extraFound = extraFound;
+        pData.plateFound = plateFound;
+
+        pData.extra_1 = extra_1;
+        pData.extra_2 = extra_2;
+        pData.extra_3 = extra_3;
+
+        pData.plating_1 = plating_1;
+        pData.plating_2 = plating_2;
+
+        pData.scrap_1 = scrap_1;
+        pData.scrap_2 = scrap_2;
+        pData.scrap_3 = scrap_3;
+
+        pData.menu = menu;
+        pData.map = map;
+        pData.plateNum = plateNum;
+        pData.extraNum = extraNum;
+        pData.scrapNum = scrapNum;
+
+        pData.reactor = reactor;
+        pData.intro = intro;
+        pData.h2e = h2e;
+
+        pData.pod_direction = pod_direction;
+        pData.pod_location = pod_location;
+
+        pData.lift_direction = lift_direction;
+
+        pData.calm = calm;
+
+        pData.pX = pX;
+        pData.pY = pY;
+
+        pData.humansLeft = humansLeft;
+        pData.bossDowned = bossDowned;
+        pData.fate = fate;
+        pData.canContinue = canContinue;
+
+        pData.area = area;
+        pData.prevArea = prevArea;
+        pData.checkpoint = checkpoint;
+
+        pData.sg = sg;
+        pData.tt = tt;
+        pData.mb = mb;
+        pData.it = it;
+        pData.gp = gp;
+
+        pData.counter_1 = counter_1;
+        pData.masterControl = masterControl;
+
+        pData.downed_patrol = downed_patrol;
+        pData.downed_pursuit = downed_pursuit;
+        pData.downed_aerial = downed_aerial;
+        pData.downed_aquatic = downed_aquatic;
+        pData.downed_turret = downed_turret;
+
+        pData.found_errat = found_errat;
+
+        pData.downed_boss_1 = downed_boss_1;
+        pData.downed_boss_2 = downed_boss_2;
+        pData.downed_boss_3 = downed_boss_3;
+        pData.downed_boss_4 = downed_boss_4;
+
+        pData.report_1 = report_1;
+        pData.report_2 = report_2;
+        pData.report_3 = report_3;
+        pData.report_4 = report_4;
+        pData.report_5 = report_5;
+        pData.report_6 = report_6;
+        pData.report_7 = report_7;
+        pData.report_8 = report_8;
+        pData.report_9 = report_9;
+        pData.report_10 = report_10;
+
+        pData.nextDoor = nextDoor;
+
+        pData.locked_1 = locked_1;
+        pData.locked_2 = locked_2;
+        pData.locked_3 = locked_3;
+        pData.locked_4 = locked_4;
+        pData.locked_5 = locked_5;
+        pData.locked_6 = locked_6;
+
+        pData.state_SG_8 = state_SG_8;
+        pData.state_SG_10 = state_SG_10;
+        pData.state_SG_11 = state_SG_11;
+        pData.state_SG_11S = state_SG_11S;
+        pData.state_SG_11S_ = state_SG_11S_;
+        pData.state_TT_11 = state_TT_11;
+        pData.state_MB_4 = state_MB_4;
+        pData.state_MB_7 = state_MB_7;
+        pData.state_MB_8 = state_MB_8;
+        pData.state_MB_11 = state_MB_11;
+        pData.state_IT_4 = state_IT_4;
+        pData.state_IT_6 = state_IT_6;
+        pData.state_IT_9 = state_IT_9;
+        pData.state_GP_4 = state_GP_4;
+        pData.state_GP_10 = state_GP_10;
+
+        pData.block_starter = block_starter;
+        pData.secret_unstable = secret_unstable;
+
+        pData.block_DH_4 = block_DH_4;
+        pData.secret_DH_5 = secret_DH_5;
+
+        pData.block_SG_9 = block_SG_9;
+        pData.block_SG_11 = block_SG_11;
+        pData.block_SG_11S = block_SG_11S;
+        pData.block_SG_11S_ = block_SG_11S_;
+        pData.block_SG_12 = block_SG_12;
+        pData.secret_SG_9 = secret_SG_9;
+
+        pData.block_TT_2 = block_TT_2;
+        pData.block_TT_6 = block_TT_6;
+        pData.block_TT_9 = block_TT_9;
+        pData.block_TT_11 = block_TT_11;
+        pData.block_TT_12 = block_TT_12;
+        pData.block_TT_14S = block_TT_14S;
+
+        pData.secret_MB_3 = secret_MB_3;
+
+        pData.block_IT_4 = block_IT_4;
+        pData.block_IT_4_ = block_IT_4_;
+        pData.block_IT_6 = block_IT_6;
+        pData.block_IT_9 = block_IT_9;
+
+        pData.block_GP_4 = block_GP_4;
+        pData.block_GP_10 = block_GP_10;
+
+        pData.patrol_1_0_0 = patrol_1_0_0;
+
+        bf.Serialize(file, pData);
+        file.Close();
+    }
+
+    // Load game data
+    public void load()
+    {
+        if (File.Exists(Application.persistentDataPath + "/playerInfo.dat"))
+        {
+            BinaryFormatter bf = new BinaryFormatter();
+            FileStream file = File.Open(Application.persistentDataPath + "/playerInfo.dat", FileMode.Open);
+            PlayerData pData = (PlayerData)bf.Deserialize(file);
+            file.Close();
+
+            ending_1 = pData.ending_1;
+            ending_2 = pData.ending_2;
+            ending_3 = pData.ending_3;
+            complete = pData.complete;
+            triggerOnce = pData.triggerOnce;
+
+            energyMax = pData.energyMax;
+            energyCurr = pData.energyCurr;
+            energyUse = pData.energyUse;
+
+            healthMax = pData.healthMax;
+            healthCurr = pData.healthCurr;
+
+            damage = pData.damage;
+            data = pData.data;
+
+            batteryUnlocked = pData.batteryUnlocked;
+            solarUnlocked = pData.solarUnlocked;
+            geoUnlocked = pData.geoUnlocked;
+
+            gunUnlocked = pData.gunUnlocked;
+            mapUnlocked = pData.mapUnlocked;
+            heartlessUnlocked = pData.heartlessUnlocked;
+            keyUnlocked = pData.heartlessUnlocked;
+
+            dashUnlocked = pData.dashUnlocked;
+            clingUnlocked = pData.clingUnlocked;
+            doubleUnlocked = pData.doubleUnlocked;
+
+            imperialUnlocked = pData.imperialUnlocked;
+            familiarUnlocked = pData.familiarUnlocked;
+            unstableUnlocked = pData.unstableUnlocked;
+
+            scrapFound = pData.scrapFound;
+            extraFound = pData.extraFound;
+            plateFound = pData.plateFound;
+
+            extra_1 = pData.extra_1;
+            extra_2 = pData.extra_2;
+            extra_3 = pData.extra_3;
+
+            plating_1 = pData.plating_1;
+            plating_2 = pData.plating_2;
+
+            scrap_1 = pData.scrap_1;
+            scrap_2 = pData.scrap_2;
+            scrap_3 = pData.scrap_3;
+
+            menu = pData.menu;
+            map = pData.map;
+            plateNum = pData.plateNum;
+            extraNum = pData.extraNum;
+            scrapNum = pData.scrapNum;
+
+            reactor = pData.reactor;
+            intro = pData.intro;
+            h2e = pData.h2e;
+
+            pod_direction = pData.pod_direction;
+            pod_location = pData.pod_location;
+
+            calm = pData.calm;
+
+            pX = pData.pX;
+            pY = pData.pY;
+
+            humansLeft = pData.humansLeft;
+            bossDowned = pData.bossDowned;
+            fate = pData.fate;
+            canContinue = pData.canContinue;
+
+            area = pData.area;
+            prevArea = pData.prevArea;
+            checkpoint = pData.checkpoint;
+
+            sg = pData.sg;
+            tt = pData.tt;
+            mb = pData.mb;
+            it = pData.it;
+            gp = pData.gp;
+
+            counter_1 = pData.counter_1;
+            masterControl = pData.masterControl;
+
+            downed_patrol = pData.downed_patrol;
+            downed_pursuit = pData.downed_pursuit;
+            downed_aerial = pData.downed_aerial;
+            downed_aquatic = pData.downed_aquatic;
+            downed_turret = pData.downed_turret;
+
+            found_errat = pData.found_errat;
+
+            downed_boss_1 = pData.downed_boss_1;
+            downed_boss_2 = pData.downed_boss_2;
+            downed_boss_3 = pData.downed_boss_3;
+            downed_boss_4 = pData.downed_boss_4;
+
+            report_1 = pData.report_1;
+            report_2 = pData.report_2;
+            report_3 = pData.report_3;
+            report_4 = pData.report_4;
+            report_5 = pData.report_5;
+            report_6 = pData.report_6;
+            report_7 = pData.report_7;
+            report_8 = pData.report_8;
+            report_9 = pData.report_9;
+            report_10 = pData.report_10;
+        }
+    }
+
     IEnumerator SceneSwitch(string load, string checkpoint)
     {
         string prev = area;
@@ -941,4 +1250,297 @@ public class GlobalControl : MonoBehaviour
         area = SceneManager.GetActiveScene().name;
         yield return null;
     }
+}
+
+[Serializable]
+class PlayerData
+{
+    // Endings
+    public bool ending_1;                    // Save Humanity
+    public bool ending_2;                    // Return to the Past
+    public bool ending_3;                    // End the Cycle
+    public bool complete;                    // Get all endings
+    public bool triggerOnce;
+
+    // Energy
+    public int energyMax;                    // max energy level
+    public int energyCurr;                   // current energy level
+    public int energyUse;                    // amount of energy used per shot
+
+    // Health
+    public int healthMax;                    // max health level
+    public int healthCurr;                   // current health level
+
+    // Other Stats
+    public int damage;                       // player bullet damage
+    public int data;                         // Percent data collected
+
+    // Unlock 
+    public bool batteryUnlocked;             // Battery
+    public bool solarUnlocked;               // Solar Panel
+    public bool geoUnlocked;                 // Geothermal Extractor
+
+    public bool gunUnlocked;                 // Energy Cannon
+    public bool mapUnlocked;                 // Navigational Module
+    public bool heartlessUnlocked;           // Heartless Generator
+    public bool keyUnlocked;                 // Access Key
+
+    public bool dashUnlocked;                // Booster Rocket
+    public bool clingUnlocked;               // Climbing Claws
+    public bool doubleUnlocked;              // Booster Rocket MK2
+
+    public bool imperialUnlocked;            // Strange Reactor
+    public bool familiarUnlocked;            // Lost Reactor
+    public bool unstableUnlocked;            // Unstable Reactor
+
+    public bool scrapFound;                  // Hyper Scrap
+    public bool extraFound;                  // Extra Battery
+    public bool plateFound;                  // Special Plating
+
+    public bool extra_1;                     // Extra battery pick-ups
+    public bool extra_2;
+    public bool extra_3;
+
+    public bool plating_1;                   // Special Plating pick-ups
+    public bool plating_2;
+
+    public bool scrap_1;                     // Hyper Scrap pick-ups
+    public bool scrap_2;
+    public bool scrap_3;
+
+    // Inventory Numbers
+    public string menu;                      // Which menu the player was in
+    public string map;                       // Map mode
+    public int plateNum;                     // Number of special plating obtained
+    public int extraNum;                     // Number of extra batteries obtained
+    public int scrapNum;                     // Number of hyper scraps in possession
+
+    // Toggle
+    public string reactor;                   // Name of equipped reactor
+    public bool intro;                       // Intro Box
+    public bool h2e;                         // True = HP to Energy, False = Energy to HP
+
+    // Vacuum Pod
+    public string pod_direction;             // Direction of pod
+    public string pod_location;              // Where is the pod
+
+    // Lift from Hell
+    public string lift_direction;            // Direction of the lift
+
+    // Eye of the Storm
+    public bool calm;
+
+    // World
+    public float pX;                         // Player x-coord before opening menu
+    public float pY;                         // Player y-coord before opening menu
+
+    public int humansLeft = 6;               // How many humans left to capture (6: May-October)
+    public int bossDowned = 0;               // How many bosses have been defeated
+    public string fate;                      // Ending 2 or 3
+    public bool canContinue;                 // Continue from Main Menu?
+
+    public string area;                      // Area name for scene change purposes
+    public string prevArea;                  // Name of previous area
+    public string checkpoint;                // Area name of last repair station used
+
+    public bool sg;                          // World map update
+    public bool tt;
+    public bool mb;
+    public bool it;
+    public bool gp;
+
+    // Dialogue
+    public int counter_1;                    // Counter for First dialogue
+    public bool masterControl;               // Using Master Control
+
+    // Enemy Catalog
+    public bool downed_patrol;
+    public bool downed_pursuit;
+    public bool downed_aerial;
+    public bool downed_aquatic;
+    public bool downed_turret;
+
+    public bool found_errat;
+
+    public bool downed_boss_1;
+    public bool downed_boss_2;
+    public bool downed_boss_3;
+    public bool downed_boss_4;
+
+    // Reports
+    public bool report_1;
+    public bool report_2;
+    public bool report_3;
+    public bool report_4;
+    public bool report_5;
+    public bool report_6;
+    public bool report_7;
+    public bool report_8;
+    public bool report_9;
+    public bool report_10;
+
+    /*---------------------Wall of Text Starts---------------------*/
+
+    // Doors
+    public string nextDoor;                  // The door on the other side, from which the player will exit from
+
+    public bool locked_1;                    // Birthplace-Start Door
+    public bool locked_2;                    // The Lift to Heaven Door
+    public bool locked_3;                    // DH_4_to_DH_6
+    public bool locked_4;                    // SG_10_to_SG_3
+    public bool locked_5;                    // MB_3_to_MB_12
+    public bool locked_6;                    // GP_0A_to_GP_10
+
+    // Switches
+    public string state_SG_8;
+    public string state_SG_10;
+    public string state_SG_11;
+    public string state_SG_11S;
+    public string state_SG_11S_;
+    public string state_TT_11;
+    public string state_MB_4;
+    public string state_MB_7;
+    public string state_MB_8;
+    public string state_MB_11;
+    public string state_IT_4;
+    public string state_IT_6;
+    public string state_IT_9;
+    public string state_GP_4;
+    public string state_GP_10;
+
+    // Destructibles
+    public bool block_starter;
+    public bool secret_unstable;
+
+    public bool block_DH_4;
+    public bool secret_DH_5;
+
+    public bool block_SG_9;
+    public bool block_SG_11;
+    public bool block_SG_11S;
+    public bool block_SG_11S_;
+    public bool block_SG_12;
+    public bool secret_SG_9;
+
+    public bool block_TT_2;
+    public bool block_TT_6;
+    public bool block_TT_9;
+    public bool block_TT_11;
+    public bool block_TT_12;
+    public bool block_TT_14S;
+
+    public bool secret_MB_3;
+
+    public bool block_IT_4;
+    public bool block_IT_4_;
+    public bool block_IT_6;
+    public bool block_IT_9;
+
+    public bool block_GP_4;
+    public bool block_GP_10;
+
+    // Enemy State
+
+    // type_tier_area_num
+    public bool patrol_1_0_0;                // Testing Area
+    public bool patrol_1_0_1;
+    public bool patrol_1_0_2;
+
+    public bool patrol_1_1_0;                // Institute of Technology
+    public bool patrol_3_1_0;
+    public bool patrol_3_1_1;
+    public bool patrol_3_1_2;
+    public bool turret_1_1_0;
+    public bool turret_1_1_1;
+    public bool turret_1_1_2;
+    public bool turret_1_1_3;
+    public bool turret_1_1_4;
+    public bool turret_1_1_5;
+    public bool turret_1_1_6;
+
+    public bool errat_0;                     // Dreg Heap
+    public bool errat_1;
+    public bool errat_2;
+    public bool errat_3;
+    public bool errat_4;
+    public bool errat_5;
+
+    public bool patrol_1_2_0;                // Sunset Garden
+    public bool patrol_1_2_1;
+    public bool patrol_1_2_2;
+    public bool patrol_1_2_3;
+    public bool patrol_1_2_4;
+    public bool patrol_1_2_5;
+    public bool patrol_1_2_6;
+    public bool patrol_1_2_7;
+    public bool patrol_1_2_8;
+    public bool patrol_1_2_9;
+    public bool pursuit_1_2_0;
+    public bool pursuit_1_2_1;
+    public bool pursuit_1_2_2;
+    public bool pursuit_1_2_3;
+    public bool pursuit_1_2_4;
+    public bool pursuit_1_2_5;
+    public bool pursuit_1_2_6;
+    public bool pursuit_1_2_7;
+    public bool pursuit_1_2_8;
+
+    public bool patrol_2_3_0;                // Twilight Town
+    public bool patrol_2_3_1;
+    public bool patrol_2_3_2;
+    public bool patrol_2_3_3;
+    public bool patrol_2_3_4;
+    public bool patrol_2_3_5;
+    public bool patrol_2_3_6;
+    public bool patrol_2_3_7;
+    public bool patrol_2_3_8;
+    public bool patrol_2_3_9;
+    public bool patrol_2_3_10;
+    public bool aerial_1_3_0;
+    public bool aerial_1_3_1;
+    public bool aerial_1_3_2;
+    public bool aerial_1_3_3;
+    public bool aerial_1_3_4;
+    public bool aerial_1_3_5;
+    public bool aerial_1_3_6;
+    public bool aerial_1_3_7;
+    public bool aerial_1_3_8;
+    public bool aerial_1_3_9;
+    public bool aerial_1_3_10;
+
+    public bool patrol_2_4_0;                // Midnight Bay
+    public bool patrol_2_4_1;
+    public bool patrol_2_4_2;
+    public bool patrol_2_4_3;
+    public bool patrol_2_4_4;
+    public bool patrol_2_4_5;
+    public bool patrol_2_4_6;
+    public bool patrol_2_4_7;
+    public bool patrol_2_4_8;
+    public bool patrol_2_4_9;
+    public bool patrol_2_4_10;
+    public bool patrol_2_4_11;
+    public bool patrol_2_4_12;
+    public bool patrol_2_4_13;
+    public bool aquatic_1_4_0;
+    public bool aquatic_1_4_1;
+    public bool aquatic_1_4_2;
+    public bool aquatic_1_4_3;
+    public bool aquatic_1_4_4;
+    public bool aquatic_1_4_5;
+    public bool aquatic_1_4_6;
+
+    public bool patrol_3_5_0;                // Grey Palace
+    public bool patrol_3_5_1;
+    public bool patrol_3_5_2;
+    public bool pursuit_2_5_0;
+    public bool aerial_2_5_0;
+    public bool aerial_2_5_1;
+    public bool aerial_2_5_2;
+    public bool aquatic_2_5_0;
+    public bool aquatic_2_5_1;
+    public bool turret_2_5_0;
+    public bool turret_2_5_1;
+
+    /*---------------------Wall of Text Ends---------------------*/
 }

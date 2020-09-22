@@ -29,6 +29,7 @@ public class RepairStation : MonoBehaviour
                 InteractText.type = "rest";
                 ReactorManage.open = false;
                 Cursor.visible = false;
+                GlobalControl.save();
             }
             else
             {
