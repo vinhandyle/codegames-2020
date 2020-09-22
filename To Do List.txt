@@ -1,8 +1,3 @@
 -Bugs
 	>Multiple pursuits will not aggro if landing in sight, will aggro after direction change
 	>Scatter Shot proj rotates weird, quad 2-4
-	
--Other
-	>Add save instruction in controls
-	>Add "saving" text to canvas (main menu + repair stations)
-ch7
