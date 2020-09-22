@@ -8,6 +8,10 @@ using UnityEngine.SceneManagement;
 
 public class GlobalControl : MonoBehaviour 
 {
+    // Saving Pop-up
+    public static bool toSave;
+    public static bool saving;
+
     // Endings
     public static bool ending_1;                    // Save Humanity
     public static bool ending_2;                    // Return to the Past
@@ -326,15 +330,25 @@ public class GlobalControl : MonoBehaviour
     void Start()
     {
         //unlockAll();
-        load();
+        //StartCoroutine(setAreaName());
 
-        StartCoroutine(setAreaName());
+        load();
         Application.targetFrameRate = 120;
     }
 
     // Update is called once per frame
     void Update()
     {
+        // Saving pop-up
+        if (toSave && !saving)
+        {
+            toSave = false;
+            saving = true;
+            StartCoroutine(saved());
+        }
+        else if (toSave && saving)
+            toSave = false;
+
         // Update stats
         if (update == 1)
         {
@@ -517,6 +531,9 @@ public class GlobalControl : MonoBehaviour
 
             // Respawn all enemies
             respawnAll();
+
+            GlobalControl.toSave = true;
+            save();
         }
     }
 
@@ -1085,7 +1102,101 @@ public class GlobalControl : MonoBehaviour
         pData.block_GP_4 = block_GP_4;
         pData.block_GP_10 = block_GP_10;
 
-        pData.patrol_1_0_0 = patrol_1_0_0;
+        pData.patrol_1_1_0 = patrol_1_1_0;
+        pData.patrol_3_1_0 = patrol_3_1_0;
+        pData.patrol_3_1_1 = patrol_3_1_1;
+        pData.patrol_3_1_2 = patrol_3_1_2;
+        pData.turret_1_1_0 = turret_1_1_0;
+        pData.turret_1_1_1 = turret_1_1_1;
+        pData.turret_1_1_2 = turret_1_1_2;
+        pData.turret_1_1_3 = turret_1_1_3;
+        pData.turret_1_1_4 = turret_1_1_4;
+        pData.turret_1_1_5 = turret_1_1_5;
+        pData.turret_1_1_6 = turret_1_1_6;
+
+        pData.errat_0 = errat_0;
+        pData.errat_1 = errat_1;
+        pData.errat_2 = errat_2;
+        pData.errat_3 = errat_3;
+        pData.errat_4 = errat_4;
+        pData.errat_5 = errat_5;
+
+        pData.patrol_1_2_0 = patrol_1_2_0;
+        pData.patrol_1_2_1 = patrol_1_2_1;
+        pData.patrol_1_2_2 = patrol_1_2_2;
+        pData.patrol_1_2_3 = patrol_1_2_3;
+        pData.patrol_1_2_4 = patrol_1_2_4;
+        pData.patrol_1_2_5 = patrol_1_2_5;
+        pData.patrol_1_2_6 = patrol_1_2_6;
+        pData.patrol_1_2_7 = patrol_1_2_7;
+        pData.patrol_1_2_8 = patrol_1_2_8;
+        pData.patrol_1_2_9 = patrol_1_2_9;
+        pData.pursuit_1_2_0 = pursuit_1_2_0;
+        pData.pursuit_1_2_1 = pursuit_1_2_1;
+        pData.pursuit_1_2_2 = pursuit_1_2_2;
+        pData.pursuit_1_2_3 = pursuit_1_2_3;
+        pData.pursuit_1_2_4 = pursuit_1_2_4;
+        pData.pursuit_1_2_5 = pursuit_1_2_5;
+        pData.pursuit_1_2_6 = pursuit_1_2_6;
+        pData.pursuit_1_2_7 = pursuit_1_2_7;
+        pData.pursuit_1_2_8 = pursuit_1_2_8;
+
+        pData.patrol_2_3_0 = patrol_2_3_0;
+        pData.patrol_2_3_1 = patrol_2_3_1;
+        pData.patrol_2_3_2 = patrol_2_3_2;
+        pData.patrol_2_3_3 = patrol_2_3_3;
+        pData.patrol_2_3_4 = patrol_2_3_4;
+        pData.patrol_2_3_5 = patrol_2_3_5;
+        pData.patrol_2_3_6 = patrol_2_3_6;
+        pData.patrol_2_3_7 = patrol_2_3_7;
+        pData.patrol_2_3_8 = patrol_2_3_8;
+        pData.patrol_2_3_9 = patrol_2_3_9;
+        pData.patrol_2_3_10 = patrol_2_3_10;
+        pData.aerial_1_3_0 = aerial_1_3_0;
+        pData.aerial_1_3_1 = aerial_1_3_1;
+        pData.aerial_1_3_2 = aerial_1_3_2;
+        pData.aerial_1_3_3 = aerial_1_3_3;
+        pData.aerial_1_3_4 = aerial_1_3_4;
+        pData.aerial_1_3_5 = aerial_1_3_5;
+        pData.aerial_1_3_6 = aerial_1_3_6;
+        pData.aerial_1_3_7 = aerial_1_3_7;
+        pData.aerial_1_3_8 = aerial_1_3_8;
+        pData.aerial_1_3_9 = aerial_1_3_9;
+        pData.aerial_1_3_10 = aerial_1_3_10;
+
+        pData.patrol_2_4_0 = patrol_2_4_0;
+        pData.patrol_2_4_1 = patrol_2_4_1;
+        pData.patrol_2_4_2 = patrol_2_4_2;
+        pData.patrol_2_4_3 = patrol_2_4_3;
+        pData.patrol_2_4_4 = patrol_2_4_4;
+        pData.patrol_2_4_5 = patrol_2_4_5;
+        pData.patrol_2_4_6 = patrol_2_4_6;
+        pData.patrol_2_4_7 = patrol_2_4_7;
+        pData.patrol_2_4_8 = patrol_2_4_8;
+        pData.patrol_2_4_9 = patrol_2_4_9;
+        pData.patrol_2_4_10 = patrol_2_4_10;
+        pData.patrol_2_4_11 = patrol_2_4_11;
+        pData.patrol_2_4_12 = patrol_2_4_12;
+        pData.patrol_2_4_13 = patrol_2_4_13;
+        pData.aquatic_1_4_0 = aquatic_1_4_0;
+        pData.aquatic_1_4_1 = aquatic_1_4_1;
+        pData.aquatic_1_4_2 = aquatic_1_4_2;
+        pData.aquatic_1_4_3 = aquatic_1_4_3;
+        pData.aquatic_1_4_4 = aquatic_1_4_4;
+        pData.aquatic_1_4_5 = aquatic_1_4_5;
+        pData.aquatic_1_4_6 = aquatic_1_4_6;
+
+        pData.patrol_3_5_0 = patrol_3_5_0;
+        pData.patrol_3_5_1 = patrol_3_5_1;
+        pData.patrol_3_5_2 = patrol_3_5_2;
+        pData.pursuit_2_5_0 = pursuit_2_5_0;
+        pData.aerial_2_5_0 = aerial_2_5_0;
+        pData.aerial_2_5_1 = aerial_2_5_1;
+        pData.aerial_2_5_2 = aerial_2_5_2;
+        pData.aquatic_2_5_0 = aquatic_2_5_0;
+        pData.aquatic_2_5_1 = aquatic_2_5_1;
+        pData.turret_2_5_0 = turret_2_5_0;
+        pData.turret_2_5_1 = turret_2_5_1;
 
         bf.Serialize(file, pData);
         file.Close();
@@ -1208,6 +1319,150 @@ public class GlobalControl : MonoBehaviour
             report_8 = pData.report_8;
             report_9 = pData.report_9;
             report_10 = pData.report_10;
+
+            nextDoor = pData.nextDoor;
+
+            locked_1 = pData.locked_1;
+            locked_2 = pData.locked_2;
+            locked_3 = pData.locked_3;
+            locked_4 = pData.locked_4;
+            locked_5 = pData.locked_5;
+            locked_6 = pData.locked_6;
+
+            state_SG_8 = pData.state_SG_8;
+            state_SG_10 = pData.state_SG_10;
+            state_SG_11 = pData.state_SG_11;
+            state_SG_11S = pData.state_SG_11S;
+            state_SG_11S_ = pData.state_SG_11S_;
+            state_TT_11 = pData.state_TT_11;
+            state_MB_4 = pData.state_MB_4;
+            state_MB_7 = pData.state_MB_7;
+            state_MB_8 = pData.state_MB_8;
+            state_MB_11 = pData.state_MB_11;
+            state_IT_4 = pData.state_IT_4;
+            state_IT_6 = pData.state_IT_6;
+            state_IT_9 = pData.state_IT_9;
+            state_GP_4 = pData.state_GP_4;
+            state_GP_10 = pData.state_GP_10;
+
+            block_starter = pData.block_starter;
+            secret_unstable = pData.secret_unstable;
+
+            block_DH_4 = pData.block_DH_4;
+            secret_DH_5 = pData.secret_DH_5;
+
+            block_SG_9 = pData.block_SG_9;
+            block_SG_11 = pData.block_SG_11;
+            block_SG_11S = pData.block_SG_11S;
+            block_SG_11S_ = pData.block_SG_11S_;
+            block_SG_12 = pData.block_SG_12;
+            secret_SG_9 = pData.secret_SG_9;
+
+            block_TT_2 = pData.block_TT_2;
+            block_TT_6 = pData.block_TT_6;
+            block_TT_9 = pData.block_TT_9;
+            block_TT_11 = pData.block_TT_11;
+            block_TT_12 = pData.block_TT_12;
+            block_TT_14S = pData.block_TT_14S;
+
+            block_GP_4 = pData.block_GP_4;
+            block_GP_10 = pData.block_GP_10;
+
+            patrol_1_1_0 = pData.patrol_1_1_0;
+            patrol_3_1_0 = pData.patrol_3_1_0;
+            patrol_3_1_1 = pData.patrol_3_1_1;
+            patrol_3_1_2 = pData.patrol_3_1_2;
+            turret_1_1_0 = pData.turret_1_1_0;
+            turret_1_1_1 = pData.turret_1_1_1;
+            turret_1_1_2 = pData.turret_1_1_2;
+            turret_1_1_3 = pData.turret_1_1_3;
+            turret_1_1_4 = pData.turret_1_1_4;
+            turret_1_1_5 = pData.turret_1_1_5;
+            turret_1_1_6 = pData.turret_1_1_6;
+
+            errat_0 = pData.errat_0;
+            errat_1 = pData.errat_1;
+            errat_2 = pData.errat_2;
+            errat_3 = pData.errat_3;
+            errat_4 = pData.errat_4;
+            errat_5 = pData.errat_5;
+
+            patrol_1_2_0 = pData.patrol_1_2_0;
+            patrol_1_2_1 = pData.patrol_1_2_1;
+            patrol_1_2_2 = pData.patrol_1_2_2;
+            patrol_1_2_3 = pData.patrol_1_2_3;
+            patrol_1_2_4 = pData.patrol_1_2_4;
+            patrol_1_2_5 = pData.patrol_1_2_5;
+            patrol_1_2_6 = pData.patrol_1_2_6;
+            patrol_1_2_7 = pData.patrol_1_2_7;
+            patrol_1_2_8 = pData.patrol_1_2_8;
+            patrol_1_2_9 = pData.patrol_1_2_9;
+            pursuit_1_2_0 = pData.pursuit_1_2_0;
+            pursuit_1_2_1 = pData.pursuit_1_2_1;
+            pursuit_1_2_2 = pData.pursuit_1_2_2;
+            pursuit_1_2_3 = pData.pursuit_1_2_3;
+            pursuit_1_2_4 = pData.pursuit_1_2_4;
+            pursuit_1_2_5 = pData.pursuit_1_2_5;
+            pursuit_1_2_6 = pData.pursuit_1_2_6;
+            pursuit_1_2_7 = pData.pursuit_1_2_7;
+            pursuit_1_2_8 = pData.pursuit_1_2_8;
+
+            patrol_2_3_0 = pData.patrol_2_3_0;
+            patrol_2_3_1 = pData.patrol_2_3_1;
+            patrol_2_3_2 = pData.patrol_2_3_2;
+            patrol_2_3_3 = pData.patrol_2_3_3;
+            patrol_2_3_4 = pData.patrol_2_3_4;
+            patrol_2_3_5 = pData.patrol_2_3_5;
+            patrol_2_3_6 = pData.patrol_2_3_6;
+            patrol_2_3_7 = pData.patrol_2_3_7;
+            patrol_2_3_8 = pData.patrol_2_3_8;
+            patrol_2_3_9 = pData.patrol_2_3_9;
+            patrol_2_3_10 = pData.patrol_2_3_10;
+            aerial_1_3_0 = pData.aerial_1_3_0;
+            aerial_1_3_1 = pData.aerial_1_3_1;
+            aerial_1_3_2 = pData.aerial_1_3_2;
+            aerial_1_3_3 = pData.aerial_1_3_3;
+            aerial_1_3_4 = pData.aerial_1_3_4;
+            aerial_1_3_5 = pData.aerial_1_3_5;
+            aerial_1_3_6 = pData.aerial_1_3_6;
+            aerial_1_3_7 = pData.aerial_1_3_7;
+            aerial_1_3_8 = pData.aerial_1_3_8;
+            aerial_1_3_9 = pData.aerial_1_3_9;
+            aerial_1_3_10 = pData.aerial_1_3_10;
+
+            patrol_2_4_0 = pData.patrol_2_4_0;
+            patrol_2_4_1 = pData.patrol_2_4_1;
+            patrol_2_4_2 = pData.patrol_2_4_2;
+            patrol_2_4_3 = pData.patrol_2_4_3;
+            patrol_2_4_4 = pData.patrol_2_4_4;
+            patrol_2_4_5 = pData.patrol_2_4_5;
+            patrol_2_4_6 = pData.patrol_2_4_6;
+            patrol_2_4_7 = pData.patrol_2_4_7;
+            patrol_2_4_8 = pData.patrol_2_4_8;
+            patrol_2_4_9 = pData.patrol_2_4_9;
+            patrol_2_4_10 = pData.patrol_2_4_10;
+            patrol_2_4_11 = pData.patrol_2_4_11;
+            patrol_2_4_12 = pData.patrol_2_4_12;
+            patrol_2_4_13 = pData.patrol_2_4_13;
+            aquatic_1_4_0 = pData.aquatic_1_4_0;
+            aquatic_1_4_1 = pData.aquatic_1_4_1;
+            aquatic_1_4_2 = pData.aquatic_1_4_2;
+            aquatic_1_4_3 = pData.aquatic_1_4_3;
+            aquatic_1_4_4 = pData.aquatic_1_4_4;
+            aquatic_1_4_5 = pData.aquatic_1_4_5;
+            aquatic_1_4_6 = pData.aquatic_1_4_6;
+
+            patrol_3_5_0 = pData.patrol_3_5_0;
+            patrol_3_5_1 = pData.patrol_3_5_1;
+            patrol_3_5_2 = pData.patrol_3_5_2;
+            pursuit_2_5_0 = pData.pursuit_2_5_0;
+            aerial_2_5_0 = pData.aerial_2_5_0;
+            aerial_2_5_1 = pData.aerial_2_5_1;
+            aerial_2_5_2 = pData.aerial_2_5_2;
+            aquatic_2_5_0 = pData.aquatic_2_5_0;
+            aquatic_2_5_1 = pData.aquatic_2_5_1;
+            turret_2_5_0 = pData.turret_2_5_0;
+            turret_2_5_1 = pData.turret_2_5_1;
         }
     }
 
@@ -1222,6 +1477,7 @@ public class GlobalControl : MonoBehaviour
         {
             MainMenuBtn.confirmNew = false;
             Cursor.visible = true;
+            toSave = true;
         }
         yield return null;
         SceneManager.UnloadSceneAsync(SceneManager.GetActiveScene().name);
@@ -1249,6 +1505,12 @@ public class GlobalControl : MonoBehaviour
     {
         area = SceneManager.GetActiveScene().name;
         yield return null;
+    }
+
+    IEnumerator saved()
+    {
+        yield return new WaitForSeconds(1f);
+        saving = false;
     }
 }
 

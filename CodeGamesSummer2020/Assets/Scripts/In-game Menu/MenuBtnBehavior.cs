@@ -37,6 +37,7 @@ public class MenuBtnBehavior : MonoBehaviour
             {
                 MenuBackground.inMenu = false;
                 GlobalControl.canContinue = true;
+                GlobalControl.toSave = true;
                 GlobalControl.save();
                 StartCoroutine(SceneSwitch("Main Menu"));
             }

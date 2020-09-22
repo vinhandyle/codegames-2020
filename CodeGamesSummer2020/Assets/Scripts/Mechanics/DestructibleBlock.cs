@@ -13,7 +13,7 @@ public class DestructibleBlock : MonoBehaviour
         if ((gameObject.name == "Block_Starter" && !GlobalControl.block_starter) ||
             (gameObject.name == "Secret_Unstable" && !GlobalControl.secret_unstable) ||           
             (gameObject.name == "Block_DH_4" && !GlobalControl.block_DH_4) ||
-            (gameObject.name == "Block_DH_5" && GlobalControl.counter_1 < 6) ||
+            (gameObject.name == "Block_DH_5" && !GlobalControl.imperialUnlocked) ||
             (gameObject.name == "Block_DH_5S" && !GlobalControl.secret_DH_5) ||
             (gameObject.name == "Secret_DH_4" && !GlobalControl.secret_DH_5) ||
             (gameObject.name == "Block_SG_9" && !GlobalControl.block_SG_9) ||

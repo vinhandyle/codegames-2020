@@ -61,7 +61,10 @@ public class MainMenuBtnBehavior : MonoBehaviour
 
     IEnumerator SceneSwitch(string load)
     {
-        GlobalControl.area = load;
+        if (!(load == null || load == ""))
+            GlobalControl.area = load;
+        else
+            load = GlobalControl.area;
 
         SceneManager.LoadScene(load, LoadSceneMode.Single);
         yield return null;

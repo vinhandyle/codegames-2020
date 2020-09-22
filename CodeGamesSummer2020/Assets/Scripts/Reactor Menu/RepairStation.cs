@@ -28,14 +28,15 @@ public class RepairStation : MonoBehaviour
             {
                 InteractText.type = "rest";
                 ReactorManage.open = false;
-                Cursor.visible = false;
-                GlobalControl.save();
+                Cursor.visible = false;                
             }
             else
             {
                 InteractText.type = "";
                 ReactorManage.open = true;
                 Cursor.visible = true;
+                GlobalControl.toSave = true;
+                GlobalControl.save();
             }
 
             // Set new respawn point & full restore
